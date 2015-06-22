@@ -1,0 +1,8 @@
+﻿{
+  "data": {
+    "active": "SqlServerTrusted",
+    "SqlServer": "server=.\\SQL2012; database=Rennder; user=RennderDev; pass=development",
+    "SqlServerTrusted": "server=.\\SQL2012; database=Rennder; Trusted_Connection=true",
+    "MySql": ""
+  }
+}

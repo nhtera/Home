@@ -1,0 +1,70 @@
+﻿{
+  "title": "Rennder CMS Platform",
+  "version": "0.1.2-alpha",
+  "authors": [ "Mark Entingh" ],
+  "description": "Rennder is a powerful drag & drop web development CMS platform built for Windows, Linux, & Mac OSX",
+  "projectUrl": "http://www.github.com/Rennder/Home",
+
+  "webroot": "wwwroot",
+
+  "commands": {
+    "kestrel": "Microsoft.AspNet.Hosting --server Kestrel --server.urls http://localhost:5000"
+  },
+
+  "frameworks": {
+    "dnxcore50": {
+      "dependencies": {
+        "Kestrel": "1.0.0-beta4",
+        "Microsoft.AspNet.Server.WebListener": "1.0.0-beta4",
+        "Microsoft.AspNet.StaticFiles": "1.0.0-beta4",
+        "Microsoft.AspNet.Diagnostics": "1.0.0-beta4",
+        "Microsoft.AspNet.Session": "1.0.0-beta4",
+        "Microsoft.Framework.OptionsModel": "1.0.0-beta4",
+        "Microsoft.Framework.ConfigurationModel.Json": "1.0.0-beta4",
+        "System.Runtime": "4.0.20-beta-22816",
+        "System.Runtime.Extensions": "4.0.10-beta-22816",
+        "System.Collections": "4.0.10-beta-22816",
+        "System.Linq": "4.0.0-beta-22816",
+        "System.IO": "4.0.10-beta-22816",
+        "System.Data.Common": "4.0.0-beta-22816",
+        "System.Data.SqlClient": "4.0.0-beta-22816",
+        "System.Text.RegularExpressions": "4.0.10-beta-22816",
+        "System.Text.Encoding.CodePages": "4.0.0-beta-22816",
+        "System.Xml.ReaderWriter": "4.0.10-beta-23015",
+        "System.Xml.XmlDocument": "4.0.0-beta-23015",
+        "System.Xml.XmlSerializer": "4.0.10-beta-23015",
+        "System.Xml.XPath": "4.0.0-beta-23015",
+        "System.Diagnostics.Tools": "4.0.0-beta-22816"
+
+      }
+    }
+  },
+
+
+  "compile": [
+    "*.cs",
+    "App/**/*.cs",
+    "Components/**/*.cs",
+    "Pipeline/**/*.cs",
+    "Services/**/*.cs",
+    "Utility/**/*.cs"
+  ],
+
+  "compileExclude": [
+    "wwwroot",
+    "Sql"
+  ],
+
+  "publishExclude": [
+    "node_modules",
+    "bower_components",
+    "**.xproj",
+    "**.user",
+    "**.vspscc"
+  ],
+  "exclude": [
+    "wwwroot",
+    "node_modules",
+    "bower_components"
+  ]
+  }
