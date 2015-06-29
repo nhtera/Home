@@ -1,0 +1,10 @@
+<layout>
+  <panel name="body" index="1" height="792">
+    <component cid="blog-entry" x="11" y="574" w="423px" h="" responsive="|px,fs,px,,tl,19,574,88.493720;478;19;36,20,,442|px,fs,px,,tl,19,21,94.787230;940;959;-910,20,,910|px,px,px,,tc;-4,12,471,975,30,,997,undefined|" intelc="9p5,9p5,9p5,9p5," index="1" itemId="0i2" design="Details||"><![CDATA[1|||||||||-1|Older Entries|150|More Entries|150|Orange: Light Small: Previous: Rounded|Orange: Light Small: Next: Rounded]]></component>
+    <component cid="photogallery" x="11" y="20" w="622px" h="550px" responsive="|px,fs,px,,tl,33,28,89.580310;691;33;39,330,,652||px,px,px,,tc;0,11,20,622,330,,808|" intelc=",,,," index="-1" itemId="9p5" design="grid|9|5|med|150|0|1||Orange: Light Medium: Previous Left Side: Rounded|Orange: Light Medium: Next Right Side: Rounded|Previous|More Photos"><![CDATA[vxoqigmjub.jpg||kqqgtfhsju.jpg||torphjjphj.jpg||lvqvhpuiaf.jpg||dfhsgygoqf.jpg||pnmbmufeqf.jpg||uoeahdqlos.jpg||txfvncjsjs.jpg||djoqyihscy.jpg||hpvrdcojyb.jpg||xjyhdvrxat.jpg||jojysrltow.jpg||afelkkhcvl.jpg||kfxuxetobv.jpg||stpqpmwvgg.jpg||dpciebkrny.jpg||fujchirqik.jpg||ufmkeiyame.jpg||lpyuhauwry.jpg||ygplsmname.jpg||bauwtqnbto.jpg||vtjndmumsv.jpg||snjqylywoh.jpg||xfrtprxbyi.jpg||maoliqlotd.jpg||ubvhwbwwer.jpg||tjumpgibab.jpg||rtxiuojtha.jpg||quwsfkoshy.jpg||tediikdpyi.jpg|]]></component>
+  </panel>
+  <layers>
+    <layer id="104" name="Header Dashboard" />
+  </layers>
+  <CSS><![CDATA[]]></CSS>
+</layout>

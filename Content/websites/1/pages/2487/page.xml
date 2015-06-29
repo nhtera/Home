@@ -1,0 +1,10 @@
+<layout>
+  <panel name="body" index="1" height="181">
+    <component cid="textbox" x="12" y="88" w="980px" h="79px" responsive="||px,fs,px,,tl,27,89,93.320230;1018;27;41,17,,977,undefined|px,px,px,,tc;-11,12,88,980,17,,859,undefined|" intelc="29f,29f,29f,29f," index="-1" itemId="799" design=""><![CDATA[<h3>Panel</h3>
+Part of <a href="#r=support-components">Components<br /></a><br /> The panel component is an essential part of a web page. A panel is simply a box that can contain other components within. After adding a panel to your page, you can drag &amp; drop components into the panel.]]></component>
+  </panel>
+  <layers>
+    <layer id="659" name="Support Header" />
+  </layers>
+  <CSS><![CDATA[]]></CSS>
+</layout>

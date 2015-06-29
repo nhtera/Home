@@ -1,0 +1,7 @@
+<layout>
+  <panel name="body" index="1" height="103">
+    <component cid="stackpanel" x="30" y="33" w="1168" h="70px" responsive="|||px,fs,px,,tl,30,33,95.50286;1223;1253;-1198,20,,1198,|" intelc=",,,!," index="-1" itemId="xo5" design="" frames=""><![CDATA[4|0|0|0|0|10|0|0|1{Panel|float|Dark Pink: Plastic Gradient: Mocha Grunge: Rounded|alo]]></component>
+  </panel>
+  <layers />
+  <CSS><![CDATA[]]></CSS>
+</layout>

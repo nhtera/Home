@@ -1,18 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Runtime.Serialization;
 
 namespace Rennder
 {
+    [DataContract]
     public class User
     {
+        [IgnoreDataMember]
         public Core R;
 
+        [DataContract]
         public struct structSecurity
         {
+            [DataMember]
             public double websiteId;
             //"full" = full control
+            [DataMember]
             public string feature;
+            [DataMember]
             public enumSecurity security;
         }
 
@@ -22,25 +29,40 @@ namespace Rennder
             read = 2
         }
 
+        [DataMember]
         public int memberId = 0;
+        [DataMember]
         public int viewerId = 0;
+        [DataMember]
         public string visitorId = "";
+        [DataMember]
         public string email = "";
+        [DataMember]
         public string fullName = "";
+        [DataMember]
         public string photo = "";
+        [DataMember]
         public DateTime signupDate;
+        [DataMember]
         public string displayName = "";
+        [DataMember]
         public int defaultPageId = 0;
+        [DataMember]
         public string editorColor = "charcoal";
 
+        [DataMember]
         public List<structSecurity> security;
+        [DataMember]
         public List<WebsiteSecurity> websiteSecurity = new List<WebsiteSecurity>();
 
-        public User(Core RennderCore)
+        public User()
+        {
+        }
+
+        public void Load(Core RennderCore)
         {
             R = RennderCore;
         }
-
 
         public void AddSecurity(double websiteId, string feature, enumSecurity securityLevel)
         {
@@ -120,26 +142,31 @@ namespace Rennder
 
     }
 
+    [DataContract]
     public class WebsiteSecurity
     {
-
+        [DataContract]
         public struct structSecurityFeature
         {
+            [DataMember]
             public string feature;
+            [DataMember]
             public List<bool> security;
         }
 
-
+        [IgnoreDataMember]
         private User myUser;
+        [DataMember]
         public int websiteId = 0;
-
+        [DataMember]
         public int ownerId = 0;
-
-        public List<structSecurityFeature> securityItems = new List<structSecurityFeature>();
+        [DataMember]
+        public List<structSecurityFeature> securityItems;
 
         public WebsiteSecurity(User u)
         {
             myUser = u;
+            securityItems = new List<structSecurityFeature>();
         }
 
         public void Init(User u)

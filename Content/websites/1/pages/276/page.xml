@@ -1,0 +1,28 @@
+<layout>
+  <panel name="body" index="1" height="656">
+    <component cid="textbox" x="192" y="39" w="507px" h="521px" responsive="|px,fs,px,,tl,34,49,91.16347;679;34;26,20,,653,100,px|px,px,px,,tc;-6,13,59,599,20,,863,100,px|px,px,px,,tc;-244,13,39,507,20,,863,100,px|" intelc=",,!,!,," index="-1" itemId="078" design="" frames=""><![CDATA[<h3>Contact Us!</h3>
+<div style="padding-bottom: 12px;">You are so important to our growth! Help us find bugs, tell us how we can build a better platform and give you better service. Share your thoughts with our developers, and get the help you need to help your business grow too!</div>
+<div style="padding-bottom: 12px;">&nbsp;</div>
+<h4>Customer Support</h4>
+<div>Email us at <a href="mailto:support@rennder.com" target="_blank">support@rennder.com</a> if you have any questions, bugs to report, or feature requests.</div>
+<div>&nbsp;</div>
+<h4>Sales</h4>
+<div>Email us at <a href="mailto:sales@rennder.com" target="_blank">sales@rennder.com</a> if you need help cancelling your account, have a credit card dispute, or any other questions concerning Pro Web Site Subscriptions.</div>
+<div>&nbsp;</div>
+<h4>Web Design</h4>
+<div>Email us at design@rennder.com if you would like a custom web site tailored for your business.</div>
+<div>&nbsp;</div>
+<h4>Address</h4>
+<div>You can mail us or visit us at our headquarters if you'd like.</div>
+<div>&nbsp;</div>
+<div>Rennder, Inc.</div>
+<div>3105 W. Tompkins Dr.</div>
+<div>Las Vegas, NV 89103</div>]]></component>
+    <component cid="page-maps" x="732" y="69" w="463px" h="414px" responsive="|px,fs,px,,tl,36,562,89.52095;668;36;34,26,,634,224,px|px,px,px,,tc;-1,13,439,594,26,,924,224,px|px,px,px,,tc;274,13,69,463,144,,924,414,px|" intelc=",,078,!,," index="-1" itemId="51l" design="[{&quot;featureType&quot;:&quot;landscape&quot;,&quot;stylers&quot;:[{&quot;saturation&quot;:-100},{&quot;lightness&quot;:65},{&quot;visibility&quot;:&quot;on&quot;}]},{&quot;featureType&quot;:&quot;poi&quot;,&quot;stylers&quot;:[{&quot;saturation&quot;:-100},{&quot;lightness&quot;:51},{&quot;visibility&quot;:&quot;simplified&quot;}]},{&quot;featureType&quot;:&quot;road.highway&quot;,&quot;stylers&quot;:[{&quot;saturation&quot;:-100},{&quot;visibility&quot;:&quot;simplified&quot;}]},{&quot;featureType&quot;:&quot;road.arterial&quot;,&quot;stylers&quot;:[{&quot;saturation&quot;:-100},{&quot;lightness&quot;:30},{&quot;visibility&quot;:&quot;on&quot;}]},{&quot;featureType&quot;:&quot;road.local&quot;,&quot;stylers&quot;:[{&quot;saturation&quot;:-100},{&quot;lightness&quot;:40},{&quot;visibility&quot;:&quot;on&quot;}]},{&quot;featureType&quot;:&quot;transit&quot;,&quot;stylers&quot;:[{&quot;saturation&quot;:-100},{&quot;visibility&quot;:&quot;simplified&quot;}]},{&quot;featureType&quot;:&quot;administrative.province&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;off&quot;}]},{&quot;featureType&quot;:&quot;water&quot;,&quot;elementType&quot;:&quot;labels&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;on&quot;},{&quot;lightness&quot;:-25},{&quot;saturation&quot;:-100}]},{&quot;featureType&quot;:&quot;water&quot;,&quot;elementType&quot;:&quot;geometry&quot;,&quot;stylers&quot;:[{&quot;hue&quot;:&quot;#ffff00&quot;},{&quot;lightness&quot;:-25},{&quot;saturation&quot;:-97}]}]" frames=""><![CDATA[3105 W TOMPKINS AVE||36.1012683072556|-115.181872150787|15|0|0|1|1|0|0|0|roadmap|]]></component>
+  </panel>
+  <layers>
+    <layer id="919" name="Header" />
+    <layer id="153" name="Foot" />
+  </layers>
+  <CSS><![CDATA[]]></CSS>
+</layout>

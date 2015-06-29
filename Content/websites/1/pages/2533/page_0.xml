@@ -1,0 +1,18 @@
+<layout>
+  <panel name="body" index="1" height="605">
+    <component cid="textbox" x="12" y="87" w="629px" h="291px" responsive="px,fs,px,,tl,13,61,87.463550;343;13;30,12,,313,|px,fs,px,,tl,19,87,92.50;680;19;32,12,,648,|px,fs,px,,tl,24,95,92.871280;1010;24;48,12,,962,|px,px,px,,tc;-26,12,94,958,12,,1110,|" intelc="29f,29f,29f,29f," index="-1" itemId="q2v" design=""><![CDATA[<h3>A/B Testing</h3>
+<div>It is crucial that you scientifically test your web pages to determine which design, layout, and content placement ultimately converts the most users. The convertion rate is determined by how many users follow the steps on your web page in order to complete a goal, such as signing up, watching a video, or simply clicking through to another page.<br /><br />The A/B test is used to determine if web page&nbsp;<strong>A</strong>&nbsp;reaches its goal more times than web page&nbsp;<strong>B</strong>&nbsp;does. After testing long enough, you can determine which test to use as your web page, until you decide to start another A/B test, which may increase your convertion rate even further.<br /><br />
+<h5>Start Testing</h5>
+After starting an A/B test within the Page Editor, you can edit each test as if they were completely separate web pages. Both the A &amp; B tests will look exactly like your web page when you start testing. You just have to tweak the A or B tests to start seeing a difference in the results for each test.<br /><br />
+<h5>View the Resullts</h5>
+Rennder uses Google's Analytics Experiment API, which allows you to view A/B Testing results in a very unique way. Log into your <a href="http://www.google.com/analytics" target="_blank">Google Analytics</a> account and do things that I haven't researched yet. You'll be able to view live results while people are visiting your web site.<br /><br />
+<h5>It Takes Time</h5>
+Don't expect accurate results over night. You may have to test for days, or gather thousands of visitors to your web page before you start to see very clearly which test has a better convertion rate.<br /><br />
+<h5>Multiple Tests</h5>
+After starting an A/B Test for your web page, you have the option of adding more tests to the list. For example, you could test five different background images or colors to see which color has the best convertion rate.</div>]]></component>
+  </panel>
+  <layers>
+    <layer id="659" name="Support Header" />
+  </layers>
+  <CSS><![CDATA[]]></CSS>
+</layout>

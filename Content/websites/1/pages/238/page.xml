@@ -1,0 +1,18 @@
+<layout>
+  <panel name="body" index="1" height="68" />
+  <panel name="head" index="2" height="102" />
+  <panel name="footer" index="3" height="544">
+    <component cid="stackpanel" x="52" y="14" w="855px" h="530" itemId="nr0" design="Shiny Box|vertical"><![CDATA[||]]></component>
+  </panel>
+  <panel name="nr0" index="4" height="100%">
+    <component cid="textbox" x="263" y="18" w="570" h="67" itemId="ocn" design=""><![CDATA[<span class="font-opensans-shadow" style="font-size: 48px;">Build Beautiful Web Sites</span>]]></component>
+    <component cid="object" x="259" y="92" w="563px" h="" itemId="9ns" design="0|1|center|||Small Star List|left|top|Previous|More"><![CDATA[1|10|title[Drag & drop content directly onto your web pages, then publish your content to your live web site afterward.[description[|title[Install Applications onto your web sites, such as a Blog and Newsletter, Storefront, or your own Social Network.[description[|title[Use a simple <a href="#r=layout-developer-toolkit">Developer Toolkit</a> to design your own layouts while using HTML, CSS, jQuery, HTML5, Flash, and various supported Javascript libraries.[description[|title[Manage all of your web sites from any of your web sites.[description[|title[Sell products & services using Paypal and Authorize.net.[description[|title[Find a <a href="#r=web-designers">web designer</a> that builds custom Rennder web sites.[description[]]></component>
+    <component cid="textbox" x="253" y="428" w="300px" h="100px" itemId="go3" design=""><![CDATA[<div style="text-align: center; width: 100%;"><a href="#s=Rennder.EditPageAsDemo"><span class="font-opensans-shadow" style="font-size: 36px;">Try Now!</span></a><br />Manipulate the contents of this page.</div>]]></component>
+    <component cid="textbox" x="548" y="428" w="300px" h="100px" itemId="867" design=""><![CDATA[<div style="text-align: center; width: 100%;"><a href="#r=sign-up"><span class="font-opensans-shadow" style="font-size: 36px;">Sign Up!</span></a><br />Start building your own web site.</div>]]></component>
+    <component cid="photo" x="9" y="39" w="309px" h="191px" itemId="6po" design=""><![CDATA[GUOPEIIKOW.png|xlprhscjdw.png|||309|191||0||]]></component>
+    <component cid="photo" x="57" y="266" w="142px" h="105px" itemId="1n8" design=""><![CDATA[WSRRMRQRKS.png|bevkebtnng.png|||142|105||0||]]></component>
+  </panel>
+  <layers>
+    <layer id="919" name="Header" />
+  </layers>
+</layout>

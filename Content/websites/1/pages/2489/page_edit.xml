@@ -1,0 +1,9 @@
+<layout>
+  <panel name="body" index="1" height="706">
+    <component cid="photo" x="1" y="102" w="420px" h="604px" responsive="|px,fs,px,,tl,56,102,75.67567;555;611;-476,20,,476,||px,px,px,,tc;-246,1,102,420,20,,589,|" intelc=",,,," index="-1" itemId="v8r" design="" frames=""><![CDATA[GBNVHVVGPT.jpg|kqqgtfhsju.jpg|||420|604||0||]]></component>
+  </panel>
+  <layers>
+    <layer id="659" name="Support Header" />
+  </layers>
+  <CSS><![CDATA[]]></CSS>
+</layout>

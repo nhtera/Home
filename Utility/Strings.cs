@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Rennder.Utility
 {
@@ -11,7 +12,7 @@ namespace Rennder.Utility
             R = RennderCore;
         }
 
-        #region "Convertion"
+        #region "Conversion"
         public int Asc(string character)
         {
             string c = character.ToString();
@@ -20,14 +21,28 @@ namespace Rennder.Utility
             return Encoding.ASCII.GetBytes(character)[0];
         }
 
-        public bool IsNumeric(object str)
+        public string FromBoolToIntString(bool value)
         {
-            double retNum;
-            return Double.TryParse((string)str, out retNum);
+            return (value == true ? "1" : "0");
+        }
+
+        public byte[] GetBytes(string str)
+        {
+            byte[] bytes = new byte[str.Length * sizeof(char)];
+            Buffer.BlockCopy(str.ToCharArray(), 0, bytes, 0, bytes.Length);
+            return bytes;
+        }
+
+        public string GetString(byte[] bytes)
+        {
+            char[] chars = new char[bytes.Length / sizeof(char)];
+            Buffer.BlockCopy(bytes, 0, chars, 0, bytes.Length);
+            return string.Join("",chars);
         }
 
         #endregion
 
+        #region "Manipulation"
         public string Right(string str, int len)
         {
             return str.Substring(0, str.Length - 1 - len);
@@ -38,41 +53,100 @@ namespace Rennder.Utility
             return str.Substring(0+len);
         }
 
-        public string FromBoolToIntString(bool value)
+        public string replaceAll(string myStr, string replaceWith, params string[] findList)
         {
-            return (value == true ? "1" : "0");
+            string newStr = myStr.ToString();
+            for (int x = 0; x <= findList.Length - 1; x++)
+            {
+                newStr = newStr.Replace(findList[x], replaceWith);
+            }
+            return newStr;
         }
 
-        public string CreateID(int length = 3)
+        public string replaceOnlyAlphaNumeric(string myStr, bool allowAlpha = true, bool allowNumbers = true, bool allowSpaces = true)
         {
-            Random rnd = new Random();
-            string result = "";
-            for (var x = 1; x <= length; x++) {
-                int type = rnd.Next(1, 3);
-                int num = 0;
-                switch (type)
+            string newStr = myStr.ToString();
+            bool result = false;
+            int x = 0;
+            while (!(x >= newStr.Length))
+            {
+                result = false;
+                if (allowAlpha == true)
                 {
-                    case 1: //a-z
-                        num = rnd.Next(0, 26);
-                        result += (char)('a' + num);
-                        break;
+                    if (Asc(newStr.Substring(x, 1)) >= Asc("a") & Asc(newStr.Substring(x, 1)) <= Asc("z"))
+                    {
+                        result = true;
+                    }
 
-                    case 2: //A-Z
-                        num = rnd.Next(0, 26);
-                        result += (char)('A' + num);
-                        break;
-
-                    case 3: //0-9
-                        num = rnd.Next(0, 9);
-                        result += (char)('1' + num);
-                        break;
-
+                    if (Asc(newStr.Substring(x, 1)) >= Asc("A") & Asc(newStr.Substring(x, 1)) <= Asc("Z"))
+                    {
+                        result = true;
+                    }
                 }
 
+                if (allowNumbers == true)
+                {
+                    if (Asc(newStr.Substring(x, 1)) >= Asc("0") & Asc(newStr.Substring(x, 1)) <= Asc("9"))
+                    {
+                        result = true;
+                    }
+                }
+
+                if (allowSpaces == true)
+                {
+                    if (newStr.Substring(x, 1) == " ")
+                    {
+                        result = true;
+                    }
+                }
+
+                if (result == false)
+                {
+                    //remove character
+                    newStr = newStr.Substring(1, x - 1) + newStr.Substring(x + 1);
+                }
+                else
+                {
+                    x += 1;
+                }
             }
-            return result;
+            return newStr;
         }
 
+        public object RemoveHtmlFromString(string str, bool includeBR = false)
+        {
+            string RegExStr = "<[^>]*>";
+            if (includeBR == true)
+                RegExStr = "(\\<)(?!br(\\s|\\/|\\>))(.*?\\>)";
+            Regex R = new Regex(RegExStr);
+            return R.Replace(str, "");
+        }
+
+        public string Capitalize(string origText)
+        {
+            string[] textParts = origText.Split('\"');
+            for (int x = 0; x <= textParts.Length - 1; x++)
+            {
+                if (textParts[x].Length > 1)
+                {
+                    textParts[x] = textParts[x].Substring(1, 1).ToUpper() + textParts[x].Substring(2);
+                }
+                else
+                {
+                    textParts[x] =textParts[x].ToUpper();
+                }
+            }
+            return string.Join(" ", textParts);
+        }
+
+        public string CleanHtml(string html)
+        {
+            return Regex.Replace(html, "\\s{2,}", " ").Replace("> <", "><");
+        }
+
+        #endregion
+
+        #region "Extraction"
         public string getFileExtension(string filename)
         {
             for (int x = filename.Length-1; x >= 0; x += -1)
@@ -136,41 +210,39 @@ namespace Rennder.Utility
             return title.Split(new char[] { ' ', '-', ' ' })[0];
         }
 
-        #region "Validation"
-        public bool OnlyAlphabet(string myStr, params string[] exceptionList)
-        {
-            bool result = false;
-            for (int x = 1; x <= myStr.Length; x++)
-            {
-                result = false;
-                if (Asc(myStr.Substring(x, 1)) >= Asc("a") & Asc(myStr.Substring(x, 1)) <= Asc("z"))
-                {
-                    result = true;
-                }
-                if (Asc(myStr.Substring(x, 1)) >= Asc("A") & Asc(myStr.Substring(x, 1)) <= Asc("Z"))
-                {
-                    result = true;
-                }
-                if (exceptionList.Length >= 0)
-                {
-                    for (int y = exceptionList.GetLowerBound(0); y <= exceptionList.GetUpperBound(0); y++)
-                    {
-                        if (myStr.Substring(x, 1) == exceptionList[y])
-                        {
-                            result = true;
-                        }
-                    }
-                }
-                if (result == false)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
         #endregion
 
-        #region "Anchor Links"
+        #region "Generation"
+        public string CreateID(int length = 3)
+        {
+            Random rnd = new Random();
+            string result = "";
+            for (var x = 0; x <= length - 1; x++) {
+                int type = rnd.Next(1, 3);
+                int num = 0;
+                switch (type)
+                {
+                    case 1: //a-z
+                        num = rnd.Next(0, 26);
+                        result += (char)('a' + num);
+                        break;
+
+                    case 2: //A-Z
+                        num = rnd.Next(0, 26);
+                        result += (char)('A' + num);
+                        break;
+
+                    case 3: //0-9
+                        num = rnd.Next(0, 9);
+                        result += (char)('1' + num);
+                        break;
+
+                }
+
+            }
+            return result;
+        }
+
         public string GenerateLinkAsString(string hash, string page = "", bool replacehash = false)
         {
             //creates a string of the URL link within the Rennder web page that may include a hash
@@ -298,7 +370,7 @@ namespace Rennder.Utility
             string newurl = "";
             string myUrl = url;
             i = myUrl.IndexOf("#r=");
-            e = url.Length + 1;
+            e = url.Length;
             if (i >= 0)
             {
                 newurl = myUrl.Substring(i + 3, e - (i + 3));
@@ -316,6 +388,157 @@ namespace Rennder.Utility
                 //myUrl = R.Script.ParseHtmlString(myUrl, myContainer.ItemId)
             }
             return myUrl;
+        }
+        #endregion
+
+        #region "Validation"
+        public bool IsNumeric(object str)
+        {
+            double retNum;
+            return Double.TryParse((string)str, out retNum);
+        }
+
+        public bool OnlyAlphabet(string myStr, params string[] exceptionList)
+        {
+            bool result = false;
+            for (int x = 0; x <= myStr.Length - 1; x++)
+            {
+                result = false;
+                if (Asc(myStr.Substring(x, 1)) >= Asc("a") & Asc(myStr.Substring(x, 1)) <= Asc("z"))
+                {
+                    result = true;
+                }
+                if (Asc(myStr.Substring(x, 1)) >= Asc("A") & Asc(myStr.Substring(x, 1)) <= Asc("Z"))
+                {
+                    result = true;
+                }
+                if (exceptionList.Length >= 0)
+                {
+                    for (int y = exceptionList.GetLowerBound(0); y <= exceptionList.GetUpperBound(0); y++)
+                    {
+                        if (myStr.Substring(x, 1) == exceptionList[y])
+                        {
+                            result = true;
+                        }
+                    }
+                }
+                if (result == false)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public bool OnlyLettersAndNumbers(string myStr, params string[] exceptionList)
+        {
+            bool functionReturnValue = false;
+            bool result = false;
+            for (int x = 0; x <= myStr.Length - 1; x++)
+            {
+                result = false;
+                if (Asc(myStr.Substring(x, 1)) >= Asc("a") & Asc(myStr.Substring(x, 1)) <= Asc("z"))
+                {
+                    result = true;
+                }
+
+                if (Asc(myStr.Substring(x, 1)) >= Asc("A") & Asc(myStr.Substring(x, 1)) <= Asc("Z"))
+                {
+                    result = true;
+                }
+
+                if (Asc(myStr.Substring(x, 1)) >= Asc("0") & Asc(myStr.Substring(x, 1)) <= Asc("9"))
+                {
+                    result = true;
+                }
+
+                if (exceptionList.Length >= 0)
+                {
+                    for (int y = exceptionList.GetLowerBound(0); y <= exceptionList.GetUpperBound(0); y++)
+                    {
+                        if (myStr.Substring(x, 1) == exceptionList[y])
+                        {
+                            result = true;
+                        }
+                    }
+                }
+
+                if (result == false)
+                {
+                    return false;
+                    return functionReturnValue;
+                }
+            }
+
+            return true;
+            return functionReturnValue;
+        }
+
+        public bool CheckChar(string character, bool allowAlpha = true, bool allowNumbers = true, string[] allowList = null)
+        {
+            if (allowAlpha == true)
+            {
+                if (Asc(character) >= Asc("a") & Asc(character) <= Asc("z"))
+                {
+                    return true;
+                }
+
+                if (Asc(character) >= Asc("A") & Asc(character) <= Asc("Z"))
+                {
+                    return true;
+                }
+            }
+
+            if (allowNumbers == true)
+            {
+                if (Asc(character) >= Asc("0") & Asc(character) <= Asc("9"))
+                {
+                    return true;
+                }
+            }
+
+            if ((allowList != null))
+            {
+                foreach (string c in allowList)
+                {
+                    if (c == character)
+                        return true;
+                }
+            }
+
+            return false;
+        }
+
+        public bool ContainsCurseWords(string txt)
+        {
+            bool functionReturnValue = false;
+            string[] myCurse = new string[13];
+            myCurse[0] = "fuck";
+            myCurse[1] = "fukc";
+            myCurse[2] = "bitch";
+            myCurse[3] = "cunt";
+            myCurse[4] = "slut";
+            myCurse[5] = "whore";
+            myCurse[6] = "nigger";
+            myCurse[7] = "niger";
+            myCurse[8] = "shit";
+            myCurse[9] = "cum";
+            myCurse[10] = "cock";
+            myCurse[11] = "pussy";
+            myCurse[12] = "vagina";
+
+            string newtxt = txt.ToLower();
+            for (int x = 0; x <= myCurse.GetUpperBound(0); x++)
+            {
+                if (newtxt.IndexOf(myCurse[x]) >= 0)
+                {
+                    return true;
+                    return functionReturnValue;
+                }
+            }
+
+            return false;
+            return functionReturnValue;
         }
         #endregion
 

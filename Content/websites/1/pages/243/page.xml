@@ -1,0 +1,11 @@
+<layout>
+  <panel name="head" index="2" height="539">
+    <component cid="storefront-productlist" x="8" y="131" w="462px" h="" itemId="hdt" design=""><![CDATA[]]></component>
+    <component cid="storefront-cart" x="437" y="129" w="525px" h="" itemId="6ue" design="Panel||||Default||Cart Small|Delete"><![CDATA[206|104|0|False|550|150|10|]]></component>
+    <component cid="textbox" x="10" y="68" w="416px" h="64px" itemId="o2r" design=""><![CDATA[<span class="font-opensans" style="font-size: 36px;">Mobile Phones</span>]]></component>
+  </panel>
+  <layers>
+    <layer id="104" name="Header Dashboard" />
+    <layer id="153" name="Foot" />
+  </layers>
+</layout>

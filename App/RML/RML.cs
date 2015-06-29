@@ -138,11 +138,11 @@ namespace Rennder
                 //}
                 //return _cache;
                 // //////////////////////
-                if (_cache == null)
+                if (_cache != null)
                 {
                     return _cache;
                 }
-                if (R.Server.Cache["design-" + layoutFolder] == null)
+                if (R.Server.Cache.ContainsKey("design-" + layoutFolder) == false)
                 {
                     if ((_cache == null))
                     {
@@ -180,8 +180,7 @@ namespace Rennder
         public void CleanMemory()
         {
             // removes the large RML strings from memory at the end of the page render
-            for (int x = 0; (x
-                        <= (cache.designRml.Length - 1)); x++)
+            for (int x = 0; x < cache.designRml.Length; x++)
             {
                 try
                 {
@@ -363,7 +362,7 @@ namespace Rennder
         {
             if ((rmlObjectArray(index) == null) == false)
             {
-                if (rmlObjectArray(index).Count >= 0)
+                if (rmlObjectArray(index).Count > 0)
                 {
                     //list of arrays already exists in cache
                     return rmlObjectArray(index);
@@ -374,7 +373,7 @@ namespace Rennder
             string d = GetDesignRml(index);
             int[] start = new int[4];
             int i = -1;
-            start[0] = 1;
+            start[0] = 0;
             do
             {
                 //get a list of arrays
@@ -516,7 +515,7 @@ namespace Rennder
         {
             if ((rmlObjectNames(index) == null) == false)
             {
-                if (rmlObjectNames(index).Length >= 0)
+                if (rmlObjectNames(index).Length > 0)
                 {
                     //list of names already exists in cache
                     return rmlObjectNames(index);
@@ -587,7 +586,7 @@ namespace Rennder
         {
             if ((rmlObjectDetails(index) == null) == false)
             {
-                if (rmlObjectDetails(index).Count >= 0)
+                if (rmlObjectDetails(index).Count > 0)
                 {
                     //list of names already exists in cache
                     return rmlObjectDetails(index);
@@ -601,7 +600,7 @@ namespace Rennder
             string d = GetDesignRml(index);
             int[] start = new int[4];
             int i = -1;
-            start[0] = 1;
+            start[0] = 0;
 
             //get rml arrays
             List<structRMLArray> rmlArrays = GetRmlDesignArrays(index);
@@ -611,7 +610,7 @@ namespace Rennder
                 start[0] = d.IndexOf("<rml:" + GetRmlNameFromIndex(index), start[0]);
                 if (start[0] >= 0)
                 {
-                    start[0] = start[0] + GetRmlNameFromIndex(index).Length;
+                    start[0] = start[0] + GetRmlNameFromIndex(index).Length - 1;
                     start[1] = d.IndexOf(">", start[0]);
                     if (start[1] >= 0)
                     {
@@ -645,7 +644,7 @@ namespace Rennder
                                     string[] vr = null;
                                     structRMLVarsParsed vars = ParseRMLVars(n, index);
                                     structRMLVarsParsed varsIcon = ParseRMLVars(icon, index);
-                                    for (int y = 1; y <= vars.nameVars.Count; y++)
+                                    for (int y = 0; y <= vars.nameVars.Count - 1; y++)
                                     {
                                         nameParts.Add(0);
                                     }
@@ -689,7 +688,7 @@ namespace Rennder
                                         {
                                             //get value from nameArray
                                             v = varsIcon.nameVars[z].Replace("$rml.", "");
-                                            vr = v.Split('\"');
+                                            vr = v.Split('.');
                                             for (int u = 0; u <= vars.nameArray.Count - 1; u++)
                                             {
                                                 //main array id
@@ -708,7 +707,7 @@ namespace Rennder
                                             }
                                         }
                                         design.icon = ico;
-                                        design.iconVars = ico.Replace(a.Split(new char[] { ' ', '\"' })[0].ToLower().Replace(" ", ""), "{0}");
+                                        design.iconVars = ico.Replace(a.Split(new string[] { ": " }, StringSplitOptions.None)[0].ToLower().Replace(" ", ""), "{0}");
                                         design.vars = n;
                                         rmlDesigns.Add(design);
                                         rmlNames.Add(design.name);
@@ -816,7 +815,7 @@ namespace Rennder
             string a = "";
             string b = "";
             int i = 0;
-            start[0] = 1;
+            start[0] = 0;
             do
             {
                 start[0] = n.IndexOf("$rml.", start[0]);
@@ -830,12 +829,12 @@ namespace Rennder
                         {
                             if (y == n.Length - 1)
                             {
-                                i = 2;
+                                i = 1;
                             }
 
-                            a = n.Substring(start[0], y + i - start[0]);
+                            a = n.Substring(start[0], (y + i) - start[0]);
                             vars.nameVars.Add(a);
-                            b = a.Replace("$rml.", "").Split('\"')[0];
+                            b = a.Replace("$rml.", "").Split('.')[0];
                             //find array that matches
                             for (int z = 0; z <= rmlArrays.Count - 1; z++)
                             {
@@ -870,10 +869,10 @@ namespace Rennder
             string[] vr = null;
             structRMLVarsParsed vars = ParseRMLVars(designNameVars, index);
             structRMLVarsParsed varsStr = ParseRMLVars(str, index);
-            string[] nameArr = designName.Split(new char[] { ' ', '\"' });
-            string[] nameVarArr = designNameVars.Split(new char[] { ' ', '\"' });
+            string[] nameArr = designName.Split(new string[] { ": " } ,StringSplitOptions.None);
+            string[] nameVarArr = designNameVars.Split(new string[] { ": " }, StringSplitOptions.None);
             int i = -1;
-            for (int y = 0; y <= vars.nameVars.Count - 1; y++)
+            for (int y = 0; y < vars.nameVars.Count; y++)
             {
                 i += 1;
                 bool isf = false;
@@ -881,7 +880,7 @@ namespace Rennder
                 {
                     if (nameArr.Length > i)
                     {
-                        if (nameVarArr[i].IndexOf("$rml.") == 0)
+                        if (nameVarArr[i].IndexOf("$rml.") < 0)
                         {
                             i += 1;
                         }
@@ -895,9 +894,9 @@ namespace Rennder
                         break; 
                     }
                 } while (true);
-                if (nameArr.Length > y)
+                if (y < nameArr.Length && i < nameArr.Length)
                 {
-                    for (int x = 0; x <= vars.nameArray[y].values.Count - 1; x++)
+                    for (int x = 0; x < vars.nameArray[y].values.Count; x++)
                     {
                         if (vars.nameArray[y].values[x].name == nameArr[i])
                         {
@@ -917,7 +916,7 @@ namespace Rennder
             {
                 //get value from nameArray
                 v = varsStr.nameVars[z].Replace("$rml.", "");
-                vr = v.Split('\"');
+                vr = v.Split('.');
                 for (int u = 0; u <= vars.nameArray.Count - 1; u++)
                 {
                     //main array id
@@ -970,7 +969,7 @@ namespace Rennder
             bool foundit = false;
             string newName = designName;
             string varName = "";
-            string[] arrName = newName.Split(new char[] { ' ', '\"' });
+            string[] arrName = newName.Split(new string[] { ": " }, StringSplitOptions.None);
 
             start[0] = designRml.IndexOf("<rml:" + rmlName);
             start[1] = designRml.IndexOf(">", start[0]);
@@ -1009,14 +1008,14 @@ namespace Rennder
                 int mx = 0;
                 int mz = 0;
                 int[] mi = null;
-                int mix = 0;
+                bool foundMatch = false;
                 for (int x = 0; x <= arrName.Length - 1; x++)
                 {
                     matches.Add(new List<structRMLArrayMatches>());
                 }
                 if ((rmlArray == null) == false)
                 {
-                    if (rmlArray.Count >= 0)
+                    if (rmlArray.Count > 0)
                     {
                         //find each matching RML array for each part of the name (arrName)
                         for (int z = 0; z <= arrName.Length - 1; z++)
@@ -1024,7 +1023,7 @@ namespace Rennder
                             //find all possible matches of values
                             for (int x = 0; x <= rmlArray.Count - 1; x++)
                             {
-                                if (rmlArray[x].values.Count >= 0)
+                                if (rmlArray[x].values.Count > 0)
                                 {
                                     for (int y = 0; y <= rmlArray[x].values.Count - 1; y++)
                                     {
@@ -1034,13 +1033,15 @@ namespace Rennder
                                             match.arrayIndex = x;
                                             match.valueIndex = y;
                                             matches[z].Add(match);
+                                            break;
                                         }
                                     }
+                                    if(foundMatch == true) { foundMatch = false; break; }
                                 }
                             }
                         }
 
-                        if (matches[0].Count >= 0)
+                        if (matches[0].Count > 0)
                         {
                             mi = new int[matches.Count];
                             for (int x = 0; x <= mi.Length - 1; x++)
@@ -1050,7 +1051,7 @@ namespace Rennder
                             for (int i = 0; i <= arrName.Length - 1; i++)
                             {
                                 //for each item in the name array, create a match combination name
-                                if (matches[i].Count >= 0)
+                                if (matches[i].Count > 0)
                                 {
                                     for (int x = 0; x <= matches[i].Count - 1; x++)
                                     {
@@ -1058,14 +1059,14 @@ namespace Rennder
                                         for (int z = 0; z <= matches.Count - 1; z++)
                                         {
                                             //create combination
-                                            if (matches[z].Count >= 0)
+                                            if (matches[z].Count > 0)
                                             {
                                                 mx = matches[z][mi[z]].arrayIndex;
                                                 mz = matches[z][mi[z]].valueIndex;
                                                 //replace first part of name within rml design name with the var name
                                                 if (z == 0)
                                                 {
-                                                    newName = "$rml." + rmlArray[mx].id + newName.Substring(rmlArray[mx].values[mz].name.Length + 1);
+                                                    newName = "$rml." + rmlArray[mx].id + newName.Substring(rmlArray[mx].values[mz].name.Length);
                                                     //replace part of name within rml design name with the var name
                                                 }
                                                 else
@@ -1093,7 +1094,7 @@ namespace Rennder
                                             mi[0] = 0;
                                             //incriment mi
                                             mi[0] = 0;
-                                            for (int u = 1; u <= matches.Count - 1; u++)
+                                            for (int u = 0; u <= matches.Count - 1; u++)
                                             {
                                                 mi[u] += 1;
                                                 if (mi[u] >= matches[u].Count)
@@ -1235,7 +1236,7 @@ namespace Rennder
                     case 0:
                         if ((cache.rmlButton != null))
                         {
-                            Array.Resize(ref cache.rmlButton, cache.rmlButton.Length + 1);
+                            Array.Resize(ref cache.rmlButton, cache.rmlButton.Length);
                             i = cache.rmlButton.Length - 1;
                         }
                         else
@@ -1253,7 +1254,7 @@ namespace Rennder
                     case 3:
                         if ((cache.rmlMenu != null))
                         {
-                            Array.Resize(ref cache.rmlMenu, cache.rmlMenu.Length + 1);
+                            Array.Resize(ref cache.rmlMenu, cache.rmlMenu.Length);
                             i = cache.rmlMenu.Length - 1;
                         }
                         else
@@ -1265,7 +1266,7 @@ namespace Rennder
                     case 4:
                         if ((cache.rmlPhotoList != null))
                         {
-                            Array.Resize(ref cache.rmlPhotoList, cache.rmlPhotoList.Length + 1);
+                            Array.Resize(ref cache.rmlPhotoList, cache.rmlPhotoList.Length);
                             i = cache.rmlPhotoList.Length - 1;
                         }
                         else
@@ -1277,7 +1278,7 @@ namespace Rennder
                     case 5:
                         if ((cache.rmlStackPanel != null))
                         {
-                            Array.Resize(ref cache.rmlStackPanel, cache.rmlStackPanel.Length + 1);
+                            Array.Resize(ref cache.rmlStackPanel, cache.rmlStackPanel.Length);
                             i = cache.rmlStackPanel.Length - 1;
                         }
                         else
@@ -1289,7 +1290,7 @@ namespace Rennder
                     case 6:
                         if ((cache.rmlTextbox != null))
                         {
-                            Array.Resize(ref cache.rmlTextbox, cache.rmlTextbox.Length + 1);
+                            Array.Resize(ref cache.rmlTextbox, cache.rmlTextbox.Length);
                             i = cache.rmlTextbox.Length - 1;
                         }
                         else
@@ -1304,7 +1305,7 @@ namespace Rennder
                     case 8:
                         if ((cache.rmlList != null))
                         {
-                            Array.Resize(ref cache.rmlList, cache.rmlList.Length + 1);
+                            Array.Resize(ref cache.rmlList, cache.rmlList.Length);
                             i = cache.rmlList.Length - 1;
                         }
                         else
@@ -1319,7 +1320,7 @@ namespace Rennder
                     case 10:
                         if ((cache.rmlLoading != null))
                         {
-                            Array.Resize(ref cache.rmlLoading, cache.rmlLoading.Length + 1);
+                            Array.Resize(ref cache.rmlLoading, cache.rmlLoading.Length);
                             i = cache.rmlLoading.Length - 1;
                         }
                         else
@@ -1333,7 +1334,7 @@ namespace Rennder
                     case 12:
                         if ((cache.rmlPaging != null))
                         {
-                            Array.Resize(ref cache.rmlPaging, cache.rmlPaging.Length + 1);
+                            Array.Resize(ref cache.rmlPaging, cache.rmlPaging.Length);
                             i = cache.rmlPaging.Length - 1;
                         }
                         else
@@ -1444,7 +1445,7 @@ namespace Rennder
                         if (tmpBtnType != "button")
                         {
                             //link has HTML between 2 tags, create HTML link
-                            htm = htm.Substring(1, start[5] - 1) + "<a href=\"" + href + "\">" + htm.Substring(start[6] + 1, start[7] - (start[6] + 1)) + "</a>" + htm.Substring(start[7] + 7 + tagName.Length);
+                            htm = htm.Substring(0, start[5] - 1) + "<a href=\"" + href + "\">" + htm.Substring(start[6] + 1, start[7] - (start[6] + 1)) + "</a>" + htm.Substring(start[7] + 7 + tagName.Length);
                         }
                         else
                         {
@@ -1452,7 +1453,7 @@ namespace Rennder
                             if (tmpBtnType == "button")
                                 tmpBtnType = "";
                             RmlButton myButton = this.GetRmlButton(tmpBtnDesign, tmpBtnType);
-                            htm = htm.Substring(1, start[5] - 1) + myButton.GetCompiledRml(tmpBtnLbl, href, id) + htm.Substring(start[6] + 1).Replace("</rml:" + tagName + ">", "");
+                            htm = htm.Substring(0, start[5] - 1) + myButton.GetCompiledRml(tmpBtnLbl, href, id) + htm.Substring(start[6] + 1).Replace("</rml:" + tagName + ">", "");
                         }
 
                     }
@@ -1462,7 +1463,7 @@ namespace Rennder
                         if (tmpBtnType == "button")
                             tmpBtnType = "";
                         RmlButton myButton = this.GetRmlButton(tmpBtnDesign, tmpBtnType);
-                        htm = htm.Substring(1, start[5] - 1) + myButton.GetCompiledRml(tmpBtnLbl, href, id) + htm.Substring(start[6] + 1);
+                        htm = htm.Substring(0, start[5] - 1) + myButton.GetCompiledRml(tmpBtnLbl, href, id) + htm.Substring(start[6] + 1);
                     }
 
                 }

@@ -1,0 +1,12 @@
+<layout>
+  <panel name="body" index="1" height="263">
+    <component cid="textbox" x="12" y="98" w="825px" h="38px" responsive="||px,fs,px,,tl,24,98,93.554680;1024;24;42,26,,982,undefined|px,px,px,,tc;-9,12,99,992,28,,1016,undefined|" intelc="29f,29f,29f,," index="-1" itemId="5v5" design=""><![CDATA[<h3>Components Window</h3>
+<div>Located within the <a href="#r=support-page-editor">Page Editor</a><br /><br />The Components Window is used to drag &amp; drop components direcctly onto your web pages. You can find components for a few basic categories, and if you have any applications installed onto your web site, you'll find component categories for those applications.</div>]]></component>
+    <component cid="photo" x="24" y="228" w="46px" h="36px" responsive="||px,px,px,,tl,24,228,46,37,,70,undefined|px,px,px,,tc;-486,12,210,46,34,,187,undefined|" intelc=",,5v5,," index="-1" itemId="xwc" design=""><![CDATA[XBMMIKSXAW.png|xalqgokysc.png|||46|36||0||]]></component>
+    <component cid="textbox" x="12" y="216" w="847px" h="38px" responsive="|px,fs,px,,tl,103,216,76.900580;684;103;55,36,,629,undefined|px,fs,px,,tl,103,235,84.278600;1005;103;55,44,,950,undefined|px,px,px,,tc;15,12,212,900,36,,1122,undefined|" intelc="5v5,5v5,5v5,5v5," index="-1" itemId="eiw" design=""><![CDATA[<div>The icon located on the Page Editor toolbar's web site button has a plus sign that represents adding new content to the page.</div>]]></component>
+  </panel>
+  <layers>
+    <layer id="659" name="Support Header" />
+  </layers>
+  <CSS><![CDATA[]]></CSS>
+</layout>

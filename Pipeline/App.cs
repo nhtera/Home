@@ -20,7 +20,7 @@ namespace Rennder.Pipeline
 
             //setup scaffolding variables
             Elements = R.Server.SetupScaffold(new string[]
-            { "title", "description", "facebook", "layout-css", "website-css", "editor-css", "head-css", "favicon", "font-faces", "body-class", "custom-class",
+            { "title", "description", "facebook", "layout-css", "website-css", "editor-css", "head-css", "favicon", "font-faces", "body-class", "custom-css",
               "background", "editor","webpage-class", "body-sides","body", "scripts", "https-url", "http-url"});
 
             //default favicon
@@ -43,7 +43,7 @@ namespace Rennder.Pipeline
             }
 
             //get browser type
-            Elements["body-class"] = GetBrowserType();
+            Elements["body-class"] = R.Util.GetBrowserType();
 
             //parse URL
             R.Page.GetPageUrl();
@@ -64,7 +64,7 @@ namespace Rennder.Pipeline
                     string js = "";
 
                     //load page
-                    //R.Page.LoadPage();
+                    R.Page.LoadPage(R.Page.pageFolder + "page.xml", 1, R.Page.pageId, R.Page.pageTitle);
 
                     //load website.css
                     Elements["website-css"] = "/content/websites/" + R.Page.websiteId + "/website.css?v=" + R.Version;
@@ -77,21 +77,56 @@ namespace Rennder.Pipeline
                         R.Page.isEditable = false;
                     }
 
+                    //display Page Editor
                     if (R.Page.isEditable == true)
                     {
 
                     }
-                    //display Page Editor
 
+                    //register app javascript
+                    js += "R.page.useAjax = " + R.Page.useAJAX.ToString().ToLower() + "; R.ajax.viewstateId = '" + R.ViewStateId + "'; R.hash.last=R.page.title; R.hash.start(); R.events.render.init();";
+                    R.Page.RegisterJS("app", js);
 
-                    //register javascript, if any
-                    if(js != "")
+                    //setup scripts
+                    string scripts;
+                    if(R.isLocal == true)
                     {
-                        R.Page.RegisterJS("app", js);
+                        scripts = "<script type=\"text/javascript\" src=\"/scripts/utility/jquery-2.1.3.min.js\"></script>\n" +
+                            "<script type=\"text/javascript\" src=\"/scripts/core/global.js\"></script>\n" +
+                            "<script type=\"text/javascript\" src=\"/scripts/core/fixes.js\"></script>\n" +
+                            "<script type=\"text/javascript\" src=\"/scripts/core/rml.js\"></script>\n" +
+                            "<script type=\"text/javascript\" src=\"/scripts/core/view.js\"></script>\n" +
+                            "<script type=\"text/javascript\" src=\"/scripts/core/responsive.js\"></script>\n" +
+                            "<script type=\"text/javascript\" src=\"/scripts/utility.js?v=" + R.Version + "\"></script>";
+                        if(R.Page.isEditable == true)
+                        {
+                            scripts += "<script type=\"text/javascript\" src=\"/scripts/core/editor.js?v=" + R.Version + "\"></script>\n" +
+                                "<script type=\"text/javascript\" src=\"/scripts/rangy/rangy-compiled.js?v=" + R.Version + "\"></script>\n" +
+                                "<script type=\"text/javascript\" src=\"/scripts/utility/dropzone.js?v=" + R.Version + "\"></script>\n" +
+                                "<script type=\"text/javascript\">R.editor.load();</script>";
+                        }
+                    }
+                    else
+                    {
+                        scripts = "<script type=\"text/javascript\" src=\"/scripts/rennder.js?v=" + R.Version + "\"></script>\n" +
+                                "<script type=\"text/javascript\" src=\"/scripts/utility.js?v=" + R.Version + "\"></script>";
+                        if (R.Page.isEditable == true)
+                        {
+                            scripts += "<script type=\"text/javascript\" src=\"/scripts/editor.js?v=" + R.Version + "\"></script>\n" +
+                                "<script type=\"text/javascript\">R.editor.load();</script>";
+                        }
                     }
 
-                    //render page
-                    Elements["body"] = R.Page.Render();
+                    if(R.Page.postJScode.Length > 0)
+                    {
+                        R.Page.postJS += string.Join("\n", R.Page.postJScode) + R.Page.postJSLast;
+                    }
+                                        
+                    Elements["scripts"] = scripts + "\n" + "<script type=\"text/javascript\">" + R.Page.postJS + "</script>";
+                    Elements["https-url"] = R.Page.Url.host.Substring(0, R.Page.Url.host.Length - 2);
+
+                    //render web page
+                    Elements["body"] = R.Page.Render() + "Session ViewStates = " + R.Session["viewstates"].Length + " bytes";
                 }
             }
 
@@ -101,57 +136,6 @@ namespace Rennder.Pipeline
 
             //unload the core
             R.Unload();
-        }
-
-        private string GetBrowserType()
-        {
-            string browser = R.Request.Headers["User-Agent"].ToLower();
-            int major = 11;
-            int minor = 0;
-            string browserType = "";
-            if (browser.IndexOf("chrome") >= 0)
-            {
-                if (major > 10)
-                {
-                    browserType = "chrome";
-                }
-                else
-                {
-                    browserType = "legacy-chrome";
-                }
-            }
-            else if (browser.IndexOf("firefox") >= 0)
-            {
-                if (major == 3 & minor >= 6)
-                {
-                    browserType = "firefox";
-                }
-                else if (major > 3)
-                {
-                    browserType = "firefox";
-                }
-                else
-                {
-                    browserType = "legacy-firefox";
-                }
-            }
-            else if (browser.IndexOf("safari") >= 0)
-            {
-                if (browser.IndexOf("iphone") >= 0)
-                {
-                    browserType = "iphone";
-                }
-                else if (browser.IndexOf("ipad") >= 0)
-                {
-                    browserType = "ipad";
-                }
-                else if (major <= 4)
-                {
-                    browserType = "legacy-safari";
-                }
-                browserType = "safari";
-            }
-            return browserType;
         }
     }
 }

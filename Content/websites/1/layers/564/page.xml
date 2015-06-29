@@ -1,0 +1,74 @@
+<layout>
+  <panel name="body" index="1" height="1540">
+    <component cid="textbox" x="-12" y="349" w="264px" h="1189px" itemId="qf8" design=""><![CDATA[<span class="font-opensans" style="font-size: 18px; padding-left: 30px;">Developer Documentation</span><br /><br /> 
+<ul class="ul-features">
+<li class="style4">Starting Out<br />
+<div class="style2">
+<div style="padding-top: 4px;"><span style="font-size: 10px;">01</span> <a>What is a Rennder Layout? </a></div>
+<div style="padding-top: 4px;"><span style="font-size: 10px;">02</span> <a>Required Developer Skills</a></div>
+<div style="padding-top: 4px;"><span style="font-size: 10px;">03</span> <a>Design Your Rennder Layout</a></div>
+<div style="padding-top: 4px;"><span style="font-size: 10px;">04</span> <a>Rennder Markup Language</a></div>
+<div style="padding-top: 4px;"><span style="font-size: 10px;">05</span> <a>Layout Compiler Application</a></div>
+<div style="padding-top: 4px;"><span style="font-size: 10px;">06</span> <a>Use DRML for Debugging</a></div>
+<div style="padding-top: 4px;"><span style="font-size: 10px;">07</span> <a>Publish Your Rennder Layout</a></div>
+</div>
+</li>
+<li class="style4">HTML, CSS &amp; JS<br />
+<div class="style2">
+<div style="padding-top: 4px;"><span style="font-size: 10px;">01</span> <a>default.htm </a></div>
+<div style="padding-top: 4px;"><span style="font-size: 10px;">02</span> <a>compile.htm </a></div>
+<div style="padding-top: 4px;"><span style="font-size: 10px;">03</span> <a>style.css</a></div>
+<div style="padding-top: 4px;"><span style="font-size: 10px;">04</span> <a>script.js</a></div>
+</div>
+</li>
+<li class="style4">RML Syntax<br />
+<div class="style2">
+<div style="padding-top: 4px;"><span style="font-size: 10px;">01</span> <a>button.rml</a></div>
+<div style="padding-top: 4px;"><span style="font-size: 10px;">02</span> <a>comment.rml</a></div>
+<div style="padding-top: 4px;"><span style="font-size: 10px;">03</span> <a>list.rml</a></div>
+<div style="padding-top: 4px;"><span style="font-size: 10px;">04</span> <a>menu.rml</a></div>
+<div style="padding-top: 4px;"><span style="font-size: 10px;">05</span> <a>photolist.rml</a></div>
+<div style="padding-top: 4px;"><span style="font-size: 10px;">06</span> <a>stackpanel.rml</a></div>
+<div style="padding-top: 4px;"><span style="font-size: 10px;">07</span> <a>textbox.rml</a></div>
+<div style="padding-top: 4px;"><span style="font-size: 10px;">08</span> <a>blogentry.rml</a></div>
+<div style="padding-top: 4px;"><span style="font-size: 10px;">09</span> <a>productlist.rml</a></div>
+<div style="padding-top: 4px;"><span style="font-size: 10px;">10</span> <a>object.rml</a></div>
+<div style="padding-top: 4px;"><span style="font-size: 10px;">11</span> <a>video.rml</a></div>
+<div style="padding-top: 4px;"><span style="font-size: 10px;">12</span> <a>vector.rml</a></div>
+</div>
+</li>
+<li class="style4">DRML Debugging Syntax<br />
+<div class="style2">
+<div style="padding-top: 4px;"><span style="font-size: 10px;">01</span> <a>button</a></div>
+<div style="padding-top: 4px;"><span style="font-size: 10px;">02</span> <a>comment</a></div>
+<div style="padding-top: 4px;"><span style="font-size: 10px;">03</span> <a>list</a></div>
+<div style="padding-top: 4px;"><span style="font-size: 10px;">04</span> <a>menu</a></div>
+<div style="padding-top: 4px;"><span style="font-size: 10px;">05</span> <a>photolist</a></div>
+<div style="padding-top: 4px;"><span style="font-size: 10px;">06</span> <a>stackpanel</a></div>
+<div style="padding-top: 4px;"><span style="font-size: 10px;">07</span> <a>textbox</a></div>
+</div>
+</li>
+<li class="style4">Included Libraries<br />
+<div class="style2">
+<div style="padding-top: 4px;"><span style="font-size: 10px;">01</span> <a>jQuery 1.4.2</a></div>
+<div style="padding-top: 4px;"><span style="font-size: 10px;">02</span> <a>SWF Object 1.2</a></div>
+<div style="padding-top: 4px;"><span style="font-size: 10px;">03</span> <a>YouTube.js</a></div>
+<div style="padding-top: 4px;"><span style="font-size: 10px;">04</span> <a>Compiler.js</a></div>
+<div style="padding-top: 4px;"><span style="font-size: 10px;">05</span> <a>IEpngFix.htc</a></div>
+</div>
+</li>
+<li class="style4">Rennder Script<br />
+<div class="style2">
+<div style="padding-top: 4px;"><span style="font-size: 10px;">01</span> <a>Main Functionality</a></div>
+<div style="padding-top: 4px;"><span style="font-size: 10px;">02</span> <a>Rennder Platform</a></div>
+<div style="padding-top: 4px;"><span style="font-size: 10px;">03</span> <a>Evolver</a></div>
+</div>
+</li>
+</ul>
+<br />]]></component>
+  </panel>
+  <panel name="head" index="2" height="73" />
+  <panel name="footer" index="3" height="102" />
+  <panel name="3e0" index="4" height="100%" />
+  <panel name="k12" index="5" height="100%" />
+</layout>

@@ -38,7 +38,7 @@ namespace Rennder
         public string workfolder = "";
         public int Draggable;
         public string ComponentId;
-        public string LayerId;
+        public int LayerId;
         public string ComponentType;
         public string PanelId;
         public string ComponentIndex;
@@ -62,7 +62,6 @@ namespace Rennder
         private bool _Resizable = false;
         private string _header = "";
         private string _footer = "";
-        private string[] _resourcesLoaded;
 
         private Component _myParent;
         public virtual string Align { get; set; }
@@ -76,6 +75,7 @@ namespace Rennder
         public RmlStackPanel[] rmlStackPanels;
         public RmlMenu[] rmlMenu;
         public RmlTextbox[] rmlTextbox;
+
         public Component(Core RennderCore)
         {
             R = RennderCore;
@@ -84,21 +84,24 @@ namespace Rennder
             DivItem = new Utility.DOM.Element("div");
         }
 
+        /// <summary>
+        /// Setup & load your component from this function
+        /// </summary>
         public virtual void Load()
         {
         }
 
-        public string Render()
+        public virtual string Render()
         {
             string classes = "component id-" + itemId;
-
-            if (string.IsNullOrEmpty(DivItem.Attributes["class"]))
+            string itemClass = "container type-" + ComponentId.ToLower().Replace(" ", "").Replace("/", "-");
+            if (DivItem.Attributes.ContainsKey("class") == true)
             {
-                classes += "container type-" + ComponentId.ToLower().Replace(" ", "").Replace("/", "-");
+                DivItem.Attributes["class"] += " " + itemClass;
             }
             else
             {
-                classes += " container type-" + ComponentId.ToLower().Replace(" ", "").Replace("/", "-");
+                DivItem.Attributes["class"] = itemClass;
             }
 
             DivBase.Attributes["class"] = classes;
@@ -133,31 +136,10 @@ namespace Rennder
             //executed whenever a component instance is dragged & dropped onto the page
         }
 
-        public virtual string ComponentName
-        {
-            get { return ""; }
-        }
-
-        public virtual string ComponentApp
-        {
-            get { return ""; }
-        }
-
-
-        public virtual void updateContent(string value)
-        {
-        }
-
-
-        public virtual void updateDesign(string value)
-        {
-        }
-
         /// <summary>
         /// Executed after the page is completely loaded, called at the end of myEvolver.LoadPage with pageType = 1
         /// </summary>
         /// <remarks></remarks>
-
         public virtual void PageLoadComplete()
         {
         }
@@ -185,6 +167,22 @@ namespace Rennder
         public virtual void RemoveComponent()
         {
             //removes the component from the page
+        }
+
+        public virtual string ComponentName
+        {
+            get { return ""; }
+        }
+
+        public virtual string ComponentApp
+        {
+            get { return ""; }
+        }
+
+        public string InnerHTML
+        {
+            get { return DivItem.innerHTML; }
+            set { DivItem.innerHTML = value; }
         }
 
         public int Left
@@ -528,7 +526,7 @@ namespace Rennder
         public int Draggable;
         public string ComponentId;
         public string ComponentName;
-        public string LayerId;
+        public int LayerId;
         public string ComponentType;
         public string PanelId;
         public string ComponentIndex;

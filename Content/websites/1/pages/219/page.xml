@@ -1,0 +1,12 @@
+<layout>
+  <panel name="body" index="1" height="662">
+    <component cid="textbox" x="7" y="18" w="511px" h="81px" responsive="||,,,,,,,,||" intelc=",,,," itemId="575" design=""><![CDATA[<span class="font-opensans" style="font-size: 48px;">Updates &amp; Official Blog</span><br />Part of the <a href="#r=Rennder Platform">Rennder Platform</a>]]></component>
+    <component cid="comments" x="39" y="195" w="" h="" responsive="||px,px,px,,tl,39,195,893,41||" intelc="" itemId="0bb" design="Comment"><![CDATA[1|1|2|1|1]]></component>
+  </panel>
+  <layers>
+    <layer id="104" name="Header Dashboard" />
+    <layer id="883" name="Community Header" />
+    <layer id="153" name="Foot" />
+  </layers>
+  <CSS><![CDATA[]]></CSS>
+</layout>

@@ -1,0 +1,22 @@
+<layout>
+  <panel name="body" index="1" height="703">
+    <component cid="textbox" x="20" y="13" w="952px" h="27px" responsive="||px,fs,px,,tl,20,13,94.61457;947;20;31,26,,916,|px,px,px,,tc;-6,12,26,952,26,,525,|" intelc=",,!,!," index="-1" itemId="73u" design="" frames=""><![CDATA[<h1>Submit your artwork to be featured on the home page of Rennder.com</h1>]]></component>
+    <component cid="photo" x="12" y="331" w="1024px" h="224px" responsive=",,,,,,,1024,,,,|px,fs,px,,tl,9,331,96.35922;412;9;6,8,,406,|px,fs,px,,tl,24,302,93.00699;1001;1025;-955,46,,955,|px,px,px,,tc;-11,12,349,931,46,,677,|,,,,,,,1024,,,," intelc=",,,73u," index="-1" itemId="m49" design="" frames=""><![CDATA[EKCXVERTSO.jpg|vksfdhebpi.jpg|||1024|224||0||]]></component>
+    <component cid="textbox" x="12" y="584" w="927px" h="44px" responsive="||px,fs,px,,tl,28,506,92.60739;1001;1029;-955,31,,955,|px,px,px,,tc;-9,12,584,927,31,,830,|" intelc=",,,m49," index="-1" itemId="5m5" design="" frames=""><![CDATA[<div style="padding-bottom: 12px;"><strong>First, download <a href="https://www.dropbox.com/s/2ft096y2u6g1szm/artwork-template.psd" target="_blank">template-artwork.psd</a>.</strong></div>
+<h4><strong>Rules:&nbsp;</strong></h4>
+<div><ol class="art-rules">
+<li><span style="background-color: #ffffff;">The artwork must be submitted at 1920x420 resolution, in PNG format, with a transparent background.&nbsp;</span></li>
+<li><span style="background-color: #ffffff;">Do not include the Rennder logo, action buttons, or slogan in the artwork.</span></li>
+<li><span style="background-color: #ffffff;">The artwork must be designed using a semi-transparent white ink ranging from 5% to 30%.</span></li>
+<li><span style="background-color: #ffffff;">The cell phone must stay exactly where it is, but the web page conveyed inside the cell phone can be changed to match your idea.</span></li>
+<li><span style="background-color: #ffffff;">The artwork can expand down to the two action buttons &amp; slogan, but must not confuse the viewer as to what is clickable.</span></li>
+<li><span style="background-color: #ffffff;">The artwork can overlap the RENNDER logo, but must not confuse the viewer as to what is part of the logo and what is not.</span></li>
+</ol></div>
+<div>&nbsp;</div>
+<div>When you have completed your artwork, send the PNG image file via email to <a href="mailto:info@rennder.com">info@rennder.com</a> with the subject titled "Artwork"</div>]]></component>
+  </panel>
+  <layers>
+    <layer id="919" name="Header" />
+  </layers>
+  <CSS><![CDATA[.art-rules li{padding-bottom:10px;}]]></CSS>
+</layout>

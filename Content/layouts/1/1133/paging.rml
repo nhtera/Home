@@ -1,0 +1,55 @@
+<rml:paging name="Default">
+	<rml:default>
+      <div class="circle pager-default default"></div>
+	</rml:default>
+	<rml:mouseover>
+      <div class="circle pager-default mouseover"></div>
+	</rml:mouseover>
+	<rml:selected>
+      <div class="circle pager-default selected"></div>
+	</rml:selected>
+</rml:paging>
+
+<rml:array id="colors">
+<rml:item name="White" id="co1" color="#FFFFFF" hover="#AAF0FF" selected="#00B8FD"/>
+<rml:item name="Lighter Grey" id="co2" color="#EFEFEF" hover="#77E7FF" selected="#0093CA"/>
+<rml:item name="Light Grey" id="co3" color="#E6E6E6" hover="#77E7FF" selected="#0093CA"/>
+<rml:item name="Grey" id="co4" color="#CCCCCC" hover="#44DEFF" selected="#006E97"/>
+<rml:item name="Dark Grey" id="co5" color="#B3B3B3" hover="#00CDF9" selected="#026ABF"/>
+<rml:item name="Darker Grey" id="co6" color="#7C7C7C" hover="#0060D5" selected="#0028B3"/>
+<rml:item name="Deep Grey" id="co7" color="#484848" hover="#0039BF" selected="#FF7D09"/>
+<rml:item name="Sky Blue" id="co8" color="#D5F9FF" hover="#04D3FF" selected="#FFB44D"/>
+<rml:item name="Pool Blue" id="co9" color="#6FEBFF" hover="#00E0EC" selected="#FF9C15"/>
+<rml:item name="Faded Blue" id="co10" color="#7BCFE1" hover="#0194B8" selected="#FFD200"/>
+<rml:item name="Faded Light Blue" id="co11" color="#C9ECF3" hover="#00B0B9" selected="#FFD200"/>
+<rml:item name="Faded Lighter Blue" id="co12" color="#DFEFF3" hover="#B7DBDE" selected="#FFD200"/>
+<rml:item name="Light Aqua Blue" id="co13" color="#D7F3F0" hover="#67E5E0" selected="#FDB8D1"/>
+<rml:item name="Aqua Blue" id="co14" color="#7CF3ED" hover="#1BDDD7" selected="#F1A4BB"/>
+</rml:array>
+
+<rml:array id="size">
+<rml:item name="Small" id="small" icon=".png"/>
+<rml:item name="Medium" id="medium" icon=".png"/>
+<rml:item name="Large" id="large" icon=".png"/>
+</rml:array>
+
+<rml:array id="type">
+<rml:item name="Circle" id="circle" bg="background-color:" borders="border:0px none "/>
+<rml:item name="Circle With Ring" id="circlering" bg="background-color:" borders="border-color:"/>
+<rml:item name="Circle Outline" id="circleoutline" bg="color:" borders="border-color:"/>
+<rml:item name="Square" id="square" bg="background-color:" borders="border:0px none "/>
+<rml:item name="Square Outline" id="squareoutline" bg="color:" borders="border-color:"/>
+</rml:array>
+
+<rml:paging name="$rml.colors: $rml.size: $rml.type" icon="/content/layouts/1/1133/files/icons/$rml.colors.id-light$rml.size.icon">
+	<rml:default>
+      <div class="circle pager-$rml.type.id-$rml.size.id-outer default" style="$rml.type.borders$rml.colors.color;"><div class="circle pager-$rml.type.id-$rml.size.id default" style="$rml.type.bg$rml.colors.color;"></div></div>
+	</rml:default>
+	<rml:mouseover>
+      <div class="circle pager-$rml.type.id-$rml.size.id-outer mouseover" style="$rml.type.borders$rml.colors.hover;"><div class="circle pager-$rml.type.id-$rml.size.id mouseover" style="$rml.type.bg$rml.colors.hover;"></div></div>
+	</rml:mouseover>
+	<rml:selected>
+      <div class="circle pager-$rml.type.id-$rml.size.id-outer selected" style="$rml.type.borders$rml.colors.selected;"><div class="circle pager-$rml.type.id-$rml.size.id selected" style="$rml.type.bg$rml.colors.selected;"></div></div>
+	</rml:selected>
+</rml:paging>
+

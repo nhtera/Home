@@ -1,0 +1,61 @@
+<rml:list name="Bulleted List">
+    <rml:item>
+        <table cellpadding="0" cellspacing="0" border="0" style="width:100%; padding-bottom:10px;"><tr>
+        <td valign="top" style="padding-right:7px;">
+            <rml:photo name="Photo" size="medium"/>
+        </td><td valign="top">
+            <h3><rml:label name="Title"/></h3>
+            <div style="padding:7px 0px 0px 0px;"><rml:label name="Description"/></div>
+        </td></tr></table>
+    </rml:item>
+</rml:list>
+
+<rml:list name="Two Column List">
+    <table cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+    <rml:item>
+        <tr><td valign="top" style="min-height:18px;padding:0px 7px 15px 0px;text-align:right;">
+            <rml:label name="Name" type="multiline"/>
+        </td><td valign="top" style="text-align:left;padding-bottom:15px;">
+            <rml:label name="Definition" type="multiline"/>
+        </td></tr>
+    </rml:item>
+    </table>
+</rml:list>
+
+<rml:list name="Small Outlined Star List">
+    <rml:item>
+        <table class="list-sm-outline-star" cellpadding="0" cellspacing="0" border="0" style="width:100%;"><tr>
+        <td valign="top">
+            <img src="/content/layouts/1/82/content/layouts/1/3137/files/list/star-outline-sm.png"/>
+        </td><td valign="top">
+            <h4><rml:label name="Title"/></h4>
+            <div style="padding:7px 0px 0px 0px;"><rml:label name="Description"/></div>
+        </td></tr></table>
+    </rml:item>
+</rml:list>
+
+<rml:list name="Small Outlined Yellow Star List">
+    <rml:item>
+        <table class="list-sm-outline-star" cellpadding="0" cellspacing="0" border="0" style="width:100%;"><tr>
+        <td valign="top">
+            <img src="/content/layouts/1/82/content/layouts/1/3137/files/list/star-outline-yel.png"/>
+        </td><td valign="top">
+            <h4><rml:label name="Title"/></h4>
+            <div style="padding:7px 0px 0px 0px;"><rml:label name="Description"/></div>
+        </td></tr></table>
+    </rml:item>
+</rml:list>
+
+<rml:list name="Summary Box with Icon">
+    <div class="list-sumboxes">
+    <rml:item>
+        <div class="list-sumbox-container"><div class="list-sumbox-item">
+            <div class="item-title"><h4><rml:label name="Title"/></h4></div>
+            <div class="item-photo"><rml:photo name="Photo" size="large"/></div>
+            <div class="item-summary"><rml:label name="Summary"/></div>
+        </div></div>
+    </rml:item>
+    </div>
+</rml:list>
+
+

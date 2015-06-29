@@ -1,0 +1,16 @@
+<layout>
+  <panel name="body" index="1" height="110">
+    <component cid="textbox" x="17" y="142" w="235" h="96" responsive="px,fs,px,,tl,17,142,83.928570;280;17;28,5,,252|px,fs,px,,tl,37,64,89.604680;683;37;34,2,,649|px,fs,px,,tl,32,75,68.379880;895;32;251,9,,644|px,px,px,,tc;-197,11,68,612,-3,,792|" intelc="249,249,249,249," itemId="a38" design=""><![CDATA[If you are passionate or even curious about web design, you should learn how to build Rennder web sites, altering HTML, CSS, &amp; RML source code to create beautiful web designs.]]></component>
+    <component cid="stackpanel" x="17" y="256" w="231" h="171" responsive="px,fs,px,0,tl,17,256,82.50;280;17;32,18,,248|px,fs,px,0,tl,32,169,88.563040;682;32;46,15,,636|px,px,px,,tr,-230,22,201,72,,29|px,px,px,,tc;388,11,32,201,72,,194|" intelc="a38,,,," itemId="x16" design=""><![CDATA[4|0|||0|0|0|100px{Starting Out|float|Panel Title|o7u]]></component>
+  </panel>
+  <panel name="x16StartingOut" index="5" height="">
+    <component cid="menu" x="8" y="14" w="514" h="32" responsive="|px,fs,px,,tl,8,14,95.185180;540;8;18,20,,522||px,px,px,,tl,8,14,183,20,,191|" intelc="" itemId="f86" design=""><![CDATA[<menu><item index="1" title="Required skills" url="%23r%3ddeveloper-required-skills" target="" icon="" /><item index="2" title="What is RML?" url="%23r%3drml" target="" icon="" /><item index="3" title="Supported Technologies" url="%23r%3ddeveloper-technologies" target="" icon="" /></menu>]]></component>
+  </panel>
+  <layers>
+    <layer id="104" name="Header Dashboard" />
+    <layer id="153" name="Foot" />
+    <layer id="702" name="Developer Menu" />
+    <layer id="372" name="Developer Header" />
+  </layers>
+  <CSS><![CDATA[]]></CSS>
+</layout>

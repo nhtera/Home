@@ -1,0 +1,13 @@
+<layout>
+  <panel name="body" index="1" height="369">
+    <component cid="textbox" x="11" y="625" w="2604px" h="266px" responsive="px,fs,px,,tl,10,625,87.213110;305;10;29,10,,276|px,fs,px,,tl,13,320,91.805760;659;13;41,12,,618|px,fs,px,,tl,19,120,77.526980;1019;1038;-809,13,,809|px,px,px,,tc;-98,11,120,808,13,,629|" intelc="y2r,y2r,3d3,3d3," itemId="s34" design=""><![CDATA[<h4>RML Type: Block</h4>
+A tag that contains RML &amp; HTML between the block's opening &amp; closing tags.]]></component>
+  </panel>
+  <layers>
+    <layer id="104" name="Header Dashboard" />
+    <layer id="153" name="Foot" />
+    <layer id="659" name="Support Header" />
+    <layer id="152" name="Support RML Menu" />
+  </layers>
+  <CSS><![CDATA[]]></CSS>
+</layout>

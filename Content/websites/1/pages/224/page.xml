@@ -1,0 +1,12 @@
+<layout>
+  <panel name="body" index="1" height="60">
+    <component cid="textbox" x="12" y="-23" w="447px" h="83px" itemId="134" design=""><![CDATA[<span class="font-opensans" style="font-size: 48px;">Web Site Showcase</span><br />Part of the <a href="#r=Rennder Platform">Rennder Platform</a>]]></component>
+  </panel>
+  <panel name="head" index="2" height="73" />
+  <panel name="foot" index="3" height="331" />
+  <layers>
+    <layer id="104" name="Header Dashboard" />
+    <layer id="883" name="Community Header" />
+    <layer id="153" name="Foot" />
+  </layers>
+</layout>

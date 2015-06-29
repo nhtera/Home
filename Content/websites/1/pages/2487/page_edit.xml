@@ -1,0 +1,25 @@
+<layout>
+  <panel name="body" index="1" height="501">
+    <component cid="textbox" x="12" y="88" w="980px" h="79px" responsive="||px,fs,px,,tl,27,89,93.320230;1018;27;41,17,,977,undefined|px,px,px,,tc;-11,12,88,980,17,,859,undefined|" intelc="29f,29f,29f,29f," index="-1" itemId="799" design=""><![CDATA[<h3>Panel</h3>
+Part of <a href="#r=support-components">Components<br /></a><br /> The panel component is an essential part of a web page. A panel is simply a box that can contain other components within. After adding a panel to your page, you can drag &amp; drop components into the panel.<br /><br />
+<h4>Panels &amp; Arrangement</h4>
+A panel component can be made up of more than just one panel, and the panels can be arranged horizontally, vertically, in a grid, or can show just one at a time, like pages in a book.<br /><br />
+<h4>Resizing</h4>
+Resizing a panel can be tricky. Depending on your needs, you'll need to set up how resizing works for your panel component.<br />
+<ul>
+<li>
+<h5>Manually resize the panel</h5>
+The panel will take on the width and height of the component's area. If auto-resize panel height is checked, then the panel will only take on the width of the component's area while the height will automatically resize to the height of the contents of the panel.<br />&nbsp;</li>
+<li>
+<h5>Use a fixed with &amp; height for all panels</h5>
+Type in the width &amp; height of what you want all of your panels to resize to&nbsp;in pixel format. This is a good feature for building a grid of panels that need to be exactly the same size.<br />&nbsp;</li>
+<li>
+<h5>Auto-resize panels to their inner content</h5>
+All panels within your component will resize the width &amp; height based on the position of the components within each panel.</li>
+</ul>]]></component>
+  </panel>
+  <layers>
+    <layer id="659" name="Support Header" />
+  </layers>
+  <CSS><![CDATA[]]></CSS>
+</layout>

@@ -1,0 +1,16 @@
+<layout>
+  <panel name="body" index="1" height="288">
+    <component cid="textbox" x="10" y="-18" w="499px" h="67px" itemId="y99" design=""><![CDATA[<span class="font-opensansandlink" style="font-size: 36px;">Layout Developer Toolkit</span><br />Part of the <a href="#r=Developers">Developer Community</a> within the <a href="#r=Rennder Platform">Rennder Platform</a>.]]></component>
+    <component cid="textbox" x="278" y="109" w="640px" h="72px" itemId="s9k" design=""><![CDATA[Version 1.9 released May 5th, 2011<br /><br /><a href="../../content/developer/layoutdevkit/v1.9/DevToolKit-v19.rar"><span class="font-opensansandlink" style="font-size: 24px;">Download the Layout Developer Toolkit v1.9</span></a>]]></component>
+    <component cid="textbox" x="277" y="208" w="657px" h="96px" itemId="y96" design=""><![CDATA[The toolkit comes with a demo layout, full documentation in HTML format, and an application that allows you to compile RML code to help you debug the output HTML.<br /><br /><strong><span style="color: #ff6600;">NOTE:</span></strong> Before diving into your creative mind to design a Rennder web site, first read the documentation<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; that comes with the toolkit.]]></component>
+  </panel>
+  <panel name="head" index="2" height="73" />
+  <panel name="foot" index="3" height="331" />
+  <panel name="k12" index="4" height="100%" />
+  <layers>
+    <layer id="104" name="Header Dashboard" />
+    <layer id="883" name="Header Dashboard" />
+    <layer id="702" name="Header Dashboard" />
+    <layer id="153" name="Community Header" />
+  </layers>
+</layout>

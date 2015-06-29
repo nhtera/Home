@@ -73,7 +73,7 @@ namespace Rennder
                 //get scaffold from html file
                newScaffold = new List<structScaffold>();
                 var s = File.ReadAllText(path(file));
-                var arr = s.Split(new char[] { '{', '{' }, StringSplitOptions.RemoveEmptyEntries);
+                var arr = s.Split(new string[] { "{{" }, StringSplitOptions.RemoveEmptyEntries);
                 
                 var i = 0; structScaffold scaff;
                 for (var x = 0; x < arr.Length; x++)

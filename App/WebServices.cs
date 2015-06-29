@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.AspNet.Http;
+using System.Runtime.Serialization;
 
 namespace Rennder.WebServices
 { 
+    
     public enum enumInjectTypes
     {
         replace = 0,
@@ -41,6 +43,7 @@ namespace Rennder.WebServices
 
     public class Service
     {
+        [IgnoreDataMember]
         protected Core R;
 
         public Service(Server server, HttpContext context, String viewstate = "") {

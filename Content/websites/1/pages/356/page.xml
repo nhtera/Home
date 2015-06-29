@@ -1,0 +1,8 @@
+<layout>
+  <panel name="body" index="1" height="64">
+    <component cid="textbox" x="12" y="14" w="300px" h="100px" itemId="e2a" design=""><![CDATA[<span class="font-opensans" style="font-size: 36px;">Events</span>]]></component>
+  </panel>
+  <layers>
+    <layer id="104" name="Header Dashboard" />
+  </layers>
+</layout>

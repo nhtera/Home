@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Rennder
 {
@@ -6,14 +7,14 @@ namespace Rennder
     {
         private Core R;
         public string Name = "";
-        public bool isPartOfLayout = false;
+        public string ID = "";
         public int Width = 0;
         public int Height = 0;
-        public int Components = 0;
         public int ResizeType = 0;
         public int HeightType = 0;
         public int PageId = 0;
-        public string InnerHtml = "";
+        public bool isPartOfLayout = false;
+        public List<Component> Components = new List<Component>();
 
         private string _DesignHead = "";
         private string _DesignFoot = "";
@@ -25,7 +26,7 @@ namespace Rennder
         private Array _ComponentDesigns;
 
         private bool _overflow = false;
-        private Utility.DOM.Element inner = new Utility.DOM.Element("div");
+        public Utility.DOM.Element inner = new Utility.DOM.Element("div");
 
         public Panel(Core RennderCore, string name = "")
         {
@@ -36,18 +37,25 @@ namespace Rennder
         public string Render()
         {
             string htm = "";
-            string name = "panel" + Name.Replace(" ", "");
             inner.ID = "inner";
-            inner.Classes.Add("inner-panel inner" + name);
+            inner.Classes.Add("inner-panel inner" + ID);
             if (Width > 0) { inner.Style.Add("width", Width.ToString() + "px");}
             if (Height > 0) { inner.Style.Add("height", Height.ToString() + "px");}
             inner.Attributes.Add("resizeh",HeightType.ToString());
             inner.Attributes.Add("resize",ResizeType.ToString());
             if (Overflow == true) { inner.Style.Add("overflow", "hidden");}
-            
-            inner.innerHTML = InnerHead + (isEmpty == true ? "" : InnerHtml) + InnerFoot;
 
-            htm = StackHead + "<div id=\"" + name + "\" class=\"panel" + Name + " ispanel" + (isPartOfLayout == true ? " islayout" : "") + "\">" +
+            List<string> comps = new List<string>();
+            for(int x = 0; x < Components.Count; x++)
+            {
+                comps.Add(Components[x].Render());
+            }
+            
+            inner.innerHTML = InnerHead + 
+                              (isEmpty == true ? "" : string.Join("\n",comps.ToArray())) + 
+                              InnerFoot;
+
+            htm = StackHead + "<div id=\"" + ID + "\" class=\"panel" + Name + " ispanel" + (isPartOfLayout == true ? " islayout" : "") + "\">" +
                   DesignHead + inner.Render() + DesignFoot + "</div>" + StackFoot;
 
             PanelView pv = GetPanelView();
@@ -127,15 +135,33 @@ namespace Rennder
             set { _ComponentDesigns = value; }
         }
 
-        public int ComponentIncrement(int inc = 1)
-        {
-            Components += inc;
-            return Components;
-        }
-
         public virtual void setPadding(string padding)
         {
             inner.Style.Add("padding", padding);
+        }
+
+        public void setWidthAndHeight(int w, string h = "")
+        {
+            if (w == 0 & (string.IsNullOrEmpty(h) | h == "0") == true)
+            {
+                //remove width & height from style
+                Width = 0;
+                Height = 0;
+
+            }
+            else
+            {
+                if (w >= 0)
+                    Width = w;
+                if (!string.IsNullOrEmpty(h))
+                {
+                    Height = int.Parse(h);
+                }
+                else
+                {
+                    Height = 0;
+                }
+            }
         }
 
         public virtual bool Overflow
@@ -171,7 +197,7 @@ namespace Rennder
         public string Name = "";
         public string ClassName = "";
         public bool isPartOfLayout = false;
-        public int Components = 0;
+        public List<Component> Components = new List<Component>();
         public int PageId = 0;
         public int Height = 0;
     }

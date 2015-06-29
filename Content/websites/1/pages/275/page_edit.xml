@@ -1,0 +1,34 @@
+<layout>
+  <panel name="body" index="1" height="2151">
+    <component cid="textbox" x="695" y="171" w="537px" h="146px" responsive="||||px,px,px,,tc;3,13,180,537,72,,961,147,px" intelc=",,,,26o" index="-1" itemId="t2s" design="" frames=""><![CDATA[<h1 style="text-align: center;">The future of bike touring</h1>]]></component>
+    <component cid="photo" x="-1" y="-4" w="1920px" h="748px" responsive="||||px,px,px,,tc,0,-165,1920,47,,1920,748,px" intelc=",,,,!" index="-16" itemId="u26" design="" frames=""><![CDATA[QKBFNOHNSR.jpg|ixknbtbkkf.jpg|||1920|748|||0||0|0.67|0|repeat||left top|]]></component>
+    <component cid="stackpanel" x="3" y="576" w="1918px" h="276px" responsive="||||px,px,px,,tc;2,13,583,1918,0,,360,276,px" intelc=",,,,u26" index="-1" itemId="x84" design="" frames=""><![CDATA[2|0|||0|10|||||h|linear|bounceIn|bounceOut|1||0||||0px 0px 0px 0px{Cell 1|float|White: Basic: Light Color: Solid: Square: No Shadow: 100% Opacity: No Bevel|nno|0|0|0|0|False||left top||0|0||%||%]]></component>
+    <component cid="stackpanel" x="0" y="1" w="1926px" h="37px" responsive="||||px,px,px,,tc;3,13,1,1926,100,,590,37,px" intelc=",,,,!" index="-1" itemId="26o" design="" frames=""><![CDATA[2|0|||0|10|||||h|linear|bounceIn|bounceOut|1||0||||0px 0px 0px 0px{Cell 1|float|White: Basic: Light Color: Solid: Square: No Shadow: 75% Opacity: No Bevel|135|0|0|0|0|False||left top||0|0||%||%]]></component>
+    <component cid="photo" x="440" y="881" w="1024px" h="768px" responsive="||||px,px,px,,tc;-255,13,881,513,22,,950,383,px" intelc=",,,,x84" index="-1" itemId="ijx" design="" frames=""><![CDATA[EADNQDJDYB.jpg|rwnxfjlqwe.jpg|||1024|768|||0||0|0.67|0|repeat||left top|]]></component>
+    <component cid="stackpanel" x="953" y="881" w="512px" h="385px" responsive="||||px,px,px,,tc;257,13,881,512,22,,1250,385,px" intelc=",,,,x84" index="-1" itemId="aa2" design="" frames=""><![CDATA[2|0|||0|10|||||h|linear|bounceIn|bounceOut|1||0||||0px 0px 0px 0px{Cell 1|float|Deep Grey: Basic: Dark Color: Solid: Square: No Shadow: 100% Opacity: No Bevel|wr2|0|0|0|0|False||left top||0|0||%||%]]></component>
+    <component cid="textbox" x="435" y="1401" w="462" h="329px" responsive="||||px,px,px,,tc;-286,13,1401,462,135,,495,102,px" intelc=",,,,ijx" index="-1" itemId="dj9" design="" frames=""><![CDATA[<h3>There is nothing like it in this world, the silence, the smell of nature, the lack of chaos and constant presence of self-awareness. I am in love with cycling.</h3>
+<div>&nbsp;</div>
+<div>&nbsp;</div>]]></component>
+    <component cid="button" x="1290" y="1181" w="" h="0" responsive="||||px,px,px,,tc;391,1,1181,105,322,,1395,42,px" intelc=",,,,x84" index="-1" itemId="1wi" design="White: Button: Small: Regular: Square Outline" frames=""><![CDATA[Full Story|#story||0]]></component>
+    <component cid="photo" x="569" y="1401" w="541" h="406px" responsive="||||px,px,px,,tc;243,13,1401,541,135,,1829,768,px" intelc=",,,,aa2" index="-1" itemId="k78" design="" frames=""><![CDATA[TLCYCBVINJ.jpg|lkbmyiinib.jpg|||1024|768|||0||0|0.67|0|repeat||left top|]]></component>
+    <component cid="textbox" x="385" y="1371" w="33" h="168px" responsive="||||px,px,px,,tc;-550,13,1371,33,512,,278,111,px" intelc=",,,,x84" index="-1" itemId="7r0" design="" frames=""><![CDATA[<h2><span style="font-size: 3em;">"</span></h2>]]></component>
+    <component cid="button" x="435" y="1656" w="" h="0" responsive="||||px,px,px,,tc;-454,13,1656,126,3,,535,42,px" intelc=",,,,dj9" index="-1" itemId="p69" design="Deep Grey: Button: Small: Regular: Square Outline" frames=""><![CDATA[Full Story|||0]]></component>
+    <component cid="stackpanel" x="-50" y="1911" w="1257" h="240px" responsive="||||px,fs,px,,tl,-50,1911,103.3631;1903;-50;-14,104,,1917,100,px" intelc=",,,,k78" index="-1" itemId="1l7" design="" frames=""><![CDATA[2|0|||1|10|||||h|linear|bounceIn|bounceOut|1||0||||0px 0px 0px 0px{Cell 1|float|Deep Grey: Basic: Dark Color: Solid: Square: No Shadow: 100% Opacity: No Bevel|7dw|0|0|0|0|False||left top||0|0||%||%]]></component>
+  </panel>
+  <panel name="x84Cell1" index="5" height="">
+    <component cid="textbox" x="612" y="45" w="691px" h="165px" responsive="||||px,px,px,,tl,612,45,691,170,,1303,110,px" intelc=",,,,!" index="-1" itemId="puc" design="" frames=""><![CDATA[<h2>This journey belongs to the free spirit.</h2>
+<p>&nbsp;</p>
+<h4>There is only one way to travel from this point forward, because you know that your heart desires a bicycle. Take the challenge to find a path across the country at your own pace.</h4>]]></component>
+  </panel>
+  <panel name="aa2Cell1" index="7" height="">
+    <component cid="textbox" x="72" y="60" w="399px" h="193px" responsive="||||px,px,px,,tc;15,13,60,399,102,,327,102,px" intelc=",,,,!" index="-1" itemId="658" design="" frames=""><![CDATA[<h4>Arriving in Dolce, New Mexico</h4>
+<h5>&nbsp;</h5>
+<h5>I passed through weaving mountains while traveling West from Chama, and suddenly there was this small valley surrounded by beautiful green mountains. The people there were so kind to me. I will never forget them.</h5>]]></component>
+  </panel>
+  <panel name="1l7Cell1" index="8" height="">
+    <component cid="photogallery" x="-324" y="0" w="2050" h="240px" responsive="||||px,px,px,,tc;77,13,0,2050,320,,525,320,px" intelc=",,,,!" index="-1" itemId="1lq" design="grid|9|0|lg|150|0|0||||Previous|More Photo|150|" frames=""><![CDATA[rckuwgbekh.jpg||{qaapicossq.jpg||{xvbljmjyse.jpg||{necgskgiff.jpg||{upmwtmwycb.jpg||{ocjjipsvpw.jpg||]]></component>
+  </panel>
+  <layers />
+  <CSS><![CDATA[.btn1wi_button{opacity:0.7;}
+.btn1wi_button .button-text-small{color:#ffffff !important;}]]></CSS>
+</layout>

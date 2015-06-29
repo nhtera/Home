@@ -1,0 +1,10 @@
+<layout>
+  <panel name="body" index="1" height="497">
+    <component cid="rennder-login" x="520" y="39" w="272" h="200px" responsive="|px,%,px,0,tc;8,11,48,86.59090,20,,741||px,px,px,0,tc;7,13,39,272,20,,741,200,px|" intelc=",,,!," index="1" itemId="ah2" design="Dark Gray: Small: Rounded: Basic|Dark Gray: Button: Small: Regular: Rounded|Grayer: Small: Rounded||" frames=""><![CDATA[1|2|1|2|10|100%|100px|Log In|23|206|104|0|450|300|10]]></component>
+  </panel>
+  <layers>
+    <layer id="153" name="Foot" />
+    <layer id="919" name="Header" />
+  </layers>
+  <CSS><![CDATA[]]></CSS>
+</layout>

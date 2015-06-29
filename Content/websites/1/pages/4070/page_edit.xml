@@ -1,0 +1,14 @@
+<layout>
+  <panel name="body" index="1" height="856">
+    <component cid="textbox" x="17" y="172" w="990px" h="30px" responsive="|px,fs,px,,tl,17,160,96.67644;1023;17;17,40,,1006,100,px|px,fs,px,,tl,17,160,96.67644;1023;17;17,40,,1006,100,px|px,px,px,,tc;0,13,160,989,40,,496,100,px|px,px,px,,tc;3,13,160,1403,40,,496,100,px" intelc=",93u,93u,93u,93u," index="-1" itemId="842" design="" frames=""><![CDATA[<div>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam cursus eros eget lacus. Suspendisse ante est, lobortis vitae, congue et, bibendum ut, tortor. Sed ut urna. Integer quis lorem non ligula semper ultricies.</div>]]></component>
+    <component cid="photogallery" x="80" y="235" w="1267px" h="184px" responsive="|px,fs,px,,tl,-5,258,100.7142;700;-5;0,27,,700,405,px|px,fs,px,,tl,32,229,94.14062;1024;32;28,27,,996,405,px|px,%,px,,tc;-7,13,235,87.98611,27,,810,405,px|px,px,px,,tc;-7,13,235,1267,27,,810,405,px" intelc=",842,842,842,842" index="-1" itemId="44x" design="slideshow|100%|||5|r0p|slideup|easeInOutQuad|0.3|0|10|1" frames=""><![CDATA[erhnndqpqs.jpg||yuvyvwpaku.jpg||xdttmbqjfu.jpg||sknpgygcwf.jpg||xhwfsxfcxu.jpg||temvyghrbo.jpg||tfjifvpbtx.jpg||cakrrlrpbk.jpg||bxhiuxrvjh.jpg||oywhgsmavf.jpg||aeqmvdlmyr.jpg||rsjnkobggo.jpg||spteypqdtk.jpg|]]></component>
+    <component cid="photogallery" x="70" y="434" w="966px" h="177px" responsive="|px,%,px,,tc;8,13,470,87.57142,28,,1180,183,px|px,%,px,,tc;6,13,434,87.5,21,,1180,183,px|px,%,px,,tc;-7,13,450,87.5,31,,1180,183,px|px,px,px,,tc;8,13,575,1260,18,,1180,183,px" intelc=",44x,44x,44x,44x" index="6" itemId="r0p" design="grid|20|20|med|150|0|1||||Previous|More Photos|150|44x" frames=""><![CDATA[erhnndqpqs.jpg|javascript:" onclick="displayGallerySlide44x(0)|{yuvyvwpaku.jpg|javascript:" onclick="displayGallerySlide44x(1)|{xdttmbqjfu.jpg|javascript:" onclick="displayGallerySlide44x(2)|{sknpgygcwf.jpg|javascript:" onclick="displayGallerySlide44x(3)|{xhwfsxfcxu.jpg|javascript:" onclick="displayGallerySlide44x(4)|{temvyghrbo.jpg|javascript:" onclick="displayGallerySlide44x(5)|{tfjifvpbtx.jpg|javascript:" onclick="displayGallerySlide44x(6)|{cakrrlrpbk.jpg|javascript:" onclick="displayGallerySlide44x(7)|{bxhiuxrvjh.jpg|javascript:" onclick="displayGallerySlide44x(8)|{oywhgsmavf.jpg|javascript:" onclick="displayGallerySlide44x(9)|{aeqmvdlmyr.jpg|javascript:" onclick="displayGallerySlide44x(10)|{rsjnkobggo.jpg|javascript:" onclick="displayGallerySlide44x(11)|{spteypqdtk.jpg|javascript:" onclick="displayGallerySlide44x(12)|]]></component>
+  </panel>
+  <layers>
+    <layer id="919" name="Header" />
+    <layer id="153" name="Foot" />
+    <layer id="454" name="Blog Header" />
+    <layer id="567" name="Blog Foot" />
+  </layers>
+  <CSS><![CDATA[]]></CSS>
+</layout>

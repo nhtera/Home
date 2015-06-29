@@ -83,9 +83,10 @@ namespace Rennder
 
                 if (arrAttr.Length > x + 2)
                 {
-                    if (arrAttr[x].IndexOf("name") >= 0 & arrAttr[x].IndexOf("=") >= 0 & arrAttr[x + 1].IndexOf("$rml.") < 1)
+                    if (arrAttr[x].IndexOf("name") >= 0 && arrAttr[x].IndexOf("=") >= 0 && arrAttr[x + 1].IndexOf("$rml.") < 1)
                     {
                         this.designName = arrAttr[x + 1];
+                        break;
                     }
                 }
 

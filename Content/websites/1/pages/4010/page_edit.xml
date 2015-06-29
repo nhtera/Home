@@ -1,0 +1,7 @@
+<layout>
+  <panel name="body" index="1" height="120">
+    <component cid="stackpanel" x="-69" y="0" w="1389" h="322px" responsive="|||px,px,px,,tc;-33,13,0,1389,20,,868,100,px|" intelc=",,,!,," index="-1" itemId="79s" design="" frames=""><![CDATA[4|1|300|100|0|10|0|0|1{Panel|float|Blue: Basic: Light Color: Bright Squares: Square: Medium Bottom Inner Shadow: 100% Opacity: No Bevel|66s]]></component>
+  </panel>
+  <layers />
+  <CSS><![CDATA[]]></CSS>
+</layout>

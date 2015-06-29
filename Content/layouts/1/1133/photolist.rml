@@ -1,0 +1,112 @@
+<rml:photolist name="Photo Top: Square: No Border">    <div class="gallery">        <rml:item>            <div class="left"><rml:photo/></div>            <rml:body>                <div class="clear"><rml:description/></div>            </rml:body>        </rml:item>    </div></rml:photolist><rml:photolist name="Photo Top: Square: Thin Border">    <div class="gallery">        <rml:item>            <div class="left border" style="border-style:solid; border-width:2px;">                <rml:photo/>            </div>            <rml:body>                <div class="clear"><rml:description/></div>            </rml:body>        </rml:item>    </div></rml:photolist><rml:photolist name="Photo Top: Square: Thick Border">    <div class="gallery">        <rml:item>            <div class="left border" style="border-style:solid; border-width:4px;">                <rml:photo/>            </div>            <rml:body>                <div class="clear"><rml:description/></div>            </rml:body>        </rml:item>    </div></rml:photolist><rml:photolist name="Photo Top: Square: Thicker Border">    <div class="gallery">        <rml:item>            <div class="left border" style="border-style:solid; border-width:7px;">                <rml:photo/>            </div>            <rml:body>                <div class="clear"><rml:description/></div>            </rml:body>        </rml:item>    </div></rml:photolist><rml:photolist name="Photo Top: Rounded Corners: Small">    <div class="gallery">    <rml:item>        <div class="left round5"><rml:photo/></div>        <rml:body>            <div class="clear"><rml:description/></div>        </rml:body>    </rml:item>    </div></rml:photolist>
+
+<rml:photolist name="Photo Top: Rounded Corners: Medium">
+    <div class="gallery">
+        <rml:item>
+            <div class="left round10">
+                <rml:photo/>
+            </div>
+            <rml:body>
+                <div class="clear"><rml:description/></div>
+            </rml:body>
+        </rml:item>
+    </div>
+</rml:photolist>
+
+<rml:photolist name="Photo Top: Rounded Corners: Large">
+    <div class="gallery">
+        <rml:item>
+            <div class="left round20">
+                <rml:photo/>
+            </div>
+            <rml:body>
+                <div class="clear"><rml:description/></div>
+            </rml:body>
+        </rml:item>
+    </div>
+</rml:photolist>
+
+<rml:photolist name="Photo Top: Rounded Corners: XLarge">
+    <div class="gallery">
+        <rml:item>
+            <div class="left round25">
+                <rml:photo/>
+            </div>
+            <rml:body>
+                <div class="clear"><rml:description/></div>
+            </rml:body>
+        </rml:item>
+    </div>
+</rml:photolist>
+
+<rml:photolist name="Photo Top: Circle: No Border">
+    <div class="gallery">
+        <rml:item>
+            <div class="left round500">
+                <rml:photo/>
+            </div>
+            <rml:body>
+                <div class="clear"><rml:description/></div>
+            </rml:body>
+        </rml:item>
+    </div>
+</rml:photolist>
+
+<rml:photolist name="Photo Top: Circle: Thin Border">
+    <div class="gallery">
+        <rml:item>
+            <div class="left round500 border" style="border-style:solid; border-width:2px;">
+                <rml:photo/>
+            </div>
+            <rml:body>
+                <div class="clear"><rml:description/></div>
+            </rml:body>
+        </rml:item>
+    </div>
+</rml:photolist>
+
+<rml:photolist name="Photo Top: Circle: Thick Border">
+    <div class="gallery">
+        <rml:item>
+            <div class="left round500 border" style="border-style:solid; border-width:4px;">
+                <rml:photo/>
+            </div>
+            <rml:body>
+                <div class="clear"><rml:description/></div>
+            </rml:body>
+        </rml:item>
+    </div>
+</rml:photolist>
+
+<rml:photolist name="Photo Top: Circle: Thicker Border">
+    <div class="gallery">
+        <rml:item>
+            <div class="left round500 border" style="border-style:solid; border-width:6px;">
+                <rml:photo/>
+            </div>
+            <rml:body>
+                <div class="clear"><rml:description/></div>
+            </rml:body>
+        </rml:item>
+    </div>
+</rml:photolist>
+
+<rml:photolist name="Photo Left: Square: No Border">
+    <div class="gallery">
+        <rml:item>
+            <table cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                    <td style="vertical-align:top; padding-right:10px;">
+                        <rml:photo/>
+                    </td>
+                    <rml:body>
+                        <td style="vertical-align:top;"><rml:description/>
+                        </td>
+                    </rml:body>
+                </tr>
+            </table>
+        </rml:item>
+    </div>
+</rml:photolist>
+
+

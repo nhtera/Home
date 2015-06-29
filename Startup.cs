@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
-using System.Threading;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Http;
+using Microsoft.AspNet.Diagnostics;
 using Microsoft.Framework.DependencyInjection;
-using System.Diagnostics;
 using Microsoft.AspNet.StaticFiles;
 
 namespace Rennder
@@ -35,6 +34,12 @@ namespace Rennder
             app.UseStaticFiles(options);
 
             //exception handling
+            var errOptions = new ErrorPageOptions();
+            errOptions.ShowSourceCode = true;
+            errOptions.SourceCodeLineCount = 10;
+            errOptions.SetDefaultVisibility(true);
+            errOptions.ShowExceptionDetails = true;
+            errOptions.ShowEnvironment = true;
             app.UseErrorPage();
 
             //use session (3 hour timeout)

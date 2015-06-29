@@ -1,0 +1,217 @@
+<rml:array id="colors">
+<rml:item name="White" id="co1" color="#000000" link="#0091FB" active="#0F09FF"/>
+<rml:item name="Lighter Grey" id="co2" color="#585858" link="#0081E0" active="#0080E0"/>
+<rml:item name="Light Grey" id="co3" color="#000000" link="#0074C8" active="#0500D5"/>
+<rml:item name="Grey" id="co4" color="#2C2C2C" link="#0154DE" active="#0071EE"/>
+<rml:item name="Dark Grey" id="co5" color="#FFFFFF" link="#B0F3FF" active="#48E3FF"/>
+<rml:item name="Darker Grey" id="co6" color="#FFFFFF" link="#4AE3FF" active="#00BEE1"/>
+<rml:item name="Deep Grey" id="co7" color="#FFFFFF" link="#06DAFF" active="#01F5DD"/>
+<rml:item name="Sky Blue" id="co8" color="#004A7B" link="#0B04FF" active="#AD04FF"/>
+<rml:item name="Pool Blue" id="co9" color="#002F91" link="#110BFF" active="#CD019A"/>
+<rml:item name="Faded Blue" id="co10" color="#001E5E" link="#572DFF" active="#A800D9"/>
+<rml:item name="Faded Light Blue" id="co11" color="#001E5E" link="#0500D7" active="#9A0174"/>
+<rml:item name="Faded Lighter Blue" id="co12" color="#001E5E" link="#3858E7" active="#BF58E7"/>
+<rml:item name="Light Aqua Blue" id="co13" color="#0086BA" link="#E700CF" active="#D600E7"/>
+<rml:item name="Aqua Blue" id="co14" color="#005293" link="#C300E7" active="#E700AB"/>
+</rml:array>
+
+<rml:array id="size">
+<rml:item name="Small" id="small" png="small.png" round="5" spng="small.png"/>
+<rml:item name="Medium" id="medium" png="medium.png" round="8" spng="med.png"/>
+<rml:item name="Large" id="large" png="large.png" round="12" spng="large.png"/>
+</rml:array>
+
+<rml:array id="shape">
+<rml:item name="Square" id="square" icon="-light.png" class="no" inner="no" bevel="button-inner-" color="bg" colover="bg" border="no"/>
+<rml:item name="Square Outline" id="square" icon="-light-outline.png" class="no" inner="no" bevel="button-inner-" color="border" colover="bg" border="outline"/>
+<rml:item name="Rounded" id="rounded" icon="-light-round.png" class="round" inner="round" bevel="button-inner-" color="bg" colover="bg" border="no"/>
+<rml:item name="Rounded Outline" id="rounded" icon="-light-outline-round.png" class="round" inner="round" bevel="button-inner-" color="border" colover="bg" border="outline"/>
+<rml:item name="3D" id="3d" icon="-light.png" class="button-shadow no" inner="no" bevel="button-bevel-" color="bg" colover="bg" border="no"/>
+<rml:item name="Rounded 3D" id="rounded3d" icon="-light-round.png" class="button-shadow round" inner="round" bevel="button-bevel-" color="bg" colover="bg" border="no"/>
+</rml:array>
+
+<rml:array id="delete">
+<rml:item name="Delete" icon="delete.png" class=""/>
+<rml:item name="Delete Circle" icon="deletecircle.png" class="-circle"/>
+</rml:array>
+
+<rml:button name="$rml.colors: Button: $rml.size: Regular: $rml.shape" icon="/content/layouts/1/1133/files/icons/$rml.colors.id$rml.shape.icon">
+	<rml:default>
+		<div class="btn-default button-default-$rml.size.id $rml.shape.class$rml.size.round $rml.shape.color-$rml.colors.id-light $rml.shape.border-$rml.size.id">
+			<div class="$rml.shape.bevel$rml.size.id $rml.shape.inner$rml.size.round">
+				<div class="button-text-$rml.size.id"><rml:text/></div>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</rml:default>
+	<rml:mouseover>
+		<div class="btn-mouseover button-mouseover-$rml.size.id $rml.shape.class$rml.size.round $rml.shape.colover-$rml.colors.id-2-light $rml.shape.border-$rml.size.id">
+			<div class="$rml.shape.bevel$rml.size.id $rml.shape.inner$rml.size.round">
+				<div class="button-text-$rml.size.id"><rml:text/></div>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</rml:mouseover>
+	<rml:disabled>
+		<div class="btn-disabled button-disabled-$rml.size.id $rml.shape.class$rml.size.round $rml.shape.color-$rml.colors.id-4-dark $rml.shape.border-$rml.size.id">
+			<div class="$rml.shape.bevel$rml.size.id $rml.shape.inner$rml.size.round">
+				<div class="button-text-$rml.size.id"><rml:text/></div>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</rml:disabled>
+</rml:button>
+
+<rml:button name="$rml.colors: Button: $rml.size: Previous: $rml.shape" icon="/content/layouts/1/1133/files/icons/$rml.colors.id$rml.shape.icon">
+	<rml:default>
+		<div class="btn-default button-default-$rml.size.id $rml.shape.class$rml.size.round $rml.shape.color-$rml.colors.id-light $rml.shape.border-$rml.size.id">
+			<div class="$rml.shape.bevel$rml.size.id $rml.shape.inner$rml.size.round">
+				<div class="button-arrow-prev-$rml.size.id"><img src="/content/layouts/1/1133/files/button/prev-$rml.colors.id-$rml.size.png"/></div>
+				<div class="button-text-$rml.size.id left"><rml:text/></div>
+				<div class="button-space-prev-$rml.size.id"></div>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</rml:default>
+	<rml:mouseover>
+		<div class="btn-mouseover button-mouseover-$rml.size.id $rml.shape.class$rml.size.round $rml.shape.colover-$rml.colors.id-2-light $rml.shape.border-$rml.size.id">
+			<div class="$rml.shape.bevel$rml.size.id $rml.shape.inner$rml.size.round">
+				<div class="button-arrow-prev-$rml.size.id"><img src="/content/layouts/1/1133/files/button/prev-$rml.colors.id-$rml.size.png"/></div>
+				<div class="button-text-$rml.size.id left"><rml:text/></div>
+				<div class="button-space-prev-$rml.size.id"></div>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</rml:mouseover>
+	<rml:disabled>
+		<div class="btn-disabled button-disabled-$rml.size.id $rml.shape.class$rml.size.round $rml.shape.color-$rml.colors.id-4-dark $rml.shape.border-$rml.size.id">
+			<div class="$rml.shape.bevel$rml.size.id $rml.shape.inner$rml.size.round">
+				<div class="button-arrow-prev-$rml.size.id"><img src="/content/layouts/1/1133/files/button/prev-$rml.colors.id-$rml.size.png"/></div>
+				<div class="button-text-$rml.size.id left"><rml:text/></div>
+				<div class="button-space-prev-$rml.size.id"></div>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</rml:disabled>
+</rml:button>
+
+<rml:button name="$rml.colors: Button: $rml.size: Next: $rml.shape" icon="/content/layouts/1/1133/files/icons/$rml.colors.id$rml.shape.icon">
+	<rml:default>
+		<div class="btn-default button-default-$rml.size.id $rml.shape.class$rml.size.round $rml.shape.color-$rml.colors.id-light $rml.shape.border-$rml.size.id">
+			<div class="$rml.shape.bevel$rml.size.id $rml.shape.inner$rml.size.round">
+				<div class="button-space-next-$rml.size.id"></div>
+				<div class="button-text-$rml.size.id left"><rml:text/></div>
+				<div class="button-arrow-next-$rml.size.id"><img src="/content/layouts/1/1133/files/button/next-$rml.colors.id-$rml.size.png"/></div>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</rml:default>
+	<rml:mouseover>
+		<div class="btn-mouseover button-mouseover-$rml.size.id $rml.shape.class$rml.size.round $rml.shape.colover-$rml.colors.id-2-light $rml.shape.border-$rml.size.id">
+			<div class="$rml.shape.bevel$rml.size.id $rml.shape.inner$rml.size.round">
+				<div class="button-space-next-$rml.size.id"></div>
+				<div class="button-text-$rml.size.id left"><rml:text/></div>
+				<div class="button-arrow-next-$rml.size.id"><img src="/content/layouts/1/1133/files/button/next-$rml.colors.id-$rml.size.png"/></div>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</rml:mouseover>
+	<rml:disabled>
+		<div class="btn-disabled button-disabled-$rml.size.id $rml.shape.class$rml.size.round $rml.shape.color-$rml.colors.id-4-dark $rml.shape.border-$rml.size.id">
+			<div class="$rml.shape.bevel$rml.size.id $rml.shape.inner$rml.size.round">
+				<div class="button-space-next-$rml.size.id"></div>
+				<div class="button-text-$rml.size.id left"><rml:text/></div>
+				<div class="button-arrow-next-$rml.size.id"><img src="/content/layouts/1/1133/files/button/next-$rml.colors.id-$rml.size.png"/></div>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</rml:disabled>
+</rml:button>
+
+<rml:button name="$rml.colors: Text: $rml.size: Regular" icon="/content/layouts/1/1133/files/icons/$rml.colors.id-menu-text.png">
+	<rml:default>
+		<div class="button-default-$rml.size.id">
+				<div class="button-text-$rml.size.id"><rml:text/></div>
+				<div class="clear"></div>
+		</div>
+	</rml:default>
+	<rml:mouseover>
+		<div class="button-mouseover-$rml.size.id">
+				<div class="button-text-$rml.size.id"><span class="underline"><rml:text/><span></div>
+				<div class="clear"></div>
+		</div>
+	</rml:mouseover>
+	<rml:disabled>
+		<div class="button-disabled-$rml.size.id">
+				<div class="button-text-$rml.size.id"><rml:text/></div>
+				<div class="clear"></div>
+		</div>
+	</rml:disabled>
+</rml:button>
+
+<rml:button name="$rml.colors: Text: $rml.size: Previous" icon="/content/layouts/1/1133/files/icons/$rml.colors.id-menu-text.png">
+	<rml:default>
+		<div class="button-default-$rml.size.id">
+				<div class="button-arrow-prev-$rml.size.id"><img src="/content/layouts/1/1133/files/button/prev-$rml.colors.id-$rml.size.png"/></div>
+				<div class="button-text-$rml.size.id left"><rml:text/></div>
+				<div class="button-space-prev-$rml.size.id"></div>
+				<div class="clear"></div>
+		</div>
+	</rml:default>
+	<rml:mouseover>
+		<div class="button-mouseover-$rml.size.id">
+				<div class="button-arrow-prev-$rml.size.id"><img src="/content/layouts/1/1133/files/button/prev-$rml.colors.id-$rml.size.png"/></div>
+				<div class="button-text-$rml.size.id left"><span class="underline"><rml:text/><span></div>
+				<div class="button-space-prev-$rml.size.id"></div>
+				<div class="clear"></div>
+		</div>
+	</rml:mouseover>
+	<rml:disabled>
+		<div class="button-disabled-$rml.size.id">
+				<div class="button-arrow-prev-$rml.size.id"><img src="/content/layouts/1/1133/files/button/prev-$rml.colors.id-$rml.size.png"/></div>
+				<div class="button-text-$rml.size.id left"><rml:text/></div>
+				<div class="button-space-prev-$rml.size.id"></div>
+				<div class="clear"></div>
+		</div>
+	</rml:disabled>
+</rml:button>
+
+<rml:button name="$rml.colors: Text: $rml.size: Next" icon="/content/layouts/1/1133/files/icons/$rml.colors.id-menu-text.png">
+	<rml:default>
+		<div class="button-default-$rml.size.id">
+				<div class="button-space-next-$rml.size.id"></div>
+				<div class="button-text-$rml.size.id left"><rml:text/></div>
+				<div class="button-arrow-next-$rml.size.id"><img src="/content/layouts/1/1133/files/button/next-$rml.colors.id-$rml.size.png"/></div>
+				<div class="clear"></div>
+		</div>
+	</rml:default>
+	<rml:mouseover>
+		<div class="button-mouseover-$rml.size.id">
+				<div class="button-space-next-$rml.size.id"></div>
+				<div class="button-text-$rml.size.id left"><span class="underline"><rml:text/><span></div>
+				<div class="button-arrow-next-$rml.size.id"><img src="/content/layouts/1/1133/files/button/next-$rml.colors.id-$rml.size.png"/></div>
+				<div class="clear"></div>
+		</div>
+	</rml:mouseover>
+	<rml:disabled>
+		<div class="button-disabled-$rml.size.id">
+				<div class="button-space-next-$rml.size.id"></div>
+				<div class="button-text-$rml.size.id left"><rml:text/></div>
+				<div class="button-arrow-next-$rml.size.id"><img src="/content/layouts/1/1133/files/button/next-$rml.colors.id-$rml.size.png"/></div>
+				<div class="clear"></div>
+		</div>
+	</rml:disabled>
+</rml:button>
+
+<rml:button name="$rml.colors: Button: $rml.size: $rml.delete" icon="/content/layouts/1/1133/files/icons/$rml.colors.id-light-$rml.delete.icon" type="delete">
+	<rml:default>
+		<div class="button-delete-$rml.size.id"><img src="/content/layouts/1/1133/files/button/delete-$rml.colors.id-light$rml.delete.class-$rml.size.spng"/></div>
+	</rml:default>
+	<rml:mouseover>
+		<div class="button-delete-$rml.size.id"><img src="/content/layouts/1/1133/files/button/delete-$rml.colors.id-over-light$rml.delete.class-$rml.size.spng"/></div>
+	</rml:mouseover>
+	<rml:disabled>
+		<div class="button-delete-$rml.size.id"><img src="/content/layouts/1/1133/files/button/delete-$rml.colors.id-disabled-light$rml.delete.class-$rml.size.spng"/></div>
+	</rml:disabled>
+</rml:button>
+

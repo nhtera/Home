@@ -1,0 +1,160 @@
+<layout>
+	<panel name="head" height="0">
+		<component cid="StackPanel" x="-1000" y="-1000" w="461px" h="100px" responsive="||px,px,px,,tc;-1282,13,-1000,461,50,,1290,141,px||px,px,px,,tc;-1721,13,-1000,461,50,,1290,141,px" intelc=",,!,,!" index="0" itemId="p7j" design=""><![CDATA[2|0|300|300|0|10||||||||||||||||{Panel|float|Dark Gray: Basic: Light Color: Wood Flooring: Square: No Shadow: 100% Opacity: No Bevel|7of|0|0|0|0]]></component>
+	</panel>
+	<panel name="body" height="0">
+		<component cid="stackpanel" x="-1000" y="-1000" w="656px" h="100px" responsive="px,%,px,,tc;0,13,100,100.3472,20,,681,604,px|px,%,px,,tc;2,13,100,94,20,,681,673,px|px,fs,px,,tl,102,100,79.88281;1024;102;104,-444,,920,772,px|px,fs,px,,tl,102,100,85.69444;1440;1542;-1336,20,,1336,444,px|px,px,px,,tc;0,13,90,1374,-454,,1647,444,px" intelc="!,!,!,!,5lk" index="0" itemId="c1g" design=""><![CDATA[4|0|||0|0|||||h|linear|bounceIn|bounceOut|0.7||0||||0px 0px 0px 0px{Panel|float|Dark Gray: Basic: Radial Gradient: Wood Flooring: Square: Medium Bottom Inner Shadow: No Bevel|o57|0|0|0|0|0||left top||1|0|100|%||%]]></component>
+		<component cid="stackpanel" x="-1000" y="-1000" w="1450px" h="100px" responsive="px,fs,px,,tl,-5,0,101.7142;350;-5;-1,20,,351,655,px|px,fs,px,,tl,-5,0,100.8571;700;-5;-1,20,,701,773,px|px,fs,px,,tl,-5,0,100.5859;1024;-5;-1,20,,1025,872,px||px,fs,px,,tl,-5,0,100.3125;1920;-5;-1,20,,1921,544,px" intelc="!,!,!,,!," index="0" itemId="5lk" design=""><![CDATA[2|0|300|100|0|10||||||||||||||||{Panel|float|Blue: Basic: Gradient: Wood Flooring: Square: No Shadow: No Bevel|b86|0|0|0|0]]></component>
+		<component cid="stackpanel" x="-1000" y="-1000" w="1377px" h="100px" responsive="px,%,px,,tc;1,13,872,100.4882,-49,,565,308,px|px,%,px,,tc;1,13,872,100.4882,0,,565,308,px|px,%,px,,tc;1,13,872,100.4882,0,,565,308,px|px,%,px,,tc;2,13,544,95.625,0,,565,308,px|px,px,px,,tc;2,13,544,1377,0,,565,308,px" intelc="c1g,5lk,5lk,5lk,5lk" index="0" itemId="337" design=""><![CDATA[3|0||350|2|0|2|400|||h|linear|bounceIn|bounceOut|1||0||||0px 0px 0px 0px{Panel|float|Blue: Basic: Light Color: Wood Flooring: Square: No Shadow: 100% Opacity: No Bevel|0it|0|0|0|0{Panel 2|float|Aqua Blue: Basic: Light Color: Wood Flooring: Square: No Shadow: 100% Opacity: No Bevel|3ba|0|0|0|0]]></component>
+		<component cid="stackpanel" x="-1000" y="-1000" w="1375px" h="100px" responsive="px,fs,px,,tl,-2,1355,101.7142;350;-2;-4,0,,354,422,px|px,fs,px,,tl,-2,1787,100.2857;700;-2;0,-3,,700,388,px|px,fs,px,,tl,-10,1524,100.9784;1022;-10;0,0,,1022,347,px|px,%,px,,tc;0,13,894,95.48611,0,,1408,370,px|px,px,px,,tc;1,13,1081,1375,-1,,1640,362,px" intelc="0o9,0o9,0o9,337,0o9" index="0" itemId="7c6" design=""><![CDATA[4|0|||0|0||||m1d|h|easeInOutQuart|bounceIn|bounceOut|0.7|10|0||||0px 0px 0px 0px{Panel|float|Lighter Gray: Basic: Radial Gradient: Solid: Square: No Shadow: No Bevel|o8g|0|0|0|0{Panel 2|float|Lighter Gray: Basic: Radial Gradient: Solid: Square: No Shadow: No Bevel|1hx|0|0|0|0{Panel 3|float|Lighter Gray: Basic: Radial Gradient: Solid: Square: No Shadow: No Bevel|2d6|0|0|0|0{Panel 4|float|Lighter Gray: Basic: Radial Gradient: Solid: Square: No Shadow: No Bevel|v5y|0|0|0|0{Panel 5|float|Lighter Gray: Basic: Radial Gradient: Solid: Square: No Shadow: No Bevel|jvk|0|0|0|0{Panel 6|float|Lighter Gray: Basic: Radial Gradient: Solid: Square: No Shadow: No Bevel|b80|0|0|0|0{Panel 7|float|Lighter Gray: Basic: Radial Gradient: Solid: Square: No Shadow: No Bevel|nh8|0|0|0|0{Panel 8|float|Lighter Gray: Basic: Radial Gradient: Solid: Square: No Shadow: No Bevel|8q9|0|0|0|0{Panel 9|float|Lighter Gray: Basic: Radial Gradient: Solid: Square: No Shadow: No Bevel|92i|0|0|0|0]]></component>
+		<component cid="textbox" x="-1000" y="-1000" w="300px" h="83px" responsive="px,fs,px,,tl,9,1366,95.71428;350;9;6,11,,344,56,px|px,px,px,,tc;3,13,1803,371,13,,1130,56,px|px,px,px,,tc;43,13,1553,300,29,,1130,56,px|px,px,px,,tc;23,13,911,300,17,,1130,56,px|px,px,px,,tc;3,13,1096,300,14,,1130,56,px" intelc="0o9,0o9,0o9,337,0o9" index="0" itemId="d04" design=""><![CDATA[<h2 style="text-align: center;"><span style="color: #808080;">Components</span></h2>
+<h5 style="text-align: center;"><span style="color: #808080;">you can drag &amp; drop onto the page</span></h5>]]></component>
+		<component cid="stackpanel" x="-1000" y="-1000" w="983px" h="100px" responsive="px,px,px,,tc;7,13,1805,363,28,,544,50,px|px,px,px,,tc;11,13,2201,374,26,,544,50,px|px,fs,px,,tl,34,1899,97.15277;1440;34;7,28,,1433,50,px|px,fs,px,,tl,34,1311,97.15277;1440;34;7,28,,1433,50,px|px,px,px,,tc;13,13,1461,1399,18,,565,50,px" intelc="7c6,7c6,7c6,7c6,7c6" index="0" itemId="g28" design=""><![CDATA[3|0||370|2|20|3|400|||h|linear|bounceIn|bounceOut|1||0||||0px 0px 0px 0px{Panel|float|Light Gray: Basic: Light Color: Solid: Square: No Shadow: 50% Opacity: No Bevel|9u3|0|0|0|0{Panel 2|float|Light Gray: Basic: Light Color: Solid: Square: No Shadow: 50% Opacity: No Bevel|590|0|0|0|0{Panel 3|float|Light Gray: Basic: Light Color: Solid: Square: No Shadow: 50% Opacity: No Bevel|lvr|0|0|0|0]]></component>
+		<component cid="stackpanel" x="-1000" y="-1000" w="357px" h="100px" responsive="px,%,px,,tc;-4,13,1354,102,-1,,1633,313,px|px,%,px,,tc;-4,13,1472,101.8912,-1,,1633,313,px|px,%,px,,tc;0,13,1222,100,0,,1633,302,px|px,%,px,,tc;0,13,894,95.41666,0,,1633,188,px|px,px,px,,tc;0,13,894,1374,0,,1633,188,px" intelc="337,337,337,,337" index="0" itemId="0o9" design=""><![CDATA[2|0|||0|10|||||h|linear|bounceIn|bounceOut|1||0||||0px 0px 0px 0px{Panel|float|Dark Gray: Basic: Radial Gradient: Wood Flooring: Square: Medium Bottom Inner Shadow: No Bevel|ocp|0|0|0|0]]></component>
+	</panel>
+	<panel name="c1gPanel" height="0">
+		<component cid="photo" x="-1000" y="-1000" w="241px" h="68px" responsive="px,px,px,,tc;-7,13,276,182,24,,527,64,px|px,px,px,,tc;-11,13,312,237,-354,,527,64,px|px,px,px,,tc;-3,13,281,237,22,,527,64,px|px,px,px,,tl,156,286,237,22,,393,64,px|px,px,px,,tc;-344,13,321,241,45,,623,64,px" intelc="2v9,!,2v9,2v9,2v9" index="0" itemId="25u" design=""><![CDATA[RHQBUCFTIL.png|cqiifiifhj.png|IAMIDJKTJC.png|yrmgoeotco.png|241|68|#s=Rennder.EditPageAsDemo()|0|0||||]]></component>
+		<component cid="textbox" x="-1000" y="-1000" w="472px" h="252px" responsive="px,fs,px,,tl,15,56,92.87749;351;15;10,58,,341,40,px|px,px,px,,tc;-3,13,56,312,58,,604,40,px|px,px,px,,tc;4,13,51,450,58,,604,40,px|px,%,px,,tl,46,56,38.24959,58,,518,40,px|px,px,px,,tc;-288,13,66,460,58,,933,40,px" intelc=",!,!,!,!" index="0" itemId="2v9" design=""><![CDATA[<h3 style="text-align: left;"><span style="color: #ffffff;">Build compelling mobile websites in days instead of weeks.</span></h3>
+<div style="font-size: 15px;">&nbsp;</div>
+<h5><span style="color: #ffffff;">Use our intuitive editor to drag &amp; drop content directly onto web pages, giving you more time to focus on what matters instead of spending most of your time writing source code.</span></h5>]]></component>
+		<component cid="photo" x="-1000" y="-1000" w="608px" h="410px" responsive="px,px,px,,tl,-1,320,351,28,,350,100,px|px,px,px,,tc;68,13,376,525,21,,0,100,px|px,px,px,,tc;105,13,545,608,42,,0,100,px|px,px,px,,tc;313,13,34,608,20,,1234,100,px|px,px,px,,tr,-608,34,608,20,,0,100,px" intelc="25u,25u,25u,!,!," index="0" itemId="w9y" design=""><![CDATA[GWNXBHLLAY.png|bkdbrouuic.png|||608|410|||0|tiny|0|0.67|0|repeat||left top|]]></component>
+	</panel>
+	<panel name="5lkPanel" height="0">
+		<component cid="photo" x="-1000" y="-1000" w="250px" h="85px" responsive="|px,px,px,,tl,30,31,188,20,,218,100,px||px,px,px,,tl,110,31,188,20,,298,100,px|px,px,px,,tc;-583,13,31,188,20,,448,100,px" intelc=",!,,!,!," index="0" itemId="p8g" design=""><![CDATA[QKENUIDQTS.png|dfjcchfktt.png|||250|85|||||||||]]></component>
+		<component cid="menu" x="-1000" y="-1000" w="118px" h="42px" responsive="px,px,px,,tr,-477,31,118,20,,3,50,px|px,px,px,,tr,-867,31,150,20,,11,50,px||px,px,px,,tr,-246,31,150,20,,96,50,px|px,px,px,,tc;622,13,31,150,20,,1620,50,px" intelc="!,!,,!,!," index="0" itemId="750" design="Light Aqua Blue: Small: Underlined Hover: No Separators|1|3,3,3,3,3"><![CDATA[<menu><item index="1" title="Support" url="%23r%3dsupport" target="" icon="" /></menu>]]></component>
+	</panel>
+	<panel name="337Panel" height="350">
+		<component cid="textbox" x="-1000" y="-1000" w="461px" h="81px" responsive="px,%,px,,tc;5,13,184,84.61538,41,,474,157,px|px,px,px,,tc;10,13,210,335,37,,474,157,px||px,px,px,,tc;-7,13,192,336,30,,474,157,px|px,px,px,,tc;-2,13,189,461,27,,474,157,px" intelc="8k4,8k4,,8k4," index="0" itemId="2b5" design=""><![CDATA[<h5>Rearrange content on your web page to fit inside five separate screen sizes, for cell phones &amp; smart phones, tablets, desktops, and Ultra HD devices.</h5>]]></component>
+		<component cid="textbox" x="-1000" y="-1000" w="353px" h="144px" responsive="px,px,px,,tl,23,31,300,31,,323,31,px|||px,px,px,,tc;2,13,32,353,31,,469,31,px|" intelc="!,,,!," index="0" itemId="e52" design=""><![CDATA[<h2>Responsive</h2>]]></component>
+		<component cid="photo" x="-1000" y="-1000" w="451px" h="58px" responsive="px,%,px,,tc;-1,13,101,86.32478,33,,560,58,px|px,%,px,,tc;-2,13,109,66.38176,37,,560,58,px||px,%,px,,tc;-9,13,107,65.64774,19,,560,58,px|px,px,px,,tc;-9,13,107,451,19,,560,58,px" intelc="e52,e52,,!,e52" index="0" itemId="8k4" design=""><![CDATA[OLUMLDWEYC.png|tfydgexuue.png|||451|58|||0|tiny|0|0.67|0|repeat||left top|]]></component>
+	</panel>
+	<panel name="337Panel2" height="350">
+		<component cid="textbox" x="-1000" y="-1000" w="136px" h="56px" responsive="px,px,px,,tl,33,31,136,31,,169,31,px|px,px,px,,tc;-90,13,33,136,31,,458,31,px|||px,px,px,,tc;-118,13,32,136,31,,458,31,px" intelc="!,!,,,!" index="0" itemId="k33" design=""><![CDATA[<h2>Layers&nbsp;</h2>]]></component>
+		<component cid="textbox" x="-1000" y="-1000" w="459px" h="54px" responsive="px,%,px,,tc;8,13,191,87.17948,35,,493,157,px|px,px,px,,tc;13,13,188,322,25,,493,157,px|px,px,px,,tc;-21,13,174,305,24,,493,157,px|px,px,px,,tc;-9,13,192,336,21,,493,157,px|px,px,px,,tc;48,13,194,459,26,,493,157,px" intelc="745,745,745,745,745" index="0" itemId="ocw" design=""><![CDATA[<h5>Save pieces of content into layers, then load the same layers of content across many other web pages.</h5>]]></component>
+		<component cid="photo" x="-1000" y="-1000" w="219px" h="64px" responsive="px,%,px,,tc;-21,13,91,63.81766,20,,407,64,px|px,px,px,,tc;-21,13,98,224,20,,407,64,px|px,%,px,,tc;-46,13,107,31.87772,19,,407,64,px|px,%,px,,tc;-46,13,107,31.87772,19,,407,64,px|px,px,px,,tc;-46,12,107,219,19,,407,64,px" intelc="k33,k33,k33,k33,k33" index="0" itemId="745" design=""><![CDATA[WGGNNVBNPM.png|bsixsspqdt.png|||219|64|||||||||]]></component>
+	</panel>
+	<panel name="7c6Panel" height="0">
+		<component cid="textbox" x="-1000" y="-1000" w="155px" h="149px" responsive="px,fs,px,,tl,30,99,80.61797;356;30;39,11,,317,126,px|px,fs,px,,tl,75,78,86.60968;702;75;19,11,,683,126,px|px,%,px,,tl,115,144,26.40776,126,,387,126,px|px,%,px,,tl,155,126,28.09315,126,,541,126,px|" intelc="!,!,!,!," index="0" itemId="mdm" design=""><![CDATA[<h3>Panels</h3>
+<div style="font-size: 5px;">&nbsp;</div>
+<h5>Drop components into a list of panels that can be arranged as a grid, mosaic, vertical or horizonal list, and <strong>slideshow</strong>.</h5>]]></component>
+		<component cid="photo" x="-1000" y="-1000" w="56px" h="56px" responsive="px,px,px,,tr,-607,84,56,1,,195,56,px|px,px,px,,tl,10,88,56,56,,66,56,px|px,px,px,,tl,45,134,56,56,,101,56,px|px,px,px,,tl,85,121,56,56,,141,56,px|" intelc="!,!,!,!," index="0" itemId="3l5" design=""><![CDATA[GJMMTKURWA.png|iudwxhkgfh.png|||56|56|||||||||]]></component>
+		<component cid="photo" x="-1000" y="-1000" w="672px" h="175px" responsive="px,px,px,,tc;-7,13,294,322,67,,194,175,px|px,px,px,,tc;2,13,178,337,19,,194,175,px|px,%,px,,tr,-1580,149,48.93203,175,,46,175,px|px,%,px,,tr,-2088,131,48.90829,175,,42,175,px|px,px,px,,tc;308,13,115,672,175,,1297,175,px" intelc="mdm,mdm,!,!,!" index="0" itemId="k8a" design=""><![CDATA[IQHNNVOGRH.png|nqfyaydxno.png|||672|175|||||||||]]></component>
+	</panel>
+	<panel name="7c6Panel2" height="0">
+		<component cid="textbox" x="-1000" y="-1000" w="526px" h="117px" responsive="px,fs,px,,tl,90,109,68.82022;356;90;21,-45,,335,157,px|px,fs,px,,tl,90,88,84.61538;702;90;18,-45,,684,157,px|px,px,px,,tl,120,104,526,-45,,646,157,px||px,px,px,,tl,165,115,369,157,,534,157,px" intelc="!,!,!,,!" index="0" itemId="jx1" design=""><![CDATA[<h3>Menu System</h3>
+<br />
+<h5>Create navigation menus which can include hover-activated drop down panels that you would drag &amp; drop content into.</h5>]]></component>
+		<component cid="photo" x="-1000" y="-1000" w="56px" h="56px" responsive="px,px,px,,tl,25,109,56,-123,,81,56,px|px,px,px,,tl,25,78,56,-120,,81,56,px|px,px,px,,tl,50,99,56,56,,106,56,px||px,px,px,,tl,95,110,56,56,,151,56,px" intelc="!,!,!,,!" index="0" itemId="724" design=""><![CDATA[BJBUDUNBQA.png|uwugajklrr.png|||56|56|||||||||]]></component>
+		<component cid="menu" x="-1000" y="-1000" w="420px" h="40px" responsive="|px,px,px,,tc;7,13,207,420,21,,739,38,px|px,px,px,,tc;14,13,234,420,21,,739,38,px||px,fs,px,,tl,595,160,55.27272;1375;595;20,38,,1355,38,px" intelc=",jx1,jx1,," index="0" itemId="151" design="Aqua Blue: Small: Arrow Bottom: No Separators|1|"><![CDATA[<menu dropdownside="" dropdowntype="none" dropdownspeed="1" dropdownpanel="" dropdownoffsetx="0" dropdownoffsety="0"><item index="2" title="Home" url="%23r%3dhome" target="0" icon="" dropdown="0" panelid="" /><item index="1" title="About" url="%23r%3dabout" target="0" icon="" dropdown="0" panelid="" /><item index="3" title="Blog" url="%23r%3dblog" target="0" icon="" dropdown="1" panelid="p7j" /><item index="4" title="Support" url="%23r%3dsupport" target="0" icon="" dropdown="0" panelid="" /></menu>]]></component>
+	</panel>
+	<panel name="7c6Panel3" height="0">
+		<component cid="textbox" x="-1000" y="-1000" w="300px" h="42px" responsive="px,px,px,,tc;29,13,118,300,-44,,410,42,px|px,px,px,,tc;29,13,118,300,-13,,410,42,px|px,px,px,,tc;-204,13,152,300,0,,463,42,px|px,px,px,,tc;-322,13,156,300,-70,,540,42,px|px,px,px,,tl,171,156,300,-70,,471,42,px" intelc="!,!,!,!,!" index="0" itemId="g27" design=""><![CDATA[<h3>Inline Text Editor</h3>]]></component>
+		<component cid="photo" x="-1000" y="-1000" w="598px" h="64px" responsive="px,px,px,,tc;-10,13,168,252,6,,287,64,px|px,px,px,,tc;-10,13,168,252,6,,287,64,px|px,px,px,,tc;-258,13,205,252,5,,385,64,px|px,px,px,,tc;-423,13,216,378,7,,433,64,px|px,px,px,,tl,91,219,378,8,,469,64,px" intelc="x2s,x2s,x2s,x2s,x2s" index="0" itemId="un6" design=""><![CDATA[PYRPJHAVDU.jpg|xuyrtqweva.jpg|||598|64|||||||||]]></component>
+		<component cid="photo" x="-1000" y="-1000" w="316px" h="93px" responsive="|px,px,px,,tc;-11,13,88,250,93,,285,93,px|px,px,px,,tc;-259,13,126,250,93,,383,93,px|px,px,px,,tc;-389,13,116,316,93,,431,93,px|px,px,px,,tl,153,118,316,93,,469,93,px" intelc="!,!,!,!,!" index="0" itemId="x2s" design=""><![CDATA[JGWTJUXNLP.png|baauscybfi.png|||316|93|||||||||]]></component>
+		<component cid="textbox" x="-1000" y="-1000" w="188px" h="69px" responsive="px,px,px,,tc;-60,13,221,87,26,,784,69,px|px,px,px,,tc;-68,13,213,87,18,,784,69,px|px,px,px,,tc;34,13,154,188,-46,,784,69,px|px,px,px,,tc;12,13,156,188,69,,784,69,px|" intelc="un6,un6,!,," index="0" itemId="g8k" design=""><![CDATA[<h3>Photos</h3>
+<h5>Resize, Tile, Parallax</h5>]]></component>
+		<component cid="photo" x="-1000" y="-1000" w="56px" h="56px" responsive="px,px,px,,tc;-130,13,211,56,16,,591,56,px|px,px,px,,tc;-143,13,198,56,3,,591,56,px|px,px,px,,tc;-92,13,144,56,56,,591,56,px|px,px,px,,tc;-124,12,146,56,56,,591,56,px|" intelc="un6,un6,!,," index="0" itemId="mh0" design=""><![CDATA[LUEUIDMKEX.png|txdvgjdvmf.png|||56|56|||||||||]]></component>
+		<component cid="textbox" x="-1000" y="-1000" w="169px" h="123px" responsive="px,px,px,,tc;91,13,226,119,31,,682,96,px|px,px,px,,tc;134,13,213,170,18,,682,96,px|px,px,px,,tc;287,13,154,169,-46,,143,96,px|px,px,px,,tc;307,13,156,179,96,,158,96,px|px,px,px,,tr,-339,156,311,-46,,28,96,px" intelc="un6,un6,382,!,!" index="0" itemId="1cy" design=""><![CDATA[<h3>Galleries</h3>
+<h5>Slideshow, Grid, Mosaic, 3D Albums<br />&nbsp;</h5>]]></component>
+		<component cid="photo" x="-1000" y="-1000" w="56px" h="56px" responsive="px,px,px,,tc;5,13,216,56,21,,401,56,px|px,px,px,,tc;17,13,203,56,8,,401,56,px|px,px,px,,tc;171,13,149,56,-98,,216,56,px|px,px,px,,tc;186,13,146,56,56,,473,56,px|px,px,px,,tr,-404,146,56,-106,,348,56,px" intelc="un6,un6,!,!,!" index="0" itemId="382" design=""><![CDATA[XOBRDNMTEH.png|mqowepvakh.png|||56|56|||||||||]]></component>
+	</panel>
+	<panel name="7c6Panel4" height="0">
+		<component cid="textbox" x="-1000" y="-1000" w="531px" h="123px" responsive="px,fs,px,,tl,35,176,82.30337;356;35;28,157,,328,157,px|px,fs,px,,tl,55,168,86.03988;702;55;43,157,,659,157,px|px,fs,px,,tl,55,151,61.26213;1030;55;344,157,,686,157,px|px,px,px,,tl,102,151,531,157,,633,157,px|px,px,px,,tc;-320,13,151,531,-49,,848,157,px" intelc="!,!,!,,pg1" index="0" itemId="8c5" design=""><![CDATA[<h3>Lists</h3>
+<h5>Use HTML, CSS, and RML to create custom lists of information about people, events, products, stories, photo galleries, spreadsheets, analytics, and just about any kind of dataset.</h5>]]></component>
+		<component cid="textbox" x="-1000" y="-1000" w="1089px" h="300px" responsive="px,px,px,,tc;426,13,-142,1028,610,,1200,610,px|px,px,px,,tc;557,13,-142,1028,610,,-761,610,px|px,px,px,,tc;644,13,9,1028,610,,1200,610,px|px,px,px,,tc;681,13,12,1028,610,,1200,610,px|px,px,px,,tc;682,13,37,1089,610,,1200,610,px" intelc="!,!,!,!,!" index="0" itemId="8n3" design=""><![CDATA[<div>
+<div class="code">
+<div class="code">
+<div class="code"><span class="code-tag">&lt;</span><span class="code-tag-name">rml</span><span class="code-tag">:</span><span class="code-tag-name">list</span>&nbsp;<span class="code-attr">name=</span><span class="code-attr-value">"My Design"</span><span class="code-tag">&gt;</span></div>
+<div class="code tab1"><span class="code-tag">&lt;</span><span class="code-tag-name">rml</span><span class="code-tag">:</span><span class="code-tag-name">item</span><span class="code-tag"><span class="code-tag">&gt;<br /></span></span>
+<div class="code tab2"><span class="code-tag">&lt;</span><span class="code-tag-name">div</span> <span class="code-attr">class=</span><span class="code-attr-value">"person-container"</span><span class="code-tag">/&gt;</span>&nbsp;</div>
+<div class="code tab3"><span class="code-tag">&lt;</span><span class="code-tag-name">rml</span><span class="code-tag">:</span><span class="code-tag-name">label</span>&nbsp;<span class="code-attr">name=</span><span class="code-attr-value">"Title"</span><span class="code-tag">/&gt;</span></div>
+<div class="code tab3"><span class="code-tag">&lt;</span><span class="code-tag-name">rml</span><span class="code-tag">:</span><span class="code-tag-name">label</span>&nbsp;<span class="code-attr">name=</span><span class="code-attr-value">"Description"</span>&nbsp;<span class="code-attr">type=</span><span class="code-attr-value">"multiline"</span><span class="code-tag">/&gt;</span></div>
+<div class="code tab3"><span class="code-tag">&lt;</span><span class="code-tag-name">rml</span><span class="code-tag">:</span><span class="code-tag-name">photo</span>&nbsp;<span class="code-attr">name=</span><span class="code-attr-value">"Large Photo"</span>&nbsp;<span class="code-attr">size=</span><span class="code-attr-value">"large"</span><span class="code-tag">/&gt;</span></div>
+<div class="code tab3"><span class="code-tag">&lt;</span><span class="code-tag-name">rml</span><span class="code-tag">:</span><span class="code-tag-name">photo</span>&nbsp;<span class="code-attr">name=</span><span class="code-attr-value">"Photo Gallery"</span>&nbsp;<span class="code-attr">type=</span><span class="code-attr-value">"thumbs"</span>&nbsp;<span class="code-attr">main=</span><span class="code-attr-value">"Large Photo"</span><span class="code-tag">&gt;</span></div>
+<div class="code tab3"><span class="code-tag">&lt;</span><span class="code-tag-name">rml</span><span class="code-tag">:</span><span class="code-tag-name">back</span>&nbsp;<span class="code-attr">design=</span><span class="code-attr-value">"Button Left"</span><span class="code-tag">/&gt;</span></div>
+<div class="code tab3"><span class="code-tag">&lt;</span><span class="code-tag-name">rml</span><span class="code-tag">:</span><span class="code-tag-name">thumbs</span>&nbsp;<span class="code-attr">size=</span><span class="code-attr-value">"small"</span>&nbsp;<span class="code-attr">rows=</span><span class="code-attr-value">"1"</span>&nbsp;<span class="code-attr">columns=</span><span class="code-attr-value">"3"</span>&nbsp;<span class="code-attr">design=</span><span class="code-attr-value">"Button: Outline: 3px Line"&nbsp;</span><span class="code-attr">select=</span><span class="code-attr-value">"Design 4"</span><span class="code-tag">/&gt;</span></div>
+<div class="code tab4"><span class="code-tag">&lt;</span><span class="code-tag-name">rml</span><span class="code-tag">:</span><span class="code-tag-name">next</span>&nbsp;<span class="code-attr">design=</span><span class="code-attr-value">"Button Right"</span><span class="code-tag">/&gt;</span></div>
+<div class="code tab3"><span class="code-tag">&lt;/</span><span class="code-tag-name">rml</span><span class="code-tag">:</span><span class="code-tag-name">photo</span><span class="code-tag">&gt;</span></div>
+<div class="code tab3"><span class="code-tag">&lt;</span><span class="code-tag-name">rml</span><span class="code-tag">:</span><span class="code-tag-name">button</span>&nbsp;<span class="code-attr">name=</span><span class="code-attr-value">"Details Button"</span>&nbsp;<span class="code-attr">text=</span><span class="code-attr-value">"View Details"</span>&nbsp;<span class="code-attr">design=</span><span class="code-attr-value">"Button Design 1"</span><span class="code-tag">/&gt;</span></div>
+<div class="code tab2"><span class="code-tag">&lt;/</span><span class="code-tag-name">div<span class="code-tag">&gt;</span></span></div>
+<div class="code tab1"><span class="code-tag">&lt;/</span><span class="code-tag-name">rml</span><span class="code-tag">:</span><span class="code-tag-name">item</span><span class="code-tag">&gt;</span></div>
+<div class="code code-tag"><span class="code-tag">&lt;</span><span class="code-tag-name">rml</span><span class="code-tag">:</span><span class="code-tag-name">list</span>/&gt;</div>
+</div>
+</div>
+</div>
+</div>]]></component>
+		<component cid="photo" x="-1000" y="-1000" w="56px" h="56px" responsive="||||px,px,px,,tc;-624,12,144,56,56,,92,56,px" intelc=",,,,!" index="0" itemId="pg1" design=""><![CDATA[SOFQHUGRAF.png|unoaceqxhv.png|||56|56|||||||||]]></component>
+	</panel>
+	<panel name="7c6Panel5" height="0">
+		<component cid="photo" x="-1000" y="-1000" w="56px" h="56px" responsive="px,px,px,,tc;-111,13,106,56,-72,,268,56,px|px,px,px,,tc;-111,13,106,56,-110,,268,56,px|px,px,px,,tl,19,115,56,-99,,75,56,px|px,px,px,,tc;-470,13,115,56,-107,,291,56,px|px,px,px,,tc;-470,13,115,56,56,,291,56,px" intelc="!,!,!,!,!" index="0" itemId="awh" design=""><![CDATA[QLXHLDBUQP.png|rbtdqxdjmx.png|||56|56|||||||||]]></component>
+		<component cid="textbox" x="-1000" y="-1000" w="557px" h="102px" responsive="px,fs,px,,tc;44,13,106,67.41573;356;458;-342,-56,,566,123,px|px,px,px,,tc;53,13,106,258,-51,,566,123,px|px,fs,px,,tl,79,120,53.86847;1034;79;398,-51,,636,123,px|px,px,px,,tc;-273,13,120,330,-51,,595,123,px|px,px,px,,tc;-273,13,120,330,123,,595,123,px" intelc="!,!,!,!,!" index="0" itemId="w35" design=""><![CDATA[<h3>Videos</h3>
+<div style="font-size: 5px;">&nbsp;</div>
+<h5><span style="line-height: 1.25;">Create high-quality Youtube playlists, and play Vimeo videos as well.&nbsp;</span></h5>]]></component>
+		<component cid="photo" x="-1000" y="-1000" w="56px" h="56px" responsive="px,px,px,,tc;-108,13,189,56,11,,434,56,px|px,px,px,,tc;-111,13,203,56,14,,434,56,px|px,px,px,,tr,-379,115,56,56,,323,56,px|px,px,px,,tc;166,13,115,56,-164,,791,56,px|px,px,px,,tc;166,13,115,56,-122,,791,56,px" intelc="w35,w35,!,!,!" index="0" itemId="fa7" design=""><![CDATA[JLCGYTAEHP.png|fhlsagxmdp.png|||56|56|||||||||]]></component>
+		<component cid="textbox" x="-1000" y="-1000" w="371px" h="75px" responsive="px,fs,px,,tc;45,13,195,68.25842;356;458;-345,17,,575,119,px|px,px,px,,tc;55,13,207,271,18,,575,119,px|px,px,px,,tr,-1353,120,300,119,,19,119,px|px,px,px,,tc;362,13,125,328,119,,1046,119,px|px,px,px,,tc;384,13,125,371,119,,1046,119,px" intelc="w35,w35,!,!,!" index="0" itemId="dw3" design=""><![CDATA[<div>
+<h3>Music</h3>
+<div style="font-size: 5px;">&nbsp;</div>
+<h5><span>Play your favorite tracks from SoundCloud.</span></h5>
+</div>]]></component>
+	</panel>
+	<panel name="7c6Panel6" height="0">
+		<component cid="textbox" x="-1000" y="-1000" w="251px" h="158px" responsive="px,px,px,,tl,81,99,251,-46,,332,52,px|px,px,px,,tc;-84,13,89,185,-46,,354,52,px|px,px,px,,tl,100,119,902,52,,1002,52,px||px,px,px,,tc;-195,13,110,376,52,,490,52,px" intelc="!,!,!,,!" index="0" itemId="5c3" design=""><![CDATA[<h3>Page List</h3>
+<h5>Give users a reason to explore your web site by giving them links to related content.</h5>]]></component>
+		<component cid="photo" x="-1000" y="-1000" w="56px" h="56px" responsive="px,px,px,,tl,16,89,56,-40,,72,56,px|px,px,px,,tc;-208,13,79,56,-43,,226,56,px|px,px,px,,tl,35,109,56,18,,91,56,px||px,px,px,,tc;-410,13,105,56,56,,186,56,px" intelc="!,!,!,,!" index="0" itemId="f66" design=""><![CDATA[YGPWMEOFHN.png|mmgdprbswu.png|||56|56|||||||||]]></component>
+	</panel>
+	<panel name="7c6Panel7" height="0">
+		<component cid="textbox" x="-1000" y="-1000" w="300px" h="95px" responsive="px,px,px,,tc;-3,13,109,281,-17,,575,106,px|px,px,px,,tc;-90,13,108,143,106,,575,106,px|||px,px,px,,tc;-103,13,125,300,106,,575,106,px" intelc="l81,!,,,!" index="0" itemId="n40" design=""><![CDATA[<div>
+<h3>Social Icons</h3>
+<h5>Customize icons for external websites you want to link to.</h5>
+</div>]]></component>
+		<component cid="textbox" x="-1000" y="-1000" w="285px" h="122px" responsive="px,px,px,,tc;12,13,249,310,-17,,1055,106,px|px,px,px,,tc;90,13,108,162,106,,1055,106,px|px,px,px,,tc;209,13,125,285,106,,1055,106,px||px,px,px,,tc;217,1,125,300,106,,1055,106,px" intelc="dt6,!,!,,!" index="0" itemId="yf0" design=""><![CDATA[<div>
+<h3>Rating</h3>
+<h5>Let users rate your web pages based on the content you are sharing.</h5>
+</div>]]></component>
+	</panel>
+	<panel name="7c6Panel8" height="0">
+		<component cid="textbox" x="-1000" y="-1000" w="173px" h="178px" responsive="px,px,px,,tc;-12,13,71,173,-46,,423,79,px|px,px,px,,tc;-15,13,93,173,-46,,423,79,px|px,px,px,,tc;-21,13,104,173,79,,583,79,px|px,px,px,,tl,70,102,173,79,,243,79,px|px,px,px,,tc;-506,13,110,173,79,,388,79,px" intelc="!,!,!,!," index="0" itemId="a78" design=""><![CDATA[<div>
+<h3>Comments</h3>
+<h5>Facebook &amp; Disqus</h5>
+</div>]]></component>
+		<component cid="photo" x="-1000" y="-1000" w="56px" h="56px" responsive="px,px,px,,tc;-130,13,66,56,-58,,241,56,px|px,px,px,,tc;-138,13,83,56,-1,,241,56,px|px,px,px,,tc;-134,13,99,56,56,,411,56,px|px,px,px,,tl,10,97,56,56,,66,56,px|px,px,px,,tc;-620,13,100,56,56,,221,56,px" intelc="!,!,!,!," index="0" itemId="44x" design=""><![CDATA[IYPVYMUGBM.png|qxmamxehdy.png|||56|56|||||||||]]></component>
+	</panel>
+	<panel name="7c6Panel9" height="0">
+		<component cid="textbox" x="-1000" y="-1000" w="304px" h="95px" responsive="|px,px,px,,tc;4,13,93,280,150,,689,150,px|px,px,px,,tc;-135,13,159,304,150,,689,150,px|px,px,px,,tc;-211,13,152,304,150,,689,150,px|" intelc=",!,!,!," index="0" itemId="557" design=""><![CDATA[<h3>3rd Party Widgets</h3>
+<h5>Share content &amp; connect with people from external web services.</h5>]]></component>
+		<component cid="photo" x="-1000" y="-1000" w="340px" h="172px" responsive="px,%,px,,tc;-6,13,187,78.93258,17,,1080,172,px|px,px,px,,tc;-8,13,198,287,22,,1080,172,px|px,px,px,,tc;193,13,144,281,172,,1080,172,px|px,px,px,,tc;222,12,122,340,172,,1080,172,px|" intelc=",557,!,!," index="0" itemId="0j5" design=""><![CDATA[WTDKJURASS.png|asdalkfrwa.png|||340|172|||||||||]]></component>
+	</panel>
+	<panel name="g28Panel" height="370">
+		<component cid="textbox" x="-1000" y="-1000" w="312px" h="100px" responsive="px,px,px,,tc;1,13,31,312,125,,375,125,px||||px,px,px,,tc;7,1,35,300,125,,375,125,px" intelc="!,,,,!" index="0" itemId="mkd" design=""><![CDATA[<div>
+<h4>Experiment with Colors</h4>
+<div style="font-size: 5px;">&nbsp;</div>
+<div>Browse through our library of curated color schemes and find one that fits the personality of your web site.</div>
+</div>]]></component>
+		<component cid="photo" x="-1000" y="-1000" w="206px" h="175px" responsive="px,px,px,,tc;5,13,170,206,29,,403,226,px||||px,px,px,,tc;5,13,170,206,35,,403,226,px" intelc="mkd,,,,mkd" index="0" itemId="y53" design=""><![CDATA[RTOMMHOFJP.jpg|hlrlqnmfwl.jpg|||206|175|||0|tiny|0|0.67|0|repeat||left top|]]></component>
+	</panel>
+	<panel name="g28Panel2" height="370">
+		<component cid="textbox" x="-1000" y="-1000" w="309px" h="115px" responsive="px,px,px,,tc;5,13,31,309,125,,390,125,px||||px,px,px,,tc;20,13,35,309,125,,390,125,px" intelc="!,,,,!" index="0" itemId="l51" design=""><![CDATA[<div>
+<h4>Customize Backgrounds</h4>
+<div>&nbsp;</div>
+<div>Colorize a texture of your choice, upload your own image, or even use a video for your website background!</div>
+</div>]]></component>
+		<component cid="photo" x="-1000" y="-1000" w="388px" h="226px" responsive="px,px,px,,tc;-2,13,142,337,5,,417,226,px||||px,px,px,,tc;4,13,155,357,5,,417,226,px" intelc="l51,,,,l51" index="0" itemId="04i" design=""><![CDATA[GCEMFSUXFE.png|lvhldrkhbt.png|||388|226|||||||||]]></component>
+	</panel>
+	<panel name="g28Panel3" height="370">
+		<component cid="textbox" x="-1000" y="-1000" w="309px" h="115px" responsive="px,px,px,,tc;6,13,35,309,125,,383,125,px||||px,px,px,,tc;10,1,35,300,125,,383,125,px" intelc="!,,,,!" index="0" itemId="236" design=""><![CDATA[<div>
+<h4>Beautiful Components</h4>
+<div>&nbsp;</div>
+<div>Change the design of your panels, buttons, &amp; menus, adding color, textures, and unique border patterns</div>
+</div>]]></component>
+		<component cid="stackpanel" x="-1000" y="-1000" w="300px" h="100px" responsive="px,px,px,,tc;10,13,166,300,25,,410,76,px||||px,px,px,,tc;10,13,165,300,15,,410,76,px" intelc="236,,,,236" index="0" itemId="61p" design=""><![CDATA[2|0|300|100|0|10||||||||||||||||{Panel|float|Aqua Blue: Pyramids: Light Color: Diamonds: Small|pw4|0|0|0|0]]></component>
+		<component cid="stackpanel" x="-1000" y="-1000" w="300px" h="100px" responsive="px,px,px,,tc;10,13,221,300,-11,,383,55,px||||px,px,px,,tc;10,13,230,300,-11,,383,55,px" intelc="61p,,,,61p" index="0" itemId="3cb" design=""><![CDATA[2|0|300|100|0|10||||||||||||||||{Panel|float|Light Aqua Blue: Torn Paper: Light Color: Paper|1m2|0|0|0|0]]></component>
+	</panel>
+	<panel name="0o9Panel" height="0">
+		<component cid="textbox" x="-1000" y="-1000" w="556px" h="123px" responsive="px,%,px,,tc;4,13,27,85.99439,94,,324,94,px||px,fs,px,,tl,52,27,91.09518;977;52;35,94,,942,94,px|px,fs,px,,tl,52,27,51.60116;1374;52;613,94,,761,94,px|px,px,px,,tc;-304,13,27,556,94,,644,94,px" intelc="!,,!,!,!" index="0" itemId="96p" design=""><![CDATA[<h3>Stacking Algorithm</h3>
+<h5>Your content will make space &amp; keep from overlapping by using intelligent algorithms that stacks content vertically.<br /><br /></h5>]]></component>
+		<component cid="photo" x="-1000" y="-1000" w="493px" h="135px" responsive="px,%,px,,tc;0,13,215,91.11747,0,,265,135,px|px,%,px,,tc;-2,13,135,77.90530,0,,265,135,px|px,px,px,,tc;-2,13,149,493,0,,265,135,px|px,px,px,,tr,-549,27,493,135,,56,135,px|px,px,px,,tc;334,12,27,493,135,,1268,135,px" intelc="96p,96p,96p,!,!" index="0" itemId="057" design=""><![CDATA[MGUJCFUGGQ.png|dexpeolduk.png|||493|135|||0|tiny|0|0.67|0|repeat||left top|]]></component>
+	</panel>
+	<layers>
+		<layer id="153" name="Foot" />
+	</layers>
+</layout>

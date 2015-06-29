@@ -1,0 +1,10 @@
+<layout>
+  <panel name="body" index="1" height="248">
+    <component cid="rennder-login" x="11" y="48" w="381px" h="200px" responsive="|px,%,px,0,tc;8,11,48,86.59090,20,,741||px,px,px,0,tc;28,11,48,368,20,,741|" intelc="" index="1" itemId="ah2" design="||||"><![CDATA[1|2|1|2|10|100%|100px|Log In|23|206|104|0|450|300|10]]></component>
+  </panel>
+  <layers>
+    <layer id="104" name="Header Dashboard" />
+    <layer id="153" name="Foot" />
+  </layers>
+  <CSS><![CDATA[]]></CSS>
+</layout>
