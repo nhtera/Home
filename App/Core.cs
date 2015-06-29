@@ -137,5 +137,11 @@ namespace Rennder
             }
             Session["viewstates"] = Util.Serializer.WriteObject(vss.GetType(), vss);
         }
+
+        public bool isSessionLost()
+        {
+            if(Page.websiteTitle == "") { return true; }
+            return false;
+        }
     }
 }

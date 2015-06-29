@@ -57,13 +57,16 @@ namespace Rennder
                 String requestType = "";
                 var extension = strings.getFileExtension(path);
                 server.requestCount += 1;
-
+                for(int x = 0; x < paths.Length && x < 3; x++)
+                {
+                    paths[x] = paths[x].ToLower();
+                }
                 if (paths.Length > 1)
                 {
                     if(paths[0]=="rennder" && paths[1] == "service")
                     {
-                        //run a web service via ajax (/rennder/service/{service-name}/{query})
-                        var ws = new Pipeline.WebService(server, context);
+                        //run a web service via ajax (e.g. /rennder/service/{service-name}/{query})
+                        var ws = new Pipeline.WebService(server, context, paths);
                         requestType = "service";
                     }
                 }

@@ -1,0 +1,918 @@
+.webpage > .grid-leftside {
+  background-color: #272727;
+}
+.webpage > .grid-rightside {
+  background-color: #272727;
+}
+.editor .toolbar {
+  background-color: #272727;
+}
+.editor .saving a:link use {
+  color: #58ff00 !important;
+}
+.editor .saving a:hover use {
+  color: #58ff00 !important;
+}
+.editor .saving a:active use {
+  color: #58ff00 !important;
+}
+.editor .saving a:visited use {
+  color: #58ff00 !important;
+}
+.editor .nosave a {
+  cursor: default;
+}
+.editor .nosave a:link use {
+  color: #ffffff !important;
+}
+.editor .nosave a:hover use {
+  color: #ffffff !important;
+}
+.editor .nosave a:active use {
+  color: #ffffff !important;
+}
+.editor .nosave a:visited use {
+  color: #ffffff !important;
+}
+.editor .bg {
+  background-color: #272727;
+}
+.editor .tab {
+  color: #ffffff;
+  background-color: #272727;
+}
+.editor .font-faded {
+  color: #aaaaaa;
+}
+.editor a:link use {
+  color: #ffffff;
+}
+.editor a:hover use {
+  color: #33ffcc;
+}
+.editor a:active use {
+  color: #00ffcc;
+}
+.editor a:visited use {
+  color: #ffffff;
+}
+.interface {
+  background-color: #272727;
+  color: #e0e0e0;
+  /*
+    &.dashboard{
+        @window-bg:#e3e3e3;
+        @window-hover:#ABD3D1;
+        @window-color:#444444;
+        @window-color-faded:#999999;
+        @window-color-help:#329392;
+        @window-grip:rgba(0, 0, 0, 0.1);
+        @window-title:#aaaaaa;
+        @window-close:#cc0000;
+        @window-header:#d6d6d6;
+        @window-top-menu:#dfdfdf;
+        @window-tab:lighten(@window-bg,4%);
+        @window-tab-hover:lighten(@window-bg,8%);
+        @window-tab-selected:saturate(lighten(#0099CC,4%),15%);
+        @svg2-link:#444444;
+        @svg2-hover:#FF8B35;
+        @svg2-active:#FF8B35;
+        @svg2-visited:#444444;
+        .getInterface(light);
+    }*/
+}
+.interface a:link use {
+  color: #ffffff;
+}
+.interface a:hover use {
+  color: #33ffcc;
+}
+.interface a:active use {
+  color: #00ffcc;
+}
+.interface a:visited use {
+  color: #ffffff;
+}
+.interface .grip {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.interface .title {
+  color: #aaaaaa;
+}
+.interface .close a:hover {
+  color: #cc0000 !important;
+}
+.interface.arrow-top:after {
+  border-bottom-color: #272727;
+}
+.interface .section-info {
+  background-color: #202020;
+}
+.interface .top-menu,
+.interface .side-menu {
+  background-color: #2a2a2a;
+}
+.interface .tabs .item {
+  color: #aaaaaa;
+  background-color: #313131;
+}
+.interface .tabs .item:hover {
+  color: #e0e0e0;
+  background-color: #3b3b3b;
+}
+.interface .tabs .item.selected {
+  color: #e0e0e0;
+  background-color: #263b4e;
+}
+.interface .top-menu .tabs .item {
+  color: #aaaaaa;
+  background-color: #363636;
+}
+.interface .top-menu .tabs .item:hover {
+  color: #e0e0e0;
+  background-color: #414141;
+}
+.interface .top-menu .tabs .item.selected {
+  color: #e0e0e0;
+  background-color: #294055;
+}
+.interface .help-info {
+  color: #e0e0e0;
+  background-color: #1a1a1a;
+}
+.interface .column-help > div {
+  color: #9ee3c3;
+  background-color: #1a1a1a;
+}
+.interface .column-help > div:after {
+  border-right-color: #1a1a1a;
+}
+.interface .column-help .row.color:hover {
+  color: #89eebf;
+  background-color: #131313;
+}
+.interface div.color1 {
+  background-color: #272727;
+}
+.interface div.color1 > .column-label,
+.interface div.color1 .column-icon {
+  color: #adadad;
+  background-color: #2f2f2f;
+  border-bottom: 1px solid #2a2a2a;
+}
+.interface div.color1 > .column,
+.interface div.color1 > .column-input,
+.interface div.color1 > .empty,
+.interface div.color1 .column-button {
+  background-color: #272727;
+  border-bottom: 1px solid #222222;
+}
+.interface tr.color1 td {
+  background-color: #2f2f2f;
+  border-bottom: 1px solid #2a2a2a;
+}
+.interface .row.color1:hover {
+  background-color: #263039;
+}
+.interface .row.color1:hover > .column-label,
+.interface .row.color1:hover .column-icon {
+  color: #e0e0e0;
+  background-color: #24384a;
+  border-bottom: 1px solid #1f3040;
+}
+.interface .row.color1:hover > .column,
+.interface .row.color1:hover > .column-input,
+.interface .row.color1:hover > .empty,
+.interface .row.color1:hover .column-button {
+  background-color: #263039;
+  border-bottom: 1px solid #202830;
+}
+.interface .row:hover > div.color1 {
+  background-color: #263039;
+}
+.interface .row:hover > div.color1 > .column-label,
+.interface .row:hover > div.color1 .column-icon {
+  color: #e0e0e0;
+  background-color: #24384a;
+  border-bottom: 1px solid #1f3040;
+}
+.interface .row:hover > div.color1 > .column,
+.interface .row:hover > div.color1 > .column-input,
+.interface .row:hover > div.color1 > .empty,
+.interface .row:hover > div.color1 .column-button {
+  background-color: #263039;
+  border-bottom: 1px solid #202830;
+}
+.interface tr.color1:hover td {
+  background-color: #263039;
+  border-bottom: 1px solid #222b33;
+}
+.interface tr.color1:hover td:hover {
+  background-color: #24384a;
+  border-bottom: 1px solid #213344;
+}
+.interface div.color2 {
+  background-color: #242424;
+}
+.interface div.color2 > .column-label,
+.interface div.color2 .column-icon {
+  color: #adadad;
+  background-color: #2c2c2c;
+  border-bottom: 1px solid #272727;
+}
+.interface div.color2 > .column,
+.interface div.color2 > .column-input,
+.interface div.color2 > .empty,
+.interface div.color2 .column-button {
+  background-color: #242424;
+  border-bottom: 1px solid #1f1f1f;
+}
+.interface tr.color2 td {
+  background-color: #2c2c2c;
+  border-bottom: 1px solid #272727;
+}
+.interface .row.color2:hover {
+  background-color: #263039;
+}
+.interface .row.color2:hover > .column-label,
+.interface .row.color2:hover .column-icon {
+  color: #e0e0e0;
+  background-color: #24384a;
+  border-bottom: 1px solid #1f3040;
+}
+.interface .row.color2:hover > .column,
+.interface .row.color2:hover > .column-input,
+.interface .row.color2:hover > .empty,
+.interface .row.color2:hover .column-button {
+  background-color: #263039;
+  border-bottom: 1px solid #202830;
+}
+.interface .row:hover > div.color2 {
+  background-color: #263039;
+}
+.interface .row:hover > div.color2 > .column-label,
+.interface .row:hover > div.color2 .column-icon {
+  color: #e0e0e0;
+  background-color: #24384a;
+  border-bottom: 1px solid #1f3040;
+}
+.interface .row:hover > div.color2 > .column,
+.interface .row:hover > div.color2 > .column-input,
+.interface .row:hover > div.color2 > .empty,
+.interface .row:hover > div.color2 .column-button {
+  background-color: #263039;
+  border-bottom: 1px solid #202830;
+}
+.interface tr.color2:hover td {
+  background-color: #263039;
+  border-bottom: 1px solid #222b33;
+}
+.interface tr.color2:hover td:hover {
+  background-color: #24384a;
+  border-bottom: 1px solid #213344;
+}
+.interface.component-select div.color1 {
+  background-color: #252525;
+}
+.interface.component-select div.color1 > .column-label,
+.interface.component-select div.color1 .column-icon {
+  color: #adadad;
+  background-color: #2d2d2d;
+  border-bottom: 1px solid #282828;
+}
+.interface.component-select div.color1 > .column,
+.interface.component-select div.color1 > .column-input,
+.interface.component-select div.color1 > .empty,
+.interface.component-select div.color1 .column-button {
+  background-color: #252525;
+  border-bottom: 1px solid #202020;
+}
+.interface.component-select tr.color1 td {
+  background-color: #2d2d2d;
+  border-bottom: 1px solid #282828;
+}
+.interface.component-select .row.color1:hover {
+  background-color: #000000;
+}
+.interface.component-select .row.color1:hover > .column-label,
+.interface.component-select .row.color1:hover .column-icon {
+  color: #e0e0e0;
+  background-color: #090707;
+  border-bottom: 1px solid #000000;
+}
+.interface.component-select .row.color1:hover > .column,
+.interface.component-select .row.color1:hover > .column-input,
+.interface.component-select .row.color1:hover > .empty,
+.interface.component-select .row.color1:hover .column-button {
+  background-color: #000000;
+  border-bottom: 1px solid #000000;
+}
+.interface.component-select .row:hover > div.color1 {
+  background-color: #000000;
+}
+.interface.component-select .row:hover > div.color1 > .column-label,
+.interface.component-select .row:hover > div.color1 .column-icon {
+  color: #e0e0e0;
+  background-color: #090707;
+  border-bottom: 1px solid #000000;
+}
+.interface.component-select .row:hover > div.color1 > .column,
+.interface.component-select .row:hover > div.color1 > .column-input,
+.interface.component-select .row:hover > div.color1 > .empty,
+.interface.component-select .row:hover > div.color1 .column-button {
+  background-color: #000000;
+  border-bottom: 1px solid #000000;
+}
+.interface.component-select tr.color1:hover td {
+  background-color: #000000;
+  border-bottom: 1px solid #000000;
+}
+.interface.component-select tr.color1:hover td:hover {
+  background-color: #090707;
+  border-bottom: 1px solid #030202;
+}
+.interface.component-select.forpanel div.color1 {
+  background-color: #ffd300;
+}
+.interface.component-select.forpanel div.color1 > .column-label,
+.interface.component-select.forpanel div.color1 .column-icon {
+  color: #adadad;
+  background-color: #ffd60f;
+  border-bottom: 1px solid #ffd405;
+}
+.interface.component-select.forpanel div.color1 > .column,
+.interface.component-select.forpanel div.color1 > .column-input,
+.interface.component-select.forpanel div.color1 > .empty,
+.interface.component-select.forpanel div.color1 .column-button {
+  background-color: #ffd300;
+  border-bottom: 1px solid #f5cb00;
+}
+.interface.component-select.forpanel tr.color1 td {
+  background-color: #ffd60f;
+  border-bottom: 1px solid #ffd405;
+}
+.interface.component-select.forpanel .row.color1:hover {
+  background-color: #ffc300;
+}
+.interface.component-select.forpanel .row.color1:hover > .column-label,
+.interface.component-select.forpanel .row.color1:hover .column-icon {
+  color: #e0e0e0;
+  background-color: #ffc70f;
+  border-bottom: 1px solid #ffc300;
+}
+.interface.component-select.forpanel .row.color1:hover > .column,
+.interface.component-select.forpanel .row.color1:hover > .column-input,
+.interface.component-select.forpanel .row.color1:hover > .empty,
+.interface.component-select.forpanel .row.color1:hover .column-button {
+  background-color: #ffc300;
+  border-bottom: 1px solid #f0b700;
+}
+.interface.component-select.forpanel .row:hover > div.color1 {
+  background-color: #ffc300;
+}
+.interface.component-select.forpanel .row:hover > div.color1 > .column-label,
+.interface.component-select.forpanel .row:hover > div.color1 .column-icon {
+  color: #e0e0e0;
+  background-color: #ffc70f;
+  border-bottom: 1px solid #ffc300;
+}
+.interface.component-select.forpanel .row:hover > div.color1 > .column,
+.interface.component-select.forpanel .row:hover > div.color1 > .column-input,
+.interface.component-select.forpanel .row:hover > div.color1 > .empty,
+.interface.component-select.forpanel .row:hover > div.color1 .column-button {
+  background-color: #ffc300;
+  border-bottom: 1px solid #f0b700;
+}
+.interface.component-select.forpanel tr.color1:hover td {
+  background-color: #ffc300;
+  border-bottom: 1px solid #f5bb00;
+}
+.interface.component-select.forpanel tr.color1:hover td:hover {
+  background-color: #ffc70f;
+  border-bottom: 1px solid #ffc405;
+}
+.interface div.purple {
+  background-color: #410e4e;
+}
+.interface div.purple > .column-label,
+.interface div.purple .column-icon {
+  color: #adadad;
+  background-color: #4b105b;
+  border-bottom: 1px solid #440f53;
+}
+.interface div.purple > .column,
+.interface div.purple > .column-input,
+.interface div.purple > .empty,
+.interface div.purple .column-button {
+  background-color: #410e4e;
+  border-bottom: 1px solid #390c46;
+}
+.interface tr.purple td {
+  background-color: #4b105b;
+  border-bottom: 1px solid #440f53;
+}
+.interface .row.purple:hover {
+  background-color: #410c50;
+}
+.interface .row.purple:hover > .column-label,
+.interface .row.purple:hover .column-icon {
+  color: #e0e0e0;
+  background-color: #510665;
+  border-bottom: 1px solid #450656;
+}
+.interface .row.purple:hover > .column,
+.interface .row.purple:hover > .column-input,
+.interface .row.purple:hover > .empty,
+.interface .row.purple:hover .column-button {
+  background-color: #410c50;
+  border-bottom: 1px solid #360a42;
+}
+.interface .row:hover > div.purple {
+  background-color: #410c50;
+}
+.interface .row:hover > div.purple > .column-label,
+.interface .row:hover > div.purple .column-icon {
+  color: #e0e0e0;
+  background-color: #510665;
+  border-bottom: 1px solid #450656;
+}
+.interface .row:hover > div.purple > .column,
+.interface .row:hover > div.purple > .column-input,
+.interface .row:hover > div.purple > .empty,
+.interface .row:hover > div.purple .column-button {
+  background-color: #410c50;
+  border-bottom: 1px solid #360a42;
+}
+.interface tr.purple:hover td {
+  background-color: #410c50;
+  border-bottom: 1px solid #3a0b47;
+}
+.interface tr.purple:hover td:hover {
+  background-color: #510665;
+  border-bottom: 1px solid #49065b;
+}
+.interface div.blue {
+  background-color: #0b1c41;
+}
+.interface div.blue > .column-label,
+.interface div.blue .column-icon {
+  color: #adadad;
+  background-color: #0e214e;
+  border-bottom: 1px solid #0c1e45;
+}
+.interface div.blue > .column,
+.interface div.blue > .column-input,
+.interface div.blue > .empty,
+.interface div.blue .column-button {
+  background-color: #0b1c41;
+  border-bottom: 1px solid #0a1838;
+}
+.interface tr.blue td {
+  background-color: #0e214e;
+  border-bottom: 1px solid #0c1e45;
+}
+.interface .row.blue:hover {
+  background-color: #0a1b42;
+}
+.interface .row.blue:hover > .column-label,
+.interface .row.blue:hover .column-icon {
+  color: #e0e0e0;
+  background-color: #051e56;
+  border-bottom: 1px solid #051947;
+}
+.interface .row.blue:hover > .column,
+.interface .row.blue:hover > .column-input,
+.interface .row.blue:hover > .empty,
+.interface .row.blue:hover .column-button {
+  background-color: #0a1b42;
+  border-bottom: 1px solid #081635;
+}
+.interface .row:hover > div.blue {
+  background-color: #0a1b42;
+}
+.interface .row:hover > div.blue > .column-label,
+.interface .row:hover > div.blue .column-icon {
+  color: #e0e0e0;
+  background-color: #051e56;
+  border-bottom: 1px solid #051947;
+}
+.interface .row:hover > div.blue > .column,
+.interface .row:hover > div.blue > .column-input,
+.interface .row:hover > div.blue > .empty,
+.interface .row:hover > div.blue .column-button {
+  background-color: #0a1b42;
+  border-bottom: 1px solid #081635;
+}
+.interface tr.blue:hover td {
+  background-color: #0a1b42;
+  border-bottom: 1px solid #091839;
+}
+.interface tr.blue:hover td:hover {
+  background-color: #051e56;
+  border-bottom: 1px solid #051b4c;
+}
+.interface div.turqoise {
+  background-color: #0c4442;
+}
+.interface div.turqoise > .column-label,
+.interface div.turqoise .column-icon {
+  color: #adadad;
+  background-color: #0e514f;
+  border-bottom: 1px solid #0d4847;
+}
+.interface div.turqoise > .column,
+.interface div.turqoise > .column-input,
+.interface div.turqoise > .empty,
+.interface div.turqoise .column-button {
+  background-color: #0c4442;
+  border-bottom: 1px solid #0a3b3a;
+}
+.interface tr.turqoise td {
+  background-color: #0e514f;
+  border-bottom: 1px solid #0d4847;
+}
+.interface .row.turqoise:hover {
+  background-color: #074947;
+}
+.interface .row.turqoise:hover > .column-label,
+.interface .row.turqoise:hover .column-icon {
+  color: #e0e0e0;
+  background-color: #015e5c;
+  border-bottom: 1px solid #014f4d;
+}
+.interface .row.turqoise:hover > .column,
+.interface .row.turqoise:hover > .column-input,
+.interface .row.turqoise:hover > .empty,
+.interface .row.turqoise:hover .column-button {
+  background-color: #074947;
+  border-bottom: 1px solid #053b3a;
+}
+.interface .row:hover > div.turqoise {
+  background-color: #074947;
+}
+.interface .row:hover > div.turqoise > .column-label,
+.interface .row:hover > div.turqoise .column-icon {
+  color: #e0e0e0;
+  background-color: #015e5c;
+  border-bottom: 1px solid #014f4d;
+}
+.interface .row:hover > div.turqoise > .column,
+.interface .row:hover > div.turqoise > .column-input,
+.interface .row:hover > div.turqoise > .empty,
+.interface .row:hover > div.turqoise .column-button {
+  background-color: #074947;
+  border-bottom: 1px solid #053b3a;
+}
+.interface tr.turqoise:hover td {
+  background-color: #074947;
+  border-bottom: 1px solid #06403e;
+}
+.interface tr.turqoise:hover td:hover {
+  background-color: #015e5c;
+  border-bottom: 1px solid #015452;
+}
+.interface div.green {
+  background-color: #0b3c1a;
+}
+.interface div.green > .column-label,
+.interface div.green .column-icon {
+  color: #adadad;
+  background-color: #0d491f;
+  border-bottom: 1px solid #0b411c;
+}
+.interface div.green > .column,
+.interface div.green > .column-input,
+.interface div.green > .empty,
+.interface div.green .column-button {
+  background-color: #0b3c1a;
+  border-bottom: 1px solid #093416;
+}
+.interface tr.green td {
+  background-color: #0d491f;
+  border-bottom: 1px solid #0b411c;
+}
+.interface .row.green:hover {
+  background-color: #0a3d19;
+}
+.interface .row.green:hover > .column-label,
+.interface .row.green:hover .column-icon {
+  color: #e0e0e0;
+  background-color: #05511c;
+  border-bottom: 1px solid #044317;
+}
+.interface .row.green:hover > .column,
+.interface .row.green:hover > .column-input,
+.interface .row.green:hover > .empty,
+.interface .row.green:hover .column-button {
+  background-color: #0a3d19;
+  border-bottom: 1px solid #083014;
+}
+.interface .row:hover > div.green {
+  background-color: #0a3d19;
+}
+.interface .row:hover > div.green > .column-label,
+.interface .row:hover > div.green .column-icon {
+  color: #e0e0e0;
+  background-color: #05511c;
+  border-bottom: 1px solid #044317;
+}
+.interface .row:hover > div.green > .column,
+.interface .row:hover > div.green > .column-input,
+.interface .row:hover > div.green > .empty,
+.interface .row:hover > div.green .column-button {
+  background-color: #0a3d19;
+  border-bottom: 1px solid #083014;
+}
+.interface tr.green:hover td {
+  background-color: #0a3d19;
+  border-bottom: 1px solid #083516;
+}
+.interface tr.green:hover td:hover {
+  background-color: #05511c;
+  border-bottom: 1px solid #054819;
+}
+.interface div.yellow {
+  background-color: #574e0f;
+}
+.interface div.yellow > .column-label,
+.interface div.yellow .column-icon {
+  color: #adadad;
+  background-color: #645a12;
+  border-bottom: 1px solid #5b5210;
+}
+.interface div.yellow > .column,
+.interface div.yellow > .column-input,
+.interface div.yellow > .empty,
+.interface div.yellow .column-button {
+  background-color: #574e0f;
+  border-bottom: 1px solid #4e460e;
+}
+.interface tr.yellow td {
+  background-color: #645a12;
+  border-bottom: 1px solid #5b5210;
+}
+.interface .row.yellow:hover {
+  background-color: #5b510b;
+}
+.interface .row.yellow:hover > .column-label,
+.interface .row.yellow:hover .column-icon {
+  color: #e0e0e0;
+  background-color: #716404;
+  border-bottom: 1px solid #625704;
+}
+.interface .row.yellow:hover > .column,
+.interface .row.yellow:hover > .column-input,
+.interface .row.yellow:hover > .empty,
+.interface .row.yellow:hover .column-button {
+  background-color: #5b510b;
+  border-bottom: 1px solid #4d450a;
+}
+.interface .row:hover > div.yellow {
+  background-color: #5b510b;
+}
+.interface .row:hover > div.yellow > .column-label,
+.interface .row:hover > div.yellow .column-icon {
+  color: #e0e0e0;
+  background-color: #716404;
+  border-bottom: 1px solid #625704;
+}
+.interface .row:hover > div.yellow > .column,
+.interface .row:hover > div.yellow > .column-input,
+.interface .row:hover > div.yellow > .empty,
+.interface .row:hover > div.yellow .column-button {
+  background-color: #5b510b;
+  border-bottom: 1px solid #4d450a;
+}
+.interface tr.yellow:hover td {
+  background-color: #5b510b;
+  border-bottom: 1px solid #52490a;
+}
+.interface tr.yellow:hover td:hover {
+  background-color: #716404;
+  border-bottom: 1px solid #675b04;
+}
+.interface div.orange {
+  background-color: #57330f;
+}
+.interface div.orange > .column-label,
+.interface div.orange .column-icon {
+  color: #adadad;
+  background-color: #643a12;
+  border-bottom: 1px solid #5b3510;
+}
+.interface div.orange > .column,
+.interface div.orange > .column-input,
+.interface div.orange > .empty,
+.interface div.orange .column-button {
+  background-color: #57330f;
+  border-bottom: 1px solid #4e2e0e;
+}
+.interface tr.orange td {
+  background-color: #643a12;
+  border-bottom: 1px solid #5b3510;
+}
+.interface .row.orange:hover {
+  background-color: #5a330c;
+}
+.interface .row.orange:hover > .column-label,
+.interface .row.orange:hover .column-icon {
+  color: #e0e0e0;
+  background-color: #703a05;
+  border-bottom: 1px solid #613205;
+}
+.interface .row.orange:hover > .column,
+.interface .row.orange:hover > .column-input,
+.interface .row.orange:hover > .empty,
+.interface .row.orange:hover .column-button {
+  background-color: #5a330c;
+  border-bottom: 1px solid #4c2b0a;
+}
+.interface .row:hover > div.orange {
+  background-color: #5a330c;
+}
+.interface .row:hover > div.orange > .column-label,
+.interface .row:hover > div.orange .column-icon {
+  color: #e0e0e0;
+  background-color: #703a05;
+  border-bottom: 1px solid #613205;
+}
+.interface .row:hover > div.orange > .column,
+.interface .row:hover > div.orange > .column-input,
+.interface .row:hover > div.orange > .empty,
+.interface .row:hover > div.orange .column-button {
+  background-color: #5a330c;
+  border-bottom: 1px solid #4c2b0a;
+}
+.interface tr.orange:hover td {
+  background-color: #5a330c;
+  border-bottom: 1px solid #512d0b;
+}
+.interface tr.orange:hover td:hover {
+  background-color: #703a05;
+  border-bottom: 1px solid #663505;
+}
+.interface div.red {
+  background-color: #570f0f;
+}
+.interface div.red > .column-label,
+.interface div.red .column-icon {
+  color: #adadad;
+  background-color: #641212;
+  border-bottom: 1px solid #5b1010;
+}
+.interface div.red > .column,
+.interface div.red > .column-input,
+.interface div.red > .empty,
+.interface div.red .column-button {
+  background-color: #570f0f;
+  border-bottom: 1px solid #4e0e0e;
+}
+.interface tr.red td {
+  background-color: #641212;
+  border-bottom: 1px solid #5b1010;
+}
+.interface .row.red:hover {
+  background-color: #580e0e;
+}
+.interface .row.red:hover > .column-label,
+.interface .row.red:hover .column-icon {
+  color: #e0e0e0;
+  background-color: #6e0707;
+  border-bottom: 1px solid #600606;
+}
+.interface .row.red:hover > .column,
+.interface .row.red:hover > .column-input,
+.interface .row.red:hover > .empty,
+.interface .row.red:hover .column-button {
+  background-color: #580e0e;
+  border-bottom: 1px solid #4b0c0c;
+}
+.interface .row:hover > div.red {
+  background-color: #580e0e;
+}
+.interface .row:hover > div.red > .column-label,
+.interface .row:hover > div.red .column-icon {
+  color: #e0e0e0;
+  background-color: #6e0707;
+  border-bottom: 1px solid #600606;
+}
+.interface .row:hover > div.red > .column,
+.interface .row:hover > div.red > .column-input,
+.interface .row:hover > div.red > .empty,
+.interface .row:hover > div.red .column-button {
+  background-color: #580e0e;
+  border-bottom: 1px solid #4b0c0c;
+}
+.interface tr.red:hover td {
+  background-color: #580e0e;
+  border-bottom: 1px solid #4f0c0c;
+}
+.interface tr.red:hover td:hover {
+  background-color: #6e0707;
+  border-bottom: 1px solid #650606;
+}
+.component-select {
+  color: #dddddd;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.component-select .resize-side {
+  background-color: #252525;
+}
+.component-select .resize-corner {
+  background-color: #252525;
+}
+.component-select .arrow-down {
+  background-color: #252525;
+  color: #dddddd;
+}
+.component-select .arrow-down:hover {
+  background-color: #000000;
+  color: #33ffcc;
+}
+.component-select .arrow-top:after {
+  border-bottom-color: #252525;
+}
+.component-select .arrow-right:after {
+  border-left-color: #252525;
+}
+.component-select .menu .item {
+  background-color: #252525;
+  color: #dddddd;
+}
+.component-select .menu .item:hover {
+  background-color: #000000;
+}
+.component-select .menu .item:hover svg {
+  color: #33ffcc !important;
+}
+.component-select .properties {
+  background-color: #252525;
+  color: #dddddd;
+}
+.component-select .quickmenu-item {
+  background-color: #252525;
+}
+.component-select.forpanel {
+  color: #ffffff;
+  background-color: rgba(255, 250, 0, 0.3);
+}
+.component-select.forpanel .resize-side {
+  background-color: #ffd300;
+}
+.component-select.forpanel .resize-corner {
+  background-color: #ffd300;
+}
+.component-select.forpanel .arrow-down {
+  background-color: #ffd300;
+  color: #ffffff;
+}
+.component-select.forpanel .arrow-down:hover {
+  background-color: #ffc300;
+  color: #78fffb;
+}
+.component-select.forpanel .arrow-top:after {
+  border-bottom-color: #ffd300;
+}
+.component-select.forpanel .arrow-right:after {
+  border-left-color: #ffd300;
+}
+.component-select.forpanel .menu .item {
+  background-color: #ffd300;
+  color: #ffffff;
+}
+.component-select.forpanel .menu .item:hover {
+  background-color: #ffc300;
+}
+.component-select.forpanel .menu .item:hover svg {
+  color: #78fffb !important;
+}
+.component-select.forpanel .properties {
+  background-color: #ffd300;
+  color: #ffffff;
+}
+.component-select.forpanel .quickmenu-item {
+  background-color: #ffd300;
+}
+.tools .texteditor-toolbar,
+.tools .texteditor-btnselect {
+  background-color: #272727;
+}
+.tools .texteditor-toolbar a:link use,
+.tools .texteditor-btnselect a:link use {
+  color: #ffffff;
+}
+.tools .texteditor-toolbar a:hover use,
+.tools .texteditor-btnselect a:hover use {
+  color: #33ffcc;
+}
+.tools .texteditor-toolbar a:active use,
+.tools .texteditor-btnselect a:active use {
+  color: #00ffcc;
+}
+.tools .texteditor-toolbar a:visited use,
+.tools .texteditor-btnselect a:visited use {
+  color: #ffffff;
+}
+body.dashboard {
+  background-color: #e3e3e3;
+}

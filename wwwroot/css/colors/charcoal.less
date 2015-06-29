@@ -1,0 +1,416 @@
+﻿//color variables ////////////////////
+@bg-color:#272727;
+@bg-color-hover:#000000;
+@color:#ffffff;
+
+@link:#ffffff;
+@hover:#33ffcc;
+@active:#00ffcc;
+@visited:#ffffff;
+
+@svg-link:#ffffff;
+@svg-hover:#33ffcc;
+@svg-active:#00ffcc;
+@svg-visited:#ffffff;
+@svg-saving:#58ff00;
+
+@interface-bg:#272727;
+@interface-color-faded:#aaaaaa;
+
+
+///////////////////////////////////////
+
+.webpage > .grid-leftside{background-color:@bg-color;}
+.webpage > .grid-rightside{background-color:@bg-color;}
+
+.editor{
+
+    .toolbar{
+        background-color:@bg-color;
+    }
+
+    .saving a{
+        &:link use{color:@svg-saving !important;}
+        &:hover use{color:@svg-saving !important;}
+        &:active use{color:@svg-saving !important;}
+        &:visited use{color:@svg-saving !important;}
+    }
+
+    .nosave a{
+        cursor:default;
+        &:link use{color:@svg-link !important;}
+        &:hover use{color:@svg-link !important;}
+        &:active use{color:@svg-link !important;}
+        &:visited use{color:@svg-link !important;}
+    }
+    .bg{background-color:@interface-bg;}
+    .tab{color:@color; background-color:@bg-color;}
+
+    .font-faded{color:@interface-color-faded;}
+    
+    a:link use{color:@svg-link;}
+    a:hover use{color:@svg-hover;}
+    a:active use{color:@svg-active;}
+    a:visited use{color:@svg-visited;}
+}
+
+///////////////////////////////////////
+
+.interface{
+    .getInterface(dark){
+        @perc-a:0%; //lighten
+        @perc-d:30%; //darken
+        @perc-e:30%; //desaturate
+
+        @perc-c:0%;  //hover lighten
+        @perc-f:27%;  //hover darken
+        @perc-b:30%;  //hover desaturate
+
+        @purple:#C100F5;
+        @blue:#0046E5;
+        @turqoise:#00E9E2;
+        @green:#00E044;
+        @yellow:#FFE000;
+        @orange:#FF7E00;
+        @red:#FF0000;
+
+        @color-purple:  desaturate(darken(lighten(@purple,@perc-a),@perc-d),@perc-e);
+        @color-blue:    desaturate(darken(lighten(@blue,@perc-a),@perc-d),@perc-e);
+        @color-turqoise:desaturate(darken(lighten(@turqoise,@perc-a),@perc-d),@perc-e);
+        @color-green:   desaturate(darken(lighten(@green,@perc-a),@perc-d),@perc-e);
+        @color-yellow:  desaturate(darken(lighten(@yellow,@perc-a),@perc-d),@perc-e);
+        @color-orange:  desaturate(darken(lighten(@orange,@perc-a),@perc-d),@perc-e);
+        @color-red:     desaturate(darken(lighten(@red,@perc-a),@perc-d),@perc-e);
+
+        @color-purple-hover:  desaturate(darken(lighten(@purple,@perc-c),@perc-b),@perc-f);
+        @color-blue-hover:    desaturate(darken(lighten(@blue,@perc-c),@perc-b),@perc-f);
+        @color-turqoise-hover:desaturate(darken(lighten(@turqoise,@perc-c),@perc-b),@perc-f - 10);
+        @color-green-hover:   desaturate(darken(lighten(@green,@perc-c),@perc-b),@perc-f);
+        @color-yellow-hover:  desaturate(darken(lighten(@yellow,@perc-c),@perc-b),@perc-f - 5);
+        @color-orange-hover:  desaturate(darken(lighten(@orange,@perc-c),@perc-b),@perc-f - 3);
+        @color-red-hover:     desaturate(darken(lighten(@red,@perc-c),@perc-b),@perc-f);
+        .interface();
+    }
+
+    .getInterface(light){
+        @perc-a:45%; //lighten
+        @perc-d:5%; //darken
+        @perc-e:50%; //desaturate
+
+        @perc-c:30%;  //hover lighten
+        @perc-f:30%;  //hover darken
+        @perc-b:50%;  //hover desaturate
+
+        @purple:#C100F5;
+        @blue:#0046E5;
+        @turqoise:#00E9E2;
+        @green:#00E044;
+        @yellow:#FFE000;
+        @orange:#FF7E00;
+        @red:#FF0000;
+
+        @color-purple:  desaturate(darken(lighten(@purple,@perc-a),@perc-d),@perc-e);
+        @color-blue:    desaturate(darken(lighten(@blue,@perc-a),@perc-d),@perc-e);
+        @color-turqoise:desaturate(darken(lighten(@turqoise,@perc-a),@perc-d),@perc-e);
+        @color-green:   desaturate(darken(lighten(@green,@perc-a),@perc-d),@perc-e);
+        @color-yellow:  desaturate(darken(lighten(@yellow,@perc-a),@perc-d),@perc-e);
+        @color-orange:  desaturate(darken(lighten(@orange,@perc-a),@perc-d),@perc-e);
+        @color-red:     desaturate(darken(lighten(@red,@perc-a),@perc-d),@perc-e);
+
+        @color-purple-hover:  desaturate(lighten(@purple,@perc-c),@perc-b);
+        @color-blue-hover:    desaturate(lighten(@blue,@perc-c),@perc-b);
+        @color-turqoise-hover:desaturate(lighten(@turqoise,@perc-c),@perc-b);
+        @color-green-hover:   desaturate(lighten(@green,@perc-c),@perc-b);
+        @color-yellow-hover:  desaturate(lighten(@yellow,@perc-c),@perc-b);
+        @color-orange-hover:  desaturate(lighten(@orange,@perc-c),@perc-b);
+        @color-red-hover:     desaturate(lighten(@red,@perc-c),@perc-b);
+
+        .interface();
+    }
+
+    .interface(){
+        background-color:@window-bg; color:@window-color;
+
+        a:link use{color:@svg2-link;}
+        a:hover use{color:@svg2-hover;}
+        a:active use{color:@svg2-active;}
+        a:visited use{color:@svg2-visited;}
+
+        .grip{background-color:@window-grip;}
+        .title{color:@window-title;}
+        .close a:hover{color:@window-close !important;}
+        &.arrow-top:after{border-bottom-color:@window-bg;}
+        .section-info{background-color:@window-header;}
+        .top-menu, .side-menu{background-color:@window-top-menu;}
+        .tabs .item{color:@window-color-faded;background-color:@window-tab;}
+        .tabs .item:hover{color:@window-color;background-color:@window-tab-hover;}
+        .tabs .item.selected{color:@window-color;background-color:@window-tab-selected;}
+
+        .top-menu{
+            .tabs .item{color:@window-color-faded;background-color:lighten(@window-tab, 2%);}
+            .tabs .item:hover{color:@window-color;background-color:lighten(@window-tab-hover, 2%);}
+            .tabs .item.selected{color:@window-color;background-color:lighten(@window-tab-selected, 2%);}
+        }
+
+        .help-info{color:@window-color; background-color:darken(@window-bg,5%);}
+        .column-help > div{color:@window-color-help; background-color:darken(@window-bg,5%);}
+        .column-help > div:after {border-right-color:darken(@window-bg,5%);}
+        .column-help .row.color:hover{color:darken(saturate(@window-color-help,20%),2%); background-color:darken(@window-bg,8%);}
+
+        @border:2%;
+
+        .color(){
+            // color function to generate colored rows & columns & tables
+            @label-bg:lighten(@bgcolor,3%);
+            @label-hover:saturate(lighten(@hovercolor,3%),15%);
+            @input-bg:@bgcolor;
+            @input-hover:@hovercolor;
+
+            div.@{name}{.row-colors();}
+            tr.@{name}{.tr-colors();}
+
+            .row.@{name}:hover{.row-hover();}
+            .row:hover > div.@{name}{.row-hover();}
+            tr.@{name}:hover{.tr-hover();}
+
+            .row-colors(){
+                @label-border:darken(@label-bg,@border);
+                @input-border:darken(@input-bg,@border);
+                background-color:@bgcolor;
+                > .column-label, .column-icon{color:darken(@window-color,20%); background-color:@label-bg; border-bottom:1px solid @label-border;}
+                > .column, > .column-input, > .empty, .column-button{background-color:@input-bg; border-bottom:1px solid @input-border;}
+            }
+
+            .row-hover(){
+                @label-border:darken(@label-hover,@border + 1);
+                @input-border:darken(@input-hover,@border + 1);
+                background-color:@input-hover;
+                    > .column-label, .column-icon{color:@window-color; background-color:@label-hover; border-bottom:1px solid @label-border;}
+                    > .column, > .column-input, > .empty, .column-button{background-color:@input-hover; border-bottom:1px solid @input-border;}
+            }
+
+            .tr-colors(){
+                @label-border:darken(@label-bg,@border);
+                td{background-color:@label-bg; border-bottom:1px solid @label-border;}
+            }
+
+            .tr-hover(){
+                @label-border:darken(@label-hover,@border);
+                @input-border:darken(@input-hover,@border);
+                td{background-color:@input-hover; border-bottom:1px solid @input-border;}
+                td:hover{background-color:@label-hover; border-bottom:1px solid @label-border;}
+            }
+        }
+
+
+        // Color Default //////////////////////////////////////////////////////////////////////////////////////////////////
+        &{
+            @name:~'color1';
+            @bgcolor:@window-bg;
+            @hovercolor:@window-hover;
+            .color();
+        }
+        
+
+        // Color Dark //////////////////////////////////////////////////////////////////////////////////////////////////
+        &{
+            @name:~'color2';
+            @bgcolor:darken(@window-bg,1%);
+            @hovercolor:@window-hover;
+            .color();
+        }
+
+        // Color Component-Select //////////////////////////////////////////////////////////////////////////////////////////////////
+        &.component-select{
+            @name:~'color1';
+            @bgcolor:#252525;
+            @hovercolor:#000000;
+            .color();
+        }
+
+        // Color Component-Select Cell //////////////////////////////////////////////////////////////////////////////////////////////////
+        &.component-select.forpanel{
+            @name:~'color1';
+            @bgcolor:#ffd300;
+            @hovercolor:#ffc300;
+            .color();
+        }
+
+        // Color Purple //////////////////////////////////////////////////////////////////////////////////////////////////
+        &{
+            @name:~'purple';
+            @bgcolor:@color-purple;
+            @hovercolor:@color-purple-hover;
+            .color();
+        }
+
+        // Color Blue //////////////////////////////////////////////////////////////////////////////////////////////////
+        &{
+            @name:~'blue';
+            @bgcolor:@color-blue;
+            @hovercolor:@color-blue-hover;
+            .color();
+        }
+
+        // Color Turqoise //////////////////////////////////////////////////////////////////////////////////////////////////
+        &{
+            @name:~'turqoise';
+            @bgcolor:@color-turqoise;
+            @hovercolor:@color-turqoise-hover;
+            .color();
+        }
+
+        // Color Green //////////////////////////////////////////////////////////////////////////////////////////////////
+        &{
+            @name:~'green';
+            @bgcolor:@color-green;
+            @hovercolor:@color-green-hover;
+            .color();
+        }
+
+        // Color Yellow //////////////////////////////////////////////////////////////////////////////////////////////////
+        &{
+            @name:~'yellow';
+            @bgcolor:@color-yellow;
+            @hovercolor:@color-yellow-hover;
+            .color();
+        }
+
+        // Color Orange //////////////////////////////////////////////////////////////////////////////////////////////////
+        &{
+            @name:~'orange';
+            @bgcolor:@color-orange;
+            @hovercolor:@color-orange-hover;
+            .color();
+        }
+
+        // Color Red //////////////////////////////////////////////////////////////////////////////////////////////////
+        &{
+            @name:~'red';
+            @bgcolor:@color-red;
+            @hovercolor:@color-red-hover;
+            .color();
+        }
+    }
+
+    ///////////////////////////////////////
+
+    &{
+        @window-bg:@bg-color;
+        @window-hover:#263039;
+        @window-color:#e0e0e0;
+        @window-color-faded:#aaaaaa;
+        @window-color-help:#9EE3C3;
+        @window-grip:rgba(255, 255, 255, 0.1);
+        @window-title:#aaaaaa;
+        @window-close:#cc0000;
+        @window-header:#202020;
+        @window-top-menu:#2a2a2a;
+        @window-tab:lighten(@window-bg,4%);
+        @window-tab-hover:lighten(@window-bg,8%);
+        @window-tab-selected:saturate(lighten(#263039,4%),15%);
+        @svg2-link:#ffffff;
+        @svg2-hover:#33ffcc;
+        @svg2-active:#00ffcc;
+        @svg2-visited:#ffffff;
+        .getInterface(dark);
+    }
+
+    ///////////////////////////////////////
+
+
+    /*
+    &.dashboard{
+        @window-bg:#e3e3e3;
+        @window-hover:#ABD3D1;
+        @window-color:#444444;
+        @window-color-faded:#999999;
+        @window-color-help:#329392;
+        @window-grip:rgba(0, 0, 0, 0.1);
+        @window-title:#aaaaaa;
+        @window-close:#cc0000;
+        @window-header:#d6d6d6;
+        @window-top-menu:#dfdfdf;
+        @window-tab:lighten(@window-bg,4%);
+        @window-tab-hover:lighten(@window-bg,8%);
+        @window-tab-selected:saturate(lighten(#0099CC,4%),15%);
+        @svg2-link:#444444;
+        @svg2-hover:#FF8B35;
+        @svg2-active:#FF8B35;
+        @svg2-visited:#444444;
+        .getInterface(light);
+    }*/
+}
+
+///////////////////////////////////////
+
+.component-select{
+    //color variables ////////////////////////
+    @bg-color:#252525;
+    @bg-color-hover:#000000;
+    @color:#dddddd;
+    @color-hover:#33ffcc;
+    @corner-color:@bg-color;
+    @glass:rgba(0,0,0,0.3);
+    color:@color;
+    background-color:@glass;
+    .resize-side{background-color:@bg-color;}
+    .resize-corner{background-color:@corner-color;}
+    .resize-side:hover{}
+    .arrow-down{background-color:@bg-color; color:@color;}
+    .arrow-down:hover{background-color:@bg-color-hover; color:@color-hover;}
+    .arrow-top:after{border-bottom-color:@bg-color;}
+    .arrow-right:after{border-left-color:@bg-color;}
+    .menu {
+        .item{background-color:@bg-color; color:@color;}
+        .item:hover{background-color:@bg-color-hover;}
+        .item:hover svg{color:@color-hover !important;}
+    }
+    .properties{background-color:@bg-color; color:@color;}
+    .quickmenu-item{background-color:@bg-color;}
+}
+
+///////////////////////////////////////
+
+.component-select.forpanel{
+    //color variables ////////////////////////
+    //@bg-color:#3ba162;
+    //@bg-color-hover:#45ae8e;
+    @bg-color:#ffd300;
+    @bg-color-hover:#ffc300;
+    @color:#ffffff;
+    @color-hover:#78fffb;
+    @corner-color:@bg-color;
+    @glass:rgba(255, 250, 0, 0.30);
+    //@panel-glass:rgba(0, 0, 0, 0.30);
+    color:@color;
+    background-color:@glass;
+    .resize-side{background-color:@bg-color;}
+    .resize-corner{background-color:@corner-color;}
+    .arrow-down{background-color:@bg-color; color:@color;}
+    .arrow-down:hover{background-color:@bg-color-hover; color:@color-hover;}
+    .arrow-top:after{border-bottom-color:@bg-color;}
+    .arrow-right:after{border-left-color:@bg-color;}
+    .menu {
+        .item{background-color:@bg-color; color:@color;}
+        .item:hover{background-color:@bg-color-hover;}
+        .item:hover svg{color:@color-hover !important;}
+    }
+    .properties{background-color:@bg-color; color:@color;}
+    .quickmenu-item{background-color:@bg-color;}
+}
+
+///////////////////////////////////////
+
+.tools .texteditor-toolbar,
+.tools .texteditor-btnselect
+{
+    background-color:@interface-bg;
+
+    a:link use{color:@svg-link;}
+    a:hover use{color:@svg-hover;}
+    a:active use{color:@svg-active;}
+    a:visited use{color:@svg-visited;}
+}
+
+body.dashboard{background-color:#e3e3e3;}

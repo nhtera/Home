@@ -5,7 +5,7 @@
 *.suo
 *.user
 *.sln.docstates
-wwwroot/
+wwwroot/content/
 
 # Build results
 [Dd]ebug/
