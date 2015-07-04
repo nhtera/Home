@@ -1219,34 +1219,12 @@ namespace Rennder
             }
 
             //load component from class
-
-            //NOTE: the way Rennder loads components is currently hardcoded into a switch clause,
-            //      when they should be dynamically loaded from the component Id (cId)
-            Component component = default(Component);
-            string cFolder = cId.Replace("-", "/");
-            switch (cFolder)
-            {
-                case "photo":
-                    component = new Components.Photo(R);
-                    break;
-
-                case "textbox":
-                    component = new Components.Textbox(R);
-                    break;
-
-                case "stackpanel":
-                    component = new Components.Panel(R);
-                    cFolder = "panel";
-                    break;
-
-                case "menu":
-                    component = new Components.Menu(R);
-                    break;
-
-                default:
-                    return null;
-            }
-
+            string cFolder = R.Util.Str.Capitalize(cId.Replace("-", "/").Replace("stackpanel", "Panel").Replace("StackPanel", "Panel"));
+            string className = "Rennder.Components." + cFolder.Replace("/",".");
+            Type type = Type.GetType(className);
+            if(type == null) { return null; }
+            Component component = (Component)Activator.CreateInstance(type, new object[] { R });
+            if (component == null) { return null; }
             //load component content
             component.DataField = content;
             component.DesignField = design;
@@ -1424,7 +1402,7 @@ namespace Rennder
             //load component.js once
             if (CheckJSOnceIfLoaded("comp-" + cFolder) == false)
             {
-                if (R.Server.Cache.ContainsKey("compjs-" + cFolder) ==true & R.isLocal == false) //only cache if on live server
+                if (R.Server.Cache.ContainsKey("compjs-" + cFolder) == true & R.isLocal == false) //only cache if on live server
                 {
                     //load from cache
                     R.Page.RegisterJSonce("comp-" + cFolder, R.Server.Cache["compjs-" + cFolder].ToString());

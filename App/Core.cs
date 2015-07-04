@@ -39,7 +39,6 @@ namespace Rennder
             Response = context.Response;
             Session = context.Session;
             Sql = new Sql(this);
-            Sql.Start();
             Util = new Utility.Util(this);
             User = new User();
 

@@ -74,6 +74,8 @@ namespace Rennder.Pipeline
                 context.Response.ContentType = "text/json";
                 context.Response.WriteAsync("{type:\"Empty\",d{}}");
             }
+
+            R.Unload();
             
         }
 

@@ -11,27 +11,32 @@ namespace Rennder
         private SqlCommand cmd = new SqlCommand();
         public SqlDataReader reader;
 
+        private bool _started = false;
+
         public Sql(Core RennderCore)
         {
             R = RennderCore;
         }
 
-        public void Start()
+        private void Start()
         {
+            if (_started == true) { return; }
             var config = new Configuration().AddJsonFile("config.json").AddEnvironmentVariables();
             conn.ConnectionString = config.Get("Data:" + config.Get("Data:Active"));
             conn.Open();
             cmd.Connection = conn;
             cmd.CommandType = System.Data.CommandType.Text;
+            _started = true;
         }
 
         public void Close()
         {
-            conn.Close();
+            if (_started == true) { conn.Close(); }
         }
 
         public SqlDataReader ExecuteReader(String sql)
         {
+            if (_started == false) { Start(); }
             cmd.CommandText = sql;
             reader = cmd.ExecuteReader();
             return reader;
@@ -39,12 +44,14 @@ namespace Rennder
 
         public void ExecuteNonQuery(String sql)
         {
+            if (_started == false) { Start(); }
             cmd.CommandText = sql;
             cmd.ExecuteNonQuery();
         }
 
         public object ExecuteScalar(String sql)
         {
+            if (_started == false) { Start(); }
             cmd.CommandText = sql;
             return cmd.ExecuteScalar();
         }

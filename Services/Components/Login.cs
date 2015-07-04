@@ -5,5 +5,12 @@ namespace Rennder.Services
 		public Login(Core RennderCore, string[] paths):base(RennderCore, paths)
 		{
 		}
+
+        public WebRequest Form()
+        {
+            WebRequest wr = new WebRequest();
+            wr.html = "Login Form";
+            return wr;
+        }
 	}
 }
