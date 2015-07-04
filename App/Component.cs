@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace Rennder
 {
@@ -24,7 +25,7 @@ namespace Rennder
     public class Component
     {
 
-
+        [JsonIgnore]
         protected Core R;
         public int pageId; //the id of the instance of this component
         public string itemId = ""; //tells whether or not the user just dropped a new component onto the page
@@ -62,18 +63,26 @@ namespace Rennder
         private bool _Resizable = false;
         private string _header = "";
         private string _footer = "";
+        public bool rendered = false;
 
+        [JsonIgnore]
         private Component _myParent;
         public virtual string Align { get; set; }
         public virtual string FrameSettings { get; set; }
         public virtual string ContainerHeadHtm { get; set; }
         public virtual string ContainerFootHtm { get; set; }
 
+        [JsonIgnore]
         public Utility.DOM.Element DivBase;
+        [JsonIgnore]
         public Utility.DOM.Element DivItem;
+        [JsonIgnore]
         public RmlButton[] rmlButtons;
+        [JsonIgnore]
         public RmlStackPanel[] rmlStackPanels;
+        [JsonIgnore]
         public RmlMenu[] rmlMenu;
+        [JsonIgnore]
         public RmlTextbox[] rmlTextbox;
 
         public Component(Core RennderCore)
@@ -93,6 +102,7 @@ namespace Rennder
 
         public virtual string Render()
         {
+            if(rendered == true) { return _header + DivBase.Render() + _footer; }
             string classes = "component id-" + itemId;
             string itemClass = "container type-" + ComponentId.ToLower().Replace(" ", "").Replace("/", "-");
             if (DivItem.Attributes.ContainsKey("class") == true)
@@ -110,6 +120,7 @@ namespace Rennder
             DivItem.Style["top"] = Top + "px";
             DivItem.Style["z-index"] = (index + 100).ToString();
             DivBase.innerHTML = DivItem.Render();
+            rendered = true;
             return _header + DivBase.Render() + _footer;
 
         }
@@ -545,11 +556,12 @@ namespace Rennder
     public class ComponentProperties
     {
 
-
+        [JsonIgnore]
         protected Core R;
 
         public string itemId = "";
 
+        [JsonIgnore]
         protected ComponentView _component;
         public ComponentView Component
         {

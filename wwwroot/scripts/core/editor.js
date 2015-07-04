@@ -179,7 +179,7 @@ R.editor = {
 
             if ($('.winDashboardSidebar').length == 0) {
                 //load sidebar window
-                R.editor.window.load('DashboardSidebar', '/dashboard/sidebar.asmx/Sidebar', {}, { x: 0, y: 50, w: R.editor.dashboard.sidebarWidth, h: '100%', toolbar: false });
+                R.editor.window.load('DashboardSidebar', '/Dashboard/Sidebar', {}, { x: 0, y: 50, w: R.editor.dashboard.sidebarWidth, h: '100%', toolbar: false });
             } else {
                 $('.winDashboardSidebar').addClass('dashboard').show();
             }
@@ -241,7 +241,7 @@ R.editor = {
 
         loadFromHash: function () {
             var hash = location.hash.replace('#', '').toLowerCase();
-            if (hash.indexOf('dashboard/') == 0) {
+            if (hash.indexOf('Dashboard/') == 0) {
                 var arrhash = hash.split('/');
                 switch (arrhash[1]) {
                     case 'timeline':
@@ -455,7 +455,7 @@ R.editor = {
                 }
             }
             if (url != '' && url != null && post == true) {
-                R.ajax.post('/services/'+url, data, R.editor.window.callback.ajax);
+                R.ajax.post('/rennder/'+url, data, R.editor.window.callback.ajax);
             } else {
                 if (data != '') {
                     //load content from string
@@ -467,7 +467,7 @@ R.editor = {
 
             //change url link
             if (a.hash != '' && R.editor.dashboard.visible == true) {
-                location.hash = 'dashboard/' + a.hash;
+                location.hash = 'Dashboard/' + a.hash;
             }
 
 
@@ -504,7 +504,7 @@ R.editor = {
 
         callback: {
             ajax: function (data) {
-                if (data.d.__type == 'Rennder.WebServices.Inject') {
+                if (data.type == 'Rennder.WebServices.Inject') {
                     R.ajax.callback.inject(data);
                 } else {
                     if (data.d.window != null && data.d.html != null) {
@@ -589,15 +589,15 @@ R.editor = {
 
         open: {
             timeline: function(title){
-                R.editor.window.load('DashboardTimeline', 'dashboard/timeline.asmx/Timeline', {}, { x: 155, y: 50, w: 250, h: '100%', toolbar: false, isDashboard: R.editor.dashboard.visible, hash: '' })
+                R.editor.window.load('DashboardTimeline', 'Dashboard/Timeline/Timeline', {}, { x: 155, y: 50, w: 250, h: '100%', toolbar: false, isDashboard: R.editor.dashboard.visible, hash: '' })
             },
 
             pages: function(title){
-                R.editor.window.load('WebPages', 'dashboard/pages.asmx/LoadPages', {}, { x: 0, align: 'center', y: 0, w: 600, h: 200, spacing: 50, postOnce: true, isDashboard: R.editor.dashboard.visible, title: 'Web Pages for \'' + title + '\'', hash: 'pages' })
+                R.editor.window.load('WebPages', 'Dashboard/Pages/LoadPages', {}, { x: 0, align: 'center', y: 0, w: 600, h: 200, spacing: 50, postOnce: true, isDashboard: R.editor.dashboard.visible, title: 'Web Pages for \'' + title + '\'', hash: 'pages' })
             },
 
             pageSettings: function (pageId, title) {
-                R.editor.window.load('PageSettings', 'dashboard/pages.asmx/LoadSettings', { pageId: pageId },
+                R.editor.window.load('PageSettings', 'Dashboard/Pages/LoadSettings', { pageId: pageId },
                     { x: 0, align: 'center', y: 0, w: 400, h: 400, spacing: 50, postOnce: 'pageid', title: 'Page Settings for \'' + title + '\'', hash:'page-settings' });
             },
 
@@ -606,23 +606,23 @@ R.editor = {
             },
             
             analytics: function (title) {
-                R.editor.window.load('Analytics', 'dashboard/analytics.asmx/LoadAnalytics', {}, { x: 0, align: 'center', y: 0, w: 400, h: 400, spacing: 50, postOnce: true, isDashboard: R.editor.dashboard.visible, title: 'Website Analytics for \'' + title + '\'', hash: 'analytics' })
+                R.editor.window.load('Analytics', 'Dashboard/Analytics/LoadAnalytics', {}, { x: 0, align: 'center', y: 0, w: 400, h: 400, spacing: 50, postOnce: true, isDashboard: R.editor.dashboard.visible, title: 'Website Analytics for \'' + title + '\'', hash: 'analytics' })
             },
 
             designer: function () {
-                R.editor.window.load('Design', 'dashboard/design.asmx/LoadDesigner', {}, { w: 200, h: 100, target: '.editor .toolbar .menu .grid', align: 'bottom-center', arrow: true, spacing: 10, toolbar: false, autoHide: true, popup: true, postOnce: true, isDashboard: R.editor.dashboard.visible })
+                R.editor.window.load('Design', 'Dashboard/Design/LoadDesigner', {}, { w: 200, h: 100, target: '.editor .toolbar .menu .grid', align: 'bottom-center', arrow: true, spacing: 10, toolbar: false, autoHide: true, popup: true, postOnce: true, isDashboard: R.editor.dashboard.visible })
             },
 
             users: function (title) {
-                R.editor.window.load('Users', 'dashboard/users.asmx/LoadUsers', {}, { x: 0, align: 'center', y: 0, w: 400, h: 400, spacing: 50, postOnce: true, isDashboard: R.editor.dashboard.visible, title: 'User Security for \'' + title + '\'', hash: 'users' })
+                R.editor.window.load('Users', 'Dashboard/Users/LoadUsers', {}, { x: 0, align: 'center', y: 0, w: 400, h: 400, spacing: 50, postOnce: true, isDashboard: R.editor.dashboard.visible, title: 'User Security for \'' + title + '\'', hash: 'users' })
             },
 
             apps: function(title){
-                R.editor.window.load('Apps', 'dashboard/apps.asmx/LoadApps', {}, { x: 0, align: 'center', y: 0, w: 400, h: 400, spacing: 50, postOnce: true, isDashboard: R.editor.dashboard.visible, title: 'Apps Installed onto \'' + title + '\'', hash: 'apps' })
+                R.editor.window.load('Apps', 'Dashboard/Apps/LoadApps', {}, { x: 0, align: 'center', y: 0, w: 400, h: 400, spacing: 50, postOnce: true, isDashboard: R.editor.dashboard.visible, title: 'Apps Installed onto \'' + title + '\'', hash: 'apps' })
             },
 
             websiteSettings: function(title){
-                R.editor.window.load('WebsiteSettings', 'dashboard/website.asmx/LoadSettings', {}, { x: 0, align: 'center', y: 0, w: 400, h: 400, spacing: 50, isDashboard: R.editor.dashboard.visible, postOnce: true, title: 'Website Settings for \'' + title + '\'', hash: 'settings' })
+                R.editor.window.load('WebsiteSettings', 'Dashboard/Website/LoadSettings', {}, { x: 0, align: 'center', y: 0, w: 400, h: 400, spacing: 50, isDashboard: R.editor.dashboard.visible, postOnce: true, title: 'Website Settings for \'' + title + '\'', hash: 'settings' })
             }
         },
 
@@ -886,7 +886,7 @@ R.editor = {
                     var zIndex = parseInt(pContain.length > 0 ? pContain[0].style.zIndex : 99 || 99) + $(pid + ' > .component').length + 1;
                     var options = { componentId: cid, selector: selector, panelId: pid, x: x, y: y, panelWidth:pPos.w, responsive: responsive, level: R.responsive.level, zIndex: zIndex };
 
-                    R.ajax.post('/services/editor.asmx/NewComponent', options, R.ajax.callback.inject);
+                    R.ajax.post('/rennder/Editor/NewComponent', options, R.ajax.callback.inject);
 
                 } else if (R.editor.components.dragNew.moved == false) {
                     //cancel drag
@@ -2168,7 +2168,7 @@ R.editor = {
                 var itemid = R.editor.components.hovered.id.substr(1);
                 R.editor.components.hovered.parentNode.removeChild(R.editor.components.hovered);
                 R.editor.components.hideSelect();
-                R.ajax.post('/services/editor.asmx/RemoveComponent', { componentId: itemid }, R.ajax.callback.inject);
+                R.ajax.post('/rennder/Editor/RemoveComponent', { componentId: itemid }, R.ajax.callback.inject);
                 R.editor.save.add('', '', '');            }
         },
 
@@ -2299,7 +2299,7 @@ R.editor = {
                 var section = arguments[0] || '';
                 if (R.editor.components.properties.selected != R.editor.components.hovered || R.editor.components.properties.section != section) {
                     $('.winProperties .props-content')[0].innerHTML = '';
-                    R.ajax.post('/services/editor.asmx/ComponentProperties', { id: R.editor.components.hovered.id.substr(1), section:section }, R.ajax.callback.inject);
+                    R.ajax.post('/rennder/Editor/ComponentProperties', { id: R.editor.components.hovered.id.substr(1), section:section }, R.ajax.callback.inject);
                     R.editor.components.properties.section = section;
                 } else {
                     $('.winProperties').show();
@@ -2341,7 +2341,7 @@ R.editor = {
 
         category: {
             load: function (id) {
-                R.ajax.post('/services/editor.asmx/ComponentsFromCategory', { category: id },
+                R.ajax.post('/rennder/Editor/ComponentsFromCategory', { category: id },
                     function (data) {
                         R.ajax.callback.inject(data);
                         $('.window.winComponents #component-categories').hide();
@@ -2746,7 +2746,7 @@ R.editor = {
             item: { parentId: 0, title: '', description: '' },
             show:function (parentId, title) {
                 R.editor.pages.add.item = { parentId: parentId, title: '', description: '' };
-                R.editor.window.load('NewPage', '/editor.asmx/NewPage', { parentId: parentId || 0, title: title },
+                R.editor.window.load('NewPage', '/Editor/NewPage', { parentId: parentId || 0, title: title },
                     { x: 'center', y: 0, w: 400, h: 200, align: 'center', spacing: 50, loadOnce: true, noDashboard:true, title: 'New Web Page' });
             },
 
@@ -2798,7 +2798,7 @@ R.editor = {
                 secure = $('#newPageSecure').is(':checked');
                 if ($('#newPageData')) { datapage = $('#newPageData').is(':checked'); }
                 var data = { title: title, description: desc, parentId: R.editor.pages.add.item.parentId, isSecure: secure, isDataPage: datapage };
-                R.ajax.post('/services/dashboard/pages.asmx/Create', data, R.ajax.callback.inject);
+                R.ajax.post('/rennder/Dashboard/Pages/Create', data, R.ajax.callback.inject);
             },
         },
 
@@ -2806,7 +2806,7 @@ R.editor = {
             item: { pageId: 0},
             show: function (pageId) {
                 R.editor.pages.settings.item = { pageId: pageId};
-                R.editor.window.load('PageSettings', '/editor.asmx/PageSettings', { pageId: pageId},
+                R.editor.window.load('PageSettings', '/Editor/PageSettings', { pageId: pageId},
                     { x: 'center', y: 0, w: 400, h: 200, align: 'center', spacing: 50, loadOnce: true, title: 'Web Page Settings', hash: 'page-settings' });
             },
 
@@ -2827,13 +2827,13 @@ R.editor = {
                 $(this).hide();
                 secure = $('#pageSettingsSecure').is(':checked');
                 var data = {pageId: R.editor.pages.settings.item.pageId, description: desc, isSecure: secure};
-                R.ajax.post('/services/dashboard/pages.asmx/Update', data, R.ajax.callback.inject);
+                R.ajax.post('/rennder/Dashboard/Pages/Update', data, R.ajax.callback.inject);
             },
         },
 
         remove: function (pageId) {
             if (confirm('Do you really want to delete this web page? This cannot be undone.') == true) {
-                R.ajax.post('/services/dashboard/pages.asmx/Remove', { pageId: pageId }, R.ajax.callback.inject);
+                R.ajax.post('/rennder/Dashboard/Pages/Remove', { pageId: pageId }, R.ajax.callback.inject);
             }
         },
 
@@ -2843,13 +2843,13 @@ R.editor = {
             } else {
                 R.editor.pages.tree.remove(pageId);
             }
-            R.ajax.post('/services/dashboard/pages.asmx/LoadSubPages', { parentId: pageId }, R.ajax.callback.inject);
+            R.ajax.post('/rennder/Dashboard/Pages/LoadSubPages', { parentId: pageId }, R.ajax.callback.inject);
         },
 
         expand: function (pageId) {
             if ($('.winWebPages .content .page-' + pageId).children().length == 3) {
                 //load sub pages
-                R.ajax.post('/services/dashboard/pages.asmx/LoadSubPages', { parentId: pageId }, R.ajax.callback.inject);
+                R.ajax.post('/rennder/Dashboard/Pages/LoadSubPages', { parentId: pageId }, R.ajax.callback.inject);
             } else {
                 //view sub pages
                 $('.winWebPages .content .page-' + pageId + ' > .sub').show();
@@ -2867,7 +2867,7 @@ R.editor = {
 
     layers: { ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         show: function(){
-            R.editor.window.load('Layers', '/editor.asmx/Layers', {}, { r: 0, y: 0, w: 250, h: 100, loadOnce: true });
+            R.editor.window.load('Layers', '/Editor/Layers', {}, { r: 0, y: 0, w: 250, h: 100, loadOnce: true });
         },
 
         refresh: function () {
@@ -3261,7 +3261,7 @@ R.editor = {
                         });
 
                         //load website folder list of files
-                        R.ajax.post('/services/dashboard/designer/code.asmx/LoadFolder', { type: 'website', folder:'' }, 
+                        R.ajax.post('/rennder/Dashboard/designer/code/LoadFolder', { type: 'website', folder:'' }, 
                             function (data) {
                                 R.ajax.callback.inject(data);
                                 //then load page CSS code for this web page
@@ -3299,7 +3299,7 @@ R.editor = {
                     if (found == false) {
                         //load file from server
                         R.editor.designer.code.ace.focus();
-                        R.ajax.post('/services/dashboard/designer/code.asmx/LoadFile', { type: type, file: file },
+                        R.ajax.post('/rennder/Dashboard/designer/code/LoadFile', { type: type, file: file },
                             function (data) {
                                 //get file name
                                 var f = file;
@@ -3362,7 +3362,7 @@ R.editor = {
                         s.modified = false;
                         R.editor.designer.code.sessions[R.editor.designer.code.selected] = s;
                         $('.winDesigner .code-ace-files .code-ace-save').addClass('saving');
-                        R.ajax.post('/services/dashboard/designer/code.asmx/SaveFile', { type: s.type, file: s.file, value: t },
+                        R.ajax.post('/rennder/Dashboard/designer/code/SaveFile', { type: s.type, file: s.file, value: t },
                             function (data) {
                                 $('.winDesigner .code-ace-files .code-ace-save').removeClass('saving').addClass('nosave');
                                 R.editor.designer.code.file.modified(false);
@@ -3383,7 +3383,7 @@ R.editor = {
 
             folder: {
                 load: function (type, folder) {
-                    R.ajax.post('/services/dashboard/designer/code.asmx/LoadFolder', { type: type, folder: folder }, R.ajax.callback.inject);
+                    R.ajax.post('/rennder/Dashboard/designer/code/LoadFolder', { type: type, folder: folder }, R.ajax.callback.inject);
                 }
             },
 
@@ -3481,11 +3481,11 @@ R.editor = {
                 $('.winPhotos').addClass('dashboard');
                 R.editor.dashboard.hideAllWindows();
                 R.editor.dashboard.callback.resize();
-                R.hash.ghost('dashboard/photos');
+                R.hash.ghost('Dashboard/photos');
             }
             R.editor.window.hidePopUps();
             if ($('.winPhotos .photo-list')[0].children.length == 0) {
-                R.ajax.post("/services/dashboard/photos.asmx/LoadPhotoList", { start: '1', folder: '', search: '', orderby: '0' },
+                R.ajax.post("/rennder/Dashboard/photos/LoadPhotoList", { start: '1', folder: '', search: '', orderby: '0' },
                     function (data) {
                         R.ajax.callback.inject(data);
                         //change onclick 
@@ -3566,7 +3566,7 @@ R.editor = {
                         $(chks).parents('.photo').remove();
                     }
                     
-                    R.ajax.post('/services/dashboard/photos.asmx/Remove', {files:files.join(','), folder:R.editor.photos.folder}, R.ajax.callback.inject);
+                    R.ajax.post('/rennder/Dashboard/photos/Remove', {files:files.join(','), folder:R.editor.photos.folder}, R.ajax.callback.inject);
                 }
             }
         },
@@ -3575,7 +3575,7 @@ R.editor = {
             show: function (type) {
                 if ($('.winPhotos .folder-list > div').length == 0) {
                     //get a list of folders from server
-                    R.ajax.post('/services/dashboard/photos.asmx/LoadFolders', {type:type != null ? type : ''}, R.ajax.callback.inject);
+                    R.ajax.post('/rennder/Dashboard/photos/LoadFolders', {type:type != null ? type : ''}, R.ajax.callback.inject);
                 }
                 $('.winPhotos .icon-folder use').attr('xlink:href', '#icon-grid');
                 $('.winPhotos .icon-folder a').attr('onclick', 'R.editor.photos.folders.hide()');
@@ -3603,7 +3603,7 @@ R.editor = {
             },
 
             add: function(){
-                R.ajax.post('/services/dashboard/photos.asmx/AddFolder', {name:$('.winPhotos #txtNewFolder').val()}, R.ajax.callback.inject);
+                R.ajax.post('/rennder/Dashboard/photos/AddFolder', {name:$('.winPhotos #txtNewFolder').val()}, R.ajax.callback.inject);
             },
 
             addCallback: function(name){
@@ -3638,13 +3638,13 @@ R.editor = {
             remove: function(name){
                 if (confirm("Do you really want to delete this folder and all the photos that belong within the folder? This cannot be undone.") == true) {
                     R.editor.photos.folders.remove();
-                    R.ajax.post('/services/dashboard/photos.asmx/RemoveFolder', { folder: name }, R.ajax.callback.inject);
+                    R.ajax.post('/rennder/Dashboard/photos/RemoveFolder', { folder: name }, R.ajax.callback.inject);
                 }
             },
 
             select: function(name){
                 if ($(e.target).parents('.icon-close').length > 0) { return; }
-                R.ajax.post('/services/dashboard/photos.asmx/LoadPhotoList', { start: "1", folder: name, search: '', orderby: '0' }, R.ajax.callback.inject);
+                R.ajax.post('/rennder/Dashboard/photos/LoadPhotoList', { start: "1", folder: name, search: '', orderby: '0' }, R.ajax.callback.inject);
             },
 
             change: function (name) {
@@ -3654,11 +3654,11 @@ R.editor = {
                 $('.winPhotos .selected-folder')[0].innerHTML = 'Folder: ' + n;
                 R.editor.photos.folder = name;
                 R.editor.photos.folders.bind();
-                R.editor.photos.dropzone.body.options.url = '/services/dashboard/photos-upload.aspx?v=' + R.ajax.viewstateId + '&folder=' + encodeURIComponent(R.editor.photos.folder);
+                R.editor.photos.dropzone.body.options.url = '/rennder/Dashboard/photos-upload.aspx?v=' + R.ajax.viewstateId + '&folder=' + encodeURIComponent(R.editor.photos.folder);
             },
 
             moveTo: function (name) {
-                R.ajax.post('/services/dashboard/photos.asmx/MoveTo', { folder: name, files: R.editor.photos.selected.join(',') }, R.ajax.callback.inject);
+                R.ajax.post('/rennder/Dashboard/photos/MoveTo', { folder: name, files: R.editor.photos.selected.join(',') }, R.ajax.callback.inject);
             }
         },
 
@@ -3667,7 +3667,7 @@ R.editor = {
 
             init: function () {
                 R.editor.photos.dropzone.body = new Dropzone(document.body, {
-                    url: '/services/dashboard/photos-upload.aspx?v=' + R.ajax.viewstateId,
+                    url: '/rennder/Dashboard/photos-upload.aspx?v=' + R.ajax.viewstateId,
                     previewsContainer: ".winPhotos .dropzone",
                     clickable: ".winPhotos .top-menu .upload a",
                     paramName: 'file',
@@ -3712,7 +3712,7 @@ R.editor = {
                             setTimeout(function () {
                                 list.scrollTop(list.prop('scrollHeight') + 50);
                             }, 1000);
-                            R.ajax.post('/services/dashboard/photos.asmx/Save', {}, R.ajax.callback.inject);
+                            R.ajax.post('/rennder/Dashboard/photos/Save', {}, R.ajax.callback.inject);
                         });
                     }
                 });
@@ -3827,7 +3827,7 @@ R.editor = {
                 options.save = JSON.stringify(R.editor.save.cache);
                 R.editor.save.cache = [];
                 $('.editor .toolbar .savepage').addClass('saving');
-                R.ajax.post("/services/core.asmx/KeepAlive", options, function () { $('.editor .toolbar .savepage').removeClass('saving').addClass('nosave'); });
+                R.ajax.post("/rennder/app/KeepAlive", options, function () { $('.editor .toolbar .savepage').removeClass('saving').addClass('nosave'); });
             }
         }
     },

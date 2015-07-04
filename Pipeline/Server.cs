@@ -31,11 +31,7 @@ namespace Rennder
         //         where data is injected in between each array item.
         private Dictionary<string, List<structScaffold>> scaffold = new Dictionary<string, List<structScaffold>>();
 
-        public string path(string strPath = "")
-        {
-            return "c:\\projects\\Rennder5\\Rennder\\" + strPath.Replace("/","\\");
-        }
-
+        
         #region "Scaffolding"
 
         /// <summary>
@@ -123,6 +119,26 @@ namespace Rennder
             return "";
         }
 
+        #endregion
+
+        #region "Microsoft Page.Server methods"
+        public string path(string strPath = "")
+        {
+            return "c:\\projects\\Rennder5\\Rennder\\" + strPath.Replace("/","\\");
+        }
+
+        public string MapPath(string strPath = "") { return path(strPath); }
+
+        public string UrlDecode(string strPath)
+        {
+            return Uri.EscapeDataString(strPath);
+        }
+
+        public string UrlEncode(string strPath)
+        {
+            return Uri.UnescapeDataString(strPath);
+        }
+        
         #endregion
     }
 

@@ -20,10 +20,8 @@
 
         public bool IsEmpty(object obj)
         {
-            if (obj != null || string.IsNullOrEmpty((string)obj)==true)
-            {
-                return true;
-            }
+            if(obj == null) { return true; }
+            if (string.IsNullOrEmpty(obj.ToString())==true) { return true; }
             return false;
         }
 

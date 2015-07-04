@@ -4,14 +4,14 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Xml;
-using System.Runtime.Serialization;
+using Newtonsoft.Json;
 
 namespace Rennder
 {
     public class Page
     {
         #region "Properties"
-        [IgnoreDataMember]
+        [JsonIgnore]
         private Core R;
 
         //Global Variables
@@ -59,33 +59,32 @@ namespace Rennder
 
 
         //Javascript
-        [IgnoreDataMember]
+        [JsonIgnore]
         protected string[] postJSnames = new string[] { }; //used so duplicate JS doesn't get added to the page
-        [IgnoreDataMember]
+        [JsonIgnore]
         public string[] postJScode = new string[] { }; //array of javascript to add
-        [IgnoreDataMember]
         public string[] postJSonce = new string[] { }; //used so duplicate JS that loads only once doesn't get added to the page
-        [IgnoreDataMember]
+        [JsonIgnore]
         public string postJS = ""; //used to compile javascript for postback response
-        [IgnoreDataMember]
+        [JsonIgnore]
         public string postJSLast = ""; //added to the end of postJS
 
         //Validation
-        [IgnoreDataMember]
+        [JsonIgnore]
         private bool pageCssChanged = false;
-        [IgnoreDataMember]
+        [JsonIgnore]
         private bool isPageLoaded = false;
 
         //HTML
-        [IgnoreDataMember]
+        [JsonIgnore]
         private string layoutHtml = ""; //generated HTML for the layout
-        [IgnoreDataMember]
+        [JsonIgnore]
         private string pageHtml = "";   //generated HTML for the page
 
         //Page Title
-        [IgnoreDataMember]
+        [JsonIgnore]
         private string pageEditorTitle = ""; //beginning of title (in edit-mode)
-        [IgnoreDataMember]
+        [JsonIgnore]
         private string pageEditorTitleEnd = " - Rennder Page Editor"; //end of title (in edit-mode)
 
 
@@ -101,17 +100,17 @@ namespace Rennder
         public structUrl Url;
 
         //Page Elements
-        [IgnoreDataMember]
+        [JsonIgnore]
         private List<Panel> bodyPanels;
-        [IgnoreDataMember]
+        [JsonIgnore]
         private List<Component> Components = new List<Component>();
         public List<Layer> Layers;
         public List<ComponentView> ComponentViews;
         public List<PanelView> PanelViews;
 
         //Web Services
-        [IgnoreDataMember]
-        public WebServices.PageRequest PageRequest;
+        [JsonIgnore]
+        public PageRequest PageRequest;
 
 
         public Page()
@@ -140,7 +139,7 @@ namespace Rennder
             if(path != "")
             {
                 arr = path.Split(new char[] { '/' });
-                Url.path = arr[0];
+                Url.path = arr[0].Replace("-", " ");
                 if(arr.Length > 1)
                 {
                     Url.pathAndHash = path;
@@ -206,6 +205,7 @@ namespace Rennder
                 Domain = domains[1];
                 subDomain = domains[0];
                 if (string.IsNullOrEmpty(Domain)) {Domain = domainName; }
+                object pid;
                     
                 //try to get pageId based on domain name
                 if (!string.IsNullOrEmpty(pagetitle))
@@ -213,19 +213,19 @@ namespace Rennder
                     if (pagetitle == "rennder")
                     {
                         //get pageid from web site home page
-                        return (int)(R.Sql.ExecuteScalar("SELECT p.pageid FROM websitedomains w LEFT JOIN pages p ON p.pageid=(SELECT w2.pagehome FROM websites w2 WHERE w2.websiteid=w.websiteid) WHERE w.domain = '" + Domain + "' AND p.deleted=0"));
+                        pid = R.Sql.ExecuteScalar("SELECT p.pageid FROM websitedomains w LEFT JOIN pages p ON p.pageid=(SELECT w2.pagehome FROM websites w2 WHERE w2.websiteid=w.websiteid) WHERE w.domain = '" + Domain + "' AND p.deleted=0");
                     }
                     else
                     {
                         if (string.IsNullOrEmpty(subDomain))
                         {
                             //get pageid from web site domain name & page title
-                            return (int)(R.Sql.ExecuteScalar("EXEC GetPageIdFromDomainAndTitle @domainname='" + Domain + "', @pagetitle='" + pagetitle + "'"));
+                            pid = R.Sql.ExecuteScalar("EXEC GetPageIdFromDomainAndTitle @domainname='" + Domain + "', @pagetitle='" + pagetitle + "'");
                         }
                         else
                         {
                             //get pageid from web site domain & sub domain & page title
-                            return (int)(R.Sql.ExecuteScalar("EXEC GetPageIdFromSubDomainAndTitle @domainname='" + Domain + "', @subdomain='" + subDomain + "', @pagetitle='" + pagetitle + "'"));
+                            pid = R.Sql.ExecuteScalar("EXEC GetPageIdFromSubDomainAndTitle @domainname='" + Domain + "', @subdomain='" + subDomain + "', @pagetitle='" + pagetitle + "'");
                         }
                     }
 
@@ -235,13 +235,19 @@ namespace Rennder
                     if (string.IsNullOrEmpty(subDomain))
                     {
                         //get pageid from web site home page
-                        return (int)(R.Sql.ExecuteScalar("SELECT p.pageid FROM websitedomains w LEFT JOIN pages p ON p.pageid=(SELECT w2.pagehome FROM websites w2 WHERE w2.websiteid=w.websiteid) WHERE w.domain = '" + Domain + "' AND p.deleted <> 1"));
+                        pid = R.Sql.ExecuteScalar("SELECT p.pageid FROM websitedomains w LEFT JOIN pages p ON p.pageid=(SELECT w2.pagehome FROM websites w2 WHERE w2.websiteid=w.websiteid) WHERE w.domain = '" + Domain + "' AND p.deleted <> 1");
                     }
                     else
                     {
                         //get pageid from web site sub domain home page
-                        return (int)(R.Sql.ExecuteScalar("SELECT p.pageid FROM websitesubdomains w LEFT JOIN pages p ON p.pageid=(SELECT w2.pagehome FROM websites w2 WHERE w2.websiteid=w.websiteid) WHERE w.domain = '" + Domain + "' AND w.subdomain='" + subDomain + "' AND p.deleted <> 1"));
+                        pid = R.Sql.ExecuteScalar("SELECT p.pageid FROM websitesubdomains w LEFT JOIN pages p ON p.pageid=(SELECT w2.pagehome FROM websites w2 WHERE w2.websiteid=w.websiteid) WHERE w.domain = '" + Domain + "' AND w.subdomain='" + subDomain + "' AND p.deleted <> 1");
                     }
+                }
+                if (R.Util.IsEmpty(pid) == false && R.Util.Str.IsNumeric(pid))
+                {
+                    return (int)pid;
+                }else {
+                    return 0;
                 }
             }
         }
@@ -655,7 +661,8 @@ namespace Rennder
                             {
                                 newPanel.Name = arrAttr[x + 1];
                                 newPanel.ID = "panel" + newPanel.Name.Replace(" ", "");
-                                htm += "{{panel-" + newPanel.Name.ToLower().Replace(" ", "") + "}}";
+                                
+                                break;
                             }
                         }
 
@@ -665,22 +672,14 @@ namespace Rennder
                         if (newPanel.Name.ToLower() == "body")
                         {
                             //create loading body div
-                            //RmlLoading rmlLoading = default(RmlLoading);
-                            ////first try to load website RML
-                            //try
-                            //{
-                            //    rmlLoading = R.WebRml.GetRmlLoading("");
-                            //    //if error, load layout RML
-                            //}
-                            //catch (Exception ex)
-                            //{
-                            //    rmlLoading = R.PageRml.GetRmlLoading("");
-                            //}
-                            //
-                            //htm += "<div class=\"absolute\" style=\"width:100%;\"><div class=\"relative\" id=\"divPageLoad\" style=\"width:100%;\"><div class=\"div-max-width\" style=\"width:250px; margin:0px auto; padding:100px 0px;\">";
+                            RmlLoading rmlLoading = default(RmlLoading);
+                            rmlLoading = R.WebRml.GetRmlLoading("");
+                            htm += "<div class=\"absolute\" style=\"width:100%;\"><div class=\"relative\" id=\"divPageLoad\" style=\"width:100%;\"><div class=\"div-max-width\" style=\"width:250px; margin:0px auto; padding:100px 0px;\">";
                             //htm += rmlLoading.GetCompiledRml;
-                            //htm += "<div style=\"clear:both;\"></div></div></div></div>";
+                            htm += "<div style=\"clear:both;\"></div></div></div></div>";
                         }
+
+                        htm += "{{panel-" + newPanel.Name.ToLower().Replace(" ", "") + "}}";
 
                         layoutHtm.Add(htm);
 
@@ -841,7 +840,7 @@ namespace Rennder
             if (ptype == 1 & R.isWebService == true)
             {
                 //setup page request for web service
-                PageRequest = new WebServices.PageRequest();
+                PageRequest = new PageRequest();
             }
 
 
@@ -850,12 +849,14 @@ namespace Rennder
             string pFolder = pageFile.Replace("page.xml", "");
             if (ptype == 1)
             {
+                string pt = R.Util.Str.GetPageTitle(pageTitle).Replace("-", " ");
+                string wt = R.Util.Str.GetWebsiteTitle(pageTitle);
                 pageId = pid;
                 pageFolder = pFolder;
-                pageTitle = pageTitle.Split(new char[] { '-', ' ', '\"' })[0] + " - " + pname.Split(new char[] { '-', ' ', '\"' })[1].Replace("-", " ");
-                Url.path = pageTitle.Split(new char[] { '-', ' ', '\"' })[1].Trim().ToLower();
-                myJs += "R.page.title = \"" + pageTitle.Split(new char[] { '-', ' ', '\"' })[1].ToLower() + "\"; R.page.id=" + pageId + ";";
-                myJs += "R.website.title = \"" + pageTitle.Split(new char[] { '-', ' ', '\"' })[0] + "\"; R.website.id=" + websiteId + ";";
+                pageTitle = wt + " - " + pt;
+                Url.path = pt.Trim().ToLower();
+                myJs += "R.page.title = \"" + pt.ToLower() + "\"; R.page.id=" + pageId + ";";
+                myJs += "R.website.title = \"" + wt.ToLower() + "\"; R.website.id=" + websiteId + ";";
                 myJs += "$('#divPageLoad').hide();_docLoaded=true;";
                 //hide page loading div
                 string newTitle = pageTitle;
@@ -1090,6 +1091,12 @@ namespace Rennder
             }
         }
 
+        public void LoadPageFromId(int id)
+        {
+            LoadPageInfo(id);
+            LoadPage("/content/websites/" + websiteId + "/pages/" + id + "/page.xml", 1, id, pageTitle);
+        }
+
         protected void LoadPageComponents(XmlNode panelXml, int panelIndex, XmlDocument myXmlPage, string pageFile, int ptype, int panelType, int pid)
         {
             if (panelXml == null){ return; }
@@ -1099,20 +1106,13 @@ namespace Rennder
 
             //get panel object that will load the list of components from xml
             Panel myPanel;
-            if (R.isWebService == false)
+            if (string.IsNullOrEmpty(panelName))
             {
-                if (string.IsNullOrEmpty(panelName))
-                {
-                    myPanel = GetPanelByName("body");
-                }
-                else
-                {
-                    myPanel = GetPanelByName(panelName);
-                }
+                myPanel = GetPanelByName("body");
             }
             else
             {
-                myPanel = new Panel(R, panelName);
+                myPanel = GetPanelByName(panelName);
             }
 
             //find all the components within the  panel
@@ -1174,15 +1174,13 @@ namespace Rennder
                     {
                         if (R.isWebService == true & comp != null)
                         {
-                            WebServices.PageComponent newC = new WebServices.PageComponent();
+                            PageComponent newC = new PageComponent();
                             newC.itemId = comp.itemId;
                             newC.panelClassId = panelName;
-                            newC.html = R.Util.Str.CleanHtml(comp.Render());
+                            newC.Component = comp;
                             PageRequest.components.Add(newC);
-                        }else
-                        {
-                            myPanel.Components.Add(comp);
                         }
+                        myPanel.Components.Add(comp);
                     }
                     
                 }
@@ -1426,7 +1424,7 @@ namespace Rennder
             //load component.js once
             if (CheckJSOnceIfLoaded("comp-" + cFolder) == false)
             {
-                if (R.Server.Cache.ContainsKey("compjs-" + cFolder) ==true & R.isLocal == false)
+                if (R.Server.Cache.ContainsKey("compjs-" + cFolder) ==true & R.isLocal == false) //only cache if on live server
                 {
                     //load from cache
                     R.Page.RegisterJSonce("comp-" + cFolder, R.Server.Cache["compjs-" + cFolder].ToString());
@@ -1464,7 +1462,6 @@ namespace Rennder
         public String Render()
         {
             //finish loading all panels
-
             {
                 if (bodyPanels != null & R.isWebService == false)
                 {
@@ -1485,6 +1482,27 @@ namespace Rennder
 
                 if (R.isWebService == true & PageRequest != null)
                 {
+                    //render all components that have been loaded
+                    List<PageComponent> remove = new List<PageComponent>();
+                    foreach (PageComponent comp in PageRequest.components)
+                    {
+                        if(comp.Component.rendered == false)
+                        {
+                            comp.html = R.Util.Str.CleanHtml(comp.Component.Render());
+                        }else
+                        {
+                            remove.Add(comp);
+                        }
+                    }
+
+                    //remove any components from PageRequest that was 
+                    //rendered inside of a panel component (removing duplicates)
+                    foreach(PageComponent comp in remove)
+                    {
+                        PageRequest.components.Remove(comp);
+                    }
+
+                    //render Javascript
                     if (R.Page.postJScode != null)
                     {
                         R.Page.postJS += string.Join("\n", R.Page.postJScode) + R.Page.postJSLast;
@@ -1515,45 +1533,35 @@ namespace Rennder
 
         public Panel GetPanelByName(string name)
         {
-            if (R.isWebService == true)
+            //get panel from viewstate
+            if ((PanelViews == null) == false)
             {
-                //get panel from viewstate
-                if ((PanelViews == null) == false)
+                foreach (PanelView pv in PanelViews)
                 {
-                    foreach (PanelView pv in PanelViews)
+                    if (pv.Name == name | pv.ClassName == name)
                     {
-                        if (pv.Name == name | pv.ClassName == name)
-                        {
-                            Panel panel = new Panel(R);
-                            panel.LoadFromPanelView(pv);
-                            return panel;
-                        }
-                    }
-                }
-            }
-            else
-            {
-                //get panel on first page load
-                if ((bodyPanels == null) == false)
-                {
-                    for (int x = 0; x <= bodyPanels.Count - 1; x++)
-                    {
-                        if (bodyPanels[x].Name == name)
-                            return bodyPanels[x];
+                        Panel panel = new Panel(R);
+                        panel.LoadFromPanelView(pv);
+                        return panel;
                     }
                 }
             }
 
-            return null;
+            //get panel on first page load
+            if ((bodyPanels == null) == false)
+            {
+                for (int x = 0; x <= bodyPanels.Count - 1; x++)
+                {
+                    if (bodyPanels[x].Name == name)
+                        return bodyPanels[x];
+                }
+            }
+
+            return new Panel(R);
         }
         #endregion
 
         #region "Components"
-        public ComponentView GetComponentViewById(string itemId)
-        {
-            return null;
-        }
-
         public List<Component> GetAllComponents()
         {
             if ((Components == null) == true)
@@ -1563,6 +1571,63 @@ namespace Rennder
             return Components;
         }
 
+        public Component GetComponentById(string itemId)
+        {
+            GetAllComponents();
+            if ((Components == null) == false)
+            {
+                for (int x = 0; x <= Components.Count - 1; x++)
+                {
+                    if (Components[x].itemId == itemId)
+                        return Components[x];
+                }
+            }
+            return null;
+        }
+
+        public ComponentView GetComponentViewById(string itemId)
+        {
+            GetAllComponents();
+            if ((ComponentViews == null) == false)
+            {
+                for (int x = 0; x <= ComponentViews.Count - 1; x++)
+                {
+                    if (ComponentViews[x].itemId == itemId)
+                        return ComponentViews[x];
+                }
+            }
+            return null;
+        }
+
+        public int GetComponentViewIndexById(string itemId)
+        {
+            GetAllComponents();
+            if ((ComponentViews == null) == false)
+            {
+                for (int x = 0; x <= ComponentViews.Count - 1; x++)
+                {
+                    if (ComponentViews[x].itemId == itemId)
+                        return x;
+                }
+            }
+            return -1;
+        }
+
+        public void DeleteComponent(string itemId)
+        {
+            if ((Components == null) == true)
+                return;
+            if (Components.Count == 0)
+                return;
+            for (int x = 0; x <= Components.Count - 1; x++)
+            {
+                if (Components[x].itemId == itemId)
+                {
+                    Components.RemoveAt(x);
+                    break;
+                }
+            }
+        }
 
         #endregion
 
@@ -1612,7 +1677,7 @@ namespace Rennder
                     if (pageids.Contains(ComponentViews[x].pageId) == false)
                     {
                         if (R.isWebService == true)
-                            PageRequest.@remove.Add(ComponentViews[x].itemId);
+                            PageRequest.remove.Add(ComponentViews[x].itemId);
                         comps.Add(x);
                     }
                 }

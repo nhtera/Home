@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Rennder
 {
     public class Panel
     {
+        [JsonIgnore]
         private Core R;
         public string Name = "";
         public string ID = "";
@@ -14,7 +16,9 @@ namespace Rennder
         public int HeightType = 0;
         public int PageId = 0;
         public bool isPartOfLayout = false;
+        [JsonIgnore]
         public List<Component> Components = new List<Component>();
+
 
         private string _DesignHead = "";
         private string _DesignFoot = "";
@@ -26,6 +30,7 @@ namespace Rennder
         private Array _ComponentDesigns;
 
         private bool _overflow = false;
+        [JsonIgnore]
         public Utility.DOM.Element inner = new Utility.DOM.Element("div");
 
         public Panel(Core RennderCore, string name = "")
@@ -197,8 +202,9 @@ namespace Rennder
         public string Name = "";
         public string ClassName = "";
         public bool isPartOfLayout = false;
-        public List<Component> Components = new List<Component>();
         public int PageId = 0;
         public int Height = 0;
+        [JsonIgnore]
+        public List<Component> Components = new List<Component>();
     }
 }

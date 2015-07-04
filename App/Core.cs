@@ -48,9 +48,10 @@ namespace Rennder
             {
                 ViewStateId = viewstate;
                 if(ViewStateId == "") { ViewStateId = Util.Str.CreateID(); }
-                if (Util.IsEmpty(Session["viewstate-" + ViewStateId]) == false){
+                if (Session["viewstate-" + ViewStateId] != null)
+                {
                     ViewState vs = new ViewState();
-                    vs = (ViewState)Util.Serializer.ReadObject(Session["viewstate-" + ViewStateId]);
+                    vs = (ViewState)Util.Serializer.ReadObject(Util.Str.GetString(Session["viewstate-" + ViewStateId]), vs.GetType());
                     Page = vs.Page;
                     User = vs.User;
                 }else { Page = new Page(); }
@@ -79,7 +80,7 @@ namespace Rennder
             if(useViewState == false) { return; }
             ViewState vs = new ViewState();
             vs.Load(this);
-            Session["viewstate-" + ViewStateId] = Util.Serializer.WriteObject(vs.GetType(), vs);
+            Session["viewstate-" + ViewStateId] = Util.Serializer.WriteObject(vs);
 
             //get list of viewstates to update details
             structViewStateInfo vsd = new structViewStateInfo();
@@ -92,7 +93,7 @@ namespace Rennder
 
             if (Util.IsEmpty(Session["viewstates"]) == false)
             {
-                vss = (ViewStates)Util.Serializer.ReadObject(Session["viewstates"]);
+                vss = (ViewStates)Util.Serializer.ReadObject(Util.Str.GetString(Session["viewstates"]), vss.GetType());
                 if (vss.Views.Count >= 0)
                 {
                     List<int> removes = new List<int>();
@@ -135,7 +136,7 @@ namespace Rennder
             {
                 vss.Views.Add(vsd);
             }
-            Session["viewstates"] = Util.Serializer.WriteObject(vss.GetType(), vss);
+            Session["viewstates"] = Util.Serializer.WriteObject(vss);
         }
 
         public bool isSessionLost()

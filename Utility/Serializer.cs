@@ -1,8 +1,5 @@
 ﻿using System;
-using System.IO;
-using System.Text;
-using System.Xml;
-using System.Runtime.Serialization;
+using Newtonsoft.Json;
 
 namespace Rennder.Utility
 {
@@ -15,35 +12,19 @@ namespace Rennder.Utility
             R = RennderCore;
         }
 
-        public object ReadObject(byte[] bytes)
+        public object ReadObject(string str, Type objType)
         {
-            XmlDictionaryReaderQuotas rq = new XmlDictionaryReaderQuotas();
-            XmlDictionaryReader xdw = XmlDictionaryReader.CreateTextReader(bytes, rq);
-            return xdw.ReadContentAsObject();
+            return JsonConvert.DeserializeObject(str, objType, new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Objects });
         }
 
-        public object ReadObject(string str)
+        public byte[] WriteObject(object obj)
         {
-            MemoryStream sr = new MemoryStream(R.Util.Str.GetBytes(str));
-            XmlDictionaryReaderQuotas rq = new XmlDictionaryReaderQuotas();
-            XmlDictionaryReader xdw = XmlDictionaryReader.CreateTextReader(sr, rq);
-            return xdw.ReadContentAsObject();
+            return R.Util.Str.GetBytes(JsonConvert.SerializeObject(obj));
         }
 
-        public byte[] WriteObject(Type objType, object obj)
+        public string WriteObjectAsString(object obj)
         {
-            DataContractSerializer dcs = new DataContractSerializer(objType);
-            MemoryStream sw = new MemoryStream();
-            XmlDictionaryWriter writer = XmlDictionaryWriter.CreateTextWriter(sw, Encoding.UTF8);
-            dcs.WriteObject(writer, obj);
-            sw.Flush();
-            sw.Seek(0, 0);
-            return sw.ToArray();
-        }
-
-        public string WriteObjectAsString(Type objType, object obj)
-        {
-            return Encoding.UTF8.GetString(WriteObject(objType,obj));
+            return JsonConvert.SerializeObject(obj);
         }
     }
 }

@@ -126,13 +126,13 @@ namespace Rennder.Pipeline
                     Elements["https-url"] = R.Page.Url.host.Substring(0, R.Page.Url.host.Length - 2);
 
                     //render web page
-                    Elements["body"] = R.Page.Render() + "Session ViewStates = " + R.Session["viewstates"].Length + " bytes";
+                    Elements["body"] = R.Page.Render();
                 }
             }
 
             //finally, scaffold Rennder platform HTML
             R.Response.ContentType = "text/html";
-            R.Response.WriteAsync(R.Server.RenderScaffold("/pipeline/app.html", Elements));
+            R.Response.WriteAsync(R.Server.RenderScaffold("/app/app.html", Elements));
 
             //unload the core
             R.Unload();

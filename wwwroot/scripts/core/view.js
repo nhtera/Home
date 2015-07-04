@@ -125,7 +125,6 @@ var R = {
         }
     },
 
-
     events: {
 
         doc: {
@@ -463,15 +462,15 @@ var R = {
         post: function (url, data, callback) {
             this.expire = new Date();
             R.events.ajax.start();
-            data.viewstateId = this.viewstateId;
+            data.viewstateId = R.ajax.viewstateId;
             var options = {
                 type: "POST",
                 data: JSON.stringify(data),
                 dataType: "json",
                 url: url,
-                contentType: "application/json; charset=utf-8",
-                success: function (d) { R.ajax.runQueue(); R.events.ajax.complete(); callback(d); },
-                error: function (xhr, status, err) { R.events.ajax.error(status, err); R.ajax.runQueue(); }
+                contentType: "text/plain; charset=utf-8",
+                success: function (d) { R.ajax.runQueue(); R.events.ajax.complete(d); callback(d); },
+                error: function (xhr, status, err) { console.log(err); R.events.ajax.error(status, err); R.ajax.runQueue(); }
             }
             R.ajax.queue.push(options);
             if (R.ajax.queue.length == 1) {
@@ -488,7 +487,7 @@ var R = {
 
         callback: {
             inject: function (data) {
-                if (data.d.__type == 'Rennder.WebServices.Inject') {
+                if (data.type == 'Rennder.Inject') {
                     //load new content from web service
                     var elem = $(data.d.element);
                     if (elem.length > 0 && data.d.html != '') {
@@ -534,7 +533,7 @@ var R = {
 
             if (((new Date() - this.expire) / 1000) > 180 || options.save != '') {
                 this.expire = new Date();
-                this.post("/services/core.asmx/KeepAlive", options, function (data) {
+                this.post("/rennder/App/KeepAlive", options, function (data) {
                     if (R.editor) {
                         $('.editor .toolbar .savepage').removeClass('saving').addClass('nosave');
                     }
@@ -689,7 +688,6 @@ var R = {
         },
 
         change: function () {
-            console.log('change ' + location.hash);
             var hash = location.hash.toLowerCase().replace('#', '');
             if (this.last.toLowerCase() == 'home' && hash == '') {
                 R.hash.timer = setTimeout(function () { R.hash.watch(); }, 500);
@@ -749,12 +747,12 @@ var R = {
             R.hash.last = hash;
             R.hash.update();//updates all href links on the page with new hash
             R.events.render.disabled = true;
-            R.ajax.post('/services/core.asmx/Hash', { url: finalhash }, this.callback);
+            R.ajax.post('/rennder/App/Hash', { url: finalhash }, R.hash.callback);
         },
 
         callback: function (data) {
             if(data.d == null){return;}
-            if (data.d.__type == 'Rennder.WebServices.PageRequest') {
+            if (data.type == 'Rennder.PageRequest') {
                 //load new page from web service
                 var p, comp, div;
                     
@@ -790,7 +788,7 @@ var R = {
                 //finally, execute callback javascript
                 if (data.d.js != '' && data.d.js != null) {
                     var js = new Function(data.d.js);
-                    try { js(); } catch (ex) { alert('an error occurred in javascript');}
+                    js();
                 }
 
                 //reset the rendering engine

@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Microsoft.AspNet.Http;
-using System.Runtime.Serialization;
+using Newtonsoft.Json;
 
-namespace Rennder.WebServices
-{ 
-    
+namespace Rennder
+{
+
     public enum enumInjectTypes
     {
         replace = 0,
@@ -20,6 +20,8 @@ namespace Rennder.WebServices
         public string itemId = "";
         public string html = "";
         public string css = "";
+        [JsonIgnore]
+        public Component Component;
     }
 
     public class PageRequest
@@ -41,13 +43,21 @@ namespace Rennder.WebServices
         public enumInjectTypes inject = 0;
     }
 
+    public class WebRequest
+    {
+        public string html = "";
+        public string contentType = "text/html";
+    }
+
     public class Service
     {
-        [IgnoreDataMember]
         protected Core R;
+        protected string[] Paths;
+        protected Dictionary<string, string> Arguments = new Dictionary<string, string>();
 
-        public Service(Server server, HttpContext context, String viewstate = "") {
-            R = new Core(server, context, viewstate, "service");
+        public Service(Core RennderCore, string[] paths) {
+            R = RennderCore;
+            Paths = paths;
         }
 
         public struct structResponse

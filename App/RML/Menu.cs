@@ -52,7 +52,6 @@ namespace Rennder
         public RmlMenu(RML rmlBase, string layoutFolder, string designName, string type = "") : base(rmlBase, layoutFolder, designName, type)
         {
             this.layoutFolder = layoutFolder;
-            //Me.designName = designName
             this.rmlBase = rmlBase;
             LoadRmlDesign(designName, type);
         }

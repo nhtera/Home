@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -40,6 +41,13 @@ namespace Rennder.Utility
             return string.Join("",chars);
         }
 
+        public string ReadStream(Stream stream)
+        {
+            stream.Position = 0;
+            StreamReader reader = new StreamReader(stream, Encoding.UTF8);
+            return reader.ReadToEnd();
+        }
+
         #endregion
 
         #region "Manipulation"
@@ -68,7 +76,7 @@ namespace Rennder.Utility
             string newStr = myStr.ToString();
             bool result = false;
             int x = 0;
-            while (!(x >= newStr.Length))
+            while (x < newStr.Length)
             {
                 result = false;
                 if (allowAlpha == true)
@@ -103,11 +111,11 @@ namespace Rennder.Utility
                 if (result == false)
                 {
                     //remove character
-                    newStr = newStr.Substring(1, x - 1) + newStr.Substring(x + 1);
+                    newStr = newStr.Substring(0, x - 1) + newStr.Substring(x + 1);
                 }
                 else
                 {
-                    x += 1;
+                    x++;
                 }
             }
             return newStr;
@@ -127,9 +135,9 @@ namespace Rennder.Utility
             string[] textParts = origText.Split('\"');
             for (int x = 0; x <= textParts.Length - 1; x++)
             {
-                if (textParts[x].Length > 1)
+                if (textParts[x].Length > 0)
                 {
-                    textParts[x] = textParts[x].Substring(1, 1).ToUpper() + textParts[x].Substring(2);
+                    textParts[x] = textParts[x].Substring(0, 1).ToUpper() + textParts[x].Substring(1);
                 }
                 else
                 {
@@ -141,7 +149,8 @@ namespace Rennder.Utility
 
         public string CleanHtml(string html)
         {
-            return Regex.Replace(html, "\\s{2,}", " ").Replace("> <", "><");
+            return html;
+            //return Regex.Replace(html, "\\s{2,}", " ").Replace("> <", "><");
         }
 
         #endregion
@@ -202,12 +211,12 @@ namespace Rennder.Utility
 
         public string GetPageTitle(string title)
         {
-            return title.Split(new char[] { ' ', '-', ' ' })[1];
+            return title.Split(new string[] { " - " },0)[1];
         }
 
         public string GetWebsiteTitle(string title)
         {
-            return title.Split(new char[] { ' ', '-', ' ' })[0];
+            return title.Split(new string[] { " - " },0)[0];
         }
 
         #endregion
@@ -395,7 +404,11 @@ namespace Rennder.Utility
         public bool IsNumeric(object str)
         {
             double retNum;
-            return Double.TryParse((string)str, out retNum);
+            if (R.Util.IsEmpty(str) == false)
+            {
+                return Double.TryParse(str.ToString(), out retNum);
+            }
+            return false;
         }
 
         public bool OnlyAlphabet(string myStr, params string[] exceptionList)
