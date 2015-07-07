@@ -21,32 +21,58 @@ namespace Rennder.Pipeline
             object[] parms = new object[0];
             if (data.Length > 0)
             {
-                Dictionary<string, object> attr = JsonConvert.DeserializeObject<Dictionary<string, object>>(data);
-                parms = new object[attr.Count - 1];
-                int x = 0;
-                foreach (KeyValuePair<string, object> item in attr)
+                if(data.IndexOf(":") < 0 && data.IndexOf("=") >= 0)
                 {
-                    if(item.Key == "viewstateId")
+                    //form post data
+                }else
+                {
+                    //JSON post ddata
+                    Dictionary<string, object> attr = JsonConvert.DeserializeObject<Dictionary<string, object>>(data);
+                    parms = new object[attr.Count - 1];
+                    int x = 0;
+                    foreach (KeyValuePair<string, object> item in attr)
                     {
-                        viewstate = item.Value.ToString();
-                    }else
-                    {
-                        parms[x] = item.Value;
-                        x=x+1;
+                        if (item.Key == "viewstateId")
+                        {
+                            viewstate = item.Value.ToString();
+                        }
+                        else
+                        {
+                            parms[x] = item.Value;
+                            x = x + 1;
+                        }
                     }
                 }
+                
             }else
             {
                 //get viewstate from query string
             }
 
             R = new Core(server, context, viewstate, "service");
+            R.Page.GetPageUrl();
 
             //load service class from URL path
             string className = "Rennder.Services." + paths[1];
             if(paths.Length == 4) { className += "." + paths[2]; }
             Type type =Type.GetType(className);
             Service service = (Service)Activator.CreateInstance(type, new object[] { R, paths });
+
+            //parse form data
+            if (data.Length > 0)
+            {
+                if (data.IndexOf(":") < 0 && data.IndexOf("=") >= 0)
+                {
+                    //form post data
+                    string[] items = R.Server.UrlDecode(data).Split('&');
+                    string[] item;
+                    for(int x = 0; x < items.Length; x++)
+                    {
+                        item = items[x].Split('=');
+                        service.Form.Add(item[0], item[1]);
+                    }
+                }
+            }
 
             //execute method from service class
             MethodInfo method = type.GetMethod(paths[2]);
@@ -76,7 +102,6 @@ namespace Rennder.Pipeline
             }
 
             R.Unload();
-            
         }
 
 

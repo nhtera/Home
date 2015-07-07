@@ -22,12 +22,10 @@ namespace Rennder
 
         public override void LoadRmlDesign(string designName, string type = "")
         {
-            if (this.designName == designName & !string.IsNullOrEmpty(designName))
-                return;
+            if (this.designName == designName & !string.IsNullOrEmpty(designName)) { return; }
             string designRml = rmlBase.GetDesignRml(10);
             int[] start = new int[5];
-            if (string.IsNullOrEmpty(designRml.Trim()))
-                return;
+            if (string.IsNullOrEmpty(designRml.Trim())) { return; }
             start[0] = designRml.IndexOf("<rml:loading");
             start[1] = designRml.IndexOf(">", start[0]);
 

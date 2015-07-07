@@ -28,6 +28,11 @@
       "System.Xml.XmlSerializer >= 4.0.10-beta-22816",
       "System.Xml.XPath.XmlDocument >= 4.0.0-beta-22816",
       "System.Runtime.Serialization.Xml >= 4.0.10-beta-22816",
+      "System.Runtime.InteropServices >= 4.0.20-beta-22816",
+      "System.Resources.ResourceManager >= 4.0.0-beta-22816",
+      "System.Security.Cryptography.Encryption >= 4.0.0-beta-22816",
+      "System.Security.Cryptography.RandomNumberGenerator >= 4.0.0-beta-22816",
+      "System.Security.Cryptography.Hashing.Algorithms >= 4.0.0-beta-22816",
       "Newtonsoft.Json >= 7.0.1"
     ]
   },

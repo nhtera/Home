@@ -58,11 +58,9 @@ namespace Rennder
 
         public override void LoadRmlDesign(string designName, string type = "")
         {
-            if (this.designName == designName & !string.IsNullOrEmpty(designName))
-                return;
+            if (this.designName == designName & !string.IsNullOrEmpty(designName)) { return; }
             string designRml = rmlBase.GetDesignRml(3); //3 = menu
-            if (string.IsNullOrEmpty(designRml))
-                designRml = rmlBase.GetDefaultRmlDesign(3);
+            if (string.IsNullOrEmpty(designRml)) { designRml = rmlBase.GetDefaultRmlDesign(3); }
             int[] start = new int[7];
 
             string newName = designName;

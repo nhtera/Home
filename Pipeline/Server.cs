@@ -131,12 +131,12 @@ namespace Rennder
 
         public string UrlDecode(string strPath)
         {
-            return Uri.EscapeDataString(strPath);
+            return Uri.UnescapeDataString(strPath);
         }
 
         public string UrlEncode(string strPath)
         {
-            return Uri.UnescapeDataString(strPath);
+            return Uri.EscapeDataString(strPath);
         }
         
         #endregion

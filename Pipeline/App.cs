@@ -49,7 +49,10 @@ namespace Rennder.Pipeline
             R.Page.GetPageUrl();
             if(R.isLocal == true)
             {
-                Elements["https-url"] = R.Page.Url.host.Substring(0, R.Page.Url.host.Length - 2);
+                Elements["https-url"] = "http://" + R.Page.Url.host.Replace("/","");
+            }else
+            {
+                Elements["https-url"] = "https://" + R.Page.Url.host.Replace("/", "");
             }
 
             //get page Info
@@ -123,7 +126,6 @@ namespace Rennder.Pipeline
                     }
                                         
                     Elements["scripts"] = scripts + "\n" + "<script type=\"text/javascript\">" + R.Page.postJS + "</script>";
-                    Elements["https-url"] = R.Page.Url.host.Substring(0, R.Page.Url.host.Length - 2);
 
                     //render web page
                     Elements["body"] = R.Page.Render();

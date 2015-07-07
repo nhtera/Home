@@ -35,11 +35,9 @@ namespace Rennder
 
         public override void LoadRmlDesign(string designName, string type = "")
         {
-            if (this.designName == designName & !string.IsNullOrEmpty(designName))
-                return;
+            if (this.designName == designName & !string.IsNullOrEmpty(designName)) { return; }
             string designRml = rmlBase.GetDesignRml(5); //5 = stackpanel
-            if (string.IsNullOrEmpty(designRml))
-                designRml = rmlBase.GetDefaultRmlDesign(5);
+            if (string.IsNullOrEmpty(designRml)) { designRml = rmlBase.GetDefaultRmlDesign(5); }
             int[] start = new int[7];
 
             string newName = designName;
@@ -100,7 +98,7 @@ namespace Rennder
                 if (!string.IsNullOrEmpty(varName))
                     designRml = rmlBase.ReplaceRMLVars(varName, newName, designRml, 5);
             }
-            start[1] = 1;
+            start[1] = 0;
 
             //parse contents of rml design
             start[2] = designRml.IndexOf("<rml:evolver", start[1]);
@@ -122,7 +120,7 @@ namespace Rennder
                     start[2] = start[4] + 1;
 
                     //find all component designs within the evolver tag
-                    start[1] = 1;
+                    start[1] = 0;
 
                     string myHead = "";
                     string myHeadAndTitle = "";

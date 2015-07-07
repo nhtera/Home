@@ -519,6 +519,7 @@ var R = {
         },
 
         keepAlive: function () {
+            if (typeof isNotKeepAlive != "undefined") { return; }
             var options = {save:''};
             if (R.editor) {
                 if (R.editor.save) {

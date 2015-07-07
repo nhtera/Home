@@ -160,9 +160,9 @@ namespace Rennder
                     Url.host = Url.host.Substring(0, start);
                 }
             }
-            if (Url.host.Substring(Url.host.Length - 2, 1) != "/")
+            if (Url.host.Substring(Url.host.Length - 1, 1) != "/")
             {
-                Url.host += "/";
+                //Url.host += "/";
             }
 
             //get hash

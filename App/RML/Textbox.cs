@@ -21,8 +21,7 @@
             //6=textbox 
             int[] start = new int[5];
             start[0] = designRml.IndexOf("<rml:textbox");
-            if (start[0] < 1 | (designRml == null) == true)
-                return;
+            if (start[0] < 0 | (designRml == null) == true) { return; }
             start[1] = designRml.IndexOf(">", start[0]);
             bool foundit = false;
             if (!string.IsNullOrEmpty(designName))

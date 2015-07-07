@@ -53,7 +53,7 @@ namespace Rennder
     {
         protected Core R;
         protected string[] Paths;
-        protected Dictionary<string, string> Arguments = new Dictionary<string, string>();
+        public Dictionary<string, string> Form = new Dictionary<string, string>();
 
         public Service(Core RennderCore, string[] paths) {
             R = RennderCore;

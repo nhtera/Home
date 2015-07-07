@@ -26,14 +26,14 @@
 
         private PageRequest ParseHash(string url, bool again = false)
         {
-             if (string.IsNullOrEmpty(url) | url.IndexOf("dashboard") == 1)
+             if (string.IsNullOrEmpty(url) | url.IndexOf("dashboard") == 0)
             {
                 //load current page with no url
                 string pageName = "Home";
                 if (url.IndexOf("dashboard") == 0 & R.User.memberId < 1) { pageName = "Login"; }
                 R.Page.PageRequest = new PageRequest();
                 R.Page.Url.path = "";
-                if ((R.Page.isEditorLoaded == false & url.IndexOf("dashboard") == 1) == true | url.IndexOf("dashboard") < 1)
+                if ((R.Page.isEditorLoaded == false & url.IndexOf("dashboard") == 0) | url.IndexOf("dashboard") < 0)
                 {
                     R.Page.Url.path = pageName.ToLower().Replace("-", " ");
                     R.Page.pageTitle = R.Page.pageTitle.Split(new char[] { '-', ' ', '\"' })[0] + " - " + pageName.Replace("-", " ");

@@ -476,6 +476,7 @@ R.responsive = {
     stack: [[{ panel: null, data: [{ c: null, bottom: 0, y: 0, w: 0, stack: { c: null }, pad: 0 }] }]], //[level][panel-index][panel, data[component]]
 
     getLevel: function () {
+        if (typeof isNotResponsive != "undefined") { return;}
         var winPos = R.window.pos(), size = 'hd', wp = $('.webpage');
         if (R.elem.width(wp[0]) > 0) {
             winPos.w = R.window.w = R.elem.width(wp[0]);
@@ -506,6 +507,7 @@ R.responsive = {
     },
 
     getCache: function () {
+        if (typeof isNotResponsive != "undefined") { return;}
         if (this.cache == null) {
             //get a list of components to resize
             var panels = $('.ispanel');
@@ -721,7 +723,7 @@ R.responsive = {
     resize: {
         onLevelChange: function () {
             var sel = R.selectors.cache, a = [], changes = [],
-                cols, perc, w, minw, cl;
+                cols, perc, w, h, minw, cl;
 
             //REFLOW: Get all elements to work with ////////////////////////////////////////////////////////////
 
@@ -817,6 +819,13 @@ R.responsive = {
                 }
             }
 
+            //step 2: div-href hidden anchor buttons
+            for (x = 0; x < sel[4].length; x++) {
+                w = R.elem.width($(sel[4][x]).parent().parent()[0]);
+                h = R.elem.height($(sel[4][x]).parent().parent()[0]);
+                changes.push({ c: $(sel[4][x])[0], w: w + "px", h: h + "px" });
+            }
+
 
             //PAINT: Reset element styles //////////////////////////////////////////////////////////////////////
 
@@ -825,8 +834,13 @@ R.responsive = {
             //PAINT: Update element styles /////////////////////////////////////////////////////////////////////
             if (changes.length > 0) {
                 for (x = 0; x < changes.length; x++) {
-                    if (changes[x].w != null && typeof changes[x].c == 'object') {
-                        changes[x].c.style.width = changes[x].w
+                    if ((typeof changes[x].c).indexOf('object') >= 0) {
+                        if (changes[x].w != null) {
+                            changes[x].c.style.width = changes[x].w;
+                        }
+                        if (changes[x].h != null) {
+                            changes[x].c.style.height = changes[x].h;
+                        }
                     }
                 }
             }
@@ -844,6 +858,7 @@ R.events.render = {
     disabled: false,
 
     init: function () {
+        if (typeof isNotResponsive != "undefined") { return;}
         R.window.changed = true;
         R.components.cleanup();
         R.selectors.cache = null;
@@ -876,6 +891,7 @@ R.events.render = {
     },
 
     trigger: function () {
+        if (typeof isNotResponsive != "undefined") { return;}
         if (this.timer.started == false) {
             R.window.pos();
             this.viewport.w = R.window.w;

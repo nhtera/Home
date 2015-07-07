@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Runtime.Serialization;
 using Newtonsoft.Json;
 
 namespace Rennder
@@ -45,6 +44,97 @@ namespace Rennder
         public void Load(Core RennderCore)
         {
             R = RennderCore;
+        }
+
+
+        public bool LogIn(string authId)
+        {
+            //IHttpConnectionFeature ip = R.Context.GetFeature<IHttpConnectionFeature>();
+            SqlDataReader myReader = R.Sql.ExecuteReader("EXEC checklogin @loginid='" + authId + "', @ip='" + "" + "'");
+            if (myReader.HasRows == true)
+            {
+                myReader.Read();
+                memberId = R.Sql.GetInt("memberid");
+                displayName = R.Sql.Get("displayname");
+                fullName = R.Sql.Get("fullname");
+                photo = R.Sql.Get("photo");
+                email = R.Sql.Get("email");
+                signupDate = R.Sql.GetDateTime("datecreated");
+                defaultPageId = R.Sql.GetInt("defaultcp");
+                viewerId = memberId;
+                myReader.Dispose();
+
+                //get all security for this user (for all sites the user belongs to)
+                SqlDataReader myR = R.Sql.ExecuteReader("SELECT DISTINCT websiteid FROM websitesecurity WHERE memberid=" + memberId);
+                List<int> sites = new List<int>();
+                if (myR.HasRows == true)
+                {
+                    while (myR.Read() != false)
+                    {
+                        sites.Add(R.Sql.GetInt("websiteid"));
+                    }
+                }
+                myR.Dispose();
+
+                foreach (int s in sites)
+                {
+                    GetSecurityForWebsite(s, memberId);
+                }
+
+                if (R.Page.ownerId == memberId)
+                {
+                    //add full control security (of this website) for the user
+                    myR = R.Sql.ExecuteReader("SELECT websiteid FROM websites WHERE ownerid=" + memberId);
+                    if (myR.HasRows == true)
+                    {
+                        while (myR.Read() != false)
+                        {
+                            sites.Add(R.Sql.GetInt("websiteid"));
+                        }
+                    }
+                    myR.Dispose();
+
+                    foreach (int s in sites)
+                    {
+                        R.User.AddSecurity(s, "full", User.enumSecurity.readwrite);
+                    }
+
+                    //check for Rennder Platform administrator
+                    switch (memberId)
+                    {
+                        case 1:
+                            R.User.AddSecurity(0, "full", User.enumSecurity.readwrite);
+                            break;
+                    }
+                }
+
+                //update database
+                R.Sql.ExecuteNonQuery("UPDATE members SET lastlogin='" + DateTime.Now + "' WHERE memberid=" + memberId);
+                return true;
+            }
+            else
+            {
+                myReader.Dispose();
+                return false;
+            }
+
+        }
+
+        public void LogOut()
+        {
+            memberId = 0;
+            visitorId = "";
+            email = "";
+            fullName = "";
+            photo = "";
+            signupDate = System.DateTime.Now;
+            displayName = "";
+            defaultPageId = 0;
+            security = new List<structSecurity>();
+            websiteSecurity = new List<WebsiteSecurity>();
+            R.Page.isEditable = false;
+            R.Page.isDemo = false;
+            R.Page.isEditorLoaded = false;
         }
 
         public void AddSecurity(double websiteId, string feature, enumSecurity securityLevel)
@@ -115,7 +205,8 @@ namespace Rennder
                     List<bool> secList = new List<bool>();
                     foreach (string s in sec)
                     {
-                        secList.Add(bool.Parse(s));
+                        if (s == "1") { secList.Add(true); }
+                        else { secList.Add(false); }
                     }
                     Website(websiteId).addWebsiteSecurityItem(R.Sql.Get("feature"), secList);
                 }

@@ -33,8 +33,7 @@ namespace Rennder
 
         public override void LoadRmlDesign(string designName, string type = "")
         {
-            if (this.designName == designName & !string.IsNullOrEmpty(designName))
-                return;
+            if (this.designName == designName & !string.IsNullOrEmpty(designName)) { return; }
             string designRml = rmlBase.GetDesignRml(8);
             //8 = list
 

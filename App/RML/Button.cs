@@ -22,11 +22,9 @@
 
         public override void LoadRmlDesign(string designName, string type = "")
         {
-            if (this.designName == designName & !string.IsNullOrEmpty(designName))
-                return;
+            if (this.designName == designName & !string.IsNullOrEmpty(designName)) { return; }
             string designRml = rmlBase.GetDesignRml(0); //0 = button
-            if (string.IsNullOrEmpty(designRml))
-                designRml = rmlBase.GetDefaultRmlDesign(0);
+            if (string.IsNullOrEmpty(designRml)) { designRml = rmlBase.GetDefaultRmlDesign(0); }
             int[] start = new int[7];
 
             string newName = designName;
@@ -122,7 +120,7 @@
                 string aUrl = url;
                 if (url.IndexOf("javascript:") >= 0)
                 {
-                    modUrl = url.Substring(12);
+                    modUrl = url.Substring(11);
                     aUrl = "javascript:";
                 }
                 if (useLoading == true)
@@ -144,7 +142,7 @@
                 myHtm += "<div id=\"" + id + "loading\" class=\"absolute\" style=\"width:100%; display:none;\">" + loadingHtm + "</div>";
                 myHtm += "<div id=\"" + id + "buttons\" style=\"" + containerStyle + "\">";
 
-                if (rmlDefault.htm.IndexOf("<a href=\"javascript:\"") == 0)
+                if (rmlDefault.htm.IndexOf("<a href=\"javascript:\"") < 0)
                 {
                     myHtm += "<div class=\"absolute empty-href\"><a class=\"div-href\" style=\"display: inline-block; overflow: hidden;\" href=\"" + aUrl + "\"" + (!string.IsNullOrEmpty(target) & url.IndexOf("javascript:") < 1 ? " target=\"" + target + "\"" : "") + (!string.IsNullOrEmpty(modUrl) ? " onclick=\"" + modUrl + "\"" : "") + "></a></div>";
                 }
@@ -158,7 +156,6 @@
 
                 myHtm += rmlMouseOver.htm.Replace("<rml:text/>", title) + "</div>";
                 myHtm += "</div>";
-
                 myHtm += "</div>";
             }
             else
