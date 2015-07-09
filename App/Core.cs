@@ -52,9 +52,13 @@ namespace Rennder
                     ViewState vs = new ViewState();
                     vs = (ViewState)Util.Serializer.ReadObject(Util.Str.GetString(Session["viewstate-" + ViewStateId]), vs.GetType());
                     Page = vs.Page;
-                    User = vs.User;
                 }else { Page = new Page(); }
             }else { Page = new Page(); }
+
+            if (Session["user"] != null)
+            {
+                User = (User)Util.Serializer.ReadObject(Util.Str.GetString(Session["user"]), User.GetType());
+            }
 
             //load references to Core R
             Page.Load(this);
@@ -70,6 +74,7 @@ namespace Rennder
 
         public void Unload()
         {
+            Session["user"] = Util.Serializer.WriteObject(User);
             SaveViewState();
             Sql.Close();
         }

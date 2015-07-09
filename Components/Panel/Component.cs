@@ -20,6 +20,14 @@ namespace Rennder.Components
             
         }
 
+        public override string ComponentName
+        {
+            get
+            {
+                return "Panel";
+            }
+        }
+
         public override void Load()
         {
             base.Load();

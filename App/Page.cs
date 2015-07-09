@@ -883,10 +883,10 @@ namespace Rennder
                 {
                     if (R.isWebService == true)
                     {
-                        //Editor editor = R.page.LoadControl("/controls/editor.ascx");
-                        //editor.InitEditor[R];
-                        //editor.LoadEditor();
-                        //PageRequest.editor = R.Util.RenderControl(editor);
+                        Editor editor = new Editor(R);
+                        string[] result = editor.LoadEditor();
+                        PageRequest.editor = result[0];
+                        PageRequest.js += result[1];
                     }
                 }
             }
@@ -1485,7 +1485,7 @@ namespace Rennder
                     {
                         R.Page.postJS += string.Join("\n", R.Page.postJScode) + R.Page.postJSLast;
                     }
-                    PageRequest.js = R.Page.postJS;
+                    PageRequest.js += R.Page.postJS;
                 }
 
                 R.SaveViewState();

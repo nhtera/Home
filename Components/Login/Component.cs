@@ -26,10 +26,10 @@
             {
                 string myJs = "";
                 myJs += 
-                    "R.components.cache['c" + itemId + "'].LoginFromIframe = function(id){console.log('LoginFromIframe');" + 
+                    "R.components.cache['c" + itemId + "'].LoginFromIframe = function(id){" + 
                         "R.ajax.post('/rennder/Login/Authenticate',{'authId':id}, this.LoginRedirect);" + 
                     "};" + 
-                    "R.components.cache['c" + itemId + "'].LoginRedirect = function(data){console.log('LoginRedirect');" + 
+                    "R.components.cache['c" + itemId + "'].LoginRedirect = function(data){" + 
                         "var c = R.components.cache['c" + itemId + "'];" + 
                         "if(data.d == ''){" +
                             "$R('c" + itemId + "').innerHTML = '" + htm.Replace("'", "\\'") + "';" + "alert('incorrect email or password');}" + 

@@ -230,6 +230,21 @@ namespace Rennder
         public int ownerId = 0;
         public List<structSecurityFeature> securityItems;
 
+        public struct AccessTypes
+        {
+            public enum Dashboard
+            {
+                login = 0
+            }
+
+            public enum DashboardPages
+            {
+                view = 0,
+                edit = 1,
+                create = 4
+            }
+        }
+
         public WebsiteSecurity(User u)
         {
             myUser = u;

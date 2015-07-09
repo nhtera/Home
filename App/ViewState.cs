@@ -16,13 +16,11 @@ namespace Rennder
         [IgnoreDataMember]
         private Core R;
         public Page Page;
-        public User User;
 
         public void Load(Core RennderCore)
         {
             R = RennderCore;
             Page = R.Page;
-            User = R.User;
         }
     }
 

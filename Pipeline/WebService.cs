@@ -26,19 +26,37 @@ namespace Rennder.Pipeline
                     //form post data
                 }else
                 {
-                    //JSON post ddata
+                    //JSON post data
                     Dictionary<string, object> attr = JsonConvert.DeserializeObject<Dictionary<string, object>>(data);
                     parms = new object[attr.Count - 1];
-                    int x = 0;
+                    int x = 0; string val = "";
                     foreach (KeyValuePair<string, object> item in attr)
                     {
+                        val = item.Value.ToString(); ;
                         if (item.Key == "viewstateId")
                         {
-                            viewstate = item.Value.ToString();
+                            viewstate = val;
                         }
                         else
                         {
-                            parms[x] = item.Value;
+                            //convert value into integer or float
+                            if (IsNumeric(val))
+                            {
+                                if(val.IndexOf('.') >= 0)
+                                {
+                                    parms[x] = float.Parse(val);
+                                }
+                                else
+                                {
+                                    parms[x] = Int32.Parse(val);
+                                }
+                                
+                            }
+                            else
+                            {
+                                parms[x] = item.Value;
+                            }
+                            
                             x = x + 1;
                         }
                     }
@@ -54,7 +72,8 @@ namespace Rennder.Pipeline
 
             //load service class from URL path
             string className = "Rennder.Services." + paths[1];
-            if(paths.Length == 4) { className += "." + paths[2]; }
+            string methodName = paths[2];
+            if(paths.Length == 4) { className += "." + paths[2]; methodName = paths[3]; }
             Type type =Type.GetType(className);
             Service service = (Service)Activator.CreateInstance(type, new object[] { R, paths });
 
@@ -75,7 +94,7 @@ namespace Rennder.Pipeline
             }
 
             //execute method from service class
-            MethodInfo method = type.GetMethod(paths[2]);
+            MethodInfo method = type.GetMethod(methodName);
             object result = method.Invoke(service, parms);
             if(result != null)
             {
@@ -101,9 +120,15 @@ namespace Rennder.Pipeline
                 context.Response.WriteAsync("{type:\"Empty\",d{}}");
             }
 
+            //finally, unload the Rennder Core:
+            //close SQL connection, save ViewState, save User info
             R.Unload();
         }
 
-
+        private static bool IsNumeric(string s)
+        {
+            float output;
+            return float.TryParse(s, out output);
+        }
     }
 }

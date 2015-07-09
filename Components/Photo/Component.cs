@@ -11,6 +11,14 @@ namespace Rennder.Components
             
         }
 
+        public override string ComponentName
+        {
+            get
+            {
+                return "Photo";
+            }
+        }
+
         public override string Render()
         {
             autoHeight = true;
@@ -20,7 +28,7 @@ namespace Rennder.Components
             }
             if (DataField == "")
             {
-                InnerHTML = "<img src=\"/resources/components/photo/icon.png\" border=\"0\" style=\"width:100%;\">";
+                InnerHTML = "<img src=\"/components/photo/icon.png\" border=\"0\" style=\"width:100%;\">";
             }else
             {
                 InnerHTML = GetPhoto();

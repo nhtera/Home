@@ -487,6 +487,8 @@ var R = {
 
         callback: {
             inject: function (data) {
+                console.log("Callback Inject");
+                console.log(data);
                 if (data.type == 'Rennder.Inject') {
                     //load new content from web service
                     var elem = $(data.d.element);

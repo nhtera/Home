@@ -555,5 +555,121 @@ namespace Rennder.Utility
         }
         #endregion
 
+        public string DateFolders(DateTime myDate, int folderCount = 3)
+        {
+            string myMonth = myDate.Month.ToString();
+            if (myMonth.Length == 1)
+                myMonth = "0" + myMonth;
+            string myDay = myDate.Day.ToString();
+            if (myDay.Length == 1)
+                myDay = "0" + myDay;
+            if (folderCount == 3)
+            {
+                return myDate.Year.ToString() + myMonth + "/" + myDay;
+            }
+            else if (folderCount == 1)
+            {
+                return myDate.Year.ToString() + myMonth;
+            }
+            else if (folderCount == 2)
+            {
+                return myDay;
+            }
+            return "";
+        }
+
+        public string NumberSuffix(int digit)
+        {
+            switch (digit)
+            {
+                case 1:
+                    return "st";
+                case 2:
+                    return "nd";
+                case 3:
+                    return "rd";
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                case 8:
+                case 9:
+                case 10:
+                case 11:
+                case 12:
+                case 13:
+                    return "th";
+                default:
+                    switch (int.Parse(R.Util.Str.Right(digit.ToString(), 1)))
+                    {
+                        case 1:
+                            return "st";
+                        case 2:
+                            return "nd";
+                        case 3:
+                            return "rd";
+                    }
+                    return "th";
+            }
+        }
+
+        public string DateSentence(DateTime myDate, string dateSeparator = "-")
+        {
+            TimeSpan timespan = (DateTime.Now - myDate);
+            if (timespan.Seconds < 30)
+            {
+                return "Moments ago";
+            }
+            else if (timespan.Seconds < 60)
+            {
+                return "About a minute ago";
+            }
+            else if (timespan.Minutes < 55)
+            {
+                return timespan.Minutes + " minutes ago";
+            }
+            else if (timespan.Hours < 1)
+            {
+                return "About an hour ago";
+            }
+            else if (timespan.Hours < 24)
+            {
+                return timespan.Hours + " hours ago";
+            }
+            else if (timespan.Days == 1)
+            {
+                return "Yesterday at " + string.Format("{0:t}", myDate);
+            }
+            else if (timespan.Days > 1 & timespan.Days < 30)
+            {
+                return timespan.Days + " days ago at " + string.Format("{0:t}", myDate);
+            }
+            else if (timespan.Days >= 30)
+            {
+                return "On " + myDate.ToString("M" + dateSeparator + "dd" + dateSeparator + "yyyy") + " at " + string.Format("{0:t}", myDate);
+            }
+            return "";
+        }
+
+        public string MinifyJS(string js)
+        {
+            string result = js;
+            //trim left
+            result = Regex.Replace(result, "^\\s*", String.Empty, RegexOptions.Compiled | RegexOptions.Multiline);
+            //trim right
+            result = Regex.Replace(result, "\\s*[\\r\\n]", "\n", RegexOptions.Compiled | RegexOptions.ECMAScript);
+            //remove whitespace beside of left curly braced
+            result = Regex.Replace(result, "\\s*{\\s*", "{", RegexOptions.Compiled | RegexOptions.ECMAScript);
+            //remove whitespace beside of coma
+            result = Regex.Replace(result, "\\s*,\\s*", ",", RegexOptions.Compiled | RegexOptions.ECMAScript);
+            //remove whitespace beside of semicolon
+            result = Regex.Replace(result, "\\s*;\\s*", ";", RegexOptions.Compiled | RegexOptions.ECMAScript);
+            //remove newline after keywords
+            result = Regex.Replace(result, "\\r\\n(?<=\\b(abstract|boolean|break|byte|case|catch|char|class|const|continue|default|delete|do|double|else|extends|false|final|finally|float|for|function|goto|if|implements|import|in|instanceof|int|interface|long|native|new|null|package|private|protected|public|return|short|static|super|switch|synchronized|this|throw|throws|transient|true|try|typeof|var|void|while|with|\\r\\n|\\})\\r\\n)", " ", RegexOptions.Compiled | RegexOptions.ECMAScript);
+
+            //remove all newlines
+            //result = Regex.Replace(result, "\r\n", " ", RegexOptions.Compiled Or RegexOptions.ECMAScript)
+            return result;
+        }
     }
 }

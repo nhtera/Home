@@ -20,8 +20,6 @@ namespace Rennder
         blogentry = 9
     }
 
-
-
     public class Component
     {
 
@@ -560,6 +558,8 @@ namespace Rennder
         protected Core R;
 
         public string itemId = "";
+        [JsonIgnore]
+        protected string InnerHtml = "";
 
         [JsonIgnore]
         protected ComponentView _component;
@@ -573,13 +573,14 @@ namespace Rennder
                 return _component;
             }
         }
+        public Dictionary<string, string> Elements;
 
         public virtual int Width
         {
             get { return 300; }
         }
 
-        public void InitProperties(Core RennderCore, ComponentView c)
+        public ComponentProperties(Core RennderCore, ComponentView c)
         {
             R = RennderCore;
             _component = c;
@@ -590,17 +591,16 @@ namespace Rennder
         /// Use to execute code when the properties window first loads
         /// </summary>
         /// <remarks></remarks>
-
-        public virtual void LoadProperties(List<string> data = null, string dataType = "")
+        public string Render()
         {
+            return R.Server.RenderScaffold("/components/" + Component.ComponentName.Replace(" ","/") + "/properties.html", Elements);
         }
 
         /// <summary>
         /// Use when the properties are saved to the server
         /// </summary>
         /// <remarks></remarks>
-
-        public virtual void SaveProperties(List<string> data = null, string dataType = "")
+        public virtual void Save()
         {
         }
 

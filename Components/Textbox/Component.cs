@@ -21,7 +21,21 @@ namespace Rennder.Components
         public override void Load()
         {
             base.Load();
-            InnerHTML = DataField;
+
+            if (DataField == "")
+            {
+                DataField = "<div>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam cursus eros eget lacus. Suspendisse ante est, lobortis vitae, congue et, bibendum ut, tortor. Sed ut urna. Integer quis lorem non ligula semper ultricies.</div>";
+            }
+
+            if(R.Page.isEditable == false)
+            {
+                InnerHTML = DataField;
+            }
+            else
+            {
+                InnerHTML = "<div class=\"textedit\">" + DataField + "</div>";
+            }
+            
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.IO;
 
 namespace Rennder
@@ -31,7 +30,6 @@ namespace Rennder
         //         where data is injected in between each array item.
         private Dictionary<string, List<structScaffold>> scaffold = new Dictionary<string, List<structScaffold>>();
 
-        
         #region "Scaffolding"
 
         /// <summary>
@@ -99,32 +97,112 @@ namespace Rennder
             if (newScaffold.Count > 0)
             {
                 //render scaffold with paired settings data
-                List<string> scaffold = new List<string>(); string s = "";
+                List<string> scaff = new List<string>(); string s = "";
+                bool useScaffold = false; List<List<string>> closing = new List<List<string>>();
+
+                //remove any unwanted blocks of HTML from scaffold
                 for (var x = 0; x < newScaffold.Count; x++)
                 {
-                    //inject string into scaffold
-                    if (settings.ContainsKey(newScaffold[x].name) == true)
+                    if (x < newScaffold.Count - 1)
                     {
-                        s = settings[newScaffold[x].name];
+                        for (var y = x + 1; y < newScaffold.Count; y++)
+                        {
+                            //check for closing tag
+                            if (newScaffold[y].name == "/" + newScaffold[x].name)
+                            {
+                                //add enclosed group of HTML to list for removing
+                                List<string> closed = new List<string>();
+                                closed.Add(newScaffold[x].name);
+                                closed.Add(x.ToString());
+                                closed.Add(y.ToString());
+                                
+                                if (settings.ContainsKey(newScaffold[x].name) == true)
+                                {
+                                    //check if user wants to include HTML 
+                                    //that is between start & closing tag   
+                                    s = settings[newScaffold[x].name];
+                                    if (string.IsNullOrEmpty(s) == true) { s = ""; }
+                                    if (s == "true" | s == "1")
+                                    {
+                                        closed.Add("true");
+                                    }else { closed.Add(""); }
+                                }else { closed.Add(""); }
+
+                                closing.Add(closed);
+                            }
+                        }
+
+                    }
+                }
+
+                //remove all groups of HTML in list that should not be displayed
+                List<int> removeIndexes = new List<int>();
+                bool isInList = false;
+                for(int x = 0; x < closing.Count; x++)
+                {
+                    if(closing[x][3] != "true")
+                    {
+                        //add range of indexes from closing to the removeIndexes list
+                        for (int y = int.Parse(closing[x][1]); y < int.Parse(closing[x][2]); y++)
+                        {
+                            isInList = false;
+                            for (int z = 0; z < removeIndexes.Count; z++)
+                            {
+                                if (removeIndexes[z] == y) { isInList = true; break; }
+                            }
+                            if(isInList == false) { removeIndexes.Add(y); }
+                        }
+                    }
+                }
+                //physically remove HTML list items from scaffold
+                int offset = 0;
+                for (int z = 0; z < removeIndexes.Count; z++)
+                {
+                    newScaffold.RemoveAt(removeIndexes[z] - offset);
+                    offset += 1;
+                }
+
+                //finally, replace scaffold variables with custom data
+                for (var x = 0; x < newScaffold.Count; x++)
+                {
+                    //check if scaffold item is an enclosing tag or just a variable
+                    useScaffold = true;
+                    if(newScaffold[x].name.IndexOf('/') < 0)
+                    {
+                        for (int y = 0; y < closing.Count; y++)
+                        {
+                            if(newScaffold[x].name == closing[y][0]) { useScaffold = false; break; }
+                        }
+                    }else { useScaffold = false; }
+                    
+                    if ((settings.ContainsKey(newScaffold[x].name) == true 
+                    || newScaffold[x].name.IndexOf('/') == 0) & useScaffold == true)
+                    {
+                        //inject string into scaffold variable
+                        s = settings[newScaffold[x].name.Replace("/","")];
                         if (string.IsNullOrEmpty(s) == true) { s = ""; }
-                        scaffold.Add(s + newScaffold[x].htm);
+                        scaff.Add(s + newScaffold[x].htm);
                     }
                     else
                     {
-                        scaffold.Add(newScaffold[x].htm);
+                        //passively add htm, ignoring scaffold variable
+                        scaff.Add(newScaffold[x].htm);
                     }
+                    
                 }
-                return String.Join("", scaffold.ToArray());
+
+                //render scaffolding as HTML string
+                return String.Join("", scaff.ToArray());
             }
             return "";
         }
 
         #endregion
 
-        #region "Microsoft Page.Server methods"
+        #region "System.UI.Web.Page.Server methods"
         public string path(string strPath = "")
         {
-            return "c:\\projects\\Rennder5\\Rennder\\" + strPath.Replace("/","\\");
+            return Path.GetFullPath("config.json").Replace("config.json","") + strPath.Replace("/", "\\");
         }
 
         public string MapPath(string strPath = "") { return path(strPath); }

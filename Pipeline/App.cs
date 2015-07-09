@@ -80,15 +80,20 @@ namespace Rennder.Pipeline
                         R.Page.isEditable = false;
                     }
 
-                    //display Page Editor
-                    if (R.Page.isEditable == true)
-                    {
-
-                    }
+                    
 
                     //register app javascript
                     js += "R.page.useAjax = " + R.Page.useAJAX.ToString().ToLower() + "; R.ajax.viewstateId = '" + R.ViewStateId + "'; R.hash.last=R.page.title; R.hash.start(); R.events.render.init();";
                     R.Page.RegisterJS("app", js);
+
+                    //display Page Editor
+                    if (R.Page.isEditable == true)
+                    {
+                        Editor editor = new Editor(R);
+                        string[] result = editor.LoadEditor();
+                        Elements["editor"] = result[0];
+                        R.Page.RegisterJS("editor", result[1]);
+                    }
 
                     //setup scripts
                     string scripts;

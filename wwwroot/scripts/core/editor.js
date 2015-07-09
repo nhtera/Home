@@ -179,7 +179,7 @@ R.editor = {
 
             if ($('.winDashboardSidebar').length == 0) {
                 //load sidebar window
-                R.editor.window.load('DashboardSidebar', '/Dashboard/Sidebar', {}, { x: 0, y: 50, w: R.editor.dashboard.sidebarWidth, h: '100%', toolbar: false });
+                R.editor.window.load('DashboardSidebar', 'Dashboard/Sidebar/Load', {}, { x: 0, y: 50, w: R.editor.dashboard.sidebarWidth, h: '100%', toolbar: false });
             } else {
                 $('.winDashboardSidebar').addClass('dashboard').show();
             }
@@ -200,7 +200,6 @@ R.editor = {
             R.window.pos();
             for (win in R.editor.window.windows) {
                 var item = R.editor.window.windows[win];
-                console.log(item);
                 if (item.w.toString().indexOf('%') < 0) {
                     $(item.elem).css({ width: item.w });
                 }
@@ -504,7 +503,7 @@ R.editor = {
 
         callback: {
             ajax: function (data) {
-                if (data.type == 'Rennder.WebServices.Inject') {
+                if (data.type == 'Rennder.Inject') {
                     R.ajax.callback.inject(data);
                 } else {
                     if (data.d.window != null && data.d.html != null) {
@@ -588,41 +587,41 @@ R.editor = {
         },
 
         open: {
-            timeline: function(title){
-                R.editor.window.load('DashboardTimeline', 'Dashboard/Timeline/Timeline', {}, { x: 155, y: 50, w: 250, h: '100%', toolbar: false, isDashboard: R.editor.dashboard.visible, hash: '' })
+            timeline: function(){
+                R.editor.window.load('DashboardTimeline', 'Dashboard/Timeline/Load', {}, { x: 155, y: 50, w: 250, h: '100%', toolbar: false, isDashboard: R.editor.dashboard.visible, hash: '' })
             },
 
-            pages: function(title){
-                R.editor.window.load('WebPages', 'Dashboard/Pages/LoadPages', {}, { x: 0, align: 'center', y: 0, w: 600, h: 200, spacing: 50, postOnce: true, isDashboard: R.editor.dashboard.visible, title: 'Web Pages for \'' + title + '\'', hash: 'pages' })
+            pages: function(){
+                R.editor.window.load('WebPages', 'Dashboard/Pages/LoadPages', {}, { x: 0, align: 'center', y: 0, w: 600, h: 200, spacing: 50, postOnce: true, isDashboard: R.editor.dashboard.visible, title: 'Web Pages for \'' + R.website.title + '\'', hash: 'pages' })
             },
 
-            pageSettings: function (pageId, title) {
+            pageSettings: function (pageId) {
                 R.editor.window.load('PageSettings', 'Dashboard/Pages/LoadSettings', { pageId: pageId },
-                    { x: 0, align: 'center', y: 0, w: 400, h: 400, spacing: 50, postOnce: 'pageid', title: 'Page Settings for \'' + title + '\'', hash:'page-settings' });
+                    { x: 0, align: 'center', y: 0, w: 400, h: 400, spacing: 50, postOnce: 'pageid', title: 'Page Settings for \'' + R.website.title + '\'', hash: 'page-settings' });
             },
 
             photoLibrary: function (type) {
                 R.editor.photos.show(null,type);
             },
             
-            analytics: function (title) {
-                R.editor.window.load('Analytics', 'Dashboard/Analytics/LoadAnalytics', {}, { x: 0, align: 'center', y: 0, w: 400, h: 400, spacing: 50, postOnce: true, isDashboard: R.editor.dashboard.visible, title: 'Website Analytics for \'' + title + '\'', hash: 'analytics' })
+            analytics: function () {
+                R.editor.window.load('Analytics', 'Dashboard/Analytics/LoadAnalytics', {}, { x: 0, align: 'center', y: 0, w: 400, h: 400, spacing: 50, postOnce: true, isDashboard: R.editor.dashboard.visible, title: 'Website Analytics for \'' + R.website.title + '\'', hash: 'analytics' })
             },
 
             designer: function () {
                 R.editor.window.load('Design', 'Dashboard/Design/LoadDesigner', {}, { w: 200, h: 100, target: '.editor .toolbar .menu .grid', align: 'bottom-center', arrow: true, spacing: 10, toolbar: false, autoHide: true, popup: true, postOnce: true, isDashboard: R.editor.dashboard.visible })
             },
 
-            users: function (title) {
-                R.editor.window.load('Users', 'Dashboard/Users/LoadUsers', {}, { x: 0, align: 'center', y: 0, w: 400, h: 400, spacing: 50, postOnce: true, isDashboard: R.editor.dashboard.visible, title: 'User Security for \'' + title + '\'', hash: 'users' })
+            users: function () {
+                R.editor.window.load('Users', 'Dashboard/Users/LoadUsers', {}, { x: 0, align: 'center', y: 0, w: 400, h: 400, spacing: 50, postOnce: true, isDashboard: R.editor.dashboard.visible, title: 'User Security for \'' + R.website.title + '\'', hash: 'users' })
             },
 
-            apps: function(title){
-                R.editor.window.load('Apps', 'Dashboard/Apps/LoadApps', {}, { x: 0, align: 'center', y: 0, w: 400, h: 400, spacing: 50, postOnce: true, isDashboard: R.editor.dashboard.visible, title: 'Apps Installed onto \'' + title + '\'', hash: 'apps' })
+            apps: function(){
+                R.editor.window.load('Apps', 'Dashboard/Apps/LoadApps', {}, { x: 0, align: 'center', y: 0, w: 400, h: 400, spacing: 50, postOnce: true, isDashboard: R.editor.dashboard.visible, title: 'Apps Installed onto \'' + R.website.title + '\'', hash: 'apps' })
             },
 
-            websiteSettings: function(title){
-                R.editor.window.load('WebsiteSettings', 'Dashboard/Website/LoadSettings', {}, { x: 0, align: 'center', y: 0, w: 400, h: 400, spacing: 50, isDashboard: R.editor.dashboard.visible, postOnce: true, title: 'Website Settings for \'' + title + '\'', hash: 'settings' })
+            websiteSettings: function(){
+                R.editor.window.load('WebsiteSettings', 'Dashboard/Website/LoadSettings', {}, { x: 0, align: 'center', y: 0, w: 400, h: 400, spacing: 50, isDashboard: R.editor.dashboard.visible, postOnce: true, title: 'Website Settings for \'' + R.website.title + '\'', hash: 'settings' })
             }
         },
 
@@ -884,8 +883,8 @@ R.editor = {
                     //  responsive = left, width, top, parallax, alignment, x, y, width, top-padding, ?, right-position, height, height-type
                     var pContain = $(panel).parents('.container');
                     var zIndex = parseInt(pContain.length > 0 ? pContain[0].style.zIndex : 99 || 99) + $(pid + ' > .component').length + 1;
-                    var options = { componentId: cid, selector: selector, panelId: pid, x: x, y: y, panelWidth:pPos.w, responsive: responsive, level: R.responsive.level, zIndex: zIndex };
-
+                    var options = { componentId: cid, panelId: pid, selector: selector, x: x, y: y, panelWidth:pPos.w, responsive: responsive, level: R.responsive.level, zIndex: zIndex };
+                    console.log("options:"); console.log(options);
                     R.ajax.post('/rennder/Editor/NewComponent', options, R.ajax.callback.inject);
 
                 } else if (R.editor.components.dragNew.moved == false) {
@@ -2744,9 +2743,9 @@ R.editor = {
 
         add: {
             item: { parentId: 0, title: '', description: '' },
-            show:function (parentId, title) {
+            show:function (parentId) {
                 R.editor.pages.add.item = { parentId: parentId, title: '', description: '' };
-                R.editor.window.load('NewPage', '/Editor/NewPage', { parentId: parentId || 0, title: title },
+                R.editor.window.load('NewPage', 'Editor/NewPage', { parentId: parentId || 0, title: R.website.title },
                     { x: 'center', y: 0, w: 400, h: 200, align: 'center', spacing: 50, loadOnce: true, noDashboard:true, title: 'New Web Page' });
             },
 
@@ -2806,7 +2805,7 @@ R.editor = {
             item: { pageId: 0},
             show: function (pageId) {
                 R.editor.pages.settings.item = { pageId: pageId};
-                R.editor.window.load('PageSettings', '/Editor/PageSettings', { pageId: pageId},
+                R.editor.window.load('PageSettings', 'Editor/PageSettings', { pageId: pageId},
                     { x: 'center', y: 0, w: 400, h: 200, align: 'center', spacing: 50, loadOnce: true, title: 'Web Page Settings', hash: 'page-settings' });
             },
 
@@ -2867,7 +2866,7 @@ R.editor = {
 
     layers: { ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         show: function(){
-            R.editor.window.load('Layers', '/Editor/Layers', {}, { r: 0, y: 0, w: 250, h: 100, loadOnce: true });
+            R.editor.window.load('Layers', 'Editor/Layers', {}, { r: 0, y: 0, w: 250, h: 100, loadOnce: true });
         },
 
         refresh: function () {
