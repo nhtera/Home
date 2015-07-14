@@ -87,7 +87,6 @@ namespace Rennder
         [JsonIgnore]
         private string pageEditorTitleEnd = " - Rennder Page Editor"; //end of title (in edit-mode)
 
-
         //Request Url Info
         public struct structUrl
         {
@@ -96,7 +95,6 @@ namespace Rennder
             public string hash;
             public string pathAndHash;
         }
-
         public structUrl Url;
 
         //Page Elements
@@ -112,7 +110,11 @@ namespace Rennder
         [JsonIgnore]
         public PageRequest PageRequest;
 
+        //SQL
+        [JsonIgnore]
+        public SqlClasses.Page SqlPage;
 
+        //initialize class
         public Page()
         {
         }
@@ -120,6 +122,7 @@ namespace Rennder
         public void Load(Core RennderCore)
         {
             R = RennderCore;
+            SqlPage = (SqlClasses.Page)R.Sql.Class["Page"];
         }
         #endregion
 
@@ -206,26 +209,27 @@ namespace Rennder
                 subDomain = domains[0];
                 if (string.IsNullOrEmpty(Domain)) {Domain = domainName; }
                 object pid;
-                    
+                
+
                 //try to get pageId based on domain name
                 if (!string.IsNullOrEmpty(pagetitle))
                 {
                     if (pagetitle == "rennder")
                     {
                         //get pageid from web site home page
-                        pid = R.Sql.ExecuteScalar("SELECT p.pageid FROM websitedomains w LEFT JOIN pages p ON p.pageid=(SELECT w2.pagehome FROM websites w2 WHERE w2.websiteid=w.websiteid) WHERE w.domain = '" + Domain + "' AND p.deleted=0");
+                        pid = SqlPage.GetHomePageIdFromDomain(Domain);
                     }
                     else
                     {
                         if (string.IsNullOrEmpty(subDomain))
                         {
                             //get pageid from web site domain name & page title
-                            pid = R.Sql.ExecuteScalar("EXEC GetPageIdFromDomainAndTitle @domainname='" + Domain + "', @pagetitle='" + pagetitle + "'");
+                            pid = SqlPage.GetPageIdFromDomainAndTitle(Domain, pagetitle);
                         }
                         else
                         {
                             //get pageid from web site domain & sub domain & page title
-                            pid = R.Sql.ExecuteScalar("EXEC GetPageIdFromSubDomainAndTitle @domainname='" + Domain + "', @subdomain='" + subDomain + "', @pagetitle='" + pagetitle + "'");
+                            pid = SqlPage.GetPageIdFromSubDomainAndTitle(Domain, subDomain, pagetitle);
                         }
                     }
 
@@ -235,12 +239,13 @@ namespace Rennder
                     if (string.IsNullOrEmpty(subDomain))
                     {
                         //get pageid from web site home page
-                        pid = R.Sql.ExecuteScalar("SELECT p.pageid FROM websitedomains w LEFT JOIN pages p ON p.pageid=(SELECT w2.pagehome FROM websites w2 WHERE w2.websiteid=w.websiteid) WHERE w.domain = '" + Domain + "' AND p.deleted <> 1");
+                        pid = SqlPage.GetHomePageIdFromDomain(Domain);
                     }
                     else
                     {
                         //get pageid from web site sub domain home page
-                        pid = R.Sql.ExecuteScalar("SELECT p.pageid FROM websitesubdomains w LEFT JOIN pages p ON p.pageid=(SELECT w2.pagehome FROM websites w2 WHERE w2.websiteid=w.websiteid) WHERE w.domain = '" + Domain + "' AND w.subdomain='" + subDomain + "' AND p.deleted <> 1");
+                        pid = SqlPage.GetHomePageIdFromSubDomain(Domain, subDomain);
+
                     }
                 }
                 if (R.Util.IsEmpty(pid) == false && R.Util.Str.IsNumeric(pid))
@@ -252,7 +257,7 @@ namespace Rennder
             }
         }
 
-        public SqlDataReader GetPageInfoByDomainName(string domainName, string pagetitle = "")
+        public SqlReader GetPageInfoByDomainName(string domainName, string pagetitle = "")
         {
             //try to get the sub domain name
             {
@@ -269,19 +274,19 @@ namespace Rennder
                     if (pagetitle == "rennder")
                     {
                         //get pageid from web site home page
-                        return R.Sql.ExecuteReader("EXEC GetPageInfoFromDomain @domain='" + Domain + "'");
+                        return SqlPage.GetPageInfoFromDomain(Domain);
                     }
                     else
                     {
                         if (string.IsNullOrEmpty(subDomain))
                         {
                             //get pageid from web site domain name & page title
-                            return R.Sql.ExecuteReader("GetPageInfoFromDomainAndTitle @domain='" + Domain + "', @title='" + pagetitle + "'");
+                            return SqlPage.GetPageInfoFromDomainAndTitle(Domain, pagetitle);
                         }
                         else
                         {
                             //get pageid from web site domain & sub domain & page title
-                            return R.Sql.ExecuteReader("EXEC GetPageInfoFromSubDomainAndTitle @domain='" + Domain + "', @subdomain='" + subDomain + "', @title='" + pagetitle + "'");
+                            return SqlPage.GetPageInfoFromSubDomainAndTitle(Domain, subDomain, pagetitle);
                         }
                     }
 
@@ -291,23 +296,23 @@ namespace Rennder
                     if (string.IsNullOrEmpty(subDomain))
                     {
                         //get pageid from web site home page
-                        return R.Sql.ExecuteReader("EXEC GetPageInfoFromDomain @domain='" + Domain + "'");
+                        return SqlPage.GetPageInfoFromDomain(Domain);
                     }
                     else
                     {
                         //get pageid from web site sub domain home page
-                        return R.Sql.ExecuteReader("EXEC GetPageInfoFromSubDomain @domain = '" + Domain + "', @subdomain='" + subDomain + "'");
+                        return SqlPage.GetPageInfoFromSubDomain(Domain, subDomain);
                     }
                 }
             }
         }
 
-        public SqlDataReader GetPageInfoByPageId()
+        public SqlReader GetPageInfoByPageId()
         {
-            return R.Sql.ExecuteReader("EXEC GetPageInfoFromPageId @pageId=" + pageId);
+            return SqlPage.GetPageInfoFromPageId(pageId);
         }
 
-        public SqlDataReader GetPageInfoFromUrlPath()
+        public SqlReader GetPageInfoFromUrlPath()
         {
             GetPageId(true);
             if(pageId == 0)
@@ -325,130 +330,76 @@ namespace Rennder
         public void LoadPageInfo(int pId)
         {
             if(pId <= 0) { return; }
-            LoadPageInfo(R.Sql.ExecuteReader("EXEC GetPageInfoFromPageId @pageId=" + pId));
+            LoadPageInfo(SqlPage.GetPageInfoFromPageId(pId));
         }
 
-        public void LoadPageInfo(SqlDataReader reader)
+        public void LoadPageInfo(SqlReader reader)
         {
-            bool hasRows = false;
             int oldLayoutId = layoutId;
 
-            if(reader.HasRows == true)
+            if(reader.Rows.Count > 0)
             {
                 reader.Read();
-                hasRows = true;
-                pageId = R.Sql.GetInt("pageId");
-                ownerId = R.Sql.GetInt("ownerId");
-                pageSecurity = R.Sql.GetInt("security");
-                pageMembersOnly = R.Sql.GetInt("membersonly");
-                pageTitle = R.Sql.Get("title");
-                pageCreated = R.Sql.GetDateTime("datecreated");
-                layoutId = R.Sql.GetInt("layoutid");
-                layoutOwner = R.Sql.GetInt("layoutowner");
-                websiteId = R.Sql.GetInt("websiteid");
-                websiteTitle = R.Sql.Get("websitetitle");
-                if (!(reader["websitetype"] is DBNull))
+                pageId = reader.GetInt("pageId");
+                ownerId = reader.GetInt("ownerId");
+                pageSecurity = reader.GetInt("security");
+                pageMembersOnly = reader.GetInt("membersonly");
+                pageTitle = reader.Get("title");
+                pageCreated = reader.GetDateTime("datecreated");
+                layoutId = reader.GetInt("layoutid");
+                layoutOwner = reader.GetInt("layoutowner");
+                websiteId = reader.GetInt("websiteid");
+                websiteTitle = reader.Get("websitetitle");
+                websiteType = reader.GetInt("websitetype");
+                if (websiteType < 0) { websiteType = 1; }
+
+                websitePageAccessDenied = reader.GetInt("pagedenied");
+                websitePage404 = reader.GetInt("page404");
+                pageDescription = R.Sql.Decode(reader.Get("description"));
+                websiteTrial = reader.GetBool("trial");
+                googleWebPropertyId = reader.Get("googlewebpropertyid");
+                //LoadBackground(reader.Get("pagebackground"])); //page
+                //else LoadBackground(reader.Get("background"])); //website
+                pageParentId = reader.GetInt("parentid");
+                if (pageParentId < 0) { pageParentId = 0; }
+                parentTitle = reader.Get("parenttitle");
+                
+                string pageCss = "";
+                //get CSS for whole web site
+                if (isPageLoaded == false | pageCssChanged == true)
                 {
-                    websiteType = R.Sql.GetInt("websitetype");
+                    pageCss = reader.Get("websitecss");
+                }
+                pageCss = reader.Get("css");
+                
+                string favIcon = reader.Get("icon");
+                if(R.isWebService == true)
+                {
+                    if (favIcon != pageFavIcon)
+                    {
+                        //change favicon via JS
+                    }
                 }else
                 {
-                    websiteType = 1;
+                    pageFavIcon = favIcon;
                 }
-
-                websitePageAccessDenied = R.Sql.GetInt("pagedenied");
-                websitePage404 = R.Sql.GetInt("page404");
-                pageDescription = R.Sql.Decode(R.Sql.Get("description"));
-                websiteTrial = R.Sql.GetBool("trial");
-                if (!(reader["googlewebpropertyid"] is DBNull))
-                {
-                    googleWebPropertyId = R.Sql.Get("googlewebpropertyid");
-                }
-                if (!(reader["pagebackground"] is DBNull))
-                {
-                    //LoadBackground(R.Sql.Get("pagebackground"]));
-                    //page
-                }
-                else
-                {
-                    //LoadBackground(R.Sql.Get("background"]));
-                    //website
-                }
-                if (!(reader["parentid"] is DBNull))
-                {
-                    pageParentId = R.Sql.GetInt("parentid");
-                }
-                else
-                {
-                    pageParentId = 0;
-                }
-                if (!(reader["parenttitle"] is DBNull))
-                {
-                    parentTitle = R.Sql.Get("parenttitle");
-                }
-                else
-                {
-                    parentTitle = "";
-                }
-
-                string pageCss = "";
-                if (!(reader["websitecss"] is DBNull))
-                {
-                    //get CSS for whole web site
-                    if (isPageLoaded == false | pageCssChanged == true)
-                    {
-                        if (!string.IsNullOrEmpty(R.Sql.Get("websitecss")))
-                        {
-                            pageCss = R.Sql.Get("websitecss");
-                        }
-                    }
-                }
-                if (!(reader["css"] is DBNull))
-                {
-                    if (!string.IsNullOrEmpty(R.Sql.Get("css")))
-                    {
-                        pageCss = R.Sql.Get("css");
-                    }
-                }
-
-                if (!(reader["icon"] is DBNull))
-                {
-                    if (!string.IsNullOrEmpty(R.Sql.Get("icon")))
-                    {
-                        string favIcon = R.Sql.Get("icon");
-                        if(R.isWebService == true)
-                        {
-                            if (favIcon != pageFavIcon)
-                            {
-                                //change favicon via JS
-                            }
-                        }else
-                        {
-                            pageFavIcon = R.Sql.Get("icon");
-                        }
-                    }
-                }
-
+                 
                 pageFacebook = "";
-                if (!(reader["photo"] is DBNull))
+                if (reader.Get("photo") != "")
                 {
-                    if (!string.IsNullOrEmpty(R.Sql.Get("photo")))
-                    {
-                        pageFacebook = "<meta id=\"metafbimg\" property=\"og:image\" content=\"" + Url.host + R.Sql.Get("css") + "\" />";
-                    }
-                    pageFacebook += "<meta id=\"metafbtitle\" property=\"og:title\" content=\"" + R.Util.Str.GetPageTitle(pageTitle) + "\" />" +
-                                    "<meta id=\"metafbsite\" property=\"og:site_name\" content=\"" + R.Util.Str.GetWebsiteTitle(pageTitle) + "\" />";
+                    pageFacebook = "<meta id=\"metafbimg\" property=\"og:image\" content=\"" + Url.host + reader.Get("photo") + "\" />";
                 }
-
+                pageFacebook += "<meta id=\"metafbtitle\" property=\"og:title\" content=\"" + R.Util.Str.GetPageTitle(pageTitle) + "\" />" +
+                                "<meta id=\"metafbsite\" property=\"og:site_name\" content=\"" + R.Util.Str.GetWebsiteTitle(pageTitle) + "\" />";
             }
-            reader.Dispose();
 
             if(pageId <= 0)
             {
                 //no page loaded, show 404
-                //LoadPageAndInfo("404");
+                LoadPage("404");
             }
 
-            if (hasRows == true){
+            if (reader.Rows.Count > 0){
                 //finished loading page information, so check for security & core changes made from info
                 if(demoId > 0)
                 {
@@ -505,7 +456,7 @@ namespace Rennder
                 if (!string.IsNullOrEmpty(R.Request.Query["a"]) & R.User.viewerId < 1)
                 {
                     //authenticate login for taking a screenshot
-                    if ((string)(R.Sql.ExecuteScalar("EXEC authenticateScreenshot @auth='" + R.Request.Query["a"] + "', @websiteid=" + websiteId + ",@kill=" + (R.Request.Query["ak"] == "0" ? "0" : "1"))) == "pass")
+                    if(R.Page.SqlPage.AuthLoginForScreenshot(R.Request.Query["a"], websiteId, (R.Request.Query["ak"] == "0" ? 0 : 1)) == "pass")
                     {
                         R.User.viewerId = ownerId;
                         R.User.memberId = ownerId;

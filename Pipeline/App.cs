@@ -56,8 +56,8 @@ namespace Rennder.Pipeline
             }
 
             //get page Info
-            SqlDataReader reader = R.Page.GetPageInfoFromUrlPath();
-            if(reader.HasRows == true)
+            SqlReader reader = R.Page.GetPageInfoFromUrlPath();
+            if(reader.Rows.Count > 0)
             {
                 //load initial web page
                 R.Page.LoadPageInfo(reader);

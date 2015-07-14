@@ -114,19 +114,18 @@ namespace Rennder.Services
             Elements = R.Server.SetupScaffold(new string[] { "url", "page-title", "description", "secure", "page-type", "type" });
 
             string parentTitle = "";
-            SqlDataReader myReader = R.Sql.ExecuteReader("SELECT TOP 1 p2.title AS parenttitle, p.title, p.security, p.description FROM pages p LEFT JOIN pages p2 ON p2.pageid=p.parentid WHERE p.pageid=" + pageId);
-            if (myReader.HasRows == true)
+            SqlReader reader = R.Page.SqlPage.GetParentInfo(pageId);
+            if (reader.Rows.Count > 0)
             {
-                myReader.Read();
-                parentTitle = R.Sql.Get("parenttitle");
-                Elements["page-title"] = R.Util.Str.GetPageTitle(R.Sql.Get("title"));
-                if (R.Sql.GetBool("security") == true)
+                reader.Read();
+                parentTitle = reader.Get("parenttitle");
+                Elements["page-title"] = R.Util.Str.GetPageTitle(reader.Get("title"));
+                if (reader.GetBool("security") == true)
                 {
                     Elements["secure"] = "true";
                 }
-                Elements["description"] = R.Sql.Get("description");
+                Elements["description"] = reader.Get("description");
             }
-            myReader.Dispose();
 
             Elements["url"] = R.Page.Url.host.Replace("http://", "").Replace("https://", "") + Elements["page-title"].Replace(" ", "-") + "/";
 
@@ -211,16 +210,16 @@ namespace Rennder.Services
             int start = 0;
             int length = 12;
             string htm = "";
-            SqlDataReader myReader = R.Sql.ExecuteReader("SELECT * FROM (SELECT TOP " + (start + length) + " ROW_NUMBER() OVER(ORDER BY cindex ASC) AS rownum, componentId, title, description FROM evolvercomponents WHERE category=" + category + ") AS tbl WHERE rownum >= " + start + " AND rownum <= " + (start + length));
-            if (myReader.HasRows == true)
+            SqlClasses.Editor SqlEditor = new SqlClasses.Editor(R);
+            SqlReader reader = SqlEditor.GetComponentsList(category, start, length);
+            if (reader.Rows.Count > 0)
             {
-                while (myReader.Read() != false)
+                while (reader.Read() != false)
                 {
-                    htm += "<div class=\"list-item\" cname=\"" + R.Sql.Get("title") + "\" ctitle=\"" + R.Sql.Get("description") + "\" onmousedown=\"R.editor.components.dragNew.start(event)\" >";
-                    htm += "<img src=\"/components/" + R.Sql.Get("componentid").Replace("-", "/") + "/icon.png\" alt=\"" + R.Sql.Get("title") + "\" cid=\"" + R.Sql.Get("componentid") + "\" /></div>";
+                    htm += "<div class=\"list-item\" cname=\"" + reader.Get("title") + "\" ctitle=\"" + reader.Get("description") + "\" onmousedown=\"R.editor.components.dragNew.start(event)\" >";
+                    htm += "<img src=\"/components/" + reader.Get("componentid").Replace("-", "/") + "/icon.png\" alt=\"" + reader.Get("title") + "\" cid=\"" + reader.Get("componentid") + "\" /></div>";
                 }
             }
-            myReader.Dispose();
             return htm;
         }
 
@@ -238,15 +237,15 @@ namespace Rennder.Services
             htm += AddCategory(3, "Page", "Add the title of your page, a list of relavent pages, user comments & ratings, and other page-specific content.", "page/title");
             if (R.Page.isDemo == false)
             {
-                SqlDataReader myReader = R.Sql.ExecuteReader("SELECT * FROM (SELECT DISTINCT a.title, a.description, a.icon, a.componentcategory, a.orderby, a.applicationid FROM evolverapplicationsowned o LEFT JOIN evolverapplicationcomponentcategories a ON a.applicationid=o.applicationid WHERE o.ownerid=" + R.Page.ownerId + " AND o.websiteid=" + R.Page.websiteId + ") AS tbl ORDER BY applicationid ASC, orderby ASC");
-                if (myReader.HasRows == true)
+                SqlClasses.Editor SqlEditor = new SqlClasses.Editor(R);
+                SqlReader reader = SqlEditor.GetComponentCategories();
+                if (reader.Rows.Count > 0)
                 {
-                    while (myReader.Read() != false)
+                    while (reader.Read() != false)
                     {
-                        htm += AddCategory(R.Sql.GetInt("componentcategory"), R.Sql.Get("title"), R.Sql.Get("description"), R.Sql.Get("icon"));
+                        htm += AddCategory(reader.GetInt("componentcategory"), reader.Get("title"), reader.Get("description"), reader.Get("icon"));
                     }
                 }
-                myReader.Dispose();
             }
             return htm;
         }

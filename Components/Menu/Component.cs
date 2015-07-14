@@ -7,7 +7,13 @@ namespace Rennder.Components
     {
         public Menu(Core RennderCore) : base(RennderCore)
         {
-            //LoadMenu();
+            
+        }
+
+        public override string Render()
+        {
+            LoadMenu();
+            return base.Render();
         }
 
         private void LoadMenu(int selectedIndex = -1, string reloadItem = "", int reloadOldIndex = 0, string reloadOldItem = "")
@@ -218,7 +224,7 @@ namespace Rennder.Components
                 }
                 if (item.Attributes["dropdown"] != null)
                 {
-                    hasDropdown = Convert.ToBoolean(item.Attributes["dropdown"].Value);
+                    hasDropdown = item.Attributes["dropdown"].Value == "1" ? true : false;
                     if (hasDropdown == true)
                     {
                         if (item.Attributes["panelid"] != null)
@@ -600,8 +606,7 @@ namespace Rennder.Components
 
             } while (true);
 
-            if (isTree == true)
-                htm += "</ul>";
+            if (isTree == true) { htm += "</ul>"; }
 
             //add menu footer
             htm += "<div style=\"clear:both; height:0px; font-size:0px;\"></div>";
@@ -614,8 +619,6 @@ namespace Rennder.Components
 
             if (!string.IsNullOrEmpty(myJs))
                 R.Page.RegisterJS("loadmenu" + itemId, myJs);
-
-            RefreshComponent();
 
         }
 

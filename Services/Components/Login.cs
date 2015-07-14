@@ -286,8 +286,7 @@ namespace Rennder.Services
                 host = "https://" + R.Page.Url.host;
             }
             //IHttpConnectionFeature ip = R.Context.GetFeature<IHttpConnectionFeature>();
-            
-            R.Sql.ExecuteNonQuery("EXEC savelogin @hash='" + salt + "', @email='" + email + "', @loginid='" + loginid + "', @ip='" + "" + "'");
+            R.Page.SqlPage.SaveLoginForAuth(salt, email, loginid);
             Elements["script"] += "setTimeout(function(){parent.postMessage(\"login|" + loginid + "\",\"" + host + "\");},10);";
 
             //finally, scaffold login HTML

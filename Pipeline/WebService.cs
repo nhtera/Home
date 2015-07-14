@@ -24,6 +24,7 @@ namespace Rennder.Pipeline
                 if(data.IndexOf(":") < 0 && data.IndexOf("=") >= 0)
                 {
                     //form post data
+
                 }else
                 {
                     //JSON post data

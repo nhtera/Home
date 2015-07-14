@@ -1,0 +1,48 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace Rennder.Services
+{
+    public class Debug:Service
+    {
+        private Dictionary<string, string> Elements;
+
+        public Debug(Core RennderCore, string[] path):base(RennderCore, path)
+        {
+        }
+
+        public WebRequest Session()
+        {
+            WebRequest wr = new WebRequest();
+
+            Elements = new Dictionary<string, string>();
+            Elements = R.Server.SetupScaffold(new string[] { "body" });
+            string jsonVs = R.Util.Str.GetString(R.Session["viewstates"]);
+            string jsonUser = R.Util.Serializer.WriteObjectAsString(R.User);
+            ViewStates vss = (ViewStates)R.Util.Serializer.ReadObject(jsonVs, Type.GetType("Rennder.ViewStates"));
+            List<string> body = new List<string>();
+            double totalLen = R.Session["viewstates"].Length;
+            double len = 0;
+
+            body.Add("<h1>User (" + (jsonUser.Length * 2) + " bytes)</h1>" + jsonUser);
+            body.Add("<h1>Viewstates (" + totalLen.ToString("N0") + " bytes)</h1>" + jsonVs);
+
+            foreach(structViewStateInfo item in vss.Views)
+            {
+                ViewState vssItem = (ViewState)R.Util.Serializer.ReadObject(R.Util.Str.GetString(R.Session["viewstate-" + item.id]), Type.GetType("Rennder.ViewState"));
+                len = R.Session["viewstate-" + item.id].Length;
+                totalLen += len;
+                body.Add("<h1>Viewstate \"" + item.id + "\" (" + len.ToString("N0") + " bytes)</h1>" + R.Util.Serializer.WriteObjectAsString(vssItem));
+                
+            }
+
+            body.Add("<h1>Total Memory Used: " + totalLen.ToString("N0") + " bytes");
+            
+            Elements["body"] = ("<pre>" + string.Join("</pre></div><div><pre>", body.ToArray()).Replace("\\\"", "\"").Replace("\\n", "").Replace("},", "},\n").Replace("],", "],\n") + "</pre>");
+
+            //finally, scaffold debug HTML
+            wr.html = R.Server.RenderScaffold("/app/debug/debug.html", Elements);
+            return wr;
+        }
+    }
+}

@@ -59,103 +59,38 @@ namespace Rennder.Services.Dashboard
             string rootTitle = "Root";
             if (parentId >= 0)
             {
-                SqlDataReader pReader = R.Sql.ExecuteReader("SELECT p.title, p.parentid, r.title AS parenttitle FROM pages p LEFT JOIN pages r ON r.pageid=p.parentid WHERE p.pageid=" + parentId + " AND p.websiteid=" + R.Page.websiteId);
-                if (pReader.HasRows == true)
+                SqlReader reader2 = R.Page.SqlPage.GetParentTitle(parentId, R.Page.websiteId);
+                if (reader2.Rows.Count > 0)
                 {
-                    pReader.Read();
-                    parentTitle = R.Util.Str.GetPageTitle(R.Sql.Get("title"));
-            if (R.Util.IsEmpty(pReader["parentid"]) == false)
-                    {
-                        rootId = R.Sql.GetInt("parentid");
-                    }
-                    if (R.Util.IsEmpty(R.Sql.Get("parenttitle")) == false)
-                    {
-                        rootTitle = R.Sql.Get("parenttitle");
-                    }
+                    reader2.Read();
+                    parentTitle = R.Util.Str.GetPageTitle(reader2.Get("title"));
+                    rootId = reader2.GetInt("parentid");
+                    rootTitle = reader2.Get("parenttitle");
                 }
-                pReader.Dispose();
             }
-
-            //setup sql query
-            sql = "SELECT * FROM (SELECT ROW_NUMBER() OVER(";
-            switch (orderBy)
-            {
-                case 1:
-                case -1:
-                    sql += "ORDER BY datecreated ASC";
-                    break;
-                case 2:
-                    sql += "ORDER BY datecreated DESC";
-                    break;
-                case 3:
-                    sql += "ORDER BY datemodified ASC";
-                    break;
-                case 4:
-                    sql += "ORDER BY datemodified DESC";
-                    break;
-                case 5:
-                    sql += "ORDER BY title ASC";
-                    break;
-                case 6:
-                    sql += "ORDER BY title DESC";
-                    break;
-                case 7:
-                    sql += "ORDER BY membersonly DESC, datecreated ASC";
-                    break;
-            }
-            sql += ") AS rownum, p.pageid, p.galaxyid, p.title, p.tagwords, p.datecreated, p.datemodified, p.favorite, p.security, p.published, p.ratingtotal, p.ratedcount, p.description, (CASE WHEN p.templateid IS NULL THEN 0 ELSE p.templateid END) AS templateid ";
-            sql += ", (SELECT COUNT(*) FROM pages WHERE websiteid=" + R.Page.websiteId + " AND parentid=p.pageid) AS haschildren ";
-            sql += "FROM pages p WHERE p.websiteid=" + R.Page.websiteId + " AND p.ownerid=" + R.Page.ownerId + " AND p.deleted=0 AND p.enabled=1";
-            if (!string.IsNullOrEmpty(search))
-            {
-                sql += " AND (p.title LIKE '%" + search + "%' OR p.tagwords LIKE '%" + search + "%' OR p.description LIKE '%" + search + "%')";
-            }
-            if (orderBy == 7)
-            {
-                sql += " AND p.membersonly=1";
-            }
-            if (parentId > -1)
-            {
-                if (parentId == 0)
-                {
-                    sql += " AND (p.parentid=0 OR p.parentid is null)";
-                }
-                else
-                {
-                    sql += " AND p.parentid=" + parentId;
-                }
-
-                //favorites only
-            }
-            else if (parentId == -1)
-            {
-                sql += " AND p.favorite=1";
-            }
-            sql += ") AS mytbl WHERE rownum >= " + start + " AND rownum < " + (start + (length + 1));
-            sql += " ORDER BY haschildren DESC";
 
             //get page list from database
-            SqlDataReader myReader = R.Sql.ExecuteReader(sql);
+            SqlClasses.Dashboard SqlDash = new SqlClasses.Dashboard(R);
+            SqlReader reader = SqlDash.GetPageList(R.Page.websiteId, R.Page.ownerId, parentId, start, length, orderBy, search);
             string htm = "";
             if (viewType == "treeview")
             {
-                htm = LoadLayoutForTreeView(myReader, parentId, parentTitle, secureDelete, secureSettings, secureCreate);
+                htm = LoadLayoutForTreeView(reader, parentId, parentTitle, secureDelete, secureSettings, secureCreate);
 
             }
             else if (viewType == "list" | string.IsNullOrEmpty(viewType))
             {
-                htm = LoadLayoutForList(myReader, layout, parentId, parentTitle, rootId, rootTitle, secureDelete, secureSettings, secureCreate);
+                htm = LoadLayoutForList(reader, layout, parentId, parentTitle, rootId, rootTitle, secureDelete, secureSettings, secureCreate);
 
             }
-            myReader.Dispose();
 
             return htm;
         }
 
-        private string LoadLayoutForList(SqlDataReader myReader, bool layout, int parentId, string parentTitle, int rootId, string rootTitle, bool secureDelete, bool secureSettings, bool secureCreate)
+        private string LoadLayoutForList(SqlReader reader, bool layout, int parentId, string parentTitle, int rootId, string rootTitle, bool secureDelete, bool secureSettings, bool secureCreate)
         {
             List<string> htm = new List<string>();
-            if (myReader.HasRows == true)
+            if (reader.Rows.Count > 0)
             {
                 int i = 2;
                 bool hasDelete = false;
@@ -183,16 +118,15 @@ namespace Rennder.Services.Dashboard
                     htm.Add("<li><div class=\"row color" + i + " item\"><div class=\"column-row\">" + "<div class=\"hover-title left\" onclick=\"R.editor.pages.load(" + rootId + ",'" + rootTitle + "','down')\" style=\"cursor:pointer\">" + folderIcon + "..</div>" + "<div class=\"hover-only right\">" + options + "</div>" + "</div><div class=\"clear\"></div></div></li>");
                 }
 
-                while (myReader.Read() == true)
+                while (reader.Read() == true)
                 {
                     i = (i == 2 ? 1 : 2);
                     i = 1;
                     color = "empty";
-                    pageTitle = R.Sql.Get("title").Split(new string[]{ "- "},0)[1];
-            if (!string.IsNullOrEmpty(parentTitle))
-                        pageTitle = pageTitle.Substring(parentTitle.Length + 1);
-                    pageId = R.Sql.GetInt("pageid");
-                    hasChildren = R.Sql.GetInt("haschildren");
+                    pageTitle = reader.Get("title").Split(new string[]{ "- "},0)[1];
+                    if (!string.IsNullOrEmpty(parentTitle)) { pageTitle = pageTitle.Substring(parentTitle.Length + 1); }
+                    pageId = reader.GetInt("pageid");
+                    hasChildren = reader.GetInt("haschildren");
                     hasDelete = true;
                     hasCreate = true;
                     pageLink = "";
@@ -321,10 +255,10 @@ namespace Rennder.Services.Dashboard
             return htm;
         }
 
-        private string LoadLayoutForTreeView(SqlDataReader myReader, int parentId, string parentTitle, bool secureDelete, bool secureSettings, bool secureCreate)
+        private string LoadLayoutForTreeView(SqlReader reader, int parentId, string parentTitle, bool secureDelete, bool secureSettings, bool secureCreate)
         {
             List<string> htm = new List<string>();
-            if (myReader.HasRows == true)
+            if (reader.Rows.Count > 0)
             {
                 int i = 2;
                 bool hasDelete = false;
@@ -348,15 +282,15 @@ namespace Rennder.Services.Dashboard
 
 
 
-                while (myReader.Read() == true)
+                while (reader.Read() == true)
                 {
                     i = (i == 2 ? 1 : 2);
                     color = "empty";
-                    pageTitle = R.Sql.Get("title").Split(new string[]{" - "},0)[1];
+                    pageTitle = reader.Get("title").Split(new string[]{" - "},0)[1];
             if (!string.IsNullOrEmpty(parentTitle))
                         pageTitle = pageTitle.Substring(parentTitle.Length + 1);
-                    pageId = R.Sql.GetInt("pageid");
-                    hasChildren = R.Sql.GetInt("haschildren");
+                    pageId = reader.GetInt("pageid");
+                    hasChildren = reader.GetInt("haschildren");
                     hasDelete = true;
                     hasCreate = true;
                     pageLink = "";

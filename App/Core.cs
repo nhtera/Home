@@ -61,6 +61,7 @@ namespace Rennder
             }
 
             //load references to Core R
+            Sql.Load();
             Page.Load(this);
             User.Load(this);
 

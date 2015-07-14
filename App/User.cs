@@ -12,7 +12,7 @@ namespace Rennder
 
         public struct structSecurity
         {
-            public double websiteId;
+            public int websiteId;
             public string feature; //"full" = full control
             public enumSecurity security;
         }
@@ -50,31 +50,29 @@ namespace Rennder
         public bool LogIn(string authId)
         {
             //IHttpConnectionFeature ip = R.Context.GetFeature<IHttpConnectionFeature>();
-            SqlDataReader myReader = R.Sql.ExecuteReader("EXEC checklogin @loginid='" + authId + "', @ip='" + "" + "'");
-            if (myReader.HasRows == true)
+            SqlReader reader = R.Page.SqlPage.AuthLogin(authId);
+            if (reader.Rows.Count > 0)
             {
-                myReader.Read();
-                memberId = R.Sql.GetInt("memberid");
-                displayName = R.Sql.Get("displayname");
-                fullName = R.Sql.Get("fullname");
-                photo = R.Sql.Get("photo");
-                email = R.Sql.Get("email");
-                signupDate = R.Sql.GetDateTime("datecreated");
-                defaultPageId = R.Sql.GetInt("defaultcp");
+                reader.Read();
+                memberId = reader.GetInt("memberid");
+                displayName = reader.Get("displayname");
+                fullName = reader.Get("fullname");
+                photo = reader.Get("photo");
+                email = reader.Get("email");
+                signupDate = reader.GetDateTime("datecreated");
+                defaultPageId = reader.GetInt("defaultcp");
                 viewerId = memberId;
-                myReader.Dispose();
 
                 //get all security for this user (for all sites the user belongs to)
-                SqlDataReader myR = R.Sql.ExecuteReader("SELECT DISTINCT websiteid FROM websitesecurity WHERE memberid=" + memberId);
+                SqlReader reader2 = R.Page.SqlPage.GetUserSecurity(memberId);
                 List<int> sites = new List<int>();
-                if (myR.HasRows == true)
+                if (reader2.Rows.Count > 0)
                 {
-                    while (myR.Read() != false)
+                    while (reader2.Read() != false)
                     {
-                        sites.Add(R.Sql.GetInt("websiteid"));
+                        sites.Add(reader2.GetInt("websiteid"));
                     }
                 }
-                myR.Dispose();
 
                 foreach (int s in sites)
                 {
@@ -84,15 +82,14 @@ namespace Rennder
                 if (R.Page.ownerId == memberId)
                 {
                     //add full control security (of this website) for the user
-                    myR = R.Sql.ExecuteReader("SELECT websiteid FROM websites WHERE ownerid=" + memberId);
-                    if (myR.HasRows == true)
+                    reader2 = R.Page.SqlPage.GetUserSecurtyForWebsitesOwned(memberId);
+                    if (reader2.Rows.Count > 0)
                     {
-                        while (myR.Read() != false)
+                        while (reader2.Read() != false)
                         {
-                            sites.Add(R.Sql.GetInt("websiteid"));
+                            sites.Add(reader.GetInt("websiteid"));
                         }
                     }
-                    myR.Dispose();
 
                     foreach (int s in sites)
                     {
@@ -109,12 +106,11 @@ namespace Rennder
                 }
 
                 //update database
-                R.Sql.ExecuteNonQuery("UPDATE members SET lastlogin='" + DateTime.Now + "' WHERE memberid=" + memberId);
+                R.Page.SqlPage.SaveLoginTime(memberId);
                 return true;
             }
             else
             {
-                myReader.Dispose();
                 return false;
             }
 
@@ -137,7 +133,7 @@ namespace Rennder
             R.Page.isEditorLoaded = false;
         }
 
-        public void AddSecurity(double websiteId, string feature, enumSecurity securityLevel)
+        public void AddSecurity(int websiteId, string feature, enumSecurity securityLevel)
         {
             structSecurity s = new structSecurity();
             s.websiteId = websiteId;
@@ -196,22 +192,21 @@ namespace Rennder
 
         public void GetSecurityForWebsite(int websiteId, int memberId)
         {
-            SqlDataReader myReader = R.Sql.ExecuteReader("EXEC GetSecurityForWebsite @websiteid=" + websiteId + ", @memberid=" + memberId);
-            if (myReader.HasRows == true)
+            SqlReader reader = R.Page.SqlPage.GetUserSecurityForWebsite(websiteId, memberId);
+            if (reader.Rows.Count > 0)
             {
-                while (!(myReader.Read() == false))
+                while (reader.Read() != false)
                 {
-                    string[] sec = R.Sql.Get("security").Split(',');
+                    string[] sec = reader.Get("security").Split(',');
                     List<bool> secList = new List<bool>();
                     foreach (string s in sec)
                     {
                         if (s == "1") { secList.Add(true); }
                         else { secList.Add(false); }
                     }
-                    Website(websiteId).addWebsiteSecurityItem(R.Sql.Get("feature"), secList);
+                    Website(websiteId).addWebsiteSecurityItem(reader.Get("feature"), secList);
                 }
             }
-            myReader.Dispose();
         }
 
     }
@@ -283,7 +278,7 @@ namespace Rennder
                 if (ownerId == 0)
                 {
                     //get ownerId
-                    ownerId = (int)(myUser.R.Sql.ExecuteScalar("SELECT ownerid FROM websites WHERE websiteid=" + websiteId));
+                    ownerId = myUser.R.Page.SqlPage.GetUserSecurtyOwnerForWebsite(websiteId);
                 }
                 if (ownerId == myUser.memberId & nofull == false)
                     return true;
