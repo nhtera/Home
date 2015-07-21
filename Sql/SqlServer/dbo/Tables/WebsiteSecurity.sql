@@ -1,0 +1,9 @@
+﻿CREATE TABLE [dbo].[WebsiteSecurity] (
+    [websiteId] INT            NOT NULL,
+    [pageId]    INT            NOT NULL,
+    [userId]  INT            NOT NULL,
+    [feature]   NVARCHAR (50)  NULL,
+    [security]  NVARCHAR (200) NULL, 
+    CONSTRAINT [PK_WebsiteSecurity] PRIMARY KEY ([userId])
+);
+

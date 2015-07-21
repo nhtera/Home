@@ -6,6 +6,9 @@
 *.user
 *.sln.docstates
 wwwroot/content/
+wwwroot/images/screenshots
+wwwroot/images/workflow
+*.bak
 
 # Build results
 [Dd]ebug/
@@ -149,7 +152,6 @@ csx/
 AppPackages/
 
 # Others
-sql/
 *.Cache
 ClientBin/
 [Ss]tyle[Cc]op.*
