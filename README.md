@@ -12,12 +12,12 @@ With ASP.net 5 vNext, you will be able to deploy a new instance of the Rennder p
 
 Learn more about ASP.net 5 vNext at www.github.com/aspnet/home
 
-### Installation for Windows
-# Preresiquites
+## Installation for Windows
+### Preresiquites
 1. Visual Studio 2015
 2. SQL Server 2012 or higher
 
-# Setup Project
+### Setup Project
 1. Download, clone, or fork project from the github repository.
 2. Load project from `/Sql/SqlServer/` using Visual Studio 2015.
 3. Publish project (right-click project in Solution Explorer). In publish window, click `Load Profile` button, select `SqlServer.publish.xml` from project folder. Then, click `Edit...` button for Target database connection. Change Server name to the named-pipe of your installation of SQL Server 2012, then save. Finally, click `Publish` button.
