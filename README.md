@@ -12,8 +12,19 @@ With ASP.net 5 vNext, you will be able to deploy a new instance of the Rennder p
 
 Learn more about ASP.net 5 vNext at www.github.com/aspnet/home
 
-###Currently Preparing Repository
-The Rennder CMS platform is being prepared for this repository. First, the code must be ported from VS 2013 Web Forms into ASP.net vNext, which does not support web forms. Thus, some of the core code from the original project must first be rewritten.
+### Installation for Windows
+# Preresiquites
+1. Visual Studio 2015
+2. SQL Server 2012 or higher
+
+# Setup Project
+1. Download, clone, or fork project from the github repository.
+2. Load project from `/Sql/SqlServer/` using Visual Studio 2015.
+3. Publish project (right-click project in Solution Explorer). In publish window, click `Load Profile` button, select `SqlServer.publish.xml` from project folder. Then, click `Edit...` button for Target database connection. Change Server name to the named-pipe of your installation of SQL Server 2012, then save. Finally, click `Publish` button.
+4. Open Rennder project & press play button for `kestrel`, and open your web browser to `http://localhost:5000/`.
+5. Log into your dashboard from `http://localhost:5000/#dashboard`, using email `admin@localhost` and password `development`.
+
+
 
 ###Puphpet + Vagrant + Mono
 Rennder running on Linux VM within Windows 7. This is currently my testing environment for Rennder on Linux. At the moment, `dnu restore` doesn't work. I'll keep you updated when I get Rennder working on Linux. So far, the project runs purely on DNX Core 5 without ASP.net 4.6, which means Rennder should theoretically work on Linux right away.
