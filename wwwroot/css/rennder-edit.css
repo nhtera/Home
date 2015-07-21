@@ -476,7 +476,9 @@ body > .tools{position:absolute; height:0px; width:0px; z-index:3000; font-famil
 @-webkit-keyframes animate-fade-out-in{0%{opacity:1;} 50%{opacity:0;} 100%{opacity:1;}}
 
 /* dashboard sidebar window //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
-.winDashboardSidebar .content{padding:10px;}
+.winDashboardInterface .dash-content{width:100%; max-width:960px; margin:0px auto;}
+.winDashboardInterface .dash-menu{float:left; width:155px; padding:0px 10px 0px 10px;}
+.winDashboardInterface .dash-body{float:left; width:calc(100% - 175px); max-width:785px;}
 
 /* component-specific styling ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 .type-textbox .bold, .type-textbox .bold *{font-weight:bold;}

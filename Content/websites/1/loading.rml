@@ -1,5 +1,0 @@
-<rml:loading name="Main">
-    <div class="relative" style="min-width:230px; text-align:center; white-space:no-wrap; margin:0px auto;">
-    <h3 class="opacity-50">Loading,please wait...</h3>
-    </div>
-</rml:loading>

@@ -30,7 +30,7 @@
             {
                 //load current page with no url
                 string pageName = "Home";
-                if (url.IndexOf("dashboard") == 0 & R.User.memberId < 1) { pageName = "Login"; }
+                if (url.IndexOf("dashboard") == 0 & R.User.userId < 1) { pageName = "Login"; }
                 R.Page.PageRequest = new PageRequest();
                 R.Page.Url.path = "";
                 if ((R.Page.isEditorLoaded == false & url.IndexOf("dashboard") == 0) | url.IndexOf("dashboard") < 0)

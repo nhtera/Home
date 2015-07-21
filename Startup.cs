@@ -18,10 +18,6 @@ namespace Rennder
             services.AddSession();
         }
 
-        ////////////////////////////////////////////////
-        //Request Pipeline
-        ////////////////////////////////////////////////
-
         public void Configure(IApplicationBuilder app)
         {
 

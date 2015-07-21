@@ -15,8 +15,7 @@ namespace Rennder.Services
         {
             WebRequest wr = new WebRequest();
 
-            Elements = new Dictionary<string, string>();
-            Elements = R.Server.SetupScaffold(new string[] { "body" });
+            Scaffold scaffold = new Scaffold(R, "/app/debug/debug.html", "", new string[] { "body" });
             string jsonVs = R.Util.Str.GetString(R.Session["viewstates"]);
             string jsonUser = R.Util.Serializer.WriteObjectAsString(R.User);
             ViewStates vss = (ViewStates)R.Util.Serializer.ReadObject(jsonVs, Type.GetType("Rennder.ViewStates"));
@@ -41,7 +40,7 @@ namespace Rennder.Services
             Elements["body"] = ("<pre>" + string.Join("</pre></div><div><pre>", body.ToArray()).Replace("\\\"", "\"").Replace("\\n", "").Replace("},", "},\n").Replace("],", "],\n") + "</pre>");
 
             //finally, scaffold debug HTML
-            wr.html = R.Server.RenderScaffold("/app/debug/debug.html", Elements);
+            wr.html = scaffold.Render();
             return wr;
         }
     }

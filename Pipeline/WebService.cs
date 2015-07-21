@@ -118,7 +118,7 @@ namespace Rennder.Pipeline
                 }
             }else {
                 context.Response.ContentType = "text/json";
-                context.Response.WriteAsync("{type:\"Empty\",d{}}");
+                context.Response.WriteAsync("{\"type\":\"Empty\",\"d\":{}}");
             }
 
             //finally, unload the Rennder Core:

@@ -1,6 +1,0 @@
-<layout>
-  <panel name="body" index="1" height="26">
-    <component cid="menu" x="707" y="-9" w="255px" h="28px" itemId="a95" design="Vertical|1|1"><![CDATA[|Members|#r=admin-members||2|Web Sites|#r=admin-web-sites||3|Statistics|%23r%3dadmin-statistics|]]></component>
-    <component cid="textbox" x="12" y="-8" w="164px" h="34px" itemId="2nf" design=""><![CDATA[<span class="font-opensans" style="font-size: 24px;">Administration</span>]]></component>
-  </panel>
-</layout>

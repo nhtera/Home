@@ -1,9 +1,0 @@
-<layout>
-  <panel name="body" index="1" height="200">
-    <component cid="admin-members" x="13" y="60" w="936px" h="" itemId="0nw" design="|||||"><![CDATA[|html5|5|default|30]]></component>
-  </panel>
-  <layers>
-    <layer id="104" name="Header Dashboard" />
-    <layer id="954" name="Admin Header" />
-  </layers>
-</layout>

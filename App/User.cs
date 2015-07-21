@@ -23,7 +23,7 @@ namespace Rennder
             read = 2
         }
 
-        public int memberId = 0;
+        public int userId = 0;
         public int viewerId = 0;
         public string visitorId = "";
         public string email = "";
@@ -54,17 +54,17 @@ namespace Rennder
             if (reader.Rows.Count > 0)
             {
                 reader.Read();
-                memberId = reader.GetInt("memberid");
+                userId = reader.GetInt("userid");
                 displayName = reader.Get("displayname");
                 fullName = reader.Get("fullname");
                 photo = reader.Get("photo");
                 email = reader.Get("email");
                 signupDate = reader.GetDateTime("datecreated");
                 defaultPageId = reader.GetInt("defaultcp");
-                viewerId = memberId;
+                viewerId = userId;
 
                 //get all security for this user (for all sites the user belongs to)
-                SqlReader reader2 = R.Page.SqlPage.GetUserSecurity(memberId);
+                SqlReader reader2 = R.Page.SqlPage.GetUserSecurity(userId);
                 List<int> sites = new List<int>();
                 if (reader2.Rows.Count > 0)
                 {
@@ -76,13 +76,13 @@ namespace Rennder
 
                 foreach (int s in sites)
                 {
-                    GetSecurityForWebsite(s, memberId);
+                    GetSecurityForWebsite(s, userId);
                 }
 
-                if (R.Page.ownerId == memberId)
+                if (R.Page.ownerId == userId)
                 {
                     //add full control security (of this website) for the user
-                    reader2 = R.Page.SqlPage.GetUserSecurtyForWebsitesOwned(memberId);
+                    reader2 = R.Page.SqlPage.GetUserSecurtyForWebsitesOwned(userId);
                     if (reader2.Rows.Count > 0)
                     {
                         while (reader2.Read() != false)
@@ -97,7 +97,7 @@ namespace Rennder
                     }
 
                     //check for Rennder Platform administrator
-                    switch (memberId)
+                    switch (userId)
                     {
                         case 1:
                             R.User.AddSecurity(0, "full", User.enumSecurity.readwrite);
@@ -106,7 +106,7 @@ namespace Rennder
                 }
 
                 //update database
-                R.Page.SqlPage.SaveLoginTime(memberId);
+                R.Page.SqlPage.SaveLoginTime(userId);
                 return true;
             }
             else
@@ -118,7 +118,7 @@ namespace Rennder
 
         public void LogOut()
         {
-            memberId = 0;
+            userId = 0;
             visitorId = "";
             email = "";
             fullName = "";
@@ -190,9 +190,9 @@ namespace Rennder
             return websiteSecurity[websiteSecurity.Count - 1];
         }
 
-        public void GetSecurityForWebsite(int websiteId, int memberId)
+        public void GetSecurityForWebsite(int websiteId, int userId)
         {
-            SqlReader reader = R.Page.SqlPage.GetUserSecurityForWebsite(websiteId, memberId);
+            SqlReader reader = R.Page.SqlPage.GetUserSecurityForWebsite(websiteId, userId);
             if (reader.Rows.Count > 0)
             {
                 while (reader.Read() != false)
@@ -280,7 +280,7 @@ namespace Rennder
                     //get ownerId
                     ownerId = myUser.R.Page.SqlPage.GetUserSecurtyOwnerForWebsite(websiteId);
                 }
-                if (ownerId == myUser.memberId & nofull == false)
+                if (ownerId == myUser.userId & nofull == false)
                     return true;
                 if (myUser.CheckSecurity(websiteId) == true & nofull == false)
                     return true;
@@ -322,7 +322,7 @@ namespace Rennder
                     }
                 }
 
-                //check for member access
+                //check for user access
                 for (int x = 0; x <= securityItems.Count - 1; x++)
                 {
                     if (securityItems[x].feature == f)
@@ -331,11 +331,11 @@ namespace Rennder
                     }
                 }
 
-                if (tryAgain == true & myUser.memberId > 0)
+                if (tryAgain == true & myUser.userId > 0)
                 {
-                    //get member access from database and try to authenticate again if it fails the first time
-                    myUser.GetSecurityForWebsite(websiteId, myUser.memberId);
-                    if (ownerId == myUser.memberId)
+                    //get user access from database and try to authenticate again if it fails the first time
+                    myUser.GetSecurityForWebsite(websiteId, myUser.userId);
+                    if (ownerId == myUser.userId)
                     {
                         //user is owner of web site and has full access
                         myUser.AddSecurity(websiteId, "full", Rennder.User.enumSecurity.readwrite);

@@ -20,14 +20,14 @@ namespace Rennder.Services
             if (R.User.Website(R.Page.websiteId).getWebsiteSecurityItem("dashboard/pages", 0) == false) { return response; }
 
             //setup scaffolding variables
-            Dictionary<string, string> Elements = new Dictionary<string, string>();
-            Elements = R.Server.SetupScaffold(new string[] { "website-title", "page-title", "pageid" });
-            Elements["website-title"] = R.Page.websiteTitle;
-            Elements["page-title"] = R.Util.Str.GetPageTitle(R.Page.pageTitle);
-            Elements["pageid"] = R.Page.pageId.ToString();
+            Scaffold scaffold = new Scaffold(R, "/app/editor/dashboard.html", "", 
+                new string[] { "website-title", "page-title", "pageid" });
+            scaffold.Data["website-title"] = R.Page.websiteTitle;
+            scaffold.Data["page-title"] = R.Util.Str.GetPageTitle(R.Page.pageTitle);
+            scaffold.Data["pageid"] = R.Page.pageId.ToString();
 
             //finally, scaffold Rennder platform HTML
-            response.html = R.Server.RenderScaffold("/app/editor/dashboard.html", Elements);
+            response.html = scaffold.Render();
             response.js = CompileJs();
 
             return response;
@@ -42,15 +42,14 @@ namespace Rennder.Services
             if (R.User.Website(R.Page.websiteId).getWebsiteSecurityItem("dashboard/pages", 0) == false) { return response; }
 
             //setup scaffolding variables
-            Dictionary<string, string> Elements = new Dictionary<string, string>();
-            Elements = R.Server.SetupScaffold(new string[] 
+            Scaffold scaffold = new Scaffold(R, "/app/editor/options.html", "", new string[] 
             { "helpicon-grid", "helpicon-dragfrompanel", "helpicon-guidelines" });
-            Elements["helpicon-grid"] = "";
-            Elements["helpicon-dragfrompanel"] = "";
-            Elements["helpicon-guidelines"] = "";
+            scaffold.Data["helpicon-grid"] = "";
+            scaffold.Data["helpicon-dragfrompanel"] = "";
+            scaffold.Data["helpicon-guidelines"] = "";
 
             //finally, scaffold Rennder platform HTML
-            response.html = R.Server.RenderScaffold("/app/editor/options.html", Elements);
+            response.html = scaffold.Render();
             response.js = CompileJs();
 
             return response;
@@ -65,13 +64,12 @@ namespace Rennder.Services
             if (R.User.Website(R.Page.websiteId).getWebsiteSecurityItem("dashboard/pages", 0) == false) { return response; }
 
             //setup scaffolding variables
-            Dictionary<string, string> Elements = new Dictionary<string, string>();
-            Elements = R.Server.SetupScaffold(new string[]
+            Scaffold scaffold = new Scaffold(R, "/app/dashboard/profile.html", "", new string[]
             { "websites", "admin" });
-            if (R.User.memberId == 1) { Elements["admin"] = "true"; }
+            if (R.User.userId == 1) { scaffold.Data["admin"] = "true"; }
 
             //finally, scaffold Rennder platform HTML
-            response.html = R.Server.RenderScaffold("/app/dashboard/profile.html", Elements);
+            response.html = scaffold.Render();
             response.js = CompileJs();
 
             return response;
@@ -86,16 +84,15 @@ namespace Rennder.Services
             if (R.User.Website(R.Page.websiteId).getWebsiteSecurityItem("dashboard/pages", 0) == false) { return response; }
 
             //setup scaffolding variables
-            Dictionary<string, string> Elements = new Dictionary<string, string>();
-            Elements = R.Server.SetupScaffold(new string[] { "url", "data-page", "data-pagename" });
-            Elements["url"] = R.Page.Url.host.Replace("http://", "").Replace("https://", "") + title;
-            Elements["data-page"] = "";
-            Elements["data-pagename"] = "";
+            Scaffold scaffold = new Scaffold(R, "/app/dashboard/newpage.html", "", new string[] { "url", "data-page", "data-pagename" });
+            scaffold.Data["url"] = R.Page.Url.host.Replace("http://", "").Replace("https://", "") + title;
+            scaffold.Data["data-page"] = "";
+            scaffold.Data["data-pagename"] = "";
 
-            R.Page.RegisterJS("newpage", "R.editor.pages.add.item.url = '" + Elements["url"] + "';");
+            R.Page.RegisterJS("newpage", "R.editor.pages.add.item.url = '" + scaffold.Data["url"] + "';");
 
             //finally, scaffold Rennder platform HTML
-            response.html = R.Server.RenderScaffold("/app/dashboard/newpage.html", Elements);
+            response.html = scaffold.Render();
             response.js = CompileJs();
 
             return response;
@@ -110,8 +107,8 @@ namespace Rennder.Services
             if (R.User.Website(R.Page.websiteId).getWebsiteSecurityItem("dashboard/pages", 0) == false) { return response; }
 
             //setup scaffolding variables
-            Dictionary<string, string> Elements = new Dictionary<string, string>();
-            Elements = R.Server.SetupScaffold(new string[] { "url", "page-title", "description", "secure", "page-type", "type" });
+            Scaffold scaffold = new Scaffold(R, "/app/dashboard/pagesettings.html", "", 
+                new string[] { "url", "page-title", "description", "secure", "page-type", "type" });
 
             string parentTitle = "";
             SqlReader reader = R.Page.SqlPage.GetParentInfo(pageId);
@@ -119,25 +116,25 @@ namespace Rennder.Services
             {
                 reader.Read();
                 parentTitle = reader.Get("parenttitle");
-                Elements["page-title"] = R.Util.Str.GetPageTitle(reader.Get("title"));
+                scaffold.Data["page-title"] = R.Util.Str.GetPageTitle(reader.Get("title"));
                 if (reader.GetBool("security") == true)
                 {
-                    Elements["secure"] = "true";
+                    scaffold.Data["secure"] = "true";
                 }
-                Elements["description"] = reader.Get("description");
+                scaffold.Data["description"] = reader.Get("description");
             }
 
-            Elements["url"] = R.Page.Url.host.Replace("http://", "").Replace("https://", "") + Elements["page-title"].Replace(" ", "-") + "/";
+            scaffold.Data["url"] = R.Page.Url.host.Replace("http://", "").Replace("https://", "") + scaffold.Data["page-title"].Replace(" ", "-") + "/";
 
             if (!string.IsNullOrEmpty(parentTitle))
             {
                 parentTitle = R.Util.Str.GetPageTitle(parentTitle);
-                Elements["page-type"] = "true";
-                Elements["type"] = "A sub-page for \"" + parentTitle + "\"";
+                scaffold.Data["page-type"] = "true";
+                scaffold.Data["type"] = "A sub-page for \"" + parentTitle + "\"";
             }
 
             //finally, scaffold Rennder platform HTML
-            response.html = R.Server.RenderScaffold("/app/dashboard/pagesettings.html", Elements);
+            response.html = scaffold.Render();
             response.js = CompileJs();
 
             return response;
@@ -152,13 +149,12 @@ namespace Rennder.Services
             if (R.User.Website(R.Page.websiteId).getWebsiteSecurityItem("dashboard/pages", 0) == false) { return response; }
 
             //setup scaffolding variables
-            Dictionary<string, string> Elements = new Dictionary<string, string>();
-            Elements = R.Server.SetupScaffold(new string[] { });
+            Scaffold scaffold = new Scaffold(R, "/app/editor/layers.html", "", new string[] { });
 
             R.Page.RegisterJS("layers", "R.editor.layers.refresh();");
 
             //finally, scaffold Rennder platform HTML
-            response.html = R.Server.RenderScaffold("/app/editor/layers.html", Elements);
+            response.html = scaffold.Render();
             response.js = CompileJs();
 
             return response;
@@ -174,18 +170,16 @@ namespace Rennder.Services
             if (R.User.Website(R.Page.websiteId).getWebsiteSecurityItem("dashboard/pages", 0) == false) { return response; }
 
             //setup scaffolding variables
-            Dictionary<string, string> Elements = new Dictionary<string, string>();
-            Elements = R.Server.SetupScaffold(new string[]
-            { "components", "categories" });
+            Scaffold scaffold = new Scaffold(R, "/app/editor/components.html", "", new string[] { "components", "categories" });
 
             //get a list of components
-            Elements["components"] = GetComponentsList();
+            scaffold.Data["components"] = GetComponentsList();
 
             //get a list of categories
-            Elements["categories"] = GetComponentCategories();
+            scaffold.Data["categories"] = GetComponentCategories();
 
             //finally, scaffold Rennder platform HTML
-            response.html = R.Server.RenderScaffold("/app/editor/components.html", Elements);
+            response.html = scaffold.Render();
             response.js = CompileJs();
 
             return response;
@@ -217,7 +211,7 @@ namespace Rennder.Services
                 while (reader.Read() != false)
                 {
                     htm += "<div class=\"list-item\" cname=\"" + reader.Get("title") + "\" ctitle=\"" + reader.Get("description") + "\" onmousedown=\"R.editor.components.dragNew.start(event)\" >";
-                    htm += "<img src=\"/components/" + reader.Get("componentid").Replace("-", "/") + "/icon.png\" alt=\"" + reader.Get("title") + "\" cid=\"" + reader.Get("componentid") + "\" /></div>";
+                    htm += "<img src=\"/app/components/" + reader.Get("componentid").Replace("-", "/") + "/icon.png\" alt=\"" + reader.Get("title") + "\" cid=\"" + reader.Get("componentid") + "\" /></div>";
                 }
             }
             return htm;
@@ -226,7 +220,7 @@ namespace Rennder.Services
         private string AddCategory(int id, string title, string description, string icon)
         {
             return "<div class=\"row column\"><div class=\"button-outline\" onclick=\"R.editor.components.category.load(" + id + ")\" title=\"" + description + "\">" + 
-                "<div class=\"left\" style=\"padding-right:10px;\"><img src=\"/components/" + icon + "/iconsm.png\"/></div><div style=\"padding-top:7px;\">" + title + "</div></div></div>";
+                "<div class=\"left\" style=\"padding-right:10px;\"><img src=\"/app/components/" + icon + "/iconsm.png\"/></div><div style=\"padding-top:7px;\">" + title + "</div></div></div>";
         }
 
         private string GetComponentCategories()
@@ -339,7 +333,7 @@ namespace Rennder.Services
             else
             {
                 //load from file
-                string jsp = File.ReadAllText(R.Server.MapPath("/components/" + cid + "/properties.js"));
+                string jsp = File.ReadAllText(R.Server.MapPath("/app/components/" + cid + "/properties.js"));
                 js = jsp;
                 if (R.isLocal == false)
                 {

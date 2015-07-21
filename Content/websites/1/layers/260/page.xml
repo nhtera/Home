@@ -1,5 +1,0 @@
-<layout>
-  <panel name="foot" index="3" height="749">
-    <component cid="textbox" x="-27" y="123" w="300" h="80" itemId="j8o" design=""><![CDATA[<div style="width: 100%; text-align: center;"><span class="font-opensans" style="font-size: 14px;">Welcome, <a href="#v=Rennder.CurrentUser.GetFullName">Username</a>, <br />to the Rennder Platform. <br /><br /><a href="#r=dashboard">View your web sites</a>, or <a href="#s=Rennder.CurrentUser.LogOut">Log Out</a>.<br /></span></div>]]></component>
-  </panel>
-</layout>

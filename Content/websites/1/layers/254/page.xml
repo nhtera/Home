@@ -1,5 +1,0 @@
-<layout>
-  <panel name="body" index="1" height="445" />
-  <panel name="head" index="2" height="73" />
-  <panel name="foot" index="3" height="331" />
-</layout>

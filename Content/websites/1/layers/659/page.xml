@@ -1,5 +1,0 @@
-<layout>
-  <panel name="body" index="1" height="658">
-    <component cid="textbox" x="12" y="9" w="458px" h="82px" responsive="px,fs,px,,tl,19,4,83.720930;301;19;30,20,,271||px,px,px,,tl,21,9,458,20,,479,|px,px,px,,tc;-241,12,9,465,20,,392,|" intelc="!,!,!,!," index="1" itemId="29f" design="" frames=""><![CDATA[<h1>Support Center</h1>]]></component>
-  </panel>
-</layout>

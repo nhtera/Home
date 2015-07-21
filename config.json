@@ -1,8 +1,8 @@
 ﻿{
   "data": {
     "active": "SqlServerTrusted",
-    "SqlServer": "server=.\\SQL2012; database=Rennder; user=RennderDev; pass=development",
-    "SqlServerTrusted": "server=.\\SQL2012; database=Rennder; Trusted_Connection=true",
-    "MySql": ""
+    "SqlServerDev": "server=.\\SQL2012; database=RennderDev; user=RennderDev; password=development",
+    "SqlServerTrusted": "server=.\\SQL2012; database=RennderDev; Trusted_Connection=true",
+    "PostgreSql":  "Host=localhost; Database=RennderDev; Username=RennderDev; Password=development"
   }
 }

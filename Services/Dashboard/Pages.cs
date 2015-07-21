@@ -42,7 +42,7 @@ namespace Rennder.Services.Dashboard
         }
 
 
-        private string LoadPagesList(int parentId = 0, bool layout = true, int orderBy = -1, string viewType = "", string search = "")
+        private string LoadPagesList(int parentId = 0, bool theme = true, int orderBy = -1, string viewType = "", string search = "")
         {
             bool secureEdit = R.User.Website(R.Page.websiteId).getWebsiteSecurityItem("dashboard/pages", 4);
             bool secureSettings = R.User.Website(R.Page.websiteId).getWebsiteSecurityItem("dashboard/pages", 3);
@@ -75,19 +75,19 @@ namespace Rennder.Services.Dashboard
             string htm = "";
             if (viewType == "treeview")
             {
-                htm = LoadLayoutForTreeView(reader, parentId, parentTitle, secureDelete, secureSettings, secureCreate);
+                htm = LoadThemeForTreeView(reader, parentId, parentTitle, secureDelete, secureSettings, secureCreate);
 
             }
             else if (viewType == "list" | string.IsNullOrEmpty(viewType))
             {
-                htm = LoadLayoutForList(reader, layout, parentId, parentTitle, rootId, rootTitle, secureDelete, secureSettings, secureCreate);
+                htm = LoadThemeForList(reader, theme, parentId, parentTitle, rootId, rootTitle, secureDelete, secureSettings, secureCreate);
 
             }
 
             return htm;
         }
 
-        private string LoadLayoutForList(SqlReader reader, bool layout, int parentId, string parentTitle, int rootId, string rootTitle, bool secureDelete, bool secureSettings, bool secureCreate)
+        private string LoadThemeForList(SqlReader reader, bool theme, int parentId, string parentTitle, int rootId, string rootTitle, bool secureDelete, bool secureSettings, bool secureCreate)
         {
             List<string> htm = new List<string>();
             if (reader.Rows.Count > 0)
@@ -105,7 +105,7 @@ namespace Rennder.Services.Dashboard
                 string folderIcon = "";
                 string folderDiv = "";
 
-                if (layout == true)
+                if (theme == true)
                     htm.Add("<div class=\"pages-title\">" + LoadPagesTitleRow(parentId, parentTitle, rootId, rootTitle) + "</div><div class=\"pages-list\">");
                 htm.Add("<ul class=\"columns-first\">");
 
@@ -222,7 +222,7 @@ namespace Rennder.Services.Dashboard
                     htm.Add("<li><div class=\"row color" + i + " item page-" + pageId + "\"><div class=\"column-row\">" + "<div class=\"" + (!string.IsNullOrEmpty(folderDiv) ? "hover-title " : "") + "left\"" + folderDiv + ">" + folderIcon + pageTitle + "</div>" + "<div class=\"hover-only right\">" + options + "</div>" + "</div><div class=\"clear\"></div></div></li>");
                 }
                 htm.Add("</ul>");
-                if (layout == true)
+                if (theme == true)
                 {
                     htm.Add("</div>");
                     //htm.Add(RenderHelpColumn("/help/dashboard/pages.htm"));
@@ -255,7 +255,7 @@ namespace Rennder.Services.Dashboard
             return htm;
         }
 
-        private string LoadLayoutForTreeView(SqlReader reader, int parentId, string parentTitle, bool secureDelete, bool secureSettings, bool secureCreate)
+        private string LoadThemeForTreeView(SqlReader reader, int parentId, string parentTitle, bool secureDelete, bool secureSettings, bool secureCreate)
         {
             List<string> htm = new List<string>();
             if (reader.Rows.Count > 0)

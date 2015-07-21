@@ -403,7 +403,7 @@ R.selectors = {
                 $('.div-max-width'), //[0]
                 $('.div-float-width'),  //[1]
                 $('.div-float-width > div'), //[2]
-                $('.container[autoresize="1"]:not([cid="stackpanel"])'), //[3]
+                $('.container[autoresize="1"]:not([cid="panel"])'), //[3]
                 $('.div-href'), //[4]
                 $('.ispanel:not(.islayout) .inner-panel'), //[5]
                 $('.container.responsive-grid'), //[6]

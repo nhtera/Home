@@ -1,5 +1,0 @@
-<layout>
-  <panel name="body" index="1" height="342">
-    <component cid="textbox" x="687" y="710" w="633px" h="48px" responsive="|||px,px,px,0,tc;52,-1216,710,633,112|" intelc="" itemId="e69" design=""><![CDATA[You are currently logged in as <a href="#v=Rennder.CurrentUser.GetFullName">Username</a>. View your <a href="#r=dashboard">dashboard</a> or <a href="#s=Rennder.CurrentUser.LogOut">log out</a>.]]></component>
-  </panel>
-</layout>

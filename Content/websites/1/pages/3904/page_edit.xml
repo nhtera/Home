@@ -1,9 +1,0 @@
-<layout>
-  <panel name="head" index="2" height="227">
-    <component cid="object" x="24" y="155" w="684" h="72px" responsive="|px,fs,px,,tl,24,155,93.42507;654;24;19,21,,635,72|px,fs,px,,tl,25,102,94.08528;727;25;18,31,,709,72||" intelc=",jek,cqi,," index="-1" itemId="oa3" design="0|1|center|||Bulleted List|left|top|Previous|More" frames=""><![CDATA[1|10|title[Step 1: Make an interface for your web site[description[[photo[dvbtkebkcp.png|title[Step 2: Build a mobile-friendly web page[description[[photo[dvbtkebkcp.png|title[Step 3: Change the color scheme[description[[photo[dvbtkebkcp.png|title[Step 4: Build a grid of panels full of content[description[[photo[dvbtkebkcp.png]]></component>
-  </panel>
-  <layers>
-    <layer id="692" name="InEditor Head" />
-  </layers>
-  <CSS><![CDATA[]]></CSS>
-</layout>

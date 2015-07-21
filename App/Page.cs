@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Xml;
@@ -38,7 +37,7 @@ namespace Rennder
         public string pageFavIcon = "";
         public DateTime pageCreated;
         public int pageSecurity = 0;
-        public int pageMembersOnly = 0;
+        public int pageUsersOnly = 0;
         public string pageVersion = ""; //either empty or an A/B Test ID
         public bool pageLoaded = false;
         public string pageBackground = "";
@@ -51,10 +50,11 @@ namespace Rennder
         public int websitePage404 = 0;
         public bool accessDenied = false;
         public int ownerId = 0;
-        public int layoutId = 0;
-        public int layoutOwner = 0;
-        public string layoutFolder = "";
-        public string prevLayoutFolder = "";
+        public int themeId = 0;
+        public int themeOwner = 0;
+        public string themeName = "";
+        public string themeFolder = "";
+        public string prevThemeFolder = "";
         public string googleWebPropertyId = "";
 
 
@@ -77,7 +77,7 @@ namespace Rennder
 
         //HTML
         [JsonIgnore]
-        private string layoutHtml = ""; //generated HTML for the layout
+        private string themeHtml = ""; //generated HTML for the theme
         [JsonIgnore]
         private string pageHtml = "";   //generated HTML for the page
 
@@ -335,19 +335,20 @@ namespace Rennder
 
         public void LoadPageInfo(SqlReader reader)
         {
-            int oldLayoutId = layoutId;
+            int oldThemeId = themeId;
 
-            if(reader.Rows.Count > 0)
+            if (reader.Rows.Count > 0)
             {
                 reader.Read();
                 pageId = reader.GetInt("pageId");
                 ownerId = reader.GetInt("ownerId");
                 pageSecurity = reader.GetInt("security");
-                pageMembersOnly = reader.GetInt("membersonly");
+                pageUsersOnly = reader.GetInt("usersonly");
                 pageTitle = reader.Get("title");
                 pageCreated = reader.GetDateTime("datecreated");
-                layoutId = reader.GetInt("layoutid");
-                layoutOwner = reader.GetInt("layoutowner");
+                themeId = reader.GetInt("themeid");
+                themeOwner = reader.GetInt("themeowner");
+                themeName = reader.Get("themename");
                 websiteId = reader.GetInt("websiteid");
                 websiteTitle = reader.Get("websitetitle");
                 websiteType = reader.GetInt("websitetype");
@@ -356,14 +357,14 @@ namespace Rennder
                 websitePageAccessDenied = reader.GetInt("pagedenied");
                 websitePage404 = reader.GetInt("page404");
                 pageDescription = R.Sql.Decode(reader.Get("description"));
-                websiteTrial = reader.GetBool("trial");
+                //websiteTrial = reader.GetBool("statustype");
                 googleWebPropertyId = reader.Get("googlewebpropertyid");
                 //LoadBackground(reader.Get("pagebackground"])); //page
                 //else LoadBackground(reader.Get("background"])); //website
                 pageParentId = reader.GetInt("parentid");
                 if (pageParentId < 0) { pageParentId = 0; }
                 parentTitle = reader.Get("parenttitle");
-                
+
                 string pageCss = "";
                 //get CSS for whole web site
                 if (isPageLoaded == false | pageCssChanged == true)
@@ -371,19 +372,20 @@ namespace Rennder
                     pageCss = reader.Get("websitecss");
                 }
                 pageCss = reader.Get("css");
-                
+
                 string favIcon = reader.Get("icon");
-                if(R.isWebService == true)
+                if (R.isWebService == true)
                 {
                     if (favIcon != pageFavIcon)
                     {
                         //change favicon via JS
                     }
-                }else
+                }
+                else
                 {
                     pageFavIcon = favIcon;
                 }
-                 
+
                 pageFacebook = "";
                 if (reader.Get("photo") != "")
                 {
@@ -393,17 +395,18 @@ namespace Rennder
                                 "<meta id=\"metafbsite\" property=\"og:site_name\" content=\"" + R.Util.Str.GetWebsiteTitle(pageTitle) + "\" />";
             }
 
-            if(pageId <= 0)
+            if (pageId <= 0)
             {
                 //no page loaded, show 404
                 LoadPage("404");
             }
 
-            if (reader.Rows.Count > 0){
+            if (reader.Rows.Count > 0)
+            {
                 //finished loading page information, so check for security & core changes made from info
-                if(demoId > 0)
+                if (demoId > 0)
                 {
-                    if(demoId == pageId && R.Request.QueryString.ToString().IndexOf("?demo") >= 0)
+                    if (demoId == pageId && R.Request.QueryString.ToString().IndexOf("?demo") >= 0)
                     {
                         isDemo = true;
                         R.User.viewerId = ownerId;
@@ -415,33 +418,36 @@ namespace Rennder
                         isEditable = false;
                     }
 
-                }else if(R.Request.QueryString.ToString().IndexOf("?demo") >= 0)
+                }
+                else if (R.Request.QueryString.ToString().IndexOf("?demo") >= 0)
                 {
                     //no demo was launched from RennderScript, 
                     //so check to see if this website is a template website 
                     //(which supports demo of any public page)
-                    if(websiteType == 2)
+                    if (websiteType == 2)
                     {
                         isDemo = true;
                         R.User.viewerId = ownerId;
                         isEditable = true;
                         isTemplate = true;
-                    }else
+                    }
+                    else
                     {
                         demoId = 0;
                         isEditable = false;
                     }
                 }
 
-                if(isDemo == true)
+                if (isDemo == true)
                 {
                     //load demo tutorial
-                }else
+                }
+                else
                 {
-                    if(R.User.memberId > 0)
+                    if (R.User.userId > 0)
                     {
                         //user is logged in, check security for page editing
-                        R.User.viewerId = R.User.memberId;
+                        R.User.viewerId = R.User.userId;
                         if (R.User.Website(websiteId).getWebsiteSecurityItem("dashboard/pages", 4))
                         {
                             isEditable = true;
@@ -450,94 +456,85 @@ namespace Rennder
                 }
 
                 //don't let bot / crawler edit page
-                if(isBot == true) { isEditable = false; }
+                if (isBot == true) { isEditable = false; }
 
 
                 if (!string.IsNullOrEmpty(R.Request.Query["a"]) & R.User.viewerId < 1)
                 {
                     //authenticate login for taking a screenshot
-                    if(R.Page.SqlPage.AuthLoginForScreenshot(R.Request.Query["a"], websiteId, (R.Request.Query["ak"] == "0" ? 0 : 1)) == "pass")
+                    if (R.Page.SqlPage.AuthLoginForScreenshot(R.Request.Query["a"], websiteId, (R.Request.Query["ak"] == "0" ? 0 : 1)) == "pass")
                     {
                         R.User.viewerId = ownerId;
-                        R.User.memberId = ownerId;
+                        R.User.userId = ownerId;
                         RegisterJS("authjs2", "var evscreenshot = 1;$('body').css({ 'overflowY': 'hidden' });");
                     }
                 }
 
-                if(pageSecurity == 1 && (ownerId != R.User.viewerId || isDemo == true))
+                if (pageSecurity == 1 && (ownerId != R.User.viewerId || isDemo == true))
                 {
                     //don't allow anyone but the website owner to view this page
-                    
+
                 }
 
-                if(isEditable == true || isDemo == true)
+                if (isEditable == true || isDemo == true)
                 {
                     PageTitleForBrowserTab = pageEditorTitle + websiteTitle + pageEditorTitleEnd;
                 }
 
-                if(layoutFolder == "")
+                if (themeFolder == "")
                 {
-                    //load website layout from request query string
+                    //load website theme from request query string
                     if (!string.IsNullOrEmpty(R.Request.Query["lid"]))
                     {
-                        //LoadLayoutIdFromQuery();
+                        //LoadThemeIdFromQuery();
                     }
-                    layoutFolder = "/content/layouts/" + layoutOwner + "/" + layoutId + "/";
-                    if(R.isFirstLoad == true)
+                    themeFolder = "/content/themes/" + themeName + "/";
+                    if (R.isFirstLoad == true)
                     {
-                        LoadLayout();
+                        LoadTheme();
                     }
                 }
                 else
                 {
-                    if(oldLayoutId != layoutId && R.isFirstLoad == false)
+                    if (oldThemeId != themeId && R.isFirstLoad == false)
                     {
-                        layoutFolder = "/content/layouts/" + layoutOwner + "/" + layoutId + "/";
+                        themeFolder = "/content/themes/" + themeName + "/";
                     }
                 }
-
-                //load RML engine
-                LoadRmlEngine();
 
                 //setup page folder
                 if (pageType == 1)
                 {
                     pageFolder = "/content/websites/" + websiteId + "/pages/" + pageId + "/";
-                }else
+                }
+                else
                 {
                     pageFolder = "/content/websites/" + websiteId + "/layers/" + pageId + "/";
                 }
 
                 //setup work folder
                 workFolder = pageFolder;
-                
+
             }
         }
 
-        public void LoadRmlEngine()
+        public void LoadTheme()
         {
-            R.PageRml = new RML(R, layoutFolder);
-            R.WebRml = new RML(R, "/content/websites/" + websiteId + "/");
-        }
+            //load website theme into Rennder
+            if (themeFolder == prevThemeFolder) { return; }
+            prevThemeFolder = themeFolder;
 
-        public void LoadLayout()
-        {
-            //load website layout into Rennder
-            if (layoutFolder == prevLayoutFolder) { return; }
-            prevLayoutFolder = layoutFolder;
-
-            //start RML engine
-            LoadRmlEngine();
+            R.Elements = new Elements(R, themeFolder);
 
             if (R.isFirstLoad == true)
             {
-                //load CSS for layout
-                R.App.Elements["layout-css"] = layoutFolder + "style.css?v=" + R.Version;
+                //load CSS for theme
+                R.App.scaffold.Data["theme-css"] = themeFolder + "style.css?v=" + R.Version;
             }
             else
             {
                 //load CSS via javascript instead
-                RegisterJS("cssfile", "$('#cssFile').href = '" + layoutFolder + "style.css?v=" + R.Version + "';");
+                RegisterJS("cssfile", "$('#themeCss').href = '" + themeFolder + "style.css?v=" + R.Version + "';");
             }
 
             int[] start = new int[3];
@@ -545,24 +542,24 @@ namespace Rennder
             string fileWebsite = "";
             string headWebsite = "";
             string footWebsite = "";
-            string urlDefaultHtm = R.Server.path(layoutFolder + "default.htm");
-            string urlWebsiteHtm = R.Server.path("/content/websites/" + websiteId + "/website.htm");
+            string urlDefaultHtm = R.Server.path(themeFolder + "theme.html");
+            string urlWebsiteHtm = R.Server.path("/content/websites/" + websiteId + "/website.html");
 
-            //get layout HTML
-            if (R.Server.Cache.ContainsKey(layoutFolder + "default.htm") == true)
+            //get theme HTML
+            if (R.Server.Cache.ContainsKey(themeFolder + "theme.html") == true)
             {
-                fileHtml = R.Server.Cache[layoutFolder + "default.htm"].ToString();
+                fileHtml = R.Server.Cache[themeFolder + "theme.html"].ToString();
             }
             else
             {
                 fileHtml = File.ReadAllText(urlDefaultHtm);
-                R.Server.Cache[layoutFolder + "default.htm"] = fileHtml;
+                R.Server.Cache[themeFolder + "theme.html"] = fileHtml;
             }
 
             //get website HTML
-            if (R.Server.Cache.ContainsKey("/content/websites/" + websiteId + "/website.htm") == true)
+            if (R.Server.Cache.ContainsKey("/content/websites/" + websiteId + "/website.html") == true)
             {
-                fileWebsite = R.Server.Cache["/content/websites/" + websiteId + "/website.htm"].ToString();
+                fileWebsite = R.Server.Cache["/content/websites/" + websiteId + "/website.html"].ToString();
             }
             else
             {
@@ -570,69 +567,59 @@ namespace Rennder
                 {
                     fileWebsite = File.ReadAllText(urlWebsiteHtm);
                 }
-                R.Server.Cache["/content/websites/" + websiteId + "/website.htm"] = fileWebsite;
+                R.Server.Cache["/content/websites/" + websiteId + "/website.html"] = fileWebsite;
             }
             if (!string.IsNullOrEmpty(fileWebsite))
             {
-                start[0] = fileWebsite.IndexOf("<rml:content/>");
+                start[0] = fileWebsite.IndexOf("{{body}}");
                 if (start[0] >= 0)
                 {
-                    headWebsite = fileWebsite.Substring(0, start[0] - 1);
-                    footWebsite = fileWebsite.Substring(start[0] + 14);
+                    headWebsite = fileWebsite.Substring(0, start[0]);
+                    footWebsite = fileWebsite.Substring(start[0] + 8);
                 }
                 fileHtml = headWebsite + fileHtml + footWebsite;
             }
 
             int i = -1;
-            List<string> layoutHtm = new List<string>();
+            List<string> themeHtm = new List<string>();
             start[2] = 0;
             do
             {
-                start[0] = fileHtml.IndexOf("<rml:", start[2]);
+                start[0] = fileHtml.IndexOf("{{", start[2]);
                 if (start[0] >= 0)
                 {
-                    //found an  panel
-                    start[1] = fileHtml.IndexOf("/>", start[0] + 12);
+                    //found a panel
+                    start[1] = fileHtml.IndexOf("}}", start[0] + 2);
                     if (start[1] >= 0)
                     {
                         i += 1;
 
-                        //add chunck of layout html to the page
+                        //add chunck of theme html to the page
                         string htm = "";
                         htm = fileHtml.Substring(start[2], start[0] - start[2]);
                         start[2] = start[1] + 2;
 
-                        //create new  panel
+                        //create new panel
                         Panel newPanel = new Panel(R);
 
-                        string[] arrAttr = fileHtml.Substring(start[0] + 11, start[1] - (start[0] + 11)).Split('\"');
-                        for (int x = 0; x <= arrAttr.Length - 1; x++)
-                        {
-                            if (arrAttr[x].IndexOf("name") >= 0 & arrAttr[x].IndexOf("=") >= 0)
-                            {
-                                newPanel.Name = arrAttr[x + 1];
-                                newPanel.ID = "panel" + newPanel.Name.Replace(" ", "");
-                                
-                                break;
-                            }
-                        }
+                        string name = fileHtml.Substring(start[0] + 2, start[1] - (start[0] + 2));
+                        newPanel.Name = name;
+                        newPanel.ID = "panel" + newPanel.Name.Replace(" ", "");
 
-                        //add attributes to the  panel
-                        newPanel.isPartOfLayout = true;
+                        //add attributes to the panel
+                        newPanel.isPartOfTheme = true;
 
                         if (newPanel.Name.ToLower() == "body")
                         {
                             //create loading body div
-                            RmlLoading rmlLoading = default(RmlLoading);
-                            rmlLoading = R.WebRml.GetRmlLoading("");
                             htm += "<div class=\"absolute\" style=\"width:100%;\"><div class=\"relative\" id=\"divPageLoad\" style=\"width:100%;\"><div class=\"div-max-width\" style=\"width:250px; margin:0px auto; padding:100px 0px;\">";
-                            //htm += rmlLoading.GetCompiledRml;
+                            htm += "Loading content...";
                             htm += "<div style=\"clear:both;\"></div></div></div></div>";
                         }
 
                         htm += "{{panel-" + newPanel.Name.ToLower().Replace(" ", "") + "}}";
 
-                        layoutHtm.Add(htm);
+                        themeHtm.Add(htm);
 
                         //add panel to list
                         AddPanel(newPanel);
@@ -648,8 +635,8 @@ namespace Rennder
                 }
             } while (true);
 
-            layoutHtm.Add(fileHtml.Substring(start[2]));
-            layoutHtml = String.Join("", layoutHtm.ToArray());
+            themeHtm.Add(fileHtml.Substring(start[2]));
+            themeHtml = String.Join("", themeHtm.ToArray());
         }
 
         public XmlDocument LoadPageXml(int pid, string pFolder, XmlDocument pageLoadedXml = null)
@@ -673,7 +660,7 @@ namespace Rennder
                 }
 
 
-                if (ownerId == R.User.memberId | R.User.Website(websiteId).getWebsiteSecurityItem("dashboard/pages", 4) == true)
+                if (ownerId == R.User.userId | R.User.Website(websiteId).getWebsiteSecurityItem("dashboard/pages", 4) == true)
                 {
                     //attempt to load the unpublished version of this page
                     if (R.Server.Cache.ContainsKey(pFolder + pageName + "_edit.xml"))
@@ -722,7 +709,7 @@ namespace Rennder
                         if (File.Exists(R.Server.path(pageFilePath)) == false)
                         {
                             //create new page
-                            myXmlPage.LoadXml("<layout></layout>");
+                            myXmlPage.LoadXml("<theme></theme>");
                             FileStream fs = new FileStream(R.Server.path(pageFilePath), FileMode.CreateNew);
                             myXmlPage.Save(fs);
                         }
@@ -745,19 +732,19 @@ namespace Rennder
             if (pid <= 0) { return; }
             if (string.IsNullOrEmpty(pname)) { return; }
 
-            if (pageMembersOnly == 1 & R.User.memberId > 1 & ptype == 1)
+            if (pageUsersOnly == 1 & R.User.userId > 1 & ptype == 1)
             {
-                //check to see if this user is a member of the web site
+                //check to see if this user is a user of the web site
                 if (R.User.Website(websiteId).getWebsiteSecurityItem("dashboard/pages", 4) == false)
                 {
-                    //member doesn't have permission
+                    //user doesn't have permission
                     LoadPage("Access Denied");
                     return;
                 }
             }
-            else if (pageMembersOnly == 1 & ptype == 1)
+            else if (pageUsersOnly == 1 & ptype == 1)
             {
-                //member not logged in
+                //user not logged in
                 LoadPage("Access Denied");
                 return;
             }
@@ -821,7 +808,7 @@ namespace Rennder
                 }
                 else
                 {
-                    R.App.Elements["title"] = pageTitle;
+                    R.App.scaffold.Data["title"] = pageTitle;
                 }
 
             }
@@ -874,7 +861,7 @@ namespace Rennder
                     }
                     else
                     {
-                        R.App.Elements["custom-css"] = myCSS;
+                        R.App.scaffold.Data["custom-css"] = myCSS;
                     }
 
                 }
@@ -1140,41 +1127,21 @@ namespace Rennder
             accessDenied = wasDenied;
         }
 
-        public Component LoadComponent(string cId, int x, int y, bool useOffsetPositions = true, string w = "0", string h = "0", string content = "", string design = "", 
-                                        string itemId = "", bool isEditEnabled = true, Panel myPanel = null, string workFolder = "", int addAtIndex = -1, 
-                                        int ComponentIndex = -199, int pid = 0, int pageType = 1, bool isDropped = false, string responsive = "", string intelLayers = "", 
-                                        string frameSettings = "", bool noSize = false)
+        public Component LoadComponent
+            (string cId, int x, int y, bool useOffsetPositions = true, string w = "0", string h = "0", string content = "", string design = "", 
+            string itemId = "", bool isEditEnabled = true, Panel myPanel = null, string workFolder = "", int addAtIndex = -1, 
+            int ComponentIndex = -199, int pid = 0, int pageType = 1, bool isDropped = false, string responsive = "", string intelLayers = "", 
+            string frameSettings = "", bool noSize = false)
         {
             if (myPanel == null){return null;}
 
-            string myHead = "";
-            string myFoot = "";
-            if (myPanel.ComponentDesigns != null)
-            {
-                //get component design head & foot
-                if(myPanel.Components.Count > 0)
-                {
-                    RmlStackPanel.structComponent cDesign = default(RmlStackPanel.structComponent);
-                    int i = -1;
-                    for (int r = 0; r < myPanel.Components.Count; r++)
-                    {
-                        i += 1;
-                        if (i >= myPanel.ComponentDesigns.Length - 1)
-                            i = 0;
-                    }
-                    cDesign = (RmlStackPanel.structComponent)myPanel.ComponentDesigns.GetValue(i);
-                    myHead += cDesign.htmHead;
-                    myFoot += cDesign.htmFoot;
-                }
-                
-            }
-
             //load component from class
-            string cFolder = R.Util.Str.Capitalize(cId.Replace("-", "/").Replace("stackpanel", "Panel").Replace("StackPanel", "Panel"));
+            string cFolder = R.Util.Str.Capitalize(cId.Replace("-", "/"));
             string className = "Rennder.Components." + cFolder.Replace("/",".");
-            Type type = Type.GetType(className);
+            Type type = Type.GetType(className, false, true);
             if(type == null) { return null; }
             Component component = (Component)Activator.CreateInstance(type, new object[] { R });
+
             if (component == null) { return null; }
             //load component content
             component.DataField = content;
@@ -1233,13 +1200,13 @@ namespace Rennder
             }
 
             component.Draggable = 1;
-            if (cId.ToLower() == "stackpanel")
+            if (cId.ToLower() == "panel")
             {
-                component.ComponentType = "stackpanel";
+                component.ComponentType = "panel";
             }
-            else if (myPanel.isPartOfLayout == false)
+            else if (myPanel.isPartOfTheme == false)
             {
-                component.ComponentType = "stackcomponent";
+                component.ComponentType = "panelcomponent";
             }
 
 
@@ -1321,19 +1288,6 @@ namespace Rennder
                 string[] responsiveArr = responsive.Split('|');
                 component.responsiveDesignSetLevels(responsive);
                 jsLevels = string.Join("','", responsiveArr);
-
-                //set up default responsive level (4 = 1024x768)
-                if (!string.IsNullOrEmpty(responsiveArr[3]))
-                {
-                    string[] lvl = responsiveArr[3].Split(',');
-                    if (lvl[1] == "%" | lvl[1] == "fs" | lvl[4] == "tr")
-                    {
-                        if (lvl[4] == "tr")
-                        {
-                            component.Align = "right";
-                        }
-                    }
-                }
             }
 
             //load intelligent layers
@@ -1361,7 +1315,7 @@ namespace Rennder
                 else
                 {
                     //load from file
-                    string jsp = File.ReadAllText(R.Server.path("/components/" + cFolder + "/component.js"));
+                    string jsp = File.ReadAllText(R.Server.path("/app/components/" + cFolder + "/component.js"));
                     R.Page.RegisterJSonce("comp-" + cFolder, jsp);
                     if (R.isLocal == false)
                     {
@@ -1391,57 +1345,55 @@ namespace Rennder
         public String Render()
         {
             //finish loading all panels
+            if (bodyPanels != null & R.isWebService == false)
             {
-                if (bodyPanels != null & R.isWebService == false)
+                if (bodyPanels.Count > 0)
                 {
-                    if (bodyPanels.Count > 0)
+                    for (int x = 0; x <= bodyPanels.Count - 1; x++)
                     {
-                        for (int x = 0; x <= bodyPanels.Count - 1; x++)
-                        {
-                            if(layoutHtml.IndexOf("{{panel-" + bodyPanels[x].Name.ToLower().Replace(" ", "") + "}}") < 0) { break; }
-                            layoutHtml = layoutHtml.Replace("{{panel-" + bodyPanels[x].Name.ToLower().Replace(" ","") + "}}",bodyPanels[x].Render());
-                        }
+                        if(themeHtml.IndexOf("{{panel-" + bodyPanels[x].Name.ToLower().Replace(" ", "") + "}}") < 0) { break; }
+                        themeHtml = themeHtml.Replace("{{panel-" + bodyPanels[x].Name.ToLower().Replace(" ","") + "}}",bodyPanels[x].Render());
                     }
                 }
-                if (!string.IsNullOrEmpty(layoutHtml))
-                {
-                    Regex rgx = new Regex(@"\{\{.*?\}\}");
-                    layoutHtml = rgx.Replace(layoutHtml, "");
-                }
-
-                if (R.isWebService == true & PageRequest != null)
-                {
-                    //render all components that have been loaded
-                    List<PageComponent> remove = new List<PageComponent>();
-                    foreach (PageComponent comp in PageRequest.components)
-                    {
-                        if(comp.Component.rendered == false)
-                        {
-                            comp.html = R.Util.Str.CleanHtml(comp.Component.Render());
-                        }else
-                        {
-                            remove.Add(comp);
-                        }
-                    }
-
-                    //remove any components from PageRequest that was 
-                    //rendered inside of a panel component (removing duplicates)
-                    foreach(PageComponent comp in remove)
-                    {
-                        PageRequest.components.Remove(comp);
-                    }
-
-                    //render Javascript
-                    if (R.Page.postJScode != null)
-                    {
-                        R.Page.postJS += string.Join("\n", R.Page.postJScode) + R.Page.postJSLast;
-                    }
-                    PageRequest.js += R.Page.postJS;
-                }
-
-                R.SaveViewState();
             }
-            return layoutHtml;
+            if (!string.IsNullOrEmpty(themeHtml))
+            {
+                Regex rgx = new Regex(@"\{\{.*?\}\}");
+                themeHtml = rgx.Replace(themeHtml, "");
+            }
+
+            if (R.isWebService == true & PageRequest != null)
+            {
+                //render all components that have been loaded
+                List<PageComponent> remove = new List<PageComponent>();
+                foreach (PageComponent comp in PageRequest.components)
+                {
+                    if(comp.Component.rendered == false)
+                    {
+                        comp.html = R.Util.Str.CleanHtml(comp.Component.Render());
+                    }else
+                    {
+                        remove.Add(comp);
+                    }
+                }
+
+                //remove any components from PageRequest that was 
+                //rendered inside of a panel component (removing duplicates)
+                foreach(PageComponent comp in remove)
+                {
+                    PageRequest.components.Remove(comp);
+                }
+
+                //render Javascript
+                if (R.Page.postJScode != null)
+                {
+                    R.Page.postJS += string.Join("\n", R.Page.postJScode) + R.Page.postJSLast;
+                }
+                PageRequest.js += R.Page.postJS;
+            }
+
+            R.SaveViewState();
+            return themeHtml;
         }
 
         #endregion

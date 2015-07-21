@@ -43,7 +43,8 @@
         "System.Security.Cryptography.Encryption": "4.0.0-beta-22816",
         "System.Security.Cryptography.RandomNumberGenerator": "4.0.0-beta-22816",
         "System.Security.Cryptography.Hashing.Algorithms": "4.0.0-beta-22816",
-        "Newtonsoft.Json": "7.0.1"
+        "Newtonsoft.Json": "7.0.1",
+        "Npgsql": "3.0.0-rc0001"
 
       }
     }

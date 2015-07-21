@@ -1,9 +1,0 @@
-<layout>
-  <panel name="head" index="2" height="114">
-    <component cid="textbox" x="23" y="10" w="540px" h="104px" responsive="|||px,px,px,,tl,23,10,540,20,,563,|" intelc=",,,!," index="-1" itemId="e69" design="" frames=""><![CDATA[<h1>Support Center</h1>
-<div>&nbsp;</div>
-<div><a href="#s=Rennder.LoadTutorial(gettingstarted)">Getting Started</a></div>]]></component>
-  </panel>
-  <layers />
-  <CSS><![CDATA[]]></CSS>
-</layout>

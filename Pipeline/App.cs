@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNet.Http;
-using System.Data.SqlClient;
 
 namespace Rennder.Pipeline
 {
     public class App
     {
         private Core R;
-        public Dictionary<string, string> Elements = new Dictionary<string, string>();
+        public Scaffold scaffold;
 
         public App(Server server, HttpContext context)
         {
@@ -19,12 +18,12 @@ namespace Rennder.Pipeline
             R.isFirstLoad = true;
 
             //setup scaffolding variables
-            Elements = R.Server.SetupScaffold(new string[]
-            { "title", "description", "facebook", "layout-css", "website-css", "editor-css", "head-css", "favicon", "font-faces", "body-class", "custom-css",
+            scaffold = new Scaffold(R, "/app/app.html", "", new string[]
+            { "title", "description", "facebook", "theme-css", "website-css", "editor-css", "head-css", "favicon", "font-faces", "body-class", "custom-css",
               "background", "editor","webpage-class", "body-sides","body", "scripts", "https-url", "http-url"});
 
             //default favicon
-            Elements["favicon"] = "/images/favicon.gif";
+            scaffold.Data["favicon"] = "/images/favicon.gif";
 
             //check for web bots such as gogle bot
             string agent = context.Request.Headers["User-Agent"].ToLower();
@@ -43,16 +42,16 @@ namespace Rennder.Pipeline
             }
 
             //get browser type
-            Elements["body-class"] = R.Util.GetBrowserType();
+            scaffold.Data["body-class"] = R.Util.GetBrowserType();
 
             //parse URL
             R.Page.GetPageUrl();
             if(R.isLocal == true)
             {
-                Elements["https-url"] = "http://" + R.Page.Url.host.Replace("/","");
+                scaffold.Data["https-url"] = "http://" + R.Page.Url.host.Replace("/","");
             }else
             {
-                Elements["https-url"] = "https://" + R.Page.Url.host.Replace("/", "");
+                scaffold.Data["https-url"] = "https://" + R.Page.Url.host.Replace("/", "");
             }
 
             //get page Info
@@ -70,7 +69,7 @@ namespace Rennder.Pipeline
                     R.Page.LoadPage(R.Page.pageFolder + "page.xml", 1, R.Page.pageId, R.Page.pageTitle);
 
                     //load website.css
-                    Elements["website-css"] = "/content/websites/" + R.Page.websiteId + "/website.css?v=" + R.Version;
+                    scaffold.Data["website-css"] = "/content/websites/" + R.Page.websiteId + "/website.css?v=" + R.Version;
 
                     //load iframe resize code, so if a Rennder web page is loaded within an iframe, it can communicate
                     //with the parent web page whenever the iframe resizes.
@@ -79,8 +78,6 @@ namespace Rennder.Pipeline
                         js += "var frameSize = 0;" + "function checkResize(){" + "var wurl = \"" + R.Request.Query["w"] + "\";" + "if(frameHeight != frameSize){" + "parent.postMessage(\"resize|\"+(frameHeight),wurl);" + "}" + "frameSize = frameHeight;" + "setTimeout(\"checkResize();\",1000);" + "}" + "checkResize();";
                         R.Page.isEditable = false;
                     }
-
-                    
 
                     //register app javascript
                     js += "R.page.useAjax = " + R.Page.useAJAX.ToString().ToLower() + "; R.ajax.viewstateId = '" + R.ViewStateId + "'; R.hash.last=R.page.title; R.hash.start(); R.events.render.init();";
@@ -91,7 +88,7 @@ namespace Rennder.Pipeline
                     {
                         Editor editor = new Editor(R);
                         string[] result = editor.LoadEditor();
-                        Elements["editor"] = result[0];
+                        scaffold.Data["editor"] = result[0];
                         R.Page.RegisterJS("editor", result[1]);
                     }
 
@@ -130,16 +127,16 @@ namespace Rennder.Pipeline
                         R.Page.postJS += string.Join("\n", R.Page.postJScode) + R.Page.postJSLast;
                     }
                                         
-                    Elements["scripts"] = scripts + "\n" + "<script type=\"text/javascript\">" + R.Page.postJS + "</script>";
+                    scaffold.Data["scripts"] = scripts + "\n" + "<script type=\"text/javascript\">" + R.Page.postJS + "</script>";
 
                     //render web page
-                    Elements["body"] = R.Page.Render();
+                    scaffold.Data["body"] = R.Page.Render();
                 }
             }
 
             //finally, scaffold Rennder platform HTML
             R.Response.ContentType = "text/html";
-            R.Response.WriteAsync(R.Server.RenderScaffold("/app/app.html", Elements));
+            R.Response.WriteAsync(scaffold.Render());
 
             //unload the core
             R.Unload();

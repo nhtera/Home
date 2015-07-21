@@ -1,5 +1,0 @@
-<layout>
-  <panel name="body" index="1" height="110">
-    <component cid="textbox" x="20" y="27" w="223" h="120" responsive="px,px,px,,tl,20,27,223,20,,243|px,px,px,0,tc;-5,11,7,355,20,,446|px,fs,px,0,tl,30,11,67.486030;895;30;261,20,,634|px,px,px,,tc;-230,11,16,556,20,,731|" intelc=",,,," itemId="249" design=""><![CDATA[<span class="font-face" style="font-size: 36px;">Development Center</span>]]></component>
-  </panel>
-</layout>

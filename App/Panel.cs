@@ -15,7 +15,7 @@ namespace Rennder
         public int ResizeType = 0;
         public int HeightType = 0;
         public int PageId = 0;
-        public bool isPartOfLayout = false;
+        public bool isPartOfTheme = false;
         [JsonIgnore]
         public List<Component> Components = new List<Component>();
 
@@ -60,7 +60,7 @@ namespace Rennder
                               (isEmpty == true ? "" : string.Join("\n",comps.ToArray())) + 
                               InnerFoot;
 
-            htm = StackHead + "<div id=\"" + ID + "\" class=\"panel" + Name + " ispanel" + (isPartOfLayout == true ? " islayout" : "") + "\">" +
+            htm = StackHead + "<div id=\"" + ID + "\" class=\"panel" + Name + " ispanel" + (isPartOfTheme == true ? " istheme" : "") + "\">" +
                   DesignHead + inner.Render() + DesignFoot + "</div>" + StackFoot;
 
             PanelView pv = GetPanelView();
@@ -180,7 +180,7 @@ namespace Rennder
             PanelView pv = new PanelView();
             pv.Name = Name;
             pv.ClassName = inner.ID;
-            pv.isPartOfLayout = isPartOfLayout;
+            pv.isPartOfTheme = isPartOfTheme;
             pv.Components = Components;
             pv.PageId = PageId;
             pv.Height = Height;
@@ -190,7 +190,7 @@ namespace Rennder
         public void LoadFromPanelView(PanelView pv)
         {
             Name = pv.Name;
-            isPartOfLayout = pv.isPartOfLayout;
+            isPartOfTheme = pv.isPartOfTheme;
             Components = pv.Components;
             PageId = pv.PageId;
         }
@@ -201,7 +201,7 @@ namespace Rennder
     {
         public string Name = "";
         public string ClassName = "";
-        public bool isPartOfLayout = false;
+        public bool isPartOfTheme = false;
         public int PageId = 0;
         public int Height = 0;
         [JsonIgnore]

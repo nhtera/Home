@@ -64,24 +64,11 @@ namespace Rennder
         public bool rendered = false;
 
         [JsonIgnore]
-        private Component _myParent;
-        public virtual string Align { get; set; }
-        public virtual string FrameSettings { get; set; }
-        public virtual string ContainerHeadHtm { get; set; }
-        public virtual string ContainerFootHtm { get; set; }
-
-        [JsonIgnore]
         public Utility.DOM.Element DivBase;
         [JsonIgnore]
         public Utility.DOM.Element DivItem;
         [JsonIgnore]
-        public RmlButton[] rmlButtons;
-        [JsonIgnore]
-        public RmlStackPanel[] rmlStackPanels;
-        [JsonIgnore]
-        public RmlMenu[] rmlMenu;
-        [JsonIgnore]
-        public RmlTextbox[] rmlTextbox;
+        protected Scaffold Scaffold;
 
         public Component(Core RennderCore)
         {
@@ -125,7 +112,7 @@ namespace Rennder
 
         public virtual void RefreshComponent()
         {
-            //executed when the Layout Update Panel is refreshed
+            //executed when the Theme Update Panel is refreshed
             //used to refresh any client-side modifications, such 
             //as loading a flash player via javascript
         }
@@ -226,12 +213,6 @@ namespace Rennder
         public virtual bool UseHeight
         {
             get { return true; }
-        }
-
-        public virtual Component myParent
-        {
-            get { return _myParent; }
-            set { _myParent = value; }
         }
 
         public virtual int defaultWidth
@@ -556,13 +537,15 @@ namespace Rennder
 
         [JsonIgnore]
         protected Core R;
-
-        public string itemId = "";
         [JsonIgnore]
         protected string InnerHtml = "";
-
+        [JsonIgnore]
+        protected Scaffold scaffold;
         [JsonIgnore]
         protected ComponentView _component;
+
+        public string itemId = "";
+
         public ComponentView Component
         {
             get
@@ -573,7 +556,6 @@ namespace Rennder
                 return _component;
             }
         }
-        public Dictionary<string, string> Elements;
 
         public virtual int Width
         {
@@ -585,6 +567,7 @@ namespace Rennder
             R = RennderCore;
             _component = c;
             itemId = Component.itemId;
+            scaffold = new Scaffold(R, "/app/components/" + Component.ComponentName.Replace(" ", "/") + "/properties.html", "");
         }
 
         /// <summary>
@@ -593,7 +576,8 @@ namespace Rennder
         /// <remarks></remarks>
         public string Render()
         {
-            return R.Server.RenderScaffold("/components/" + Component.ComponentName.Replace(" ","/") + "/properties.html", Elements);
+
+            return scaffold.Render();
         }
 
         /// <summary>

@@ -159,7 +159,7 @@ R.editor = {
     },
 
     dashboard: { ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        visible: false, init: false, sidebarWidth:155,
+        visible: false, init: false, 
 
         show: function () {
             $('.webpage, .window').hide();
@@ -177,11 +177,11 @@ R.editor = {
                 R.hash.special.add('dashboard', R.editor.dashboard.callback.hash);
             }
 
-            if ($('.winDashboardSidebar').length == 0) {
-                //load sidebar window
-                R.editor.window.load('DashboardSidebar', 'Dashboard/Sidebar/Load', {}, { x: 0, y: 50, w: R.editor.dashboard.sidebarWidth, h: '100%', toolbar: false });
+            if ($('.winDashboardInterface').length == 0) {
+                //load interface window
+                R.editor.window.load('DashboardInterface', 'Dashboard/Interface/Load', {}, { x: 0, y: 50, w: '100%', h: '100%', toolbar: false });
             } else {
-                $('.winDashboardSidebar').addClass('dashboard').show();
+                $('.winDashboardInterface').addClass('dashboard').show();
             }
             
             R.editor.dashboard.loadFromHash();
@@ -192,7 +192,7 @@ R.editor = {
 
         hide: function () {
             $('.toolbar > .menu, .toolbar > .rightside > .savepage, .toolbar > .rightside > .close > a, .webpage').show();
-            $('.winDashboardSidebar, .winDashboardTimeline').hide();
+            $('.winDashboardInterface, .winDashboardTimeline').hide();
             $('body, .interface').removeClass('dashboard');
             R.editor.dashboard.hideAllWindows();
             R.editor.dashboard.visible = false;
@@ -210,12 +210,13 @@ R.editor = {
         },
 
         hideAllWindows: function(){
-            $('.window:not(.winDashboardSidebar)').hide();
+            $('.window:not(.winDashboardInterface)').hide();
         },
 
         callback:{
             resize: function () {
-                $('.window.interface.dashboard:not(.winDashboardSidebar)').css({ top: 50, left: R.editor.dashboard.sidebarWidth, width: R.window.absolute.w - R.editor.dashboard.sidebarWidth, height: R.window.absolute.h - 50 }).find('.grip').hide();
+                var pos = R.elem.pos($('.winDashboardInterface .dash-body')[0]);
+                $('.window.interface.dashboard:not(.winDashboardInterface)').css({ top: 50, left: pos.x, width: pos.w, height: R.window.absolute.h - 50 }).find('.grip').hide();
                 $('ul.columns-first').each(function () {
                     this.style.width = '';
                     var pos = R.elem.offset($(this).find('li:last-child')[0]);
@@ -1267,8 +1268,8 @@ R.editor = {
                             }
                         } else {
                             //check if hovered element is a panel
-                            if ($(c).hasClass('type-stackpanel') == true) {
-                                if ($(R.editor.components.selected).parents('.type-stackpanel')[0] == c) {
+                            if ($(c).hasClass('type-panel') == true) {
+                                if ($(R.editor.components.selected).parents('.type-panel')[0] == c) {
                                     return;
                                 }
                             } else {
@@ -1287,7 +1288,7 @@ R.editor = {
             if (R.editor.components.selected != c) {
                 //setup & show component select
                 if (R.editor.components.selected == null) {
-                    var p = $(c).parents('.component.type-stackpanel');
+                    var p = $(c).parents('.component.type-panel');
                     if (p.length > 0) {
                         R.editor.components.selected = p[0];
                     }
@@ -1307,7 +1308,7 @@ R.editor = {
                 
 
                 //update component select class for color change
-                if ($(c).hasClass('type-stackpanel') == true) {
+                if ($(c).hasClass('type-panel') == true) {
                     //check if hovered panel cell element has siblings
                     if ($(c).find('.grid-container').length > 0) {
                         //cancel if panel cell has no siblings
@@ -1337,7 +1338,7 @@ R.editor = {
                     $('.tools > .component-select .quickmenu').show();
 
                     //add custom quickmenu
-                    //if ($(c).hasClass('type-stackpanel') == true) {
+                    //if ($(c).hasClass('type-panel') == true) {
                     //    R.editor.components.quickmenu.show(R.editor.components.hovered, 'panel');
                     //}else{
                     //    R.editor.components.quickmenu.show(R.editor.components.hovered, 'component');
@@ -1476,7 +1477,7 @@ R.editor = {
             if (sel.id != 'inner' && ctype != null) {
                 hide = false;
                 switch (ctype.type) {
-                    case 'stackpanel': case 'textbox':
+                    case 'panel': case 'textbox':
                         hide = true;
                         break;
                 }

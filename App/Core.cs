@@ -22,8 +22,7 @@ namespace Rennder
         public HttpRequest Request;
         public HttpResponse Response;
         public ISessionCollection Session;
-        public RML PageRml;
-        public RML WebRml;
+        public Elements Elements;
 
         public bool isFirstLoad = false;
         public bool isLocal = false;
@@ -52,6 +51,7 @@ namespace Rennder
                     ViewState vs = new ViewState();
                     vs = (ViewState)Util.Serializer.ReadObject(Util.Str.GetString(Session["viewstate-" + ViewStateId]), vs.GetType());
                     Page = vs.Page;
+                    Elements = new Elements(this, Page.themeFolder);
                 }else { Page = new Page(); }
             }else { Page = new Page(); }
 

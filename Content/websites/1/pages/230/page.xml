@@ -1,9 +1,0 @@
-<layout>
-  <panel name="body" index="1" height="229">
-    <component cid="textbox" x="11" y="25" w="606px" h="237px" itemId="7oo" design=""><![CDATA[<span class="font-opensans" style="font-size: 36px;">Interfaces</span><br />Part of the <a href="#r=Rennder Platform">Rennder Platform</a>&nbsp;<br /><br />If you want to place <a href="#r=Components">Components</a> on a web page, you have to load the components onto an Interface. Every page comes with its own built-in Interface, and you can create your own Interfaces to use across multiple web pages. This capability makes Interfaces very powerful for developing organized content throughout the web site.]]></component>
-    <component cid="photo" x="631" y="66" w="296px" h="163px" itemId="49x" design=""><![CDATA[HLYFKPGNHN.png|moubdkepup.png|||296|163||0||]]></component>
-  </panel>
-  <layers>
-    <layer id="104" name="Header Dashboard" />
-  </layers>
-</layout>

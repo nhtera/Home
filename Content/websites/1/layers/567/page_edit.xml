@@ -1,6 +1,0 @@
-<layout>
-  <panel name="body" index="1" height="880">
-    <component cid="page-list" x="15" y="619" w="998px" h="100px" responsive="|px,fs,px,,tl,15,825,97.46093;1024;15;11,66,,1013,158,px|px,fs,px,,tl,15,619,97.46093;1024;15;11,8,,1013,158,px||px,px,px,,tc;-8,13,685,1397,-10,,1099,158,px" intelc=",,,,," index="-1" itemId="tfx" design="" frames=""><![CDATA[list|1|1||1900|0|sm|auto|1|1|10|1|0|center||Older|10||More Pages|h2|h4|2|Aqua Blue: Button: Small: Regular: Rounded|Read More|right]]></component>
-    <component cid="page-comments" x="16" y="655" w="997px" h="151px" responsive="|px,fs,px,,tl,15,920,97.36328;1024;15;12,20,,1012,110,px|px,fs,px,,tl,15,772,97.36328;1024;15;12,20,,1012,110,px|px,px,px,,tc;-2,13,680,997,20,,696,110,px|px,px,px,,tc;1,13,780,1405,20,,696,110,px" intelc=",tfx,tfx,,tfx," index="-1" itemId="vx9" design="" frames=""><![CDATA[|facebook|5|light]]></component>
-  </panel>
-</layout>

@@ -20,12 +20,11 @@ namespace Rennder.Services.Dashboard
             response.element = ".winDashboardWebsite > .content";
 
             //setup scaffolding variables
-            Dictionary<string, string> Elements = new Dictionary<string, string>();
-            Elements = R.Server.SetupScaffold(new string[] { "test" });
-            Elements["test"] = R.Page.websiteTitle;
+            Scaffold scaffold = new Scaffold(R, "/app/dashboard/website.html", "", new string[] { "test" });
+            scaffold.Data["test"] = R.Page.websiteTitle;
 
             //finally, scaffold Rennder platform HTML
-            response.html = R.Server.RenderScaffold("/app/dashboard/website.html", Elements);
+            response.html = scaffold.Render();
             response.js = CompileJs();
 
             return response;

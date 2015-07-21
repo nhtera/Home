@@ -6,12 +6,12 @@ namespace Rennder.Services
 	{
         private string itemId = "login";
         private string host = "";
-        private Dictionary<string, string> Elements;
         private string[] arrContent;
         private string[] arrDesign;
         private int websiteId;
-        private string layoutFolder;
+        private string themeFolder;
         private string websiteFolder;
+        private Scaffold scaffold;
 
     public Login(Core RennderCore, string[] paths):base(RennderCore, paths)
 		{
@@ -22,33 +22,33 @@ namespace Rennder.Services
             host = R.Page.Url.host;
 
             //setup scaffolding variables
-            Elements = new Dictionary<string, string>();
-            Elements = R.Server.SetupScaffold(new string[] { "head", "action", "body", "foot", "script" });
+            scaffold  = new Scaffold(R, "/app/components/login/login.html", "", new string[] { "head", "action", "body", "foot", "script" });
 
             //get Website properties from Request.Query
             arrContent = R.Request.Query["s"].Split(',');
             arrDesign = R.Request.Query["d"].Split(',');
             if (arrDesign.Length <= 1) { arrDesign = new string[] { "", "", "", "", "", "", "", "", "", "", "", "false", "", "", "" }; }
             websiteId = int.Parse(R.Request.Query["w"]);
-            layoutFolder = "/content/layouts/" + R.Request.Query["lu"] + "/" + R.Request.Query["l"] + "/";
+            themeFolder = "/content/themes/" + R.Request.Query["l"] + "/";
             websiteFolder = "/content/websites/" + websiteId + "/";
-            Elements["head"] = "<link rel=\"Stylesheet\" type=\"text/css\" href=\"/css/rennder.css\"/>" +
-                               "<link rel=\"Stylesheet\" type=\"text/css\" href=\"" + layoutFolder + "style.css\"/>";
+            scaffold.Data["head"] = "<link rel=\"Stylesheet\" type=\"text/css\" href=\"/css/rennder.css\"/>" +
+                               "<link rel=\"Stylesheet\" type=\"text/css\" href=\"" + themeFolder + "style.css\"/>";
 
             //set form action
-            Elements["action"] = "/rennder/Login/PostForm" + R.Request.QueryString;
+            scaffold.Data["action"] = "/rennder/Login/PostForm" + R.Request.QueryString;
 
             //set missing Page properties
-            R.Page.layoutFolder = layoutFolder;
+            R.Page.themeFolder = themeFolder;
             R.Page.websiteId = websiteId;
-            R.Page.LoadRmlEngine();
+
+            R.Elements = new Elements(R, themeFolder);
 
             //setup scaffold parameters
-            Elements["script"] = "var isNotResponsive = true; var isNotKeepAlive = true; setTimeout(function(){R.selectors.get();R.responsive.resize.onLevelChange();},100);";
+            scaffold.Data["script"] = "var isNotResponsive = true; var isNotKeepAlive = true; setTimeout(function(){R.selectors.get();R.responsive.resize.onLevelChange();},100);";
 
             if (R.isLocal == true)
             {
-                Elements["foot"] = "<script type=\"text/javascript\" src=\"/scripts/utility/jquery-2.1.3.min.js\"></script>\n" +
+                scaffold.Data["foot"] = "<script type=\"text/javascript\" src=\"/scripts/utility/jquery-2.1.3.min.js\"></script>\n" +
                                    "<script type=\"text/javascript\" src=\"/scripts/core/global.js\"></script>\n" +
                                    "<script type=\"text/javascript\" src=\"/scripts/core/fixes.js\"></script>\n" +
                                    "<script type=\"text/javascript\" src=\"/scripts/core/rml.js\"></script>\n" +
@@ -57,7 +57,7 @@ namespace Rennder.Services
             }
             else
             {
-                Elements["foot"] = "<script type=\"text/javascript\" src=\"/scripts/rennder.js?v=" + R.Version + "\"></script>\n";
+                scaffold.Data["foot"] = "<script type=\"text/javascript\" src=\"/scripts/rennder.js?v=" + R.Version + "\"></script>\n";
             }
         }
 
@@ -68,16 +68,10 @@ namespace Rennder.Services
 
             SetupWebRequest();
 
-            //setup RML classes
-            RmlTextbox designTextbox;
-            RmlStackPanel designStack;
-            RmlButton designButton;
-            RmlLoading designLoading = default(RmlLoading);
+            Element.Textbox elemTextbox = (Element.Textbox)R.Elements.Load(ElementType.Textbox, arrDesign[0]);
+            Element.Button elemButton = (Element.Button)R.Elements.Load(ElementType.Button, arrDesign[1]);
 
-            designTextbox = R.PageRml.GetRmlTextbox(arrDesign[0]);
-            designStack = R.PageRml.GetRmlStackPanel(arrDesign[3]);
-
-            //setup login form properties
+           //setup login form properties
             int designFieldsAlign = 1; //1=vertical, 2=horizontal
             int designLabelAlign = 1; //1=left, 2=top left, 3=top right
             int designButtonAlign = 1; //1=right, 2=bottom left, 3=bottom center, 4=bottom right, 5=hidden
@@ -112,12 +106,6 @@ namespace Rennder.Services
                 if (R.Util.Str.IsNumeric(arrContent[12]) == true) { designWidth = int.Parse(arrContent[12]); }
                 if (R.Util.Str.IsNumeric(arrContent[13]) == true) { designHeight = int.Parse(arrContent[13]); }
                 if (R.Util.Str.IsNumeric(arrContent[14]) == true) { designPadding = int.Parse(arrContent[14]); }
-            }
-
-            //stack panel head
-            if(designStack.rmlStackPanel.rmlComponent.Length > 0)
-            {
-                htm += designStack.rmlStackPanel.htmEvolverHead + designStack.rmlStackPanel.rmlComponent[0].htmHead;
             }
 
             //email label
@@ -155,16 +143,14 @@ namespace Rennder.Services
                 htm += "float:left;";
             htm += "\">";
 
-            string email = ""; //load email from cookie
-
             if (designLabelAlign == 4)
             {
                 //add hidden textbox for inside labels
-                htm += designTextbox.GetCompiledRml("email", "width:" + designTextboxWidth + ";", email, "text" , "Email");
+                htm += elemTextbox.Render("email", "", "Email", "width:" + designTextboxWidth + ";");
             }
             else
             {
-                htm += designTextbox.GetCompiledRml("email", "width:" + designTextboxWidth + ";", email);
+                htm += elemTextbox.Render("email", "", "", "width:" + designTextboxWidth + ";");
             }
 
             htm += "</div></td>";
@@ -198,11 +184,11 @@ namespace Rennder.Services
             if (designLabelAlign == 4)
             {
                 //add hidden textbox for inside labels
-                htm += designTextbox.GetCompiledRml("pass", "width:" + designTextboxWidth + ";", "", "password", "Password");
+                htm += elemTextbox.Render("password", "", "Password", "width:" + designTextboxWidth + ";", Element.Textbox.enumTextType.password);
             }
             else
             {
-                htm += designTextbox.GetCompiledRml("pass", "width:" + designTextboxWidth + ";", "", "password");
+                htm += elemTextbox.Render("password", "", "", "width:" + designTextboxWidth + ";", Element.Textbox.enumTextType.password);
             }
 
             //forgot password link
@@ -212,11 +198,6 @@ namespace Rennder.Services
             //submit button
             if (designButtonAlign < 5)
             {
-                designButton = R.PageRml.GetRmlButton(arrDesign[1]);
-                if(arrDesign.Length > 4)
-                {
-                    designLoading = R.PageRml.GetRmlLoading(arrDesign[4]);
-                }
                 if (designFieldsAlign == 1) { htm += "</tr><tr>"; }
                 if (designFieldsAlign == 2 & designButtonAlign > 1) { htm += "</tr><tr>"; }
                 htm += "<td style=\"vertical-align:top;";
@@ -247,20 +228,15 @@ namespace Rennder.Services
                 htm += "\">";
 
                 //add login button
-                htm += designButton.GetCompiledRml(designButtonTitle, "javascript:$('form')[0].submit()", itemId + "btnLogin",false ,"" , "", "", false, designLoading.GetCompiledRml());
+                htm += elemButton.Render(itemId + "Login", "javascript:$('form')[0].submit()", designButtonTitle);
                 htm += "</div></td>";
             }
             htm += "</tr></table>";
 
-            //stack panel foot
-            if(designStack.rmlStackPanel.rmlComponent.Length > 0)
-            {
-                htm += designStack.rmlStackPanel.rmlComponent[0].htmFoot + designStack.rmlStackPanel.htmEvolverFoot;
-            }
-            Elements["body"] = htm;
+            scaffold.Data["body"] = htm;
 
             //finally, scaffold login HTML
-            wr.html = R.Server.RenderScaffold("/components/login/login.html", Elements);
+            wr.html = scaffold.Render();
             return wr;
         }
 
@@ -269,12 +245,12 @@ namespace Rennder.Services
             //save form in SQL so parent window can authenticate
             WebRequest wr = new WebRequest();
             if(Form.ContainsKey("email") == false) { return wr; }
-            if (Form.ContainsKey("pass") == false) { return wr; }
+            if (Form.ContainsKey("password") == false) { return wr; }
             SetupWebRequest();
 
             Utility.Encryption crypt = new Utility.Encryption(R);
             string email = Form["email"];
-            string pass = Form["pass"];
+            string pass = Form["password"];
             string salt = crypt.GetMD5Hash(email + "?" + pass);
             string loginid = R.Util.Str.CreateID();
             string host;
@@ -287,11 +263,11 @@ namespace Rennder.Services
             }
             //IHttpConnectionFeature ip = R.Context.GetFeature<IHttpConnectionFeature>();
             R.Page.SqlPage.SaveLoginForAuth(salt, email, loginid);
-            Elements["script"] += "setTimeout(function(){parent.postMessage(\"login|" + loginid + "\",\"" + host + "\");},10);";
+            scaffold.Data["script"] += "setTimeout(function(){parent.postMessage(\"login|" + loginid + "\",\"" + host + "\");},10);console.log('" + salt +  "');";
 
             //finally, scaffold login HTML
-            Elements["body"] = "<div style=\"text-align:center; width:100%; padding-top:10px;\">Processing login...</div>";
-            wr.html = R.Server.RenderScaffold("/components/login/login.html", Elements);
+            scaffold.Data["body"] = "<div style=\"text-align:center; width:100%; padding-top:10px;\">Processing login...</div>";
+            wr.html = scaffold.Render();
             return wr;
         }
 

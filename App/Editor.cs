@@ -17,16 +17,16 @@ namespace Rennder
         {
             string htm = "";
             string js = "$('.svgicons').load('/images/editor/icons.svg');";
+            Scaffold Scaffold = new Scaffold(R, "/app/editor.html", "", new string[] { "photo" });
 
             //setup scaffolding variables
-            Elements = R.Server.SetupScaffold(new string[] { "photo" });
             if(R.User.photo == "")
             {
-                Elements["photo"] = "<img src=\"/images/editor/memberphoto.jpg\"/>";
+                Elements["photo"] = "<img src=\"/images/editor/userphoto.jpg\"/>";
             }
             else
             {
-                Elements["photo"] = "<img src=\"/content/members/" + R.Util.Str.DateFolders(R.User.signupDate) + "/" + R.User.memberId + "/portrait/s_" + R.User.photo + "\"/>";
+                Elements["photo"] = "<img src=\"/content/users/" + R.Util.Str.DateFolders(R.User.signupDate) + "/" + R.User.userId + "/portrait/s_" + R.User.photo + "\"/>";
             }
 
             //load grid sides
@@ -38,7 +38,7 @@ namespace Rennder
 
             if (R.isFirstLoad == true)
             {//first load
-                R.App.Elements["editor-css"] = 
+                R.App.scaffold.Data["editor-css"] = 
                     "<link type=\"text/css\" rel=\"stylesheet\" href=\"/css/rennder-edit.css?v=" + R.Version + "\"/>" +
                     "<link type=\"text/css\" rel=\"stylesheet\" href=\"/css/colors/" + R.User.editorColor + ".css?v=" + R.Version + "\"/>";
             }
@@ -64,7 +64,7 @@ namespace Rennder
             }
 
             //finally, scaffold Editor HTML
-            htm = R.Server.RenderScaffold("/app/editor.html", Elements);
+            htm = Scaffold.Render();
 
             R.Page.isEditorLoaded = true;
 

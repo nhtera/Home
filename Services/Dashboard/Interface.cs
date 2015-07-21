@@ -2,9 +2,9 @@
 
 namespace Rennder.Services.Dashboard
 {
-    public class Photos : Service
+    public class Interface : Service
     {
-        public Photos(Core RennderCore, string[] paths) : base(RennderCore, paths)
+        public Interface(Core RennderCore, string[] paths) : base(RennderCore, paths)
         {
         }
 
@@ -14,15 +14,14 @@ namespace Rennder.Services.Dashboard
             Inject response = new Inject();
 
             //check security
-            if (R.User.Website(R.Page.websiteId).getWebsiteSecurityItem("dashboard/photos", 0) == false) { return response; }
+            if (R.User.Website(R.Page.websiteId).getWebsiteSecurityItem("dashboard/pages", 4) == false) { return response; }
 
             //setup response
-            response.element = ".winDashboardPhotos > .content";
+            response.element = ".winDashboardInterface > .content";
 
             //setup scaffolding variables
-            //setup scaffolding variables
-            Scaffold scaffold = new Scaffold(R, "/app/dashboard/photos.html", "", new string[] { "test" });
-            scaffold.Data["test"] = R.Page.websiteTitle;
+            Scaffold scaffold = new Scaffold(R, "/app/dashboard/interface.html", "", new string[] { "website-title" });
+            scaffold.Data["website-title"] = R.Page.websiteTitle;
 
             //finally, scaffold Rennder platform HTML
             response.html = scaffold.Render();

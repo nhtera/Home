@@ -1,9 +1,0 @@
-<layout>
-  <panel name="body" index="1" height="1554">
-    <component cid="rennder-websitemanager" x="12" y="12" w="936px" h="787px" itemId="45p" design="0|Boxes|Spaced Box|Vertical Icons|Default|Delete|Default|Default||Screenshot|Boxes|Default 150px|||||Boxes|||Boxes|Boxes"><![CDATA[]]></component>
-  </panel>
-  <layers>
-    <layer id="104" name="Header Dashboard" />
-    <layer id="153" name="Foot" />
-  </layers>
-</layout>
