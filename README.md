@@ -30,7 +30,7 @@ Learn more about ASP.net 5 vNext at www.github.com/aspnet/home
 
 
 ## Installation for Vagrant + Mono + ASP.net vNext
-Rennder is (almost) running on Linux Virtualbox within Windows 7. At the moment, `dnu restore` works, and so does `dnx . kestrel`, but a database has not been developed for Linux just yet. I've decided to use PostgreSQL. I'll keep you updated when I get Rennder working on Linux. So far, the project runs purely on DNX Core 5, which means Rennder should theoretically work on Linux right away once the database is setup.
+Rennder is (almost) running on Linux using Oracle Virtualbox within Windows 7. At the moment, `dnu restore` works, and so does `dnx . kestrel`, but a database has not been developed for Linux just yet. I've decided to use PostgreSQL. I'll keep you updated when I get Rennder working on Linux. So far, the project runs purely on DNX Core 5, which means Rennder should theoretically work on Linux right away once the database is setup.
 
 ### Prerequisites
 1. Vagrant http://docs.vagrantup.com/v2/getting-started/
