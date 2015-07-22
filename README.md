@@ -41,19 +41,20 @@ Rennder is (almost) running on Linux using Oracle Virtualbox within Windows 7. A
 1. Using Git bash, clone the rennder repository, `git clone https://github.com/Rennder/Home.git`
 
 ### Setup Vagrant
-1. Using Git bash, execute command `vagrant up`, which will provision a new Virtualbox machine.
-2. Wait for Linux to boot up, then execute command `vagrant ssh` to log into Linux (Ubuntu/Trusty64)
-3. execute command `apt-get install libunwind8`
-4. Fix Nuget's default feed URL, execute commands `cd ~/.dnx/dnvm` and `sudo pico dnvm.sh`, then replace the following line in the config file
+1. Create folder for project, then download, clone, or fork Vagrant repository for Rennder `https://github.com/Rennder/Vagrant`
+2. from Vagrant project folder, execute command `vagrant up`, which will provision a new Virtualbox machine.
+3. Wait for Linux to boot up, then execute command `vagrant ssh` to log into Linux (Ubuntu/Trusty64)
+4. execute command `apt-get install libunwind8`
+5. Fix Nuget's default feed URL, execute commands `cd ~/.dnx/dnvm` and `sudo pico dnvm.sh`, then replace the following line in the config file
 
     _DNVM_DEFAULT_FEED="https://www.myget.org/F/aspnetvnext/api/v2"
     
-5. Install ASP.net vNext for Linux https://github.com/aspnet/Home/blob/dev/GettingStartedDeb.md
-6. Setup active DNVM installation, execute commands `dnvm install latest -a rennder -arch x64 -r coreclr` and `dnvm use rennder`.
-7. Restore the ASP.net vNext dependencies for Rennder, execute commands `cd /var/www/rennder` and `dnu restore`.
-8. Start the Kestrel web server, `dnx . kestrel`.
-9. Open your web browser in Windows and navigate to `http://192.168.7.7` to view the home page of Rennder.
-10. Navigate to `http://192.168.7.7/#dashboard` and login with email `admin@localhost` and password `development` to view your dashboard.
+6. Install ASP.net vNext for Linux https://github.com/aspnet/Home/blob/dev/GettingStartedDeb.md
+7. Setup active DNVM installation, execute commands `dnvm install latest -a rennder -arch x64 -r coreclr` and `dnvm use rennder`.
+8. Restore the ASP.net vNext dependencies for Rennder, execute commands `cd /var/www/rennder` and `dnu restore`.
+9. Start the Kestrel web server, `dnx . kestrel`.
+10. Open your web browser in Windows and navigate to `http://192.168.7.7` to view the home page of Rennder.
+11. Navigate to `http://192.168.7.7/#dashboard` and login with email `admin@localhost` and password `development` to view your dashboard.
  
 ***
 
