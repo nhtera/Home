@@ -26,8 +26,8 @@ Learn more about ASP.net 5 vNext at www.github.com/aspnet/home
 
 
 
-###Puphpet + Vagrant + Mono
-Rennder running on Linux VM within Windows 7. This is currently my testing environment for Rennder on Linux. At the moment, `dnu restore` doesn't work. I'll keep you updated when I get Rennder working on Linux. So far, the project runs purely on DNX Core 5 without ASP.net 4.6, which means Rennder should theoretically work on Linux right away.
+###Installation for Puphpet + Vagrant + Mono
+Rennder is (almost) running on Linux VM within Windows 7. This is currently my testing environment for Rennder on Linux. At the moment, `dnu restore` works, but there is no database setup. I've decided to use PostgreSQL. I'll keep you updated when I get Rennder working on Linux. So far, the project runs purely on DNX Core 5, which means Rennder should theoretically work on Linux right away.
 
 ###Current State of the Rennder Platform
 
