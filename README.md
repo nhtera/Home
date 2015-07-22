@@ -73,13 +73,27 @@ Learn how the server pipeline works with this workflow graphic.
 ![Workflow graphic](http://www.rennder.com/content/websites/1/media/wshbbbdebf.jpg)
 
 # Capabilities
+
+### Drag & Drop Content
  * Use `components` such as Text, Photos, Videos, Menus, Panels, Comments, Music, Lists, Buttons, Maps, & Rating (e.g. 5 star rating) to build your web pages with.
  * Drag & drop `components` directly onto your web pages from a simple `page editor` toolbar that loads above the web page.
+ * 
+### Dashhboard
  * Manage all websites from a `dashboard`, which can be displayed in fullscreen-mode, or as a small drop-down menu within the `page editor` for quick access while creating content on your web pages.
- * Develop & install `applications` to extend the funcationality of your website.
- * Share `layers` of content (group of components) across multiple web pages, such as the header & footer of your website.
  * Manage a heirarchy of web pages just like you would a file system.
- * A powerful `Panel` component, capable of handling content in many structured ways. Simply drag & drop a `Panel` component onto the page, then drag & drop components into the Panel `cell` to start. Add a background color or image to the cell. Add more `cells` to your Panel, then drag & drop more components into those cells. Now you can organize the Panel cells into a `grid` of columns & rows. You can also make the grid act like a pinterest board, where each column is independantly stacked. The Panel component can act like a `slideshow` instead of a grid, displaying each `cell` as a slide within the slideshow. 
+ * Upload & organize photos into folders to use on your web pages. 
+ * Develop & install `applications` to extend the funcationality of your website.
+ 
+### Mirror Content 
+ * Share `layers` of content (a set of components) across multiple web pages, such as the header & footer of your website.
+
+### Responsive Grids & Slideshows
+A powerful `Panel` component, capable of handling content in many structured ways. Simply drag & drop a `Panel` component onto the page, then drag & drop components into the Panel's `cell` to start. Add a background color or image to the cell. Add more `cells` to your Panel, then drag & drop more components into those cells. Now you can organize the Panel cells into a `grid` of columns & rows. You can also make the grid act like a pinterest board, where each column is independantly stacked. 
+
+The Panel component can act like a `slideshow` instead of a grid, displaying each `cell` as a slide within the slideshow. 
  * A powerful `List` component. Create an HTML template for a `list item`, then import data into your List component like a spreadsheet. For example, the data could be a list of products (name, description, price). For each row or product in the speadsheet, the List component will generate a `list item` from the HTML template, replacing variables in the template with your data. Now you have a pretty list of products on your web page. You can organize your `list items` just like Panel component `cells`, as a grid with rows & columns, a stacked grid, or slideshow.
- * Page templates. For example, whenever you want to create a new entry for your blog, Rennder will duplicate the `page template` for the blog page to create a new `sub-page` for the blog entry. When you open the new sub-page, you'll see that it looks exactly like the page template, so you can quickly start writing content for the new blog entry instead of spending time setting up a new web page.
+
+### Page Templates
+ * Use Page Templates to create new web pages that come bundled with an interface when generated. For example, whenever you'd like to create a new entry for your blog, Rennder will duplicate the `page template` for the `blog` page to create a new `sub-page` for your blog entry. When you open the new sub-page, you'll see that it looks exactly like the `page template`, so you can quickly start writing content for the new blog entry instead of spending time setting up a new web page.
+
  * Data templates. Just like page templates, except instead of duplicating a page template for your new `sub-page`, the page template loads inside of the sub-page. Instead of adding new content to the sub-page, you can only edit what is already there. All the content is managed by the page template. The sub-page simply handles any changes to the content, such as text, photos, or videos.
