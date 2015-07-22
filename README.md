@@ -77,7 +77,7 @@ Learn how the server pipeline works with this workflow graphic.
 ### Drag & Drop Content
  * Use `components` such as Text, Photos, Videos, Menus, Panels, Comments, Music, Lists, Buttons, Maps, & Rating (e.g. 5 star rating) to build your web pages with.
  * Drag & drop `components` directly onto your web pages from a simple `page editor` toolbar that loads above the web page.
- * 
+
 ### Dashhboard
  * Manage all websites from a `dashboard`, which can be displayed in fullscreen-mode, or as a small drop-down menu within the `page editor` for quick access while creating content on your web pages.
  * Manage a heirarchy of web pages just like you would a file system.
