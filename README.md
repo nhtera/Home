@@ -16,7 +16,7 @@ Learn more about ASP.net 5 vNext at www.github.com/aspnet/home
 ### Prerequisites
 1. Visual Studio 2015
 2. SQL Server 2012 or higher
-3. 3. ASP.net Core 5: https://github.com/aspnet/Home
+3. ASP.net Core 5: https://github.com/aspnet/Home
 
 ### Setup Project
 1. Download, clone, or fork project from the github repository.
