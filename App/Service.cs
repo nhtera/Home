@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Microsoft.AspNet.Http;
+using System.IO;
 using Newtonsoft.Json;
 
 namespace Rennder
@@ -98,6 +98,20 @@ namespace Rennder
                 R.Page.postJS += string.Join("\n", R.Page.postJScode) + R.Page.postJSLast;
             }
             return R.Page.postJS;
+        }
+
+        protected string RenderHelpColumn(string filename)
+        {
+            if(R.Server.Cache.ContainsKey(filename) == false || R.isLocal == true)
+            {
+                string htm = "<div class=\"column-help dashboard-only\"><div>" + File.ReadAllText(R.Server.MapPath(filename)) + "</div></div>";
+                R.Server.Cache[filename] = htm;
+                return htm;
+            }else
+            {
+                return (string)R.Server.Cache[filename];
+            }
+
         }
 
         public void Unload()

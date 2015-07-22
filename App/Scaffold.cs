@@ -127,7 +127,7 @@ namespace Rennder
                     }
                     scaffold.parts.Add(scaff);
                 }
-                R.Server.Scaffold.Add(file + '/' + name, scaffold);
+                if(R.isLocal == false){ R.Server.Scaffold.Add(file + '/' + name, scaffold); }
             }
             else
             {

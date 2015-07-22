@@ -308,9 +308,18 @@ ul.columns-first{float:left;}
 .interface .screenshot img{width:150px;}
 
 /*window dashboard elements*/
-.window.dashboard:not(.winDashboardSidebar) > .content{position:relative; height:100%; max-height:calc(100% - 60px);}
-.interface .dashboard-only{display:none;}
-.interface.dashboard .dashboard-only{display:block;}
+.window.dashboard:not(.winDashboardInterface) > .content{position:relative; height:100%; max-height:calc(100% - 60px);}
+.interface .dashboard-only, .interface .dash-only{display:none;}
+.interface.dashboard .dashboard-only, .interface.dashboard .dash-only{display:block;}
+
+/* dashboard interface window //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+.dash-content{width:100%; max-width:100%; height:100%; margin:0px auto;}
+.dash-menu{float:left; width:250px; height:100%; padding:0px 10px 0px 10px;}
+.dash-body{float:left; width:calc(100% - 270px);}
+.dash-menu .menu-title{padding:3px 0px; white-space:normal; width:calc(100% - 20px);}
+.dash-menu .row{margin:10px 0px 10px 0px !important;}
+.dash-menu .row .column-icon{padding:10px 30px 3px 50px !important; border-width:0px !important;}
+.dash-menu .row .column-label{padding:10px 50px 3px 5px !important; border-width:0px !important; width:calc(100% - 160px) !important; min-height:28px !important;}
 
 /* component quick menu //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 .quickmenu-item{position:absolute; border-radius:7px !important;}
@@ -365,6 +374,8 @@ body > .target{position:absolute; z-index:4501; cursor:move;}
 .winWebPages .pages-title{max-width:300px;}
 .winWebPages .pages-list .hover-title{ min-width:150px;}
 .winWebPages .pages-list .hover-title:hover{text-decoration:underline;}
+.winWebPages.dashboard .content{padding:10px 0px 0px 20px;}
+.winNewPage.dashboard .content{padding:10px 0px 0px 20px;}
 
 /* photo library window //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 .winPhotos .top-menu{width:100%; padding:4px 0px; overflow:hidden;}
@@ -467,18 +478,12 @@ body > .tools{position:absolute; height:0px; width:0px; z-index:3000; font-famil
 .component-select .buttons .title{font-size:16px; padding-top:7px;}
 
 /* panel & area borders */
-.tools .borders .page-panel-border{position:absolute; border:3px dashed #0020e2; box-sizin:gborder-box; animation:animate-fade-in-out 1s 0s infinite; -webkit-animation:animate-fade-in-out 1s 0s infinite;}
-
+.tools .borders .page-panel-border{position:absolute; border:3px dashed #0020e2; box-sizing:border-box; animation:animate-fade-in-out 1s 0s infinite; -webkit-animation:animate-fade-in-out 1s 0s infinite;}
 .tools .borders .panel-cell-border{position:absolute; border:3px dashed #00b00e; box-sizing:border-box; animation:animate-fade-in-out 1s 0s infinite; -webkit-animation:animate-fade-in-out 1s 0s infinite;}
 @keyframes animate-fade-in-out{0%{opacity:0;} 50%{opacity:1;} 100%{opacity:0;}}
 @-webkit-keyframes animate-fade-in-out{0%{opacity:0;} 50%{opacity:1;} 100%{opacity:0;}}
 @keyframes animate-fade-out-in{0%{opacity:1;} 50%{opacity:0;} 100%{opacity:1;}}
 @-webkit-keyframes animate-fade-out-in{0%{opacity:1;} 50%{opacity:0;} 100%{opacity:1;}}
-
-/* dashboard sidebar window //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
-.winDashboardInterface .dash-content{width:100%; max-width:960px; margin:0px auto;}
-.winDashboardInterface .dash-menu{float:left; width:155px; padding:0px 10px 0px 10px;}
-.winDashboardInterface .dash-body{float:left; width:calc(100% - 175px); max-width:785px;}
 
 /* component-specific styling ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 .type-textbox .bold, .type-textbox .bold *{font-weight:bold;}

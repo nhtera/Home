@@ -59,27 +59,6 @@
 .interface {
   background-color: #272727;
   color: #e0e0e0;
-  /*
-    &.dashboard{
-        @window-bg:#e3e3e3;
-        @window-hover:#ABD3D1;
-        @window-color:#444444;
-        @window-color-faded:#999999;
-        @window-color-help:#329392;
-        @window-grip:rgba(0, 0, 0, 0.1);
-        @window-title:#aaaaaa;
-        @window-close:#cc0000;
-        @window-header:#d6d6d6;
-        @window-top-menu:#dfdfdf;
-        @window-tab:lighten(@window-bg,4%);
-        @window-tab-hover:lighten(@window-bg,8%);
-        @window-tab-selected:saturate(lighten(#0099CC,4%),15%);
-        @svg2-link:#444444;
-        @svg2-hover:#FF8B35;
-        @svg2-active:#FF8B35;
-        @svg2-visited:#444444;
-        .getInterface(light);
-    }*/
 }
 .interface a:link use {
   color: #ffffff;
@@ -156,9 +135,9 @@
 }
 .interface div.color1 > .column-label,
 .interface div.color1 .column-icon {
-  color: #adadad;
-  background-color: #2f2f2f;
-  border-bottom: 1px solid #2a2a2a;
+  color: #e0e0e0;
+  background-color: #272727;
+  border-bottom: 1px solid #222222;
 }
 .interface div.color1 > .column,
 .interface div.color1 > .column-input,
@@ -168,8 +147,8 @@
   border-bottom: 1px solid #222222;
 }
 .interface tr.color1 td {
-  background-color: #2f2f2f;
-  border-bottom: 1px solid #2a2a2a;
+  background-color: #272727;
+  border-bottom: 1px solid #222222;
 }
 .interface .row.color1:hover {
   background-color: #263039;
@@ -216,9 +195,9 @@
 }
 .interface div.color2 > .column-label,
 .interface div.color2 .column-icon {
-  color: #adadad;
-  background-color: #2c2c2c;
-  border-bottom: 1px solid #272727;
+  color: #e0e0e0;
+  background-color: #242424;
+  border-bottom: 1px solid #1f1f1f;
 }
 .interface div.color2 > .column,
 .interface div.color2 > .column-input,
@@ -228,8 +207,8 @@
   border-bottom: 1px solid #1f1f1f;
 }
 .interface tr.color2 td {
-  background-color: #2c2c2c;
-  border-bottom: 1px solid #272727;
+  background-color: #242424;
+  border-bottom: 1px solid #1f1f1f;
 }
 .interface .row.color2:hover {
   background-color: #263039;
@@ -276,9 +255,9 @@
 }
 .interface.component-select div.color1 > .column-label,
 .interface.component-select div.color1 .column-icon {
-  color: #adadad;
-  background-color: #2d2d2d;
-  border-bottom: 1px solid #282828;
+  color: #e0e0e0;
+  background-color: #252525;
+  border-bottom: 1px solid #202020;
 }
 .interface.component-select div.color1 > .column,
 .interface.component-select div.color1 > .column-input,
@@ -288,8 +267,8 @@
   border-bottom: 1px solid #202020;
 }
 .interface.component-select tr.color1 td {
-  background-color: #2d2d2d;
-  border-bottom: 1px solid #282828;
+  background-color: #252525;
+  border-bottom: 1px solid #202020;
 }
 .interface.component-select .row.color1:hover {
   background-color: #000000;
@@ -336,9 +315,9 @@
 }
 .interface.component-select.forpanel div.color1 > .column-label,
 .interface.component-select.forpanel div.color1 .column-icon {
-  color: #adadad;
-  background-color: #ffd60f;
-  border-bottom: 1px solid #ffd405;
+  color: #e0e0e0;
+  background-color: #ffd300;
+  border-bottom: 1px solid #f5cb00;
 }
 .interface.component-select.forpanel div.color1 > .column,
 .interface.component-select.forpanel div.color1 > .column-input,
@@ -348,8 +327,8 @@
   border-bottom: 1px solid #f5cb00;
 }
 .interface.component-select.forpanel tr.color1 td {
-  background-color: #ffd60f;
-  border-bottom: 1px solid #ffd405;
+  background-color: #ffd300;
+  border-bottom: 1px solid #f5cb00;
 }
 .interface.component-select.forpanel .row.color1:hover {
   background-color: #ffc300;
@@ -396,9 +375,9 @@
 }
 .interface div.purple > .column-label,
 .interface div.purple .column-icon {
-  color: #adadad;
-  background-color: #4b105b;
-  border-bottom: 1px solid #440f53;
+  color: #e0e0e0;
+  background-color: #410e4e;
+  border-bottom: 1px solid #390c46;
 }
 .interface div.purple > .column,
 .interface div.purple > .column-input,
@@ -408,8 +387,8 @@
   border-bottom: 1px solid #390c46;
 }
 .interface tr.purple td {
-  background-color: #4b105b;
-  border-bottom: 1px solid #440f53;
+  background-color: #410e4e;
+  border-bottom: 1px solid #390c46;
 }
 .interface .row.purple:hover {
   background-color: #410c50;
@@ -456,9 +435,9 @@
 }
 .interface div.blue > .column-label,
 .interface div.blue .column-icon {
-  color: #adadad;
-  background-color: #0e214e;
-  border-bottom: 1px solid #0c1e45;
+  color: #e0e0e0;
+  background-color: #0b1c41;
+  border-bottom: 1px solid #0a1838;
 }
 .interface div.blue > .column,
 .interface div.blue > .column-input,
@@ -468,8 +447,8 @@
   border-bottom: 1px solid #0a1838;
 }
 .interface tr.blue td {
-  background-color: #0e214e;
-  border-bottom: 1px solid #0c1e45;
+  background-color: #0b1c41;
+  border-bottom: 1px solid #0a1838;
 }
 .interface .row.blue:hover {
   background-color: #0a1b42;
@@ -516,9 +495,9 @@
 }
 .interface div.turqoise > .column-label,
 .interface div.turqoise .column-icon {
-  color: #adadad;
-  background-color: #0e514f;
-  border-bottom: 1px solid #0d4847;
+  color: #e0e0e0;
+  background-color: #0c4442;
+  border-bottom: 1px solid #0a3b3a;
 }
 .interface div.turqoise > .column,
 .interface div.turqoise > .column-input,
@@ -528,8 +507,8 @@
   border-bottom: 1px solid #0a3b3a;
 }
 .interface tr.turqoise td {
-  background-color: #0e514f;
-  border-bottom: 1px solid #0d4847;
+  background-color: #0c4442;
+  border-bottom: 1px solid #0a3b3a;
 }
 .interface .row.turqoise:hover {
   background-color: #074947;
@@ -576,9 +555,9 @@
 }
 .interface div.green > .column-label,
 .interface div.green .column-icon {
-  color: #adadad;
-  background-color: #0d491f;
-  border-bottom: 1px solid #0b411c;
+  color: #e0e0e0;
+  background-color: #0b3c1a;
+  border-bottom: 1px solid #093416;
 }
 .interface div.green > .column,
 .interface div.green > .column-input,
@@ -588,8 +567,8 @@
   border-bottom: 1px solid #093416;
 }
 .interface tr.green td {
-  background-color: #0d491f;
-  border-bottom: 1px solid #0b411c;
+  background-color: #0b3c1a;
+  border-bottom: 1px solid #093416;
 }
 .interface .row.green:hover {
   background-color: #0a3d19;
@@ -636,9 +615,9 @@
 }
 .interface div.yellow > .column-label,
 .interface div.yellow .column-icon {
-  color: #adadad;
-  background-color: #645a12;
-  border-bottom: 1px solid #5b5210;
+  color: #e0e0e0;
+  background-color: #574e0f;
+  border-bottom: 1px solid #4e460e;
 }
 .interface div.yellow > .column,
 .interface div.yellow > .column-input,
@@ -648,8 +627,8 @@
   border-bottom: 1px solid #4e460e;
 }
 .interface tr.yellow td {
-  background-color: #645a12;
-  border-bottom: 1px solid #5b5210;
+  background-color: #574e0f;
+  border-bottom: 1px solid #4e460e;
 }
 .interface .row.yellow:hover {
   background-color: #5b510b;
@@ -696,9 +675,9 @@
 }
 .interface div.orange > .column-label,
 .interface div.orange .column-icon {
-  color: #adadad;
-  background-color: #643a12;
-  border-bottom: 1px solid #5b3510;
+  color: #e0e0e0;
+  background-color: #57330f;
+  border-bottom: 1px solid #4e2e0e;
 }
 .interface div.orange > .column,
 .interface div.orange > .column-input,
@@ -708,8 +687,8 @@
   border-bottom: 1px solid #4e2e0e;
 }
 .interface tr.orange td {
-  background-color: #643a12;
-  border-bottom: 1px solid #5b3510;
+  background-color: #57330f;
+  border-bottom: 1px solid #4e2e0e;
 }
 .interface .row.orange:hover {
   background-color: #5a330c;
@@ -756,9 +735,9 @@
 }
 .interface div.red > .column-label,
 .interface div.red .column-icon {
-  color: #adadad;
-  background-color: #641212;
-  border-bottom: 1px solid #5b1010;
+  color: #e0e0e0;
+  background-color: #570f0f;
+  border-bottom: 1px solid #4e0e0e;
 }
 .interface div.red > .column,
 .interface div.red > .column-input,
@@ -768,8 +747,8 @@
   border-bottom: 1px solid #4e0e0e;
 }
 .interface tr.red td {
-  background-color: #641212;
-  border-bottom: 1px solid #5b1010;
+  background-color: #570f0f;
+  border-bottom: 1px solid #4e0e0e;
 }
 .interface .row.red:hover {
   background-color: #580e0e;
@@ -810,6 +789,2942 @@
 .interface tr.red:hover td:hover {
   background-color: #6e0707;
   border-bottom: 1px solid #650606;
+}
+.interface.dashboard {
+  background-color: #e3e3e3;
+  color: #444444;
+}
+.interface.dashboard a:link use {
+  color: #444444;
+}
+.interface.dashboard a:hover use {
+  color: #ff8b35;
+}
+.interface.dashboard a:active use {
+  color: #ff8b35;
+}
+.interface.dashboard a:visited use {
+  color: #444444;
+}
+.interface.dashboard .grip {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.interface.dashboard .title {
+  color: #aaaaaa;
+}
+.interface.dashboard .close a:hover {
+  color: #cc0000 !important;
+}
+.interface.dashboard.arrow-top:after {
+  border-bottom-color: #e3e3e3;
+}
+.interface.dashboard .section-info {
+  background-color: #d6d6d6;
+}
+.interface.dashboard .top-menu,
+.interface.dashboard .side-menu {
+  background-color: #dfdfdf;
+}
+.interface.dashboard .tabs .item {
+  color: #999999;
+  background-color: #ededed;
+}
+.interface.dashboard .tabs .item:hover {
+  color: #444444;
+  background-color: #f7f7f7;
+}
+.interface.dashboard .tabs .item.selected {
+  color: #444444;
+  background-color: #00a8e0;
+}
+.interface.dashboard .top-menu .tabs .item {
+  color: #999999;
+  background-color: #f2f2f2;
+}
+.interface.dashboard .top-menu .tabs .item:hover {
+  color: #444444;
+  background-color: #fcfcfc;
+}
+.interface.dashboard .top-menu .tabs .item.selected {
+  color: #444444;
+  background-color: #00b0eb;
+}
+.interface.dashboard .help-info {
+  color: #444444;
+  background-color: #d6d6d6;
+}
+.interface.dashboard .column-help > div {
+  color: #329392;
+  background-color: #d6d6d6;
+}
+.interface.dashboard .column-help > div:after {
+  border-right-color: #d6d6d6;
+}
+.interface.dashboard .column-help .row.color:hover {
+  color: #1d9e9d;
+  background-color: #cfcfcf;
+}
+.interface.dashboard div.color1 {
+  background-color: #e3e3e3;
+}
+.interface.dashboard div.color1 > .column-label,
+.interface.dashboard div.color1 .column-icon {
+  color: #444444;
+  background-color: #e3e3e3;
+  border-bottom: 1px solid #dedede;
+}
+.interface.dashboard div.color1 > .column,
+.interface.dashboard div.color1 > .column-input,
+.interface.dashboard div.color1 > .empty,
+.interface.dashboard div.color1 .column-button {
+  background-color: #e3e3e3;
+  border-bottom: 1px solid #dedede;
+}
+.interface.dashboard tr.color1 td {
+  background-color: #e3e3e3;
+  border-bottom: 1px solid #dedede;
+}
+.interface.dashboard .row.color1:hover {
+  background-color: #abd3d1;
+}
+.interface.dashboard .row.color1:hover > .column-label,
+.interface.dashboard .row.color1:hover .column-icon {
+  color: #444444;
+  background-color: #ade1de;
+  border-bottom: 1px solid #a1ddda;
+}
+.interface.dashboard .row.color1:hover > .column,
+.interface.dashboard .row.color1:hover > .column-input,
+.interface.dashboard .row.color1:hover > .empty,
+.interface.dashboard .row.color1:hover .column-button {
+  background-color: #abd3d1;
+  border-bottom: 1px solid #a1cecc;
+}
+.interface.dashboard .row:hover > div.color1 {
+  background-color: #abd3d1;
+}
+.interface.dashboard .row:hover > div.color1 > .column-label,
+.interface.dashboard .row:hover > div.color1 .column-icon {
+  color: #444444;
+  background-color: #ade1de;
+  border-bottom: 1px solid #a1ddda;
+}
+.interface.dashboard .row:hover > div.color1 > .column,
+.interface.dashboard .row:hover > div.color1 > .column-input,
+.interface.dashboard .row:hover > div.color1 > .empty,
+.interface.dashboard .row:hover > div.color1 .column-button {
+  background-color: #abd3d1;
+  border-bottom: 1px solid #a1cecc;
+}
+.interface.dashboard tr.color1:hover td {
+  background-color: #abd3d1;
+  border-bottom: 1px solid #a4cfcd;
+}
+.interface.dashboard tr.color1:hover td:hover {
+  background-color: #ade1de;
+  border-bottom: 1px solid #a5dedb;
+}
+.interface.dashboard div.color2 {
+  background-color: #e0e0e0;
+}
+.interface.dashboard div.color2 > .column-label,
+.interface.dashboard div.color2 .column-icon {
+  color: #444444;
+  background-color: #e0e0e0;
+  border-bottom: 1px solid #dbdbdb;
+}
+.interface.dashboard div.color2 > .column,
+.interface.dashboard div.color2 > .column-input,
+.interface.dashboard div.color2 > .empty,
+.interface.dashboard div.color2 .column-button {
+  background-color: #e0e0e0;
+  border-bottom: 1px solid #dbdbdb;
+}
+.interface.dashboard tr.color2 td {
+  background-color: #e0e0e0;
+  border-bottom: 1px solid #dbdbdb;
+}
+.interface.dashboard .row.color2:hover {
+  background-color: #abd3d1;
+}
+.interface.dashboard .row.color2:hover > .column-label,
+.interface.dashboard .row.color2:hover .column-icon {
+  color: #444444;
+  background-color: #ade1de;
+  border-bottom: 1px solid #a1ddda;
+}
+.interface.dashboard .row.color2:hover > .column,
+.interface.dashboard .row.color2:hover > .column-input,
+.interface.dashboard .row.color2:hover > .empty,
+.interface.dashboard .row.color2:hover .column-button {
+  background-color: #abd3d1;
+  border-bottom: 1px solid #a1cecc;
+}
+.interface.dashboard .row:hover > div.color2 {
+  background-color: #abd3d1;
+}
+.interface.dashboard .row:hover > div.color2 > .column-label,
+.interface.dashboard .row:hover > div.color2 .column-icon {
+  color: #444444;
+  background-color: #ade1de;
+  border-bottom: 1px solid #a1ddda;
+}
+.interface.dashboard .row:hover > div.color2 > .column,
+.interface.dashboard .row:hover > div.color2 > .column-input,
+.interface.dashboard .row:hover > div.color2 > .empty,
+.interface.dashboard .row:hover > div.color2 .column-button {
+  background-color: #abd3d1;
+  border-bottom: 1px solid #a1cecc;
+}
+.interface.dashboard tr.color2:hover td {
+  background-color: #abd3d1;
+  border-bottom: 1px solid #a4cfcd;
+}
+.interface.dashboard tr.color2:hover td:hover {
+  background-color: #ade1de;
+  border-bottom: 1px solid #a5dedb;
+}
+.interface.dashboard.component-select div.color1 {
+  background-color: #252525;
+}
+.interface.dashboard.component-select div.color1 > .column-label,
+.interface.dashboard.component-select div.color1 .column-icon {
+  color: #444444;
+  background-color: #252525;
+  border-bottom: 1px solid #202020;
+}
+.interface.dashboard.component-select div.color1 > .column,
+.interface.dashboard.component-select div.color1 > .column-input,
+.interface.dashboard.component-select div.color1 > .empty,
+.interface.dashboard.component-select div.color1 .column-button {
+  background-color: #252525;
+  border-bottom: 1px solid #202020;
+}
+.interface.dashboard.component-select tr.color1 td {
+  background-color: #252525;
+  border-bottom: 1px solid #202020;
+}
+.interface.dashboard.component-select .row.color1:hover {
+  background-color: #000000;
+}
+.interface.dashboard.component-select .row.color1:hover > .column-label,
+.interface.dashboard.component-select .row.color1:hover .column-icon {
+  color: #444444;
+  background-color: #090707;
+  border-bottom: 1px solid #000000;
+}
+.interface.dashboard.component-select .row.color1:hover > .column,
+.interface.dashboard.component-select .row.color1:hover > .column-input,
+.interface.dashboard.component-select .row.color1:hover > .empty,
+.interface.dashboard.component-select .row.color1:hover .column-button {
+  background-color: #000000;
+  border-bottom: 1px solid #000000;
+}
+.interface.dashboard.component-select .row:hover > div.color1 {
+  background-color: #000000;
+}
+.interface.dashboard.component-select .row:hover > div.color1 > .column-label,
+.interface.dashboard.component-select .row:hover > div.color1 .column-icon {
+  color: #444444;
+  background-color: #090707;
+  border-bottom: 1px solid #000000;
+}
+.interface.dashboard.component-select .row:hover > div.color1 > .column,
+.interface.dashboard.component-select .row:hover > div.color1 > .column-input,
+.interface.dashboard.component-select .row:hover > div.color1 > .empty,
+.interface.dashboard.component-select .row:hover > div.color1 .column-button {
+  background-color: #000000;
+  border-bottom: 1px solid #000000;
+}
+.interface.dashboard.component-select tr.color1:hover td {
+  background-color: #000000;
+  border-bottom: 1px solid #000000;
+}
+.interface.dashboard.component-select tr.color1:hover td:hover {
+  background-color: #090707;
+  border-bottom: 1px solid #030202;
+}
+.interface.dashboard.component-select.forpanel div.color1 {
+  background-color: #ffd300;
+}
+.interface.dashboard.component-select.forpanel div.color1 > .column-label,
+.interface.dashboard.component-select.forpanel div.color1 .column-icon {
+  color: #444444;
+  background-color: #ffd300;
+  border-bottom: 1px solid #f5cb00;
+}
+.interface.dashboard.component-select.forpanel div.color1 > .column,
+.interface.dashboard.component-select.forpanel div.color1 > .column-input,
+.interface.dashboard.component-select.forpanel div.color1 > .empty,
+.interface.dashboard.component-select.forpanel div.color1 .column-button {
+  background-color: #ffd300;
+  border-bottom: 1px solid #f5cb00;
+}
+.interface.dashboard.component-select.forpanel tr.color1 td {
+  background-color: #ffd300;
+  border-bottom: 1px solid #f5cb00;
+}
+.interface.dashboard.component-select.forpanel .row.color1:hover {
+  background-color: #ffc300;
+}
+.interface.dashboard.component-select.forpanel .row.color1:hover > .column-label,
+.interface.dashboard.component-select.forpanel .row.color1:hover .column-icon {
+  color: #444444;
+  background-color: #ffc70f;
+  border-bottom: 1px solid #ffc300;
+}
+.interface.dashboard.component-select.forpanel .row.color1:hover > .column,
+.interface.dashboard.component-select.forpanel .row.color1:hover > .column-input,
+.interface.dashboard.component-select.forpanel .row.color1:hover > .empty,
+.interface.dashboard.component-select.forpanel .row.color1:hover .column-button {
+  background-color: #ffc300;
+  border-bottom: 1px solid #f0b700;
+}
+.interface.dashboard.component-select.forpanel .row:hover > div.color1 {
+  background-color: #ffc300;
+}
+.interface.dashboard.component-select.forpanel .row:hover > div.color1 > .column-label,
+.interface.dashboard.component-select.forpanel .row:hover > div.color1 .column-icon {
+  color: #444444;
+  background-color: #ffc70f;
+  border-bottom: 1px solid #ffc300;
+}
+.interface.dashboard.component-select.forpanel .row:hover > div.color1 > .column,
+.interface.dashboard.component-select.forpanel .row:hover > div.color1 > .column-input,
+.interface.dashboard.component-select.forpanel .row:hover > div.color1 > .empty,
+.interface.dashboard.component-select.forpanel .row:hover > div.color1 .column-button {
+  background-color: #ffc300;
+  border-bottom: 1px solid #f0b700;
+}
+.interface.dashboard.component-select.forpanel tr.color1:hover td {
+  background-color: #ffc300;
+  border-bottom: 1px solid #f5bb00;
+}
+.interface.dashboard.component-select.forpanel tr.color1:hover td:hover {
+  background-color: #ffc70f;
+  border-bottom: 1px solid #ffc405;
+}
+.interface.dashboard div.purple {
+  background-color: #e9d1f0;
+}
+.interface.dashboard div.purple > .column-label,
+.interface.dashboard div.purple .column-icon {
+  color: #444444;
+  background-color: #e9d1f0;
+  border-bottom: 1px solid #e6caed;
+}
+.interface.dashboard div.purple > .column,
+.interface.dashboard div.purple > .column-input,
+.interface.dashboard div.purple > .empty,
+.interface.dashboard div.purple .column-button {
+  background-color: #e9d1f0;
+  border-bottom: 1px solid #e6caed;
+}
+.interface.dashboard tr.purple td {
+  background-color: #e9d1f0;
+  border-bottom: 1px solid #e6caed;
+}
+.interface.dashboard .row.purple:hover {
+  background-color: #d7abe3;
+}
+.interface.dashboard .row.purple:hover > .column-label,
+.interface.dashboard .row.purple:hover .column-icon {
+  color: #444444;
+  background-color: #e1afee;
+  border-bottom: 1px solid #dca3eb;
+}
+.interface.dashboard .row.purple:hover > .column,
+.interface.dashboard .row.purple:hover > .column-input,
+.interface.dashboard .row.purple:hover > .empty,
+.interface.dashboard .row.purple:hover .column-button {
+  background-color: #d7abe3;
+  border-bottom: 1px solid #d2a0df;
+}
+.interface.dashboard .row:hover > div.purple {
+  background-color: #d7abe3;
+}
+.interface.dashboard .row:hover > div.purple > .column-label,
+.interface.dashboard .row:hover > div.purple .column-icon {
+  color: #444444;
+  background-color: #e1afee;
+  border-bottom: 1px solid #dca3eb;
+}
+.interface.dashboard .row:hover > div.purple > .column,
+.interface.dashboard .row:hover > div.purple > .column-input,
+.interface.dashboard .row:hover > div.purple > .empty,
+.interface.dashboard .row:hover > div.purple .column-button {
+  background-color: #d7abe3;
+  border-bottom: 1px solid #d2a0df;
+}
+.interface.dashboard tr.purple:hover td {
+  background-color: #d7abe3;
+  border-bottom: 1px solid #d3a3e0;
+}
+.interface.dashboard tr.purple:hover td:hover {
+  background-color: #e1afee;
+  border-bottom: 1px solid #dea7ec;
+}
+.interface.dashboard div.blue {
+  background-color: #c5d1ec;
+}
+.interface.dashboard div.blue > .column-label,
+.interface.dashboard div.blue .column-icon {
+  color: #444444;
+  background-color: #c5d1ec;
+  border-bottom: 1px solid #becbe9;
+}
+.interface.dashboard div.blue > .column,
+.interface.dashboard div.blue > .column-input,
+.interface.dashboard div.blue > .empty,
+.interface.dashboard div.blue .column-button {
+  background-color: #c5d1ec;
+  border-bottom: 1px solid #becbe9;
+}
+.interface.dashboard tr.blue td {
+  background-color: #c5d1ec;
+  border-bottom: 1px solid #becbe9;
+}
+.interface.dashboard .row.blue:hover {
+  background-color: #9fb3df;
+}
+.interface.dashboard .row.blue:hover > .column-label,
+.interface.dashboard .row.blue:hover .column-icon {
+  color: #444444;
+  background-color: #a2b8eb;
+  border-bottom: 1px solid #95afe9;
+}
+.interface.dashboard .row.blue:hover > .column,
+.interface.dashboard .row.blue:hover > .column-input,
+.interface.dashboard .row.blue:hover > .empty,
+.interface.dashboard .row.blue:hover .column-button {
+  background-color: #9fb3df;
+  border-bottom: 1px solid #94a9db;
+}
+.interface.dashboard .row:hover > div.blue {
+  background-color: #9fb3df;
+}
+.interface.dashboard .row:hover > div.blue > .column-label,
+.interface.dashboard .row:hover > div.blue .column-icon {
+  color: #444444;
+  background-color: #a2b8eb;
+  border-bottom: 1px solid #95afe9;
+}
+.interface.dashboard .row:hover > div.blue > .column,
+.interface.dashboard .row:hover > div.blue > .column-input,
+.interface.dashboard .row:hover > div.blue > .empty,
+.interface.dashboard .row:hover > div.blue .column-button {
+  background-color: #9fb3df;
+  border-bottom: 1px solid #94a9db;
+}
+.interface.dashboard tr.blue:hover td {
+  background-color: #9fb3df;
+  border-bottom: 1px solid #97acdc;
+}
+.interface.dashboard tr.blue:hover td:hover {
+  background-color: #a2b8eb;
+  border-bottom: 1px solid #9ab2e9;
+}
+.interface.dashboard div.turqoise {
+  background-color: #c8edec;
+}
+.interface.dashboard div.turqoise > .column-label,
+.interface.dashboard div.turqoise .column-icon {
+  color: #444444;
+  background-color: #c8edec;
+  border-bottom: 1px solid #c1eae9;
+}
+.interface.dashboard div.turqoise > .column,
+.interface.dashboard div.turqoise > .column-input,
+.interface.dashboard div.turqoise > .empty,
+.interface.dashboard div.turqoise .column-button {
+  background-color: #c8edec;
+  border-bottom: 1px solid #c1eae9;
+}
+.interface.dashboard tr.turqoise td {
+  background-color: #c8edec;
+  border-bottom: 1px solid #c1eae9;
+}
+.interface.dashboard .row.turqoise:hover {
+  background-color: #a2e0de;
+}
+.interface.dashboard .row.turqoise:hover > .column-label,
+.interface.dashboard .row.turqoise:hover .column-icon {
+  color: #444444;
+  background-color: #a5ecea;
+  border-bottom: 1px solid #99e9e7;
+}
+.interface.dashboard .row.turqoise:hover > .column,
+.interface.dashboard .row.turqoise:hover > .column-input,
+.interface.dashboard .row.turqoise:hover > .empty,
+.interface.dashboard .row.turqoise:hover .column-button {
+  background-color: #a2e0de;
+  border-bottom: 1px solid #97dcda;
+}
+.interface.dashboard .row:hover > div.turqoise {
+  background-color: #a2e0de;
+}
+.interface.dashboard .row:hover > div.turqoise > .column-label,
+.interface.dashboard .row:hover > div.turqoise .column-icon {
+  color: #444444;
+  background-color: #a5ecea;
+  border-bottom: 1px solid #99e9e7;
+}
+.interface.dashboard .row:hover > div.turqoise > .column,
+.interface.dashboard .row:hover > div.turqoise > .column-input,
+.interface.dashboard .row:hover > div.turqoise > .empty,
+.interface.dashboard .row:hover > div.turqoise .column-button {
+  background-color: #a2e0de;
+  border-bottom: 1px solid #97dcda;
+}
+.interface.dashboard tr.turqoise:hover td {
+  background-color: #a2e0de;
+  border-bottom: 1px solid #9adddb;
+}
+.interface.dashboard tr.turqoise:hover td:hover {
+  background-color: #a5ecea;
+  border-bottom: 1px solid #9deae8;
+}
+.interface.dashboard div.green {
+  background-color: #c1ebce;
+}
+.interface.dashboard div.green > .column-label,
+.interface.dashboard div.green .column-icon {
+  color: #444444;
+  background-color: #c2eace;
+  border-bottom: 1px solid #bae8c8;
+}
+.interface.dashboard div.green > .column,
+.interface.dashboard div.green > .column-input,
+.interface.dashboard div.green > .empty,
+.interface.dashboard div.green .column-button {
+  background-color: #c1ebce;
+  border-bottom: 1px solid #bae8c8;
+}
+.interface.dashboard tr.green td {
+  background-color: #c2eace;
+  border-bottom: 1px solid #bae8c8;
+}
+.interface.dashboard .row.green:hover {
+  background-color: #9bdeaf;
+}
+.interface.dashboard .row.green:hover > .column-label,
+.interface.dashboard .row.green:hover .column-icon {
+  color: #444444;
+  background-color: #9eeab5;
+  border-bottom: 1px solid #91e8ac;
+}
+.interface.dashboard .row.green:hover > .column,
+.interface.dashboard .row.green:hover > .column-input,
+.interface.dashboard .row.green:hover > .empty,
+.interface.dashboard .row.green:hover .column-button {
+  background-color: #9bdeaf;
+  border-bottom: 1px solid #90daa6;
+}
+.interface.dashboard .row:hover > div.green {
+  background-color: #9bdeaf;
+}
+.interface.dashboard .row:hover > div.green > .column-label,
+.interface.dashboard .row:hover > div.green .column-icon {
+  color: #444444;
+  background-color: #9eeab5;
+  border-bottom: 1px solid #91e8ac;
+}
+.interface.dashboard .row:hover > div.green > .column,
+.interface.dashboard .row:hover > div.green > .column-input,
+.interface.dashboard .row:hover > div.green > .empty,
+.interface.dashboard .row:hover > div.green .column-button {
+  background-color: #9bdeaf;
+  border-bottom: 1px solid #90daa6;
+}
+.interface.dashboard tr.green:hover td {
+  background-color: #9bdeaf;
+  border-bottom: 1px solid #94dba9;
+}
+.interface.dashboard tr.green:hover td:hover {
+  background-color: #9eeab5;
+  border-bottom: 1px solid #95e9af;
+}
+.interface.dashboard div.yellow {
+  background-color: #f2efd9;
+}
+.interface.dashboard div.yellow > .column-label,
+.interface.dashboard div.yellow .column-icon {
+  color: #444444;
+  background-color: #f2efd9;
+  border-bottom: 1px solid #f0ecd1;
+}
+.interface.dashboard div.yellow > .column,
+.interface.dashboard div.yellow > .column-input,
+.interface.dashboard div.yellow > .empty,
+.interface.dashboard div.yellow .column-button {
+  background-color: #f2efd9;
+  border-bottom: 1px solid #f0ecd1;
+}
+.interface.dashboard tr.yellow td {
+  background-color: #f2efd9;
+  border-bottom: 1px solid #f0ecd1;
+}
+.interface.dashboard .row.yellow:hover {
+  background-color: #e6dfb3;
+}
+.interface.dashboard .row.yellow:hover > .column-label,
+.interface.dashboard .row.yellow:hover .column-icon {
+  color: #444444;
+  background-color: #f0e9b7;
+  border-bottom: 1px solid #ede5ab;
+}
+.interface.dashboard .row.yellow:hover > .column,
+.interface.dashboard .row.yellow:hover > .column-input,
+.interface.dashboard .row.yellow:hover > .empty,
+.interface.dashboard .row.yellow:hover .column-button {
+  background-color: #e6dfb3;
+  border-bottom: 1px solid #e2dba7;
+}
+.interface.dashboard .row:hover > div.yellow {
+  background-color: #e6dfb3;
+}
+.interface.dashboard .row:hover > div.yellow > .column-label,
+.interface.dashboard .row:hover > div.yellow .column-icon {
+  color: #444444;
+  background-color: #f0e9b7;
+  border-bottom: 1px solid #ede5ab;
+}
+.interface.dashboard .row:hover > div.yellow > .column,
+.interface.dashboard .row:hover > div.yellow > .column-input,
+.interface.dashboard .row:hover > div.yellow > .empty,
+.interface.dashboard .row:hover > div.yellow .column-button {
+  background-color: #e6dfb3;
+  border-bottom: 1px solid #e2dba7;
+}
+.interface.dashboard tr.yellow:hover td {
+  background-color: #e6dfb3;
+  border-bottom: 1px solid #e3dcab;
+}
+.interface.dashboard tr.yellow:hover td:hover {
+  background-color: #f0e9b7;
+  border-bottom: 1px solid #eee6af;
+}
+.interface.dashboard div.orange {
+  background-color: #f2e5d9;
+}
+.interface.dashboard div.orange > .column-label,
+.interface.dashboard div.orange .column-icon {
+  color: #444444;
+  background-color: #f2e5d9;
+  border-bottom: 1px solid #f0e0d1;
+}
+.interface.dashboard div.orange > .column,
+.interface.dashboard div.orange > .column-input,
+.interface.dashboard div.orange > .empty,
+.interface.dashboard div.orange .column-button {
+  background-color: #f2e5d9;
+  border-bottom: 1px solid #f0e0d1;
+}
+.interface.dashboard tr.orange td {
+  background-color: #f2e5d9;
+  border-bottom: 1px solid #f0e0d1;
+}
+.interface.dashboard .row.orange:hover {
+  background-color: #e6ccb3;
+}
+.interface.dashboard .row.orange:hover > .column-label,
+.interface.dashboard .row.orange:hover .column-icon {
+  color: #444444;
+  background-color: #f0d3b7;
+  border-bottom: 1px solid #edccab;
+}
+.interface.dashboard .row.orange:hover > .column,
+.interface.dashboard .row.orange:hover > .column-input,
+.interface.dashboard .row.orange:hover > .empty,
+.interface.dashboard .row.orange:hover .column-button {
+  background-color: #e6ccb3;
+  border-bottom: 1px solid #e2c4a7;
+}
+.interface.dashboard .row:hover > div.orange {
+  background-color: #e6ccb3;
+}
+.interface.dashboard .row:hover > div.orange > .column-label,
+.interface.dashboard .row:hover > div.orange .column-icon {
+  color: #444444;
+  background-color: #f0d3b7;
+  border-bottom: 1px solid #edccab;
+}
+.interface.dashboard .row:hover > div.orange > .column,
+.interface.dashboard .row:hover > div.orange > .column-input,
+.interface.dashboard .row:hover > div.orange > .empty,
+.interface.dashboard .row:hover > div.orange .column-button {
+  background-color: #e6ccb3;
+  border-bottom: 1px solid #e2c4a7;
+}
+.interface.dashboard tr.orange:hover td {
+  background-color: #e6ccb3;
+  border-bottom: 1px solid #e3c7ab;
+}
+.interface.dashboard tr.orange:hover td:hover {
+  background-color: #f0d3b7;
+  border-bottom: 1px solid #eeceaf;
+}
+.interface.dashboard div.red {
+  background-color: #f2d9d9;
+}
+.interface.dashboard div.red > .column-label,
+.interface.dashboard div.red .column-icon {
+  color: #444444;
+  background-color: #f2d9d9;
+  border-bottom: 1px solid #f0d1d1;
+}
+.interface.dashboard div.red > .column,
+.interface.dashboard div.red > .column-input,
+.interface.dashboard div.red > .empty,
+.interface.dashboard div.red .column-button {
+  background-color: #f2d9d9;
+  border-bottom: 1px solid #f0d1d1;
+}
+.interface.dashboard tr.red td {
+  background-color: #f2d9d9;
+  border-bottom: 1px solid #f0d1d1;
+}
+.interface.dashboard .row.red:hover {
+  background-color: #e6b3b3;
+}
+.interface.dashboard .row.red:hover > .column-label,
+.interface.dashboard .row.red:hover .column-icon {
+  color: #444444;
+  background-color: #f0b7b7;
+  border-bottom: 1px solid #edabab;
+}
+.interface.dashboard .row.red:hover > .column,
+.interface.dashboard .row.red:hover > .column-input,
+.interface.dashboard .row.red:hover > .empty,
+.interface.dashboard .row.red:hover .column-button {
+  background-color: #e6b3b3;
+  border-bottom: 1px solid #e2a7a7;
+}
+.interface.dashboard .row:hover > div.red {
+  background-color: #e6b3b3;
+}
+.interface.dashboard .row:hover > div.red > .column-label,
+.interface.dashboard .row:hover > div.red .column-icon {
+  color: #444444;
+  background-color: #f0b7b7;
+  border-bottom: 1px solid #edabab;
+}
+.interface.dashboard .row:hover > div.red > .column,
+.interface.dashboard .row:hover > div.red > .column-input,
+.interface.dashboard .row:hover > div.red > .empty,
+.interface.dashboard .row:hover > div.red .column-button {
+  background-color: #e6b3b3;
+  border-bottom: 1px solid #e2a7a7;
+}
+.interface.dashboard tr.red:hover td {
+  background-color: #e6b3b3;
+  border-bottom: 1px solid #e3abab;
+}
+.interface.dashboard tr.red:hover td:hover {
+  background-color: #f0b7b7;
+  border-bottom: 1px solid #eeafaf;
+}
+.interface .dash-menu {
+  background-color: #314859;
+  color: #ffffff;
+}
+.interface .dash-menu a:link use {
+  color: #ffffff;
+}
+.interface .dash-menu a:hover use {
+  color: #33ffcc;
+}
+.interface .dash-menu a:active use {
+  color: #00ffcc;
+}
+.interface .dash-menu a:visited use {
+  color: #ffffff;
+}
+.interface .dash-menu .grip {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.interface .dash-menu .title {
+  color: #aaaaaa;
+}
+.interface .dash-menu .close a:hover {
+  color: #cc0000 !important;
+}
+.interface .dash-menu.arrow-top:after {
+  border-bottom-color: #314859;
+}
+.interface .dash-menu .section-info {
+  background-color: #2b3f4e;
+}
+.interface .dash-menu .top-menu,
+.interface .dash-menu .side-menu {
+  background-color: #2a2a2a;
+}
+.interface .dash-menu .tabs .item {
+  color: #9bc9dc;
+  background-color: #385366;
+}
+.interface .dash-menu .tabs .item:hover {
+  color: #ffffff;
+  background-color: #3f5d73;
+}
+.interface .dash-menu .tabs .item.selected {
+  color: #ffffff;
+  background-color: #263b4e;
+}
+.interface .dash-menu .top-menu .tabs .item {
+  color: #9bc9dc;
+  background-color: #3c586d;
+}
+.interface .dash-menu .top-menu .tabs .item:hover {
+  color: #ffffff;
+  background-color: #43637a;
+}
+.interface .dash-menu .top-menu .tabs .item.selected {
+  color: #ffffff;
+  background-color: #294055;
+}
+.interface .dash-menu .help-info {
+  color: #ffffff;
+  background-color: #283b49;
+}
+.interface .dash-menu .column-help > div {
+  color: #9ee3c3;
+  background-color: #283b49;
+}
+.interface .dash-menu .column-help > div:after {
+  border-right-color: #283b49;
+}
+.interface .dash-menu .column-help .row.color:hover {
+  color: #89eebf;
+  background-color: #23333f;
+}
+.interface .dash-menu div.color1 {
+  background-color: #314859;
+}
+.interface .dash-menu div.color1 > .column-label,
+.interface .dash-menu div.color1 .column-icon {
+  color: #ffffff;
+  background-color: #314859;
+  border-bottom: 1px solid #2d4352;
+}
+.interface .dash-menu div.color1 > .column,
+.interface .dash-menu div.color1 > .column-input,
+.interface .dash-menu div.color1 > .empty,
+.interface .dash-menu div.color1 .column-button {
+  background-color: #314859;
+  border-bottom: 1px solid #2d4352;
+}
+.interface .dash-menu tr.color1 td {
+  background-color: #314859;
+  border-bottom: 1px solid #2d4352;
+}
+.interface .dash-menu .row.color1:hover {
+  background-color: #3b576c;
+}
+.interface .dash-menu .row.color1:hover > .column-label,
+.interface .dash-menu .row.color1:hover .column-icon {
+  color: #ffffff;
+  background-color: #336184;
+  border-bottom: 1px solid #2e5979;
+}
+.interface .dash-menu .row.color1:hover > .column,
+.interface .dash-menu .row.color1:hover > .column-input,
+.interface .dash-menu .row.color1:hover > .empty,
+.interface .dash-menu .row.color1:hover .column-button {
+  background-color: #3b576c;
+  border-bottom: 1px solid #364f62;
+}
+.interface .dash-menu .row:hover > div.color1 {
+  background-color: #3b576c;
+}
+.interface .dash-menu .row:hover > div.color1 > .column-label,
+.interface .dash-menu .row:hover > div.color1 .column-icon {
+  color: #ffffff;
+  background-color: #336184;
+  border-bottom: 1px solid #2e5979;
+}
+.interface .dash-menu .row:hover > div.color1 > .column,
+.interface .dash-menu .row:hover > div.color1 > .column-input,
+.interface .dash-menu .row:hover > div.color1 > .empty,
+.interface .dash-menu .row:hover > div.color1 .column-button {
+  background-color: #3b576c;
+  border-bottom: 1px solid #364f62;
+}
+.interface .dash-menu tr.color1:hover td {
+  background-color: #3b576c;
+  border-bottom: 1px solid #375265;
+}
+.interface .dash-menu tr.color1:hover td:hover {
+  background-color: #336184;
+  border-bottom: 1px solid #305c7c;
+}
+.interface .dash-menu div.color2 {
+  background-color: #2f4556;
+}
+.interface .dash-menu div.color2 > .column-label,
+.interface .dash-menu div.color2 .column-icon {
+  color: #ffffff;
+  background-color: #2f4556;
+  border-bottom: 1px solid #2c404f;
+}
+.interface .dash-menu div.color2 > .column,
+.interface .dash-menu div.color2 > .column-input,
+.interface .dash-menu div.color2 > .empty,
+.interface .dash-menu div.color2 .column-button {
+  background-color: #2f4556;
+  border-bottom: 1px solid #2c404f;
+}
+.interface .dash-menu tr.color2 td {
+  background-color: #2f4556;
+  border-bottom: 1px solid #2c404f;
+}
+.interface .dash-menu .row.color2:hover {
+  background-color: #3b576c;
+}
+.interface .dash-menu .row.color2:hover > .column-label,
+.interface .dash-menu .row.color2:hover .column-icon {
+  color: #ffffff;
+  background-color: #336184;
+  border-bottom: 1px solid #2e5979;
+}
+.interface .dash-menu .row.color2:hover > .column,
+.interface .dash-menu .row.color2:hover > .column-input,
+.interface .dash-menu .row.color2:hover > .empty,
+.interface .dash-menu .row.color2:hover .column-button {
+  background-color: #3b576c;
+  border-bottom: 1px solid #364f62;
+}
+.interface .dash-menu .row:hover > div.color2 {
+  background-color: #3b576c;
+}
+.interface .dash-menu .row:hover > div.color2 > .column-label,
+.interface .dash-menu .row:hover > div.color2 .column-icon {
+  color: #ffffff;
+  background-color: #336184;
+  border-bottom: 1px solid #2e5979;
+}
+.interface .dash-menu .row:hover > div.color2 > .column,
+.interface .dash-menu .row:hover > div.color2 > .column-input,
+.interface .dash-menu .row:hover > div.color2 > .empty,
+.interface .dash-menu .row:hover > div.color2 .column-button {
+  background-color: #3b576c;
+  border-bottom: 1px solid #364f62;
+}
+.interface .dash-menu tr.color2:hover td {
+  background-color: #3b576c;
+  border-bottom: 1px solid #375265;
+}
+.interface .dash-menu tr.color2:hover td:hover {
+  background-color: #336184;
+  border-bottom: 1px solid #305c7c;
+}
+.interface .dash-menu.component-select div.color1 {
+  background-color: #252525;
+}
+.interface .dash-menu.component-select div.color1 > .column-label,
+.interface .dash-menu.component-select div.color1 .column-icon {
+  color: #ffffff;
+  background-color: #252525;
+  border-bottom: 1px solid #202020;
+}
+.interface .dash-menu.component-select div.color1 > .column,
+.interface .dash-menu.component-select div.color1 > .column-input,
+.interface .dash-menu.component-select div.color1 > .empty,
+.interface .dash-menu.component-select div.color1 .column-button {
+  background-color: #252525;
+  border-bottom: 1px solid #202020;
+}
+.interface .dash-menu.component-select tr.color1 td {
+  background-color: #252525;
+  border-bottom: 1px solid #202020;
+}
+.interface .dash-menu.component-select .row.color1:hover {
+  background-color: #000000;
+}
+.interface .dash-menu.component-select .row.color1:hover > .column-label,
+.interface .dash-menu.component-select .row.color1:hover .column-icon {
+  color: #ffffff;
+  background-color: #090707;
+  border-bottom: 1px solid #000000;
+}
+.interface .dash-menu.component-select .row.color1:hover > .column,
+.interface .dash-menu.component-select .row.color1:hover > .column-input,
+.interface .dash-menu.component-select .row.color1:hover > .empty,
+.interface .dash-menu.component-select .row.color1:hover .column-button {
+  background-color: #000000;
+  border-bottom: 1px solid #000000;
+}
+.interface .dash-menu.component-select .row:hover > div.color1 {
+  background-color: #000000;
+}
+.interface .dash-menu.component-select .row:hover > div.color1 > .column-label,
+.interface .dash-menu.component-select .row:hover > div.color1 .column-icon {
+  color: #ffffff;
+  background-color: #090707;
+  border-bottom: 1px solid #000000;
+}
+.interface .dash-menu.component-select .row:hover > div.color1 > .column,
+.interface .dash-menu.component-select .row:hover > div.color1 > .column-input,
+.interface .dash-menu.component-select .row:hover > div.color1 > .empty,
+.interface .dash-menu.component-select .row:hover > div.color1 .column-button {
+  background-color: #000000;
+  border-bottom: 1px solid #000000;
+}
+.interface .dash-menu.component-select tr.color1:hover td {
+  background-color: #000000;
+  border-bottom: 1px solid #000000;
+}
+.interface .dash-menu.component-select tr.color1:hover td:hover {
+  background-color: #090707;
+  border-bottom: 1px solid #030202;
+}
+.interface .dash-menu.component-select.forpanel div.color1 {
+  background-color: #ffd300;
+}
+.interface .dash-menu.component-select.forpanel div.color1 > .column-label,
+.interface .dash-menu.component-select.forpanel div.color1 .column-icon {
+  color: #ffffff;
+  background-color: #ffd300;
+  border-bottom: 1px solid #f5cb00;
+}
+.interface .dash-menu.component-select.forpanel div.color1 > .column,
+.interface .dash-menu.component-select.forpanel div.color1 > .column-input,
+.interface .dash-menu.component-select.forpanel div.color1 > .empty,
+.interface .dash-menu.component-select.forpanel div.color1 .column-button {
+  background-color: #ffd300;
+  border-bottom: 1px solid #f5cb00;
+}
+.interface .dash-menu.component-select.forpanel tr.color1 td {
+  background-color: #ffd300;
+  border-bottom: 1px solid #f5cb00;
+}
+.interface .dash-menu.component-select.forpanel .row.color1:hover {
+  background-color: #ffc300;
+}
+.interface .dash-menu.component-select.forpanel .row.color1:hover > .column-label,
+.interface .dash-menu.component-select.forpanel .row.color1:hover .column-icon {
+  color: #ffffff;
+  background-color: #ffc70f;
+  border-bottom: 1px solid #ffc300;
+}
+.interface .dash-menu.component-select.forpanel .row.color1:hover > .column,
+.interface .dash-menu.component-select.forpanel .row.color1:hover > .column-input,
+.interface .dash-menu.component-select.forpanel .row.color1:hover > .empty,
+.interface .dash-menu.component-select.forpanel .row.color1:hover .column-button {
+  background-color: #ffc300;
+  border-bottom: 1px solid #f0b700;
+}
+.interface .dash-menu.component-select.forpanel .row:hover > div.color1 {
+  background-color: #ffc300;
+}
+.interface .dash-menu.component-select.forpanel .row:hover > div.color1 > .column-label,
+.interface .dash-menu.component-select.forpanel .row:hover > div.color1 .column-icon {
+  color: #ffffff;
+  background-color: #ffc70f;
+  border-bottom: 1px solid #ffc300;
+}
+.interface .dash-menu.component-select.forpanel .row:hover > div.color1 > .column,
+.interface .dash-menu.component-select.forpanel .row:hover > div.color1 > .column-input,
+.interface .dash-menu.component-select.forpanel .row:hover > div.color1 > .empty,
+.interface .dash-menu.component-select.forpanel .row:hover > div.color1 .column-button {
+  background-color: #ffc300;
+  border-bottom: 1px solid #f0b700;
+}
+.interface .dash-menu.component-select.forpanel tr.color1:hover td {
+  background-color: #ffc300;
+  border-bottom: 1px solid #f5bb00;
+}
+.interface .dash-menu.component-select.forpanel tr.color1:hover td:hover {
+  background-color: #ffc70f;
+  border-bottom: 1px solid #ffc405;
+}
+.interface .dash-menu div.purple {
+  background-color: #410e4e;
+}
+.interface .dash-menu div.purple > .column-label,
+.interface .dash-menu div.purple .column-icon {
+  color: #ffffff;
+  background-color: #410e4e;
+  border-bottom: 1px solid #390c46;
+}
+.interface .dash-menu div.purple > .column,
+.interface .dash-menu div.purple > .column-input,
+.interface .dash-menu div.purple > .empty,
+.interface .dash-menu div.purple .column-button {
+  background-color: #410e4e;
+  border-bottom: 1px solid #390c46;
+}
+.interface .dash-menu tr.purple td {
+  background-color: #410e4e;
+  border-bottom: 1px solid #390c46;
+}
+.interface .dash-menu .row.purple:hover {
+  background-color: #410c50;
+}
+.interface .dash-menu .row.purple:hover > .column-label,
+.interface .dash-menu .row.purple:hover .column-icon {
+  color: #ffffff;
+  background-color: #510665;
+  border-bottom: 1px solid #450656;
+}
+.interface .dash-menu .row.purple:hover > .column,
+.interface .dash-menu .row.purple:hover > .column-input,
+.interface .dash-menu .row.purple:hover > .empty,
+.interface .dash-menu .row.purple:hover .column-button {
+  background-color: #410c50;
+  border-bottom: 1px solid #360a42;
+}
+.interface .dash-menu .row:hover > div.purple {
+  background-color: #410c50;
+}
+.interface .dash-menu .row:hover > div.purple > .column-label,
+.interface .dash-menu .row:hover > div.purple .column-icon {
+  color: #ffffff;
+  background-color: #510665;
+  border-bottom: 1px solid #450656;
+}
+.interface .dash-menu .row:hover > div.purple > .column,
+.interface .dash-menu .row:hover > div.purple > .column-input,
+.interface .dash-menu .row:hover > div.purple > .empty,
+.interface .dash-menu .row:hover > div.purple .column-button {
+  background-color: #410c50;
+  border-bottom: 1px solid #360a42;
+}
+.interface .dash-menu tr.purple:hover td {
+  background-color: #410c50;
+  border-bottom: 1px solid #3a0b47;
+}
+.interface .dash-menu tr.purple:hover td:hover {
+  background-color: #510665;
+  border-bottom: 1px solid #49065b;
+}
+.interface .dash-menu div.blue {
+  background-color: #0b1c41;
+}
+.interface .dash-menu div.blue > .column-label,
+.interface .dash-menu div.blue .column-icon {
+  color: #ffffff;
+  background-color: #0b1c41;
+  border-bottom: 1px solid #0a1838;
+}
+.interface .dash-menu div.blue > .column,
+.interface .dash-menu div.blue > .column-input,
+.interface .dash-menu div.blue > .empty,
+.interface .dash-menu div.blue .column-button {
+  background-color: #0b1c41;
+  border-bottom: 1px solid #0a1838;
+}
+.interface .dash-menu tr.blue td {
+  background-color: #0b1c41;
+  border-bottom: 1px solid #0a1838;
+}
+.interface .dash-menu .row.blue:hover {
+  background-color: #0a1b42;
+}
+.interface .dash-menu .row.blue:hover > .column-label,
+.interface .dash-menu .row.blue:hover .column-icon {
+  color: #ffffff;
+  background-color: #051e56;
+  border-bottom: 1px solid #051947;
+}
+.interface .dash-menu .row.blue:hover > .column,
+.interface .dash-menu .row.blue:hover > .column-input,
+.interface .dash-menu .row.blue:hover > .empty,
+.interface .dash-menu .row.blue:hover .column-button {
+  background-color: #0a1b42;
+  border-bottom: 1px solid #081635;
+}
+.interface .dash-menu .row:hover > div.blue {
+  background-color: #0a1b42;
+}
+.interface .dash-menu .row:hover > div.blue > .column-label,
+.interface .dash-menu .row:hover > div.blue .column-icon {
+  color: #ffffff;
+  background-color: #051e56;
+  border-bottom: 1px solid #051947;
+}
+.interface .dash-menu .row:hover > div.blue > .column,
+.interface .dash-menu .row:hover > div.blue > .column-input,
+.interface .dash-menu .row:hover > div.blue > .empty,
+.interface .dash-menu .row:hover > div.blue .column-button {
+  background-color: #0a1b42;
+  border-bottom: 1px solid #081635;
+}
+.interface .dash-menu tr.blue:hover td {
+  background-color: #0a1b42;
+  border-bottom: 1px solid #091839;
+}
+.interface .dash-menu tr.blue:hover td:hover {
+  background-color: #051e56;
+  border-bottom: 1px solid #051b4c;
+}
+.interface .dash-menu div.turqoise {
+  background-color: #0c4442;
+}
+.interface .dash-menu div.turqoise > .column-label,
+.interface .dash-menu div.turqoise .column-icon {
+  color: #ffffff;
+  background-color: #0c4442;
+  border-bottom: 1px solid #0a3b3a;
+}
+.interface .dash-menu div.turqoise > .column,
+.interface .dash-menu div.turqoise > .column-input,
+.interface .dash-menu div.turqoise > .empty,
+.interface .dash-menu div.turqoise .column-button {
+  background-color: #0c4442;
+  border-bottom: 1px solid #0a3b3a;
+}
+.interface .dash-menu tr.turqoise td {
+  background-color: #0c4442;
+  border-bottom: 1px solid #0a3b3a;
+}
+.interface .dash-menu .row.turqoise:hover {
+  background-color: #074947;
+}
+.interface .dash-menu .row.turqoise:hover > .column-label,
+.interface .dash-menu .row.turqoise:hover .column-icon {
+  color: #ffffff;
+  background-color: #015e5c;
+  border-bottom: 1px solid #014f4d;
+}
+.interface .dash-menu .row.turqoise:hover > .column,
+.interface .dash-menu .row.turqoise:hover > .column-input,
+.interface .dash-menu .row.turqoise:hover > .empty,
+.interface .dash-menu .row.turqoise:hover .column-button {
+  background-color: #074947;
+  border-bottom: 1px solid #053b3a;
+}
+.interface .dash-menu .row:hover > div.turqoise {
+  background-color: #074947;
+}
+.interface .dash-menu .row:hover > div.turqoise > .column-label,
+.interface .dash-menu .row:hover > div.turqoise .column-icon {
+  color: #ffffff;
+  background-color: #015e5c;
+  border-bottom: 1px solid #014f4d;
+}
+.interface .dash-menu .row:hover > div.turqoise > .column,
+.interface .dash-menu .row:hover > div.turqoise > .column-input,
+.interface .dash-menu .row:hover > div.turqoise > .empty,
+.interface .dash-menu .row:hover > div.turqoise .column-button {
+  background-color: #074947;
+  border-bottom: 1px solid #053b3a;
+}
+.interface .dash-menu tr.turqoise:hover td {
+  background-color: #074947;
+  border-bottom: 1px solid #06403e;
+}
+.interface .dash-menu tr.turqoise:hover td:hover {
+  background-color: #015e5c;
+  border-bottom: 1px solid #015452;
+}
+.interface .dash-menu div.green {
+  background-color: #0b3c1a;
+}
+.interface .dash-menu div.green > .column-label,
+.interface .dash-menu div.green .column-icon {
+  color: #ffffff;
+  background-color: #0b3c1a;
+  border-bottom: 1px solid #093416;
+}
+.interface .dash-menu div.green > .column,
+.interface .dash-menu div.green > .column-input,
+.interface .dash-menu div.green > .empty,
+.interface .dash-menu div.green .column-button {
+  background-color: #0b3c1a;
+  border-bottom: 1px solid #093416;
+}
+.interface .dash-menu tr.green td {
+  background-color: #0b3c1a;
+  border-bottom: 1px solid #093416;
+}
+.interface .dash-menu .row.green:hover {
+  background-color: #0a3d19;
+}
+.interface .dash-menu .row.green:hover > .column-label,
+.interface .dash-menu .row.green:hover .column-icon {
+  color: #ffffff;
+  background-color: #05511c;
+  border-bottom: 1px solid #044317;
+}
+.interface .dash-menu .row.green:hover > .column,
+.interface .dash-menu .row.green:hover > .column-input,
+.interface .dash-menu .row.green:hover > .empty,
+.interface .dash-menu .row.green:hover .column-button {
+  background-color: #0a3d19;
+  border-bottom: 1px solid #083014;
+}
+.interface .dash-menu .row:hover > div.green {
+  background-color: #0a3d19;
+}
+.interface .dash-menu .row:hover > div.green > .column-label,
+.interface .dash-menu .row:hover > div.green .column-icon {
+  color: #ffffff;
+  background-color: #05511c;
+  border-bottom: 1px solid #044317;
+}
+.interface .dash-menu .row:hover > div.green > .column,
+.interface .dash-menu .row:hover > div.green > .column-input,
+.interface .dash-menu .row:hover > div.green > .empty,
+.interface .dash-menu .row:hover > div.green .column-button {
+  background-color: #0a3d19;
+  border-bottom: 1px solid #083014;
+}
+.interface .dash-menu tr.green:hover td {
+  background-color: #0a3d19;
+  border-bottom: 1px solid #083516;
+}
+.interface .dash-menu tr.green:hover td:hover {
+  background-color: #05511c;
+  border-bottom: 1px solid #054819;
+}
+.interface .dash-menu div.yellow {
+  background-color: #574e0f;
+}
+.interface .dash-menu div.yellow > .column-label,
+.interface .dash-menu div.yellow .column-icon {
+  color: #ffffff;
+  background-color: #574e0f;
+  border-bottom: 1px solid #4e460e;
+}
+.interface .dash-menu div.yellow > .column,
+.interface .dash-menu div.yellow > .column-input,
+.interface .dash-menu div.yellow > .empty,
+.interface .dash-menu div.yellow .column-button {
+  background-color: #574e0f;
+  border-bottom: 1px solid #4e460e;
+}
+.interface .dash-menu tr.yellow td {
+  background-color: #574e0f;
+  border-bottom: 1px solid #4e460e;
+}
+.interface .dash-menu .row.yellow:hover {
+  background-color: #5b510b;
+}
+.interface .dash-menu .row.yellow:hover > .column-label,
+.interface .dash-menu .row.yellow:hover .column-icon {
+  color: #ffffff;
+  background-color: #716404;
+  border-bottom: 1px solid #625704;
+}
+.interface .dash-menu .row.yellow:hover > .column,
+.interface .dash-menu .row.yellow:hover > .column-input,
+.interface .dash-menu .row.yellow:hover > .empty,
+.interface .dash-menu .row.yellow:hover .column-button {
+  background-color: #5b510b;
+  border-bottom: 1px solid #4d450a;
+}
+.interface .dash-menu .row:hover > div.yellow {
+  background-color: #5b510b;
+}
+.interface .dash-menu .row:hover > div.yellow > .column-label,
+.interface .dash-menu .row:hover > div.yellow .column-icon {
+  color: #ffffff;
+  background-color: #716404;
+  border-bottom: 1px solid #625704;
+}
+.interface .dash-menu .row:hover > div.yellow > .column,
+.interface .dash-menu .row:hover > div.yellow > .column-input,
+.interface .dash-menu .row:hover > div.yellow > .empty,
+.interface .dash-menu .row:hover > div.yellow .column-button {
+  background-color: #5b510b;
+  border-bottom: 1px solid #4d450a;
+}
+.interface .dash-menu tr.yellow:hover td {
+  background-color: #5b510b;
+  border-bottom: 1px solid #52490a;
+}
+.interface .dash-menu tr.yellow:hover td:hover {
+  background-color: #716404;
+  border-bottom: 1px solid #675b04;
+}
+.interface .dash-menu div.orange {
+  background-color: #57330f;
+}
+.interface .dash-menu div.orange > .column-label,
+.interface .dash-menu div.orange .column-icon {
+  color: #ffffff;
+  background-color: #57330f;
+  border-bottom: 1px solid #4e2e0e;
+}
+.interface .dash-menu div.orange > .column,
+.interface .dash-menu div.orange > .column-input,
+.interface .dash-menu div.orange > .empty,
+.interface .dash-menu div.orange .column-button {
+  background-color: #57330f;
+  border-bottom: 1px solid #4e2e0e;
+}
+.interface .dash-menu tr.orange td {
+  background-color: #57330f;
+  border-bottom: 1px solid #4e2e0e;
+}
+.interface .dash-menu .row.orange:hover {
+  background-color: #5a330c;
+}
+.interface .dash-menu .row.orange:hover > .column-label,
+.interface .dash-menu .row.orange:hover .column-icon {
+  color: #ffffff;
+  background-color: #703a05;
+  border-bottom: 1px solid #613205;
+}
+.interface .dash-menu .row.orange:hover > .column,
+.interface .dash-menu .row.orange:hover > .column-input,
+.interface .dash-menu .row.orange:hover > .empty,
+.interface .dash-menu .row.orange:hover .column-button {
+  background-color: #5a330c;
+  border-bottom: 1px solid #4c2b0a;
+}
+.interface .dash-menu .row:hover > div.orange {
+  background-color: #5a330c;
+}
+.interface .dash-menu .row:hover > div.orange > .column-label,
+.interface .dash-menu .row:hover > div.orange .column-icon {
+  color: #ffffff;
+  background-color: #703a05;
+  border-bottom: 1px solid #613205;
+}
+.interface .dash-menu .row:hover > div.orange > .column,
+.interface .dash-menu .row:hover > div.orange > .column-input,
+.interface .dash-menu .row:hover > div.orange > .empty,
+.interface .dash-menu .row:hover > div.orange .column-button {
+  background-color: #5a330c;
+  border-bottom: 1px solid #4c2b0a;
+}
+.interface .dash-menu tr.orange:hover td {
+  background-color: #5a330c;
+  border-bottom: 1px solid #512d0b;
+}
+.interface .dash-menu tr.orange:hover td:hover {
+  background-color: #703a05;
+  border-bottom: 1px solid #663505;
+}
+.interface .dash-menu div.red {
+  background-color: #570f0f;
+}
+.interface .dash-menu div.red > .column-label,
+.interface .dash-menu div.red .column-icon {
+  color: #ffffff;
+  background-color: #570f0f;
+  border-bottom: 1px solid #4e0e0e;
+}
+.interface .dash-menu div.red > .column,
+.interface .dash-menu div.red > .column-input,
+.interface .dash-menu div.red > .empty,
+.interface .dash-menu div.red .column-button {
+  background-color: #570f0f;
+  border-bottom: 1px solid #4e0e0e;
+}
+.interface .dash-menu tr.red td {
+  background-color: #570f0f;
+  border-bottom: 1px solid #4e0e0e;
+}
+.interface .dash-menu .row.red:hover {
+  background-color: #580e0e;
+}
+.interface .dash-menu .row.red:hover > .column-label,
+.interface .dash-menu .row.red:hover .column-icon {
+  color: #ffffff;
+  background-color: #6e0707;
+  border-bottom: 1px solid #600606;
+}
+.interface .dash-menu .row.red:hover > .column,
+.interface .dash-menu .row.red:hover > .column-input,
+.interface .dash-menu .row.red:hover > .empty,
+.interface .dash-menu .row.red:hover .column-button {
+  background-color: #580e0e;
+  border-bottom: 1px solid #4b0c0c;
+}
+.interface .dash-menu .row:hover > div.red {
+  background-color: #580e0e;
+}
+.interface .dash-menu .row:hover > div.red > .column-label,
+.interface .dash-menu .row:hover > div.red .column-icon {
+  color: #ffffff;
+  background-color: #6e0707;
+  border-bottom: 1px solid #600606;
+}
+.interface .dash-menu .row:hover > div.red > .column,
+.interface .dash-menu .row:hover > div.red > .column-input,
+.interface .dash-menu .row:hover > div.red > .empty,
+.interface .dash-menu .row:hover > div.red .column-button {
+  background-color: #580e0e;
+  border-bottom: 1px solid #4b0c0c;
+}
+.interface .dash-menu tr.red:hover td {
+  background-color: #580e0e;
+  border-bottom: 1px solid #4f0c0c;
+}
+.interface .dash-menu tr.red:hover td:hover {
+  background-color: #6e0707;
+  border-bottom: 1px solid #650606;
+}
+.interface .dash-box {
+  background-color: #e3e3e3;
+  color: #444444;
+}
+.interface .dash-box a:link use {
+  color: #444444;
+}
+.interface .dash-box a:hover use {
+  color: #ff8b35;
+}
+.interface .dash-box a:active use {
+  color: #ff8b35;
+}
+.interface .dash-box a:visited use {
+  color: #444444;
+}
+.interface .dash-box .grip {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.interface .dash-box .title {
+  color: #aaaaaa;
+}
+.interface .dash-box .close a:hover {
+  color: #cc0000 !important;
+}
+.interface .dash-box.arrow-top:after {
+  border-bottom-color: #e3e3e3;
+}
+.interface .dash-box .section-info {
+  background-color: #d6d6d6;
+}
+.interface .dash-box .top-menu,
+.interface .dash-box .side-menu {
+  background-color: #dfdfdf;
+}
+.interface .dash-box .tabs .item {
+  color: #999999;
+  background-color: #ededed;
+}
+.interface .dash-box .tabs .item:hover {
+  color: #444444;
+  background-color: #f7f7f7;
+}
+.interface .dash-box .tabs .item.selected {
+  color: #444444;
+  background-color: #00a8e0;
+}
+.interface .dash-box .top-menu .tabs .item {
+  color: #999999;
+  background-color: #f2f2f2;
+}
+.interface .dash-box .top-menu .tabs .item:hover {
+  color: #444444;
+  background-color: #fcfcfc;
+}
+.interface .dash-box .top-menu .tabs .item.selected {
+  color: #444444;
+  background-color: #00b0eb;
+}
+.interface .dash-box .help-info {
+  color: #444444;
+  background-color: #d6d6d6;
+}
+.interface .dash-box .column-help > div {
+  color: #329392;
+  background-color: #d6d6d6;
+}
+.interface .dash-box .column-help > div:after {
+  border-right-color: #d6d6d6;
+}
+.interface .dash-box .column-help .row.color:hover {
+  color: #1d9e9d;
+  background-color: #cfcfcf;
+}
+.interface .dash-box div.color1 {
+  background-color: #e3e3e3;
+}
+.interface .dash-box div.color1 > .column-label,
+.interface .dash-box div.color1 .column-icon {
+  color: #444444;
+  background-color: #e3e3e3;
+  border-bottom: 1px solid #dedede;
+}
+.interface .dash-box div.color1 > .column,
+.interface .dash-box div.color1 > .column-input,
+.interface .dash-box div.color1 > .empty,
+.interface .dash-box div.color1 .column-button {
+  background-color: #e3e3e3;
+  border-bottom: 1px solid #dedede;
+}
+.interface .dash-box tr.color1 td {
+  background-color: #e3e3e3;
+  border-bottom: 1px solid #dedede;
+}
+.interface .dash-box .row.color1:hover {
+  background-color: #abd3d1;
+}
+.interface .dash-box .row.color1:hover > .column-label,
+.interface .dash-box .row.color1:hover .column-icon {
+  color: #444444;
+  background-color: #ade1de;
+  border-bottom: 1px solid #a1ddda;
+}
+.interface .dash-box .row.color1:hover > .column,
+.interface .dash-box .row.color1:hover > .column-input,
+.interface .dash-box .row.color1:hover > .empty,
+.interface .dash-box .row.color1:hover .column-button {
+  background-color: #abd3d1;
+  border-bottom: 1px solid #a1cecc;
+}
+.interface .dash-box .row:hover > div.color1 {
+  background-color: #abd3d1;
+}
+.interface .dash-box .row:hover > div.color1 > .column-label,
+.interface .dash-box .row:hover > div.color1 .column-icon {
+  color: #444444;
+  background-color: #ade1de;
+  border-bottom: 1px solid #a1ddda;
+}
+.interface .dash-box .row:hover > div.color1 > .column,
+.interface .dash-box .row:hover > div.color1 > .column-input,
+.interface .dash-box .row:hover > div.color1 > .empty,
+.interface .dash-box .row:hover > div.color1 .column-button {
+  background-color: #abd3d1;
+  border-bottom: 1px solid #a1cecc;
+}
+.interface .dash-box tr.color1:hover td {
+  background-color: #abd3d1;
+  border-bottom: 1px solid #a4cfcd;
+}
+.interface .dash-box tr.color1:hover td:hover {
+  background-color: #ade1de;
+  border-bottom: 1px solid #a5dedb;
+}
+.interface .dash-box div.color2 {
+  background-color: #e0e0e0;
+}
+.interface .dash-box div.color2 > .column-label,
+.interface .dash-box div.color2 .column-icon {
+  color: #444444;
+  background-color: #e0e0e0;
+  border-bottom: 1px solid #dbdbdb;
+}
+.interface .dash-box div.color2 > .column,
+.interface .dash-box div.color2 > .column-input,
+.interface .dash-box div.color2 > .empty,
+.interface .dash-box div.color2 .column-button {
+  background-color: #e0e0e0;
+  border-bottom: 1px solid #dbdbdb;
+}
+.interface .dash-box tr.color2 td {
+  background-color: #e0e0e0;
+  border-bottom: 1px solid #dbdbdb;
+}
+.interface .dash-box .row.color2:hover {
+  background-color: #abd3d1;
+}
+.interface .dash-box .row.color2:hover > .column-label,
+.interface .dash-box .row.color2:hover .column-icon {
+  color: #444444;
+  background-color: #ade1de;
+  border-bottom: 1px solid #a1ddda;
+}
+.interface .dash-box .row.color2:hover > .column,
+.interface .dash-box .row.color2:hover > .column-input,
+.interface .dash-box .row.color2:hover > .empty,
+.interface .dash-box .row.color2:hover .column-button {
+  background-color: #abd3d1;
+  border-bottom: 1px solid #a1cecc;
+}
+.interface .dash-box .row:hover > div.color2 {
+  background-color: #abd3d1;
+}
+.interface .dash-box .row:hover > div.color2 > .column-label,
+.interface .dash-box .row:hover > div.color2 .column-icon {
+  color: #444444;
+  background-color: #ade1de;
+  border-bottom: 1px solid #a1ddda;
+}
+.interface .dash-box .row:hover > div.color2 > .column,
+.interface .dash-box .row:hover > div.color2 > .column-input,
+.interface .dash-box .row:hover > div.color2 > .empty,
+.interface .dash-box .row:hover > div.color2 .column-button {
+  background-color: #abd3d1;
+  border-bottom: 1px solid #a1cecc;
+}
+.interface .dash-box tr.color2:hover td {
+  background-color: #abd3d1;
+  border-bottom: 1px solid #a4cfcd;
+}
+.interface .dash-box tr.color2:hover td:hover {
+  background-color: #ade1de;
+  border-bottom: 1px solid #a5dedb;
+}
+.interface .dash-box.component-select div.color1 {
+  background-color: #252525;
+}
+.interface .dash-box.component-select div.color1 > .column-label,
+.interface .dash-box.component-select div.color1 .column-icon {
+  color: #444444;
+  background-color: #252525;
+  border-bottom: 1px solid #202020;
+}
+.interface .dash-box.component-select div.color1 > .column,
+.interface .dash-box.component-select div.color1 > .column-input,
+.interface .dash-box.component-select div.color1 > .empty,
+.interface .dash-box.component-select div.color1 .column-button {
+  background-color: #252525;
+  border-bottom: 1px solid #202020;
+}
+.interface .dash-box.component-select tr.color1 td {
+  background-color: #252525;
+  border-bottom: 1px solid #202020;
+}
+.interface .dash-box.component-select .row.color1:hover {
+  background-color: #000000;
+}
+.interface .dash-box.component-select .row.color1:hover > .column-label,
+.interface .dash-box.component-select .row.color1:hover .column-icon {
+  color: #444444;
+  background-color: #090707;
+  border-bottom: 1px solid #000000;
+}
+.interface .dash-box.component-select .row.color1:hover > .column,
+.interface .dash-box.component-select .row.color1:hover > .column-input,
+.interface .dash-box.component-select .row.color1:hover > .empty,
+.interface .dash-box.component-select .row.color1:hover .column-button {
+  background-color: #000000;
+  border-bottom: 1px solid #000000;
+}
+.interface .dash-box.component-select .row:hover > div.color1 {
+  background-color: #000000;
+}
+.interface .dash-box.component-select .row:hover > div.color1 > .column-label,
+.interface .dash-box.component-select .row:hover > div.color1 .column-icon {
+  color: #444444;
+  background-color: #090707;
+  border-bottom: 1px solid #000000;
+}
+.interface .dash-box.component-select .row:hover > div.color1 > .column,
+.interface .dash-box.component-select .row:hover > div.color1 > .column-input,
+.interface .dash-box.component-select .row:hover > div.color1 > .empty,
+.interface .dash-box.component-select .row:hover > div.color1 .column-button {
+  background-color: #000000;
+  border-bottom: 1px solid #000000;
+}
+.interface .dash-box.component-select tr.color1:hover td {
+  background-color: #000000;
+  border-bottom: 1px solid #000000;
+}
+.interface .dash-box.component-select tr.color1:hover td:hover {
+  background-color: #090707;
+  border-bottom: 1px solid #030202;
+}
+.interface .dash-box.component-select.forpanel div.color1 {
+  background-color: #ffd300;
+}
+.interface .dash-box.component-select.forpanel div.color1 > .column-label,
+.interface .dash-box.component-select.forpanel div.color1 .column-icon {
+  color: #444444;
+  background-color: #ffd300;
+  border-bottom: 1px solid #f5cb00;
+}
+.interface .dash-box.component-select.forpanel div.color1 > .column,
+.interface .dash-box.component-select.forpanel div.color1 > .column-input,
+.interface .dash-box.component-select.forpanel div.color1 > .empty,
+.interface .dash-box.component-select.forpanel div.color1 .column-button {
+  background-color: #ffd300;
+  border-bottom: 1px solid #f5cb00;
+}
+.interface .dash-box.component-select.forpanel tr.color1 td {
+  background-color: #ffd300;
+  border-bottom: 1px solid #f5cb00;
+}
+.interface .dash-box.component-select.forpanel .row.color1:hover {
+  background-color: #ffc300;
+}
+.interface .dash-box.component-select.forpanel .row.color1:hover > .column-label,
+.interface .dash-box.component-select.forpanel .row.color1:hover .column-icon {
+  color: #444444;
+  background-color: #ffc70f;
+  border-bottom: 1px solid #ffc300;
+}
+.interface .dash-box.component-select.forpanel .row.color1:hover > .column,
+.interface .dash-box.component-select.forpanel .row.color1:hover > .column-input,
+.interface .dash-box.component-select.forpanel .row.color1:hover > .empty,
+.interface .dash-box.component-select.forpanel .row.color1:hover .column-button {
+  background-color: #ffc300;
+  border-bottom: 1px solid #f0b700;
+}
+.interface .dash-box.component-select.forpanel .row:hover > div.color1 {
+  background-color: #ffc300;
+}
+.interface .dash-box.component-select.forpanel .row:hover > div.color1 > .column-label,
+.interface .dash-box.component-select.forpanel .row:hover > div.color1 .column-icon {
+  color: #444444;
+  background-color: #ffc70f;
+  border-bottom: 1px solid #ffc300;
+}
+.interface .dash-box.component-select.forpanel .row:hover > div.color1 > .column,
+.interface .dash-box.component-select.forpanel .row:hover > div.color1 > .column-input,
+.interface .dash-box.component-select.forpanel .row:hover > div.color1 > .empty,
+.interface .dash-box.component-select.forpanel .row:hover > div.color1 .column-button {
+  background-color: #ffc300;
+  border-bottom: 1px solid #f0b700;
+}
+.interface .dash-box.component-select.forpanel tr.color1:hover td {
+  background-color: #ffc300;
+  border-bottom: 1px solid #f5bb00;
+}
+.interface .dash-box.component-select.forpanel tr.color1:hover td:hover {
+  background-color: #ffc70f;
+  border-bottom: 1px solid #ffc405;
+}
+.interface .dash-box div.purple {
+  background-color: #e9d1f0;
+}
+.interface .dash-box div.purple > .column-label,
+.interface .dash-box div.purple .column-icon {
+  color: #444444;
+  background-color: #e9d1f0;
+  border-bottom: 1px solid #e6caed;
+}
+.interface .dash-box div.purple > .column,
+.interface .dash-box div.purple > .column-input,
+.interface .dash-box div.purple > .empty,
+.interface .dash-box div.purple .column-button {
+  background-color: #e9d1f0;
+  border-bottom: 1px solid #e6caed;
+}
+.interface .dash-box tr.purple td {
+  background-color: #e9d1f0;
+  border-bottom: 1px solid #e6caed;
+}
+.interface .dash-box .row.purple:hover {
+  background-color: #d7abe3;
+}
+.interface .dash-box .row.purple:hover > .column-label,
+.interface .dash-box .row.purple:hover .column-icon {
+  color: #444444;
+  background-color: #e1afee;
+  border-bottom: 1px solid #dca3eb;
+}
+.interface .dash-box .row.purple:hover > .column,
+.interface .dash-box .row.purple:hover > .column-input,
+.interface .dash-box .row.purple:hover > .empty,
+.interface .dash-box .row.purple:hover .column-button {
+  background-color: #d7abe3;
+  border-bottom: 1px solid #d2a0df;
+}
+.interface .dash-box .row:hover > div.purple {
+  background-color: #d7abe3;
+}
+.interface .dash-box .row:hover > div.purple > .column-label,
+.interface .dash-box .row:hover > div.purple .column-icon {
+  color: #444444;
+  background-color: #e1afee;
+  border-bottom: 1px solid #dca3eb;
+}
+.interface .dash-box .row:hover > div.purple > .column,
+.interface .dash-box .row:hover > div.purple > .column-input,
+.interface .dash-box .row:hover > div.purple > .empty,
+.interface .dash-box .row:hover > div.purple .column-button {
+  background-color: #d7abe3;
+  border-bottom: 1px solid #d2a0df;
+}
+.interface .dash-box tr.purple:hover td {
+  background-color: #d7abe3;
+  border-bottom: 1px solid #d3a3e0;
+}
+.interface .dash-box tr.purple:hover td:hover {
+  background-color: #e1afee;
+  border-bottom: 1px solid #dea7ec;
+}
+.interface .dash-box div.blue {
+  background-color: #c5d1ec;
+}
+.interface .dash-box div.blue > .column-label,
+.interface .dash-box div.blue .column-icon {
+  color: #444444;
+  background-color: #c5d1ec;
+  border-bottom: 1px solid #becbe9;
+}
+.interface .dash-box div.blue > .column,
+.interface .dash-box div.blue > .column-input,
+.interface .dash-box div.blue > .empty,
+.interface .dash-box div.blue .column-button {
+  background-color: #c5d1ec;
+  border-bottom: 1px solid #becbe9;
+}
+.interface .dash-box tr.blue td {
+  background-color: #c5d1ec;
+  border-bottom: 1px solid #becbe9;
+}
+.interface .dash-box .row.blue:hover {
+  background-color: #9fb3df;
+}
+.interface .dash-box .row.blue:hover > .column-label,
+.interface .dash-box .row.blue:hover .column-icon {
+  color: #444444;
+  background-color: #a2b8eb;
+  border-bottom: 1px solid #95afe9;
+}
+.interface .dash-box .row.blue:hover > .column,
+.interface .dash-box .row.blue:hover > .column-input,
+.interface .dash-box .row.blue:hover > .empty,
+.interface .dash-box .row.blue:hover .column-button {
+  background-color: #9fb3df;
+  border-bottom: 1px solid #94a9db;
+}
+.interface .dash-box .row:hover > div.blue {
+  background-color: #9fb3df;
+}
+.interface .dash-box .row:hover > div.blue > .column-label,
+.interface .dash-box .row:hover > div.blue .column-icon {
+  color: #444444;
+  background-color: #a2b8eb;
+  border-bottom: 1px solid #95afe9;
+}
+.interface .dash-box .row:hover > div.blue > .column,
+.interface .dash-box .row:hover > div.blue > .column-input,
+.interface .dash-box .row:hover > div.blue > .empty,
+.interface .dash-box .row:hover > div.blue .column-button {
+  background-color: #9fb3df;
+  border-bottom: 1px solid #94a9db;
+}
+.interface .dash-box tr.blue:hover td {
+  background-color: #9fb3df;
+  border-bottom: 1px solid #97acdc;
+}
+.interface .dash-box tr.blue:hover td:hover {
+  background-color: #a2b8eb;
+  border-bottom: 1px solid #9ab2e9;
+}
+.interface .dash-box div.turqoise {
+  background-color: #c8edec;
+}
+.interface .dash-box div.turqoise > .column-label,
+.interface .dash-box div.turqoise .column-icon {
+  color: #444444;
+  background-color: #c8edec;
+  border-bottom: 1px solid #c1eae9;
+}
+.interface .dash-box div.turqoise > .column,
+.interface .dash-box div.turqoise > .column-input,
+.interface .dash-box div.turqoise > .empty,
+.interface .dash-box div.turqoise .column-button {
+  background-color: #c8edec;
+  border-bottom: 1px solid #c1eae9;
+}
+.interface .dash-box tr.turqoise td {
+  background-color: #c8edec;
+  border-bottom: 1px solid #c1eae9;
+}
+.interface .dash-box .row.turqoise:hover {
+  background-color: #a2e0de;
+}
+.interface .dash-box .row.turqoise:hover > .column-label,
+.interface .dash-box .row.turqoise:hover .column-icon {
+  color: #444444;
+  background-color: #a5ecea;
+  border-bottom: 1px solid #99e9e7;
+}
+.interface .dash-box .row.turqoise:hover > .column,
+.interface .dash-box .row.turqoise:hover > .column-input,
+.interface .dash-box .row.turqoise:hover > .empty,
+.interface .dash-box .row.turqoise:hover .column-button {
+  background-color: #a2e0de;
+  border-bottom: 1px solid #97dcda;
+}
+.interface .dash-box .row:hover > div.turqoise {
+  background-color: #a2e0de;
+}
+.interface .dash-box .row:hover > div.turqoise > .column-label,
+.interface .dash-box .row:hover > div.turqoise .column-icon {
+  color: #444444;
+  background-color: #a5ecea;
+  border-bottom: 1px solid #99e9e7;
+}
+.interface .dash-box .row:hover > div.turqoise > .column,
+.interface .dash-box .row:hover > div.turqoise > .column-input,
+.interface .dash-box .row:hover > div.turqoise > .empty,
+.interface .dash-box .row:hover > div.turqoise .column-button {
+  background-color: #a2e0de;
+  border-bottom: 1px solid #97dcda;
+}
+.interface .dash-box tr.turqoise:hover td {
+  background-color: #a2e0de;
+  border-bottom: 1px solid #9adddb;
+}
+.interface .dash-box tr.turqoise:hover td:hover {
+  background-color: #a5ecea;
+  border-bottom: 1px solid #9deae8;
+}
+.interface .dash-box div.green {
+  background-color: #c1ebce;
+}
+.interface .dash-box div.green > .column-label,
+.interface .dash-box div.green .column-icon {
+  color: #444444;
+  background-color: #c2eace;
+  border-bottom: 1px solid #bae8c8;
+}
+.interface .dash-box div.green > .column,
+.interface .dash-box div.green > .column-input,
+.interface .dash-box div.green > .empty,
+.interface .dash-box div.green .column-button {
+  background-color: #c1ebce;
+  border-bottom: 1px solid #bae8c8;
+}
+.interface .dash-box tr.green td {
+  background-color: #c2eace;
+  border-bottom: 1px solid #bae8c8;
+}
+.interface .dash-box .row.green:hover {
+  background-color: #9bdeaf;
+}
+.interface .dash-box .row.green:hover > .column-label,
+.interface .dash-box .row.green:hover .column-icon {
+  color: #444444;
+  background-color: #9eeab5;
+  border-bottom: 1px solid #91e8ac;
+}
+.interface .dash-box .row.green:hover > .column,
+.interface .dash-box .row.green:hover > .column-input,
+.interface .dash-box .row.green:hover > .empty,
+.interface .dash-box .row.green:hover .column-button {
+  background-color: #9bdeaf;
+  border-bottom: 1px solid #90daa6;
+}
+.interface .dash-box .row:hover > div.green {
+  background-color: #9bdeaf;
+}
+.interface .dash-box .row:hover > div.green > .column-label,
+.interface .dash-box .row:hover > div.green .column-icon {
+  color: #444444;
+  background-color: #9eeab5;
+  border-bottom: 1px solid #91e8ac;
+}
+.interface .dash-box .row:hover > div.green > .column,
+.interface .dash-box .row:hover > div.green > .column-input,
+.interface .dash-box .row:hover > div.green > .empty,
+.interface .dash-box .row:hover > div.green .column-button {
+  background-color: #9bdeaf;
+  border-bottom: 1px solid #90daa6;
+}
+.interface .dash-box tr.green:hover td {
+  background-color: #9bdeaf;
+  border-bottom: 1px solid #94dba9;
+}
+.interface .dash-box tr.green:hover td:hover {
+  background-color: #9eeab5;
+  border-bottom: 1px solid #95e9af;
+}
+.interface .dash-box div.yellow {
+  background-color: #f2efd9;
+}
+.interface .dash-box div.yellow > .column-label,
+.interface .dash-box div.yellow .column-icon {
+  color: #444444;
+  background-color: #f2efd9;
+  border-bottom: 1px solid #f0ecd1;
+}
+.interface .dash-box div.yellow > .column,
+.interface .dash-box div.yellow > .column-input,
+.interface .dash-box div.yellow > .empty,
+.interface .dash-box div.yellow .column-button {
+  background-color: #f2efd9;
+  border-bottom: 1px solid #f0ecd1;
+}
+.interface .dash-box tr.yellow td {
+  background-color: #f2efd9;
+  border-bottom: 1px solid #f0ecd1;
+}
+.interface .dash-box .row.yellow:hover {
+  background-color: #e6dfb3;
+}
+.interface .dash-box .row.yellow:hover > .column-label,
+.interface .dash-box .row.yellow:hover .column-icon {
+  color: #444444;
+  background-color: #f0e9b7;
+  border-bottom: 1px solid #ede5ab;
+}
+.interface .dash-box .row.yellow:hover > .column,
+.interface .dash-box .row.yellow:hover > .column-input,
+.interface .dash-box .row.yellow:hover > .empty,
+.interface .dash-box .row.yellow:hover .column-button {
+  background-color: #e6dfb3;
+  border-bottom: 1px solid #e2dba7;
+}
+.interface .dash-box .row:hover > div.yellow {
+  background-color: #e6dfb3;
+}
+.interface .dash-box .row:hover > div.yellow > .column-label,
+.interface .dash-box .row:hover > div.yellow .column-icon {
+  color: #444444;
+  background-color: #f0e9b7;
+  border-bottom: 1px solid #ede5ab;
+}
+.interface .dash-box .row:hover > div.yellow > .column,
+.interface .dash-box .row:hover > div.yellow > .column-input,
+.interface .dash-box .row:hover > div.yellow > .empty,
+.interface .dash-box .row:hover > div.yellow .column-button {
+  background-color: #e6dfb3;
+  border-bottom: 1px solid #e2dba7;
+}
+.interface .dash-box tr.yellow:hover td {
+  background-color: #e6dfb3;
+  border-bottom: 1px solid #e3dcab;
+}
+.interface .dash-box tr.yellow:hover td:hover {
+  background-color: #f0e9b7;
+  border-bottom: 1px solid #eee6af;
+}
+.interface .dash-box div.orange {
+  background-color: #f2e5d9;
+}
+.interface .dash-box div.orange > .column-label,
+.interface .dash-box div.orange .column-icon {
+  color: #444444;
+  background-color: #f2e5d9;
+  border-bottom: 1px solid #f0e0d1;
+}
+.interface .dash-box div.orange > .column,
+.interface .dash-box div.orange > .column-input,
+.interface .dash-box div.orange > .empty,
+.interface .dash-box div.orange .column-button {
+  background-color: #f2e5d9;
+  border-bottom: 1px solid #f0e0d1;
+}
+.interface .dash-box tr.orange td {
+  background-color: #f2e5d9;
+  border-bottom: 1px solid #f0e0d1;
+}
+.interface .dash-box .row.orange:hover {
+  background-color: #e6ccb3;
+}
+.interface .dash-box .row.orange:hover > .column-label,
+.interface .dash-box .row.orange:hover .column-icon {
+  color: #444444;
+  background-color: #f0d3b7;
+  border-bottom: 1px solid #edccab;
+}
+.interface .dash-box .row.orange:hover > .column,
+.interface .dash-box .row.orange:hover > .column-input,
+.interface .dash-box .row.orange:hover > .empty,
+.interface .dash-box .row.orange:hover .column-button {
+  background-color: #e6ccb3;
+  border-bottom: 1px solid #e2c4a7;
+}
+.interface .dash-box .row:hover > div.orange {
+  background-color: #e6ccb3;
+}
+.interface .dash-box .row:hover > div.orange > .column-label,
+.interface .dash-box .row:hover > div.orange .column-icon {
+  color: #444444;
+  background-color: #f0d3b7;
+  border-bottom: 1px solid #edccab;
+}
+.interface .dash-box .row:hover > div.orange > .column,
+.interface .dash-box .row:hover > div.orange > .column-input,
+.interface .dash-box .row:hover > div.orange > .empty,
+.interface .dash-box .row:hover > div.orange .column-button {
+  background-color: #e6ccb3;
+  border-bottom: 1px solid #e2c4a7;
+}
+.interface .dash-box tr.orange:hover td {
+  background-color: #e6ccb3;
+  border-bottom: 1px solid #e3c7ab;
+}
+.interface .dash-box tr.orange:hover td:hover {
+  background-color: #f0d3b7;
+  border-bottom: 1px solid #eeceaf;
+}
+.interface .dash-box div.red {
+  background-color: #f2d9d9;
+}
+.interface .dash-box div.red > .column-label,
+.interface .dash-box div.red .column-icon {
+  color: #444444;
+  background-color: #f2d9d9;
+  border-bottom: 1px solid #f0d1d1;
+}
+.interface .dash-box div.red > .column,
+.interface .dash-box div.red > .column-input,
+.interface .dash-box div.red > .empty,
+.interface .dash-box div.red .column-button {
+  background-color: #f2d9d9;
+  border-bottom: 1px solid #f0d1d1;
+}
+.interface .dash-box tr.red td {
+  background-color: #f2d9d9;
+  border-bottom: 1px solid #f0d1d1;
+}
+.interface .dash-box .row.red:hover {
+  background-color: #e6b3b3;
+}
+.interface .dash-box .row.red:hover > .column-label,
+.interface .dash-box .row.red:hover .column-icon {
+  color: #444444;
+  background-color: #f0b7b7;
+  border-bottom: 1px solid #edabab;
+}
+.interface .dash-box .row.red:hover > .column,
+.interface .dash-box .row.red:hover > .column-input,
+.interface .dash-box .row.red:hover > .empty,
+.interface .dash-box .row.red:hover .column-button {
+  background-color: #e6b3b3;
+  border-bottom: 1px solid #e2a7a7;
+}
+.interface .dash-box .row:hover > div.red {
+  background-color: #e6b3b3;
+}
+.interface .dash-box .row:hover > div.red > .column-label,
+.interface .dash-box .row:hover > div.red .column-icon {
+  color: #444444;
+  background-color: #f0b7b7;
+  border-bottom: 1px solid #edabab;
+}
+.interface .dash-box .row:hover > div.red > .column,
+.interface .dash-box .row:hover > div.red > .column-input,
+.interface .dash-box .row:hover > div.red > .empty,
+.interface .dash-box .row:hover > div.red .column-button {
+  background-color: #e6b3b3;
+  border-bottom: 1px solid #e2a7a7;
+}
+.interface .dash-box tr.red:hover td {
+  background-color: #e6b3b3;
+  border-bottom: 1px solid #e3abab;
+}
+.interface .dash-box tr.red:hover td:hover {
+  background-color: #f0b7b7;
+  border-bottom: 1px solid #eeafaf;
+}
+.interface .dash-box2 {
+  background-color: #e3e3e3;
+  color: #444444;
+}
+.interface .dash-box2 a:link use {
+  color: #444444;
+}
+.interface .dash-box2 a:hover use {
+  color: #ff8b35;
+}
+.interface .dash-box2 a:active use {
+  color: #ff8b35;
+}
+.interface .dash-box2 a:visited use {
+  color: #444444;
+}
+.interface .dash-box2 .grip {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.interface .dash-box2 .title {
+  color: #aaaaaa;
+}
+.interface .dash-box2 .close a:hover {
+  color: #cc0000 !important;
+}
+.interface .dash-box2.arrow-top:after {
+  border-bottom-color: #e3e3e3;
+}
+.interface .dash-box2 .section-info {
+  background-color: #d6d6d6;
+}
+.interface .dash-box2 .top-menu,
+.interface .dash-box2 .side-menu {
+  background-color: #dfdfdf;
+}
+.interface .dash-box2 .tabs .item {
+  color: #999999;
+  background-color: #ededed;
+}
+.interface .dash-box2 .tabs .item:hover {
+  color: #444444;
+  background-color: #f7f7f7;
+}
+.interface .dash-box2 .tabs .item.selected {
+  color: #444444;
+  background-color: #00a8e0;
+}
+.interface .dash-box2 .top-menu .tabs .item {
+  color: #999999;
+  background-color: #f2f2f2;
+}
+.interface .dash-box2 .top-menu .tabs .item:hover {
+  color: #444444;
+  background-color: #fcfcfc;
+}
+.interface .dash-box2 .top-menu .tabs .item.selected {
+  color: #444444;
+  background-color: #00b0eb;
+}
+.interface .dash-box2 .help-info {
+  color: #444444;
+  background-color: #d6d6d6;
+}
+.interface .dash-box2 .column-help > div {
+  color: #329392;
+  background-color: #d6d6d6;
+}
+.interface .dash-box2 .column-help > div:after {
+  border-right-color: #d6d6d6;
+}
+.interface .dash-box2 .column-help .row.color:hover {
+  color: #1d9e9d;
+  background-color: #cfcfcf;
+}
+.interface .dash-box2 div.color1 {
+  background-color: #e3e3e3;
+}
+.interface .dash-box2 div.color1 > .column-label,
+.interface .dash-box2 div.color1 .column-icon {
+  color: #444444;
+  background-color: #e3e3e3;
+  border-bottom: 1px solid #dedede;
+}
+.interface .dash-box2 div.color1 > .column,
+.interface .dash-box2 div.color1 > .column-input,
+.interface .dash-box2 div.color1 > .empty,
+.interface .dash-box2 div.color1 .column-button {
+  background-color: #e3e3e3;
+  border-bottom: 1px solid #dedede;
+}
+.interface .dash-box2 tr.color1 td {
+  background-color: #e3e3e3;
+  border-bottom: 1px solid #dedede;
+}
+.interface .dash-box2 .row.color1:hover {
+  background-color: #abd3d1;
+}
+.interface .dash-box2 .row.color1:hover > .column-label,
+.interface .dash-box2 .row.color1:hover .column-icon {
+  color: #444444;
+  background-color: #ade1de;
+  border-bottom: 1px solid #a1ddda;
+}
+.interface .dash-box2 .row.color1:hover > .column,
+.interface .dash-box2 .row.color1:hover > .column-input,
+.interface .dash-box2 .row.color1:hover > .empty,
+.interface .dash-box2 .row.color1:hover .column-button {
+  background-color: #abd3d1;
+  border-bottom: 1px solid #a1cecc;
+}
+.interface .dash-box2 .row:hover > div.color1 {
+  background-color: #abd3d1;
+}
+.interface .dash-box2 .row:hover > div.color1 > .column-label,
+.interface .dash-box2 .row:hover > div.color1 .column-icon {
+  color: #444444;
+  background-color: #ade1de;
+  border-bottom: 1px solid #a1ddda;
+}
+.interface .dash-box2 .row:hover > div.color1 > .column,
+.interface .dash-box2 .row:hover > div.color1 > .column-input,
+.interface .dash-box2 .row:hover > div.color1 > .empty,
+.interface .dash-box2 .row:hover > div.color1 .column-button {
+  background-color: #abd3d1;
+  border-bottom: 1px solid #a1cecc;
+}
+.interface .dash-box2 tr.color1:hover td {
+  background-color: #abd3d1;
+  border-bottom: 1px solid #a4cfcd;
+}
+.interface .dash-box2 tr.color1:hover td:hover {
+  background-color: #ade1de;
+  border-bottom: 1px solid #a5dedb;
+}
+.interface .dash-box2 div.color2 {
+  background-color: #e0e0e0;
+}
+.interface .dash-box2 div.color2 > .column-label,
+.interface .dash-box2 div.color2 .column-icon {
+  color: #444444;
+  background-color: #e0e0e0;
+  border-bottom: 1px solid #dbdbdb;
+}
+.interface .dash-box2 div.color2 > .column,
+.interface .dash-box2 div.color2 > .column-input,
+.interface .dash-box2 div.color2 > .empty,
+.interface .dash-box2 div.color2 .column-button {
+  background-color: #e0e0e0;
+  border-bottom: 1px solid #dbdbdb;
+}
+.interface .dash-box2 tr.color2 td {
+  background-color: #e0e0e0;
+  border-bottom: 1px solid #dbdbdb;
+}
+.interface .dash-box2 .row.color2:hover {
+  background-color: #abd3d1;
+}
+.interface .dash-box2 .row.color2:hover > .column-label,
+.interface .dash-box2 .row.color2:hover .column-icon {
+  color: #444444;
+  background-color: #ade1de;
+  border-bottom: 1px solid #a1ddda;
+}
+.interface .dash-box2 .row.color2:hover > .column,
+.interface .dash-box2 .row.color2:hover > .column-input,
+.interface .dash-box2 .row.color2:hover > .empty,
+.interface .dash-box2 .row.color2:hover .column-button {
+  background-color: #abd3d1;
+  border-bottom: 1px solid #a1cecc;
+}
+.interface .dash-box2 .row:hover > div.color2 {
+  background-color: #abd3d1;
+}
+.interface .dash-box2 .row:hover > div.color2 > .column-label,
+.interface .dash-box2 .row:hover > div.color2 .column-icon {
+  color: #444444;
+  background-color: #ade1de;
+  border-bottom: 1px solid #a1ddda;
+}
+.interface .dash-box2 .row:hover > div.color2 > .column,
+.interface .dash-box2 .row:hover > div.color2 > .column-input,
+.interface .dash-box2 .row:hover > div.color2 > .empty,
+.interface .dash-box2 .row:hover > div.color2 .column-button {
+  background-color: #abd3d1;
+  border-bottom: 1px solid #a1cecc;
+}
+.interface .dash-box2 tr.color2:hover td {
+  background-color: #abd3d1;
+  border-bottom: 1px solid #a4cfcd;
+}
+.interface .dash-box2 tr.color2:hover td:hover {
+  background-color: #ade1de;
+  border-bottom: 1px solid #a5dedb;
+}
+.interface .dash-box2.component-select div.color1 {
+  background-color: #252525;
+}
+.interface .dash-box2.component-select div.color1 > .column-label,
+.interface .dash-box2.component-select div.color1 .column-icon {
+  color: #444444;
+  background-color: #252525;
+  border-bottom: 1px solid #202020;
+}
+.interface .dash-box2.component-select div.color1 > .column,
+.interface .dash-box2.component-select div.color1 > .column-input,
+.interface .dash-box2.component-select div.color1 > .empty,
+.interface .dash-box2.component-select div.color1 .column-button {
+  background-color: #252525;
+  border-bottom: 1px solid #202020;
+}
+.interface .dash-box2.component-select tr.color1 td {
+  background-color: #252525;
+  border-bottom: 1px solid #202020;
+}
+.interface .dash-box2.component-select .row.color1:hover {
+  background-color: #000000;
+}
+.interface .dash-box2.component-select .row.color1:hover > .column-label,
+.interface .dash-box2.component-select .row.color1:hover .column-icon {
+  color: #444444;
+  background-color: #090707;
+  border-bottom: 1px solid #000000;
+}
+.interface .dash-box2.component-select .row.color1:hover > .column,
+.interface .dash-box2.component-select .row.color1:hover > .column-input,
+.interface .dash-box2.component-select .row.color1:hover > .empty,
+.interface .dash-box2.component-select .row.color1:hover .column-button {
+  background-color: #000000;
+  border-bottom: 1px solid #000000;
+}
+.interface .dash-box2.component-select .row:hover > div.color1 {
+  background-color: #000000;
+}
+.interface .dash-box2.component-select .row:hover > div.color1 > .column-label,
+.interface .dash-box2.component-select .row:hover > div.color1 .column-icon {
+  color: #444444;
+  background-color: #090707;
+  border-bottom: 1px solid #000000;
+}
+.interface .dash-box2.component-select .row:hover > div.color1 > .column,
+.interface .dash-box2.component-select .row:hover > div.color1 > .column-input,
+.interface .dash-box2.component-select .row:hover > div.color1 > .empty,
+.interface .dash-box2.component-select .row:hover > div.color1 .column-button {
+  background-color: #000000;
+  border-bottom: 1px solid #000000;
+}
+.interface .dash-box2.component-select tr.color1:hover td {
+  background-color: #000000;
+  border-bottom: 1px solid #000000;
+}
+.interface .dash-box2.component-select tr.color1:hover td:hover {
+  background-color: #090707;
+  border-bottom: 1px solid #030202;
+}
+.interface .dash-box2.component-select.forpanel div.color1 {
+  background-color: #ffd300;
+}
+.interface .dash-box2.component-select.forpanel div.color1 > .column-label,
+.interface .dash-box2.component-select.forpanel div.color1 .column-icon {
+  color: #444444;
+  background-color: #ffd300;
+  border-bottom: 1px solid #f5cb00;
+}
+.interface .dash-box2.component-select.forpanel div.color1 > .column,
+.interface .dash-box2.component-select.forpanel div.color1 > .column-input,
+.interface .dash-box2.component-select.forpanel div.color1 > .empty,
+.interface .dash-box2.component-select.forpanel div.color1 .column-button {
+  background-color: #ffd300;
+  border-bottom: 1px solid #f5cb00;
+}
+.interface .dash-box2.component-select.forpanel tr.color1 td {
+  background-color: #ffd300;
+  border-bottom: 1px solid #f5cb00;
+}
+.interface .dash-box2.component-select.forpanel .row.color1:hover {
+  background-color: #ffc300;
+}
+.interface .dash-box2.component-select.forpanel .row.color1:hover > .column-label,
+.interface .dash-box2.component-select.forpanel .row.color1:hover .column-icon {
+  color: #444444;
+  background-color: #ffc70f;
+  border-bottom: 1px solid #ffc300;
+}
+.interface .dash-box2.component-select.forpanel .row.color1:hover > .column,
+.interface .dash-box2.component-select.forpanel .row.color1:hover > .column-input,
+.interface .dash-box2.component-select.forpanel .row.color1:hover > .empty,
+.interface .dash-box2.component-select.forpanel .row.color1:hover .column-button {
+  background-color: #ffc300;
+  border-bottom: 1px solid #f0b700;
+}
+.interface .dash-box2.component-select.forpanel .row:hover > div.color1 {
+  background-color: #ffc300;
+}
+.interface .dash-box2.component-select.forpanel .row:hover > div.color1 > .column-label,
+.interface .dash-box2.component-select.forpanel .row:hover > div.color1 .column-icon {
+  color: #444444;
+  background-color: #ffc70f;
+  border-bottom: 1px solid #ffc300;
+}
+.interface .dash-box2.component-select.forpanel .row:hover > div.color1 > .column,
+.interface .dash-box2.component-select.forpanel .row:hover > div.color1 > .column-input,
+.interface .dash-box2.component-select.forpanel .row:hover > div.color1 > .empty,
+.interface .dash-box2.component-select.forpanel .row:hover > div.color1 .column-button {
+  background-color: #ffc300;
+  border-bottom: 1px solid #f0b700;
+}
+.interface .dash-box2.component-select.forpanel tr.color1:hover td {
+  background-color: #ffc300;
+  border-bottom: 1px solid #f5bb00;
+}
+.interface .dash-box2.component-select.forpanel tr.color1:hover td:hover {
+  background-color: #ffc70f;
+  border-bottom: 1px solid #ffc405;
+}
+.interface .dash-box2 div.purple {
+  background-color: #e9d1f0;
+}
+.interface .dash-box2 div.purple > .column-label,
+.interface .dash-box2 div.purple .column-icon {
+  color: #444444;
+  background-color: #e9d1f0;
+  border-bottom: 1px solid #e6caed;
+}
+.interface .dash-box2 div.purple > .column,
+.interface .dash-box2 div.purple > .column-input,
+.interface .dash-box2 div.purple > .empty,
+.interface .dash-box2 div.purple .column-button {
+  background-color: #e9d1f0;
+  border-bottom: 1px solid #e6caed;
+}
+.interface .dash-box2 tr.purple td {
+  background-color: #e9d1f0;
+  border-bottom: 1px solid #e6caed;
+}
+.interface .dash-box2 .row.purple:hover {
+  background-color: #d7abe3;
+}
+.interface .dash-box2 .row.purple:hover > .column-label,
+.interface .dash-box2 .row.purple:hover .column-icon {
+  color: #444444;
+  background-color: #e1afee;
+  border-bottom: 1px solid #dca3eb;
+}
+.interface .dash-box2 .row.purple:hover > .column,
+.interface .dash-box2 .row.purple:hover > .column-input,
+.interface .dash-box2 .row.purple:hover > .empty,
+.interface .dash-box2 .row.purple:hover .column-button {
+  background-color: #d7abe3;
+  border-bottom: 1px solid #d2a0df;
+}
+.interface .dash-box2 .row:hover > div.purple {
+  background-color: #d7abe3;
+}
+.interface .dash-box2 .row:hover > div.purple > .column-label,
+.interface .dash-box2 .row:hover > div.purple .column-icon {
+  color: #444444;
+  background-color: #e1afee;
+  border-bottom: 1px solid #dca3eb;
+}
+.interface .dash-box2 .row:hover > div.purple > .column,
+.interface .dash-box2 .row:hover > div.purple > .column-input,
+.interface .dash-box2 .row:hover > div.purple > .empty,
+.interface .dash-box2 .row:hover > div.purple .column-button {
+  background-color: #d7abe3;
+  border-bottom: 1px solid #d2a0df;
+}
+.interface .dash-box2 tr.purple:hover td {
+  background-color: #d7abe3;
+  border-bottom: 1px solid #d3a3e0;
+}
+.interface .dash-box2 tr.purple:hover td:hover {
+  background-color: #e1afee;
+  border-bottom: 1px solid #dea7ec;
+}
+.interface .dash-box2 div.blue {
+  background-color: #c5d1ec;
+}
+.interface .dash-box2 div.blue > .column-label,
+.interface .dash-box2 div.blue .column-icon {
+  color: #444444;
+  background-color: #c5d1ec;
+  border-bottom: 1px solid #becbe9;
+}
+.interface .dash-box2 div.blue > .column,
+.interface .dash-box2 div.blue > .column-input,
+.interface .dash-box2 div.blue > .empty,
+.interface .dash-box2 div.blue .column-button {
+  background-color: #c5d1ec;
+  border-bottom: 1px solid #becbe9;
+}
+.interface .dash-box2 tr.blue td {
+  background-color: #c5d1ec;
+  border-bottom: 1px solid #becbe9;
+}
+.interface .dash-box2 .row.blue:hover {
+  background-color: #9fb3df;
+}
+.interface .dash-box2 .row.blue:hover > .column-label,
+.interface .dash-box2 .row.blue:hover .column-icon {
+  color: #444444;
+  background-color: #a2b8eb;
+  border-bottom: 1px solid #95afe9;
+}
+.interface .dash-box2 .row.blue:hover > .column,
+.interface .dash-box2 .row.blue:hover > .column-input,
+.interface .dash-box2 .row.blue:hover > .empty,
+.interface .dash-box2 .row.blue:hover .column-button {
+  background-color: #9fb3df;
+  border-bottom: 1px solid #94a9db;
+}
+.interface .dash-box2 .row:hover > div.blue {
+  background-color: #9fb3df;
+}
+.interface .dash-box2 .row:hover > div.blue > .column-label,
+.interface .dash-box2 .row:hover > div.blue .column-icon {
+  color: #444444;
+  background-color: #a2b8eb;
+  border-bottom: 1px solid #95afe9;
+}
+.interface .dash-box2 .row:hover > div.blue > .column,
+.interface .dash-box2 .row:hover > div.blue > .column-input,
+.interface .dash-box2 .row:hover > div.blue > .empty,
+.interface .dash-box2 .row:hover > div.blue .column-button {
+  background-color: #9fb3df;
+  border-bottom: 1px solid #94a9db;
+}
+.interface .dash-box2 tr.blue:hover td {
+  background-color: #9fb3df;
+  border-bottom: 1px solid #97acdc;
+}
+.interface .dash-box2 tr.blue:hover td:hover {
+  background-color: #a2b8eb;
+  border-bottom: 1px solid #9ab2e9;
+}
+.interface .dash-box2 div.turqoise {
+  background-color: #c8edec;
+}
+.interface .dash-box2 div.turqoise > .column-label,
+.interface .dash-box2 div.turqoise .column-icon {
+  color: #444444;
+  background-color: #c8edec;
+  border-bottom: 1px solid #c1eae9;
+}
+.interface .dash-box2 div.turqoise > .column,
+.interface .dash-box2 div.turqoise > .column-input,
+.interface .dash-box2 div.turqoise > .empty,
+.interface .dash-box2 div.turqoise .column-button {
+  background-color: #c8edec;
+  border-bottom: 1px solid #c1eae9;
+}
+.interface .dash-box2 tr.turqoise td {
+  background-color: #c8edec;
+  border-bottom: 1px solid #c1eae9;
+}
+.interface .dash-box2 .row.turqoise:hover {
+  background-color: #a2e0de;
+}
+.interface .dash-box2 .row.turqoise:hover > .column-label,
+.interface .dash-box2 .row.turqoise:hover .column-icon {
+  color: #444444;
+  background-color: #a5ecea;
+  border-bottom: 1px solid #99e9e7;
+}
+.interface .dash-box2 .row.turqoise:hover > .column,
+.interface .dash-box2 .row.turqoise:hover > .column-input,
+.interface .dash-box2 .row.turqoise:hover > .empty,
+.interface .dash-box2 .row.turqoise:hover .column-button {
+  background-color: #a2e0de;
+  border-bottom: 1px solid #97dcda;
+}
+.interface .dash-box2 .row:hover > div.turqoise {
+  background-color: #a2e0de;
+}
+.interface .dash-box2 .row:hover > div.turqoise > .column-label,
+.interface .dash-box2 .row:hover > div.turqoise .column-icon {
+  color: #444444;
+  background-color: #a5ecea;
+  border-bottom: 1px solid #99e9e7;
+}
+.interface .dash-box2 .row:hover > div.turqoise > .column,
+.interface .dash-box2 .row:hover > div.turqoise > .column-input,
+.interface .dash-box2 .row:hover > div.turqoise > .empty,
+.interface .dash-box2 .row:hover > div.turqoise .column-button {
+  background-color: #a2e0de;
+  border-bottom: 1px solid #97dcda;
+}
+.interface .dash-box2 tr.turqoise:hover td {
+  background-color: #a2e0de;
+  border-bottom: 1px solid #9adddb;
+}
+.interface .dash-box2 tr.turqoise:hover td:hover {
+  background-color: #a5ecea;
+  border-bottom: 1px solid #9deae8;
+}
+.interface .dash-box2 div.green {
+  background-color: #c1ebce;
+}
+.interface .dash-box2 div.green > .column-label,
+.interface .dash-box2 div.green .column-icon {
+  color: #444444;
+  background-color: #c2eace;
+  border-bottom: 1px solid #bae8c8;
+}
+.interface .dash-box2 div.green > .column,
+.interface .dash-box2 div.green > .column-input,
+.interface .dash-box2 div.green > .empty,
+.interface .dash-box2 div.green .column-button {
+  background-color: #c1ebce;
+  border-bottom: 1px solid #bae8c8;
+}
+.interface .dash-box2 tr.green td {
+  background-color: #c2eace;
+  border-bottom: 1px solid #bae8c8;
+}
+.interface .dash-box2 .row.green:hover {
+  background-color: #9bdeaf;
+}
+.interface .dash-box2 .row.green:hover > .column-label,
+.interface .dash-box2 .row.green:hover .column-icon {
+  color: #444444;
+  background-color: #9eeab5;
+  border-bottom: 1px solid #91e8ac;
+}
+.interface .dash-box2 .row.green:hover > .column,
+.interface .dash-box2 .row.green:hover > .column-input,
+.interface .dash-box2 .row.green:hover > .empty,
+.interface .dash-box2 .row.green:hover .column-button {
+  background-color: #9bdeaf;
+  border-bottom: 1px solid #90daa6;
+}
+.interface .dash-box2 .row:hover > div.green {
+  background-color: #9bdeaf;
+}
+.interface .dash-box2 .row:hover > div.green > .column-label,
+.interface .dash-box2 .row:hover > div.green .column-icon {
+  color: #444444;
+  background-color: #9eeab5;
+  border-bottom: 1px solid #91e8ac;
+}
+.interface .dash-box2 .row:hover > div.green > .column,
+.interface .dash-box2 .row:hover > div.green > .column-input,
+.interface .dash-box2 .row:hover > div.green > .empty,
+.interface .dash-box2 .row:hover > div.green .column-button {
+  background-color: #9bdeaf;
+  border-bottom: 1px solid #90daa6;
+}
+.interface .dash-box2 tr.green:hover td {
+  background-color: #9bdeaf;
+  border-bottom: 1px solid #94dba9;
+}
+.interface .dash-box2 tr.green:hover td:hover {
+  background-color: #9eeab5;
+  border-bottom: 1px solid #95e9af;
+}
+.interface .dash-box2 div.yellow {
+  background-color: #f2efd9;
+}
+.interface .dash-box2 div.yellow > .column-label,
+.interface .dash-box2 div.yellow .column-icon {
+  color: #444444;
+  background-color: #f2efd9;
+  border-bottom: 1px solid #f0ecd1;
+}
+.interface .dash-box2 div.yellow > .column,
+.interface .dash-box2 div.yellow > .column-input,
+.interface .dash-box2 div.yellow > .empty,
+.interface .dash-box2 div.yellow .column-button {
+  background-color: #f2efd9;
+  border-bottom: 1px solid #f0ecd1;
+}
+.interface .dash-box2 tr.yellow td {
+  background-color: #f2efd9;
+  border-bottom: 1px solid #f0ecd1;
+}
+.interface .dash-box2 .row.yellow:hover {
+  background-color: #e6dfb3;
+}
+.interface .dash-box2 .row.yellow:hover > .column-label,
+.interface .dash-box2 .row.yellow:hover .column-icon {
+  color: #444444;
+  background-color: #f0e9b7;
+  border-bottom: 1px solid #ede5ab;
+}
+.interface .dash-box2 .row.yellow:hover > .column,
+.interface .dash-box2 .row.yellow:hover > .column-input,
+.interface .dash-box2 .row.yellow:hover > .empty,
+.interface .dash-box2 .row.yellow:hover .column-button {
+  background-color: #e6dfb3;
+  border-bottom: 1px solid #e2dba7;
+}
+.interface .dash-box2 .row:hover > div.yellow {
+  background-color: #e6dfb3;
+}
+.interface .dash-box2 .row:hover > div.yellow > .column-label,
+.interface .dash-box2 .row:hover > div.yellow .column-icon {
+  color: #444444;
+  background-color: #f0e9b7;
+  border-bottom: 1px solid #ede5ab;
+}
+.interface .dash-box2 .row:hover > div.yellow > .column,
+.interface .dash-box2 .row:hover > div.yellow > .column-input,
+.interface .dash-box2 .row:hover > div.yellow > .empty,
+.interface .dash-box2 .row:hover > div.yellow .column-button {
+  background-color: #e6dfb3;
+  border-bottom: 1px solid #e2dba7;
+}
+.interface .dash-box2 tr.yellow:hover td {
+  background-color: #e6dfb3;
+  border-bottom: 1px solid #e3dcab;
+}
+.interface .dash-box2 tr.yellow:hover td:hover {
+  background-color: #f0e9b7;
+  border-bottom: 1px solid #eee6af;
+}
+.interface .dash-box2 div.orange {
+  background-color: #f2e5d9;
+}
+.interface .dash-box2 div.orange > .column-label,
+.interface .dash-box2 div.orange .column-icon {
+  color: #444444;
+  background-color: #f2e5d9;
+  border-bottom: 1px solid #f0e0d1;
+}
+.interface .dash-box2 div.orange > .column,
+.interface .dash-box2 div.orange > .column-input,
+.interface .dash-box2 div.orange > .empty,
+.interface .dash-box2 div.orange .column-button {
+  background-color: #f2e5d9;
+  border-bottom: 1px solid #f0e0d1;
+}
+.interface .dash-box2 tr.orange td {
+  background-color: #f2e5d9;
+  border-bottom: 1px solid #f0e0d1;
+}
+.interface .dash-box2 .row.orange:hover {
+  background-color: #e6ccb3;
+}
+.interface .dash-box2 .row.orange:hover > .column-label,
+.interface .dash-box2 .row.orange:hover .column-icon {
+  color: #444444;
+  background-color: #f0d3b7;
+  border-bottom: 1px solid #edccab;
+}
+.interface .dash-box2 .row.orange:hover > .column,
+.interface .dash-box2 .row.orange:hover > .column-input,
+.interface .dash-box2 .row.orange:hover > .empty,
+.interface .dash-box2 .row.orange:hover .column-button {
+  background-color: #e6ccb3;
+  border-bottom: 1px solid #e2c4a7;
+}
+.interface .dash-box2 .row:hover > div.orange {
+  background-color: #e6ccb3;
+}
+.interface .dash-box2 .row:hover > div.orange > .column-label,
+.interface .dash-box2 .row:hover > div.orange .column-icon {
+  color: #444444;
+  background-color: #f0d3b7;
+  border-bottom: 1px solid #edccab;
+}
+.interface .dash-box2 .row:hover > div.orange > .column,
+.interface .dash-box2 .row:hover > div.orange > .column-input,
+.interface .dash-box2 .row:hover > div.orange > .empty,
+.interface .dash-box2 .row:hover > div.orange .column-button {
+  background-color: #e6ccb3;
+  border-bottom: 1px solid #e2c4a7;
+}
+.interface .dash-box2 tr.orange:hover td {
+  background-color: #e6ccb3;
+  border-bottom: 1px solid #e3c7ab;
+}
+.interface .dash-box2 tr.orange:hover td:hover {
+  background-color: #f0d3b7;
+  border-bottom: 1px solid #eeceaf;
+}
+.interface .dash-box2 div.red {
+  background-color: #f2d9d9;
+}
+.interface .dash-box2 div.red > .column-label,
+.interface .dash-box2 div.red .column-icon {
+  color: #444444;
+  background-color: #f2d9d9;
+  border-bottom: 1px solid #f0d1d1;
+}
+.interface .dash-box2 div.red > .column,
+.interface .dash-box2 div.red > .column-input,
+.interface .dash-box2 div.red > .empty,
+.interface .dash-box2 div.red .column-button {
+  background-color: #f2d9d9;
+  border-bottom: 1px solid #f0d1d1;
+}
+.interface .dash-box2 tr.red td {
+  background-color: #f2d9d9;
+  border-bottom: 1px solid #f0d1d1;
+}
+.interface .dash-box2 .row.red:hover {
+  background-color: #e6b3b3;
+}
+.interface .dash-box2 .row.red:hover > .column-label,
+.interface .dash-box2 .row.red:hover .column-icon {
+  color: #444444;
+  background-color: #f0b7b7;
+  border-bottom: 1px solid #edabab;
+}
+.interface .dash-box2 .row.red:hover > .column,
+.interface .dash-box2 .row.red:hover > .column-input,
+.interface .dash-box2 .row.red:hover > .empty,
+.interface .dash-box2 .row.red:hover .column-button {
+  background-color: #e6b3b3;
+  border-bottom: 1px solid #e2a7a7;
+}
+.interface .dash-box2 .row:hover > div.red {
+  background-color: #e6b3b3;
+}
+.interface .dash-box2 .row:hover > div.red > .column-label,
+.interface .dash-box2 .row:hover > div.red .column-icon {
+  color: #444444;
+  background-color: #f0b7b7;
+  border-bottom: 1px solid #edabab;
+}
+.interface .dash-box2 .row:hover > div.red > .column,
+.interface .dash-box2 .row:hover > div.red > .column-input,
+.interface .dash-box2 .row:hover > div.red > .empty,
+.interface .dash-box2 .row:hover > div.red .column-button {
+  background-color: #e6b3b3;
+  border-bottom: 1px solid #e2a7a7;
+}
+.interface .dash-box2 tr.red:hover td {
+  background-color: #e6b3b3;
+  border-bottom: 1px solid #e3abab;
+}
+.interface .dash-box2 tr.red:hover td:hover {
+  background-color: #f0b7b7;
+  border-bottom: 1px solid #eeafaf;
 }
 .component-select {
   color: #dddddd;

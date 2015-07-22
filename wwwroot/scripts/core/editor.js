@@ -217,6 +217,7 @@ R.editor = {
             resize: function () {
                 var pos = R.elem.pos($('.winDashboardInterface .dash-body')[0]);
                 $('.window.interface.dashboard:not(.winDashboardInterface)').css({ top: 50, left: pos.x, width: pos.w, height: R.window.absolute.h - 50 }).find('.grip').hide();
+                $('.dash-menu').css({ height: R.window.absolute.h - 50 });
                 $('ul.columns-first').each(function () {
                     this.style.width = '';
                     var pos = R.elem.offset($(this).find('li:last-child')[0]);
@@ -2737,7 +2738,7 @@ R.editor = {
                     if (x > 0) { htm += '/'; }
                     htm += R.editor.pages.tree.items[x].title;
                 }
-                //if (htm == '') { htm = 'Root';}
+                if (htm == '') { htm = 'root';}
                 $('.winWebPages .pages-title .page-title')[0].innerHTML = '/' + htm;
             }
         },

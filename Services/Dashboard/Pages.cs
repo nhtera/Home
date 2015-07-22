@@ -17,9 +17,15 @@ namespace Rennder.Services.Dashboard
             //check security
             if (R.User.Website(R.Page.websiteId).getWebsiteSecurityItem("dashboard/pages", 0) == false) { return response; }
 
+            //setup scaffold
+            Scaffold scaffold = new Scaffold(R, "/app/dashboard/pages.html", "", new string[] { "page-title", "page-list", "help" });
+            scaffold.Data["page-title"] = "";
+            scaffold.Data["page-list"] = LoadPagesList();
+            scaffold.Data["help"] = RenderHelpColumn("/App/Help/dashboard/pages.html");
+
             //setup response
             response.element = ".winWebPages > .content";
-            response.html = LoadPagesList();
+            response.html = scaffold.Render();
             response.js = CompileJs();
 
             return response;
@@ -35,14 +41,14 @@ namespace Rennder.Services.Dashboard
 
             //setup response
             response.element = ".winWebPages > .content .pages-list";
-            response.html = LoadPagesList(parentId);
+            response.html = LoadPagesList(parentId,false);
             response.js = CompileJs();
 
             return response;
         }
 
 
-        private string LoadPagesList(int parentId = 0, bool theme = true, int orderBy = -1, string viewType = "", string search = "")
+        private string LoadPagesList(int parentId = 0, bool layout = true, int orderBy = -1, string viewType = "", string search = "")
         {
             bool secureEdit = R.User.Website(R.Page.websiteId).getWebsiteSecurityItem("dashboard/pages", 4);
             bool secureSettings = R.User.Website(R.Page.websiteId).getWebsiteSecurityItem("dashboard/pages", 3);
@@ -56,8 +62,8 @@ namespace Rennder.Services.Dashboard
             int length = 100;
             string parentTitle = "";
             int rootId = 0;
-            string rootTitle = "Root";
-            if (parentId >= 0)
+            string rootTitle = "";
+            if (parentId > 0)
             {
                 SqlReader reader2 = R.Page.SqlPage.GetParentTitle(parentId, R.Page.websiteId);
                 if (reader2.Rows.Count > 0)
@@ -75,19 +81,19 @@ namespace Rennder.Services.Dashboard
             string htm = "";
             if (viewType == "treeview")
             {
-                htm = LoadThemeForTreeView(reader, parentId, parentTitle, secureDelete, secureSettings, secureCreate);
+                htm = LoadLayoutForTreeView(reader, parentId, parentTitle, secureDelete, secureSettings, secureCreate);
 
             }
             else if (viewType == "list" | string.IsNullOrEmpty(viewType))
             {
-                htm = LoadThemeForList(reader, theme, parentId, parentTitle, rootId, rootTitle, secureDelete, secureSettings, secureCreate);
+                htm = LoadLayoutForList(reader, layout, parentId, parentTitle, rootId, rootTitle, secureDelete, secureSettings, secureCreate);
 
             }
 
             return htm;
         }
 
-        private string LoadThemeForList(SqlReader reader, bool theme, int parentId, string parentTitle, int rootId, string rootTitle, bool secureDelete, bool secureSettings, bool secureCreate)
+        private string LoadLayoutForList(SqlReader reader, bool layout, int parentId, string parentTitle, int rootId, string rootTitle, bool secureDelete, bool secureSettings, bool secureCreate)
         {
             List<string> htm = new List<string>();
             if (reader.Rows.Count > 0)
@@ -105,11 +111,10 @@ namespace Rennder.Services.Dashboard
                 string folderIcon = "";
                 string folderDiv = "";
 
-                if (theme == true)
-                    htm.Add("<div class=\"pages-title\">" + LoadPagesTitleRow(parentId, parentTitle, rootId, rootTitle) + "</div><div class=\"pages-list\">");
+                htm.Add("<div class=\"pages-title\">" + LoadPagesTitleRow(parentId, parentTitle, rootId, rootTitle) + "</div>");
                 htm.Add("<ul class=\"columns-first\">");
 
-                if (parentId >= 0)
+                if (parentId > 0)
                 {
                     //page folder icon
                     i = (i == 2 ? 1 : 2);
@@ -221,12 +226,8 @@ namespace Rennder.Services.Dashboard
 
                     htm.Add("<li><div class=\"row color" + i + " item page-" + pageId + "\"><div class=\"column-row\">" + "<div class=\"" + (!string.IsNullOrEmpty(folderDiv) ? "hover-title " : "") + "left\"" + folderDiv + ">" + folderIcon + pageTitle + "</div>" + "<div class=\"hover-only right\">" + options + "</div>" + "</div><div class=\"clear\"></div></div></li>");
                 }
+
                 htm.Add("</ul>");
-                if (theme == true)
-                {
-                    htm.Add("</div>");
-                    //htm.Add(RenderHelpColumn("/help/dashboard/pages.htm"));
-                }
             }
             return string.Join("\n", htm);
         }
@@ -255,7 +256,7 @@ namespace Rennder.Services.Dashboard
             return htm;
         }
 
-        private string LoadThemeForTreeView(SqlReader reader, int parentId, string parentTitle, bool secureDelete, bool secureSettings, bool secureCreate)
+        private string LoadLayoutForTreeView(SqlReader reader, int parentId, string parentTitle, bool secureDelete, bool secureSettings, bool secureCreate)
         {
             List<string> htm = new List<string>();
             if (reader.Rows.Count > 0)
@@ -271,7 +272,7 @@ namespace Rennder.Services.Dashboard
                 int hasChildren = 0;
                 string color = "";
 
-                if (parentId >= 0)
+                if (parentId > 0)
                 {
                     htm.Add("<div class=\"sub\">");
                 }
@@ -387,7 +388,7 @@ namespace Rennder.Services.Dashboard
 
                     htm.Add("<div class=\"row color" + i + " item page-" + pageId + "\">" + expander + "<div class=\"column\"><a href=\"" + pageLink + "\">" + pageTitle + "</a>" + "<div class=\"hover-only right\">" + options + "</div>" + "</div><div class=\"clear\"></div></div>");
                 }
-                if (parentId >= 0)
+                if (parentId > 0)
                 {
                     htm.Add("</div>");
                 }

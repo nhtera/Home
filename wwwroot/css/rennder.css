@@ -138,7 +138,7 @@ h6{font-size:1.2em;}
 .spacing .only-row{margin-bottom:-10px; padding:10px;}/*used for content in one row*/
 .spacing .row-p{padding:10px 10px 20px 10px;}/*used for a paragraph row*/
 
-/*box column grid*/
+/*box 3x3 grid*/
 .spacing .column-top-left{padding:0px 15px 0px 0px;}
 .spacing .column-top-center{padding:0px 15px 0px 0px;}
 .spacing .column-top-right{padding:0px 0px 0px 0px;}

@@ -161,7 +161,7 @@
 
         .color(){
             // color function to generate colored rows & columns & tables
-            @label-bg:lighten(@bgcolor,3%);
+            @label-bg:lighten(@bgcolor,0%);
             @label-hover:saturate(lighten(@hovercolor,3%),15%);
             @input-bg:@bgcolor;
             @input-hover:@hovercolor;
@@ -177,7 +177,7 @@
                 @label-border:darken(@label-bg,@border);
                 @input-border:darken(@input-bg,@border);
                 background-color:@bgcolor;
-                > .column-label, .column-icon{color:darken(@window-color,20%); background-color:@label-bg; border-bottom:1px solid @label-border;}
+                > .column-label, .column-icon{color:@window-color; background-color:@label-bg; border-bottom:1px solid @label-border;}
                 > .column, > .column-input, > .empty, .column-button{background-color:@input-bg; border-bottom:1px solid @input-border;}
             }
 
@@ -294,7 +294,7 @@
     }
 
     ///////////////////////////////////////
-
+    // Setup Page Editor Interface Colors
     &{
         @window-bg:@bg-color;
         @window-hover:#263039;
@@ -317,9 +317,7 @@
     }
 
     ///////////////////////////////////////
-
-
-    /*
+    // Setup Dashboard Interface Colors
     &.dashboard{
         @window-bg:#e3e3e3;
         @window-hover:#ABD3D1;
@@ -339,7 +337,76 @@
         @svg2-active:#FF8B35;
         @svg2-visited:#444444;
         .getInterface(light);
-    }*/
+    }
+
+    ///////////////////////////////////////
+    // Setup Dashboard Menu Interface Colors
+    & .dash-menu{
+        @window-bg:#314859;
+        @window-hover:#3B576C;
+        @window-color:#ffffff;
+        @window-color-faded:#9BC9DC;
+        @window-color-help:#9EE3C3;
+        @window-grip:rgba(255, 255, 255, 0.1);
+        @window-title:#aaaaaa;
+        @window-close:#cc0000;
+        @window-header:#2B3F4E;
+        @window-top-menu:#2a2a2a;
+        @window-tab:lighten(@window-bg,4%);
+        @window-tab-hover:lighten(@window-bg,8%);
+        @window-tab-selected:saturate(lighten(#263039,4%),15%);
+        @svg2-link:#ffffff;
+        @svg2-hover:#33ffcc;
+        @svg2-active:#00ffcc;
+        @svg2-visited:#ffffff;
+        .getInterface(dark);
+    }
+
+    ///////////////////////////////////////
+    // Setup Dashboard Box Interface Colors
+    & .dash-box{
+        @window-bg:#e3e3e3;
+        @window-hover:#ABD3D1;
+        @window-color:#444444;
+        @window-color-faded:#999999;
+        @window-color-help:#329392;
+        @window-grip:rgba(0, 0, 0, 0.1);
+        @window-title:#aaaaaa;
+        @window-close:#cc0000;
+        @window-header:#d6d6d6;
+        @window-top-menu:#dfdfdf;
+        @window-tab:lighten(@window-bg,4%);
+        @window-tab-hover:lighten(@window-bg,8%);
+        @window-tab-selected:saturate(lighten(#0099CC,4%),15%);
+        @svg2-link:#444444;
+        @svg2-hover:#FF8B35;
+        @svg2-active:#FF8B35;
+        @svg2-visited:#444444;
+        .getInterface(light);
+    }
+
+    ///////////////////////////////////////
+    // Setup Dashboard Box #2 Interface Colors
+    & .dash-box2{
+        @window-bg:#e3e3e3;
+        @window-hover:#ABD3D1;
+        @window-color:#444444;
+        @window-color-faded:#999999;
+        @window-color-help:#329392;
+        @window-grip:rgba(0, 0, 0, 0.1);
+        @window-title:#aaaaaa;
+        @window-close:#cc0000;
+        @window-header:#d6d6d6;
+        @window-top-menu:#dfdfdf;
+        @window-tab:lighten(@window-bg,4%);
+        @window-tab-hover:lighten(@window-bg,8%);
+        @window-tab-selected:saturate(lighten(#0099CC,4%),15%);
+        @svg2-link:#444444;
+        @svg2-hover:#FF8B35;
+        @svg2-active:#FF8B35;
+        @svg2-visited:#444444;
+        .getInterface(light);
+    }
 }
 
 ///////////////////////////////////////
