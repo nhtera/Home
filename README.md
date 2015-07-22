@@ -84,13 +84,13 @@ Learn how the server pipeline works with this workflow graphic.
  * Upload & organize photos into folders to use on your web pages. 
  * Develop & install `applications` to extend the funcationality of your website.
  
-### Mirror Content 
+### Mirrored Content 
  * Share `layers` of content (a set of components) across multiple web pages, such as the header & footer of your website.
 
 ### Responsive Grids & Slideshows
-A powerful `Panel` component, capable of handling content in many structured ways. Simply drag & drop a `Panel` component onto the page, then drag & drop components into the Panel's `cell` to start. Add a background color or image to the cell. Add more `cells` to your Panel, then drag & drop more components into those cells. Now you can organize the Panel cells into a `grid` of columns & rows. You can also make the grid act like a pinterest board, where each column is independantly stacked. 
+Use a powerful `Panel` component, capable of handling content in many structured & responsive ways. Simply drag & drop a `Panel` component onto the page, then drag & drop components into the Panel's `cell` to start. Add a background color or image to the cell. Add more `cells` to your Panel, then drag & drop more components into those cells. Now you can organize the Panel cells into a `grid` of columns & rows. You can also make the grid act like a pinterest board, where each column is independantly stacked. 
+Also, the Panel component can act like a `slideshow` instead of a grid, displaying each `cell` as a slide within the slideshow. 
 
-The Panel component can act like a `slideshow` instead of a grid, displaying each `cell` as a slide within the slideshow. 
  * A powerful `List` component. Create an HTML template for a `list item`, then import data into your List component like a spreadsheet. For example, the data could be a list of products (name, description, price). For each row or product in the speadsheet, the List component will generate a `list item` from the HTML template, replacing variables in the template with your data. Now you have a pretty list of products on your web page. You can organize your `list items` just like Panel component `cells`, as a grid with rows & columns, a stacked grid, or slideshow.
 
 ### Page Templates
