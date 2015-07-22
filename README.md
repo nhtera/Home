@@ -44,7 +44,7 @@ Rennder is (almost) running on Linux using Oracle Virtualbox within Windows 7. A
 1. Create folder for project, then download, clone, or fork Vagrant repository for Rennder `https://github.com/Rennder/Vagrant`
 2. from Vagrant project folder, execute command `vagrant up`, which will provision a new Virtualbox machine.
 3. Wait for Linux to boot up, then execute command `vagrant ssh` to log into Linux (Ubuntu/Trusty64)
-4. execute command `apt-get install libunwind8`
+4. execute command `sudo apt-get install libunwind8`
 5. Fix Nuget's default feed URL, execute commands `cd ~/.dnx/dnvm` and `sudo pico dnvm.sh`, then replace the following line in the config file
 
     _DNVM_DEFAULT_FEED="https://www.myget.org/F/aspnetvnext/api/v2"
