@@ -13,7 +13,7 @@ With ASP.net 5 vNext, you will be able to deploy a new instance of the Rennder p
 Learn more about ASP.net 5 vNext at www.github.com/aspnet/home
 
 ## Installation for Windows
-### Preresiquites
+### Prerequisites
 1. Visual Studio 2015
 2. SQL Server 2012 or higher
 
