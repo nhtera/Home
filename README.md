@@ -19,8 +19,8 @@ Learn more about ASP.net 5 vNext at www.github.com/aspnet/home
 
 ### Setup Project
 1. Download, clone, or fork project from the github repository.
-2. Load project from `/Sql/SqlServer/` using Visual Studio 2015.
-3. Publish project (right-click project in Solution Explorer). In publish window, click `Load Profile` button, select `SqlServer.publish.xml` from project folder. Then, click `Edit...` button for Target database connection. Change Server name to the named-pipe of your installation of SQL Server 2012, then save. Finally, click `Publish` button.
+2. Load project from `/Sql/SqlServer/` using Visual Studio 2015. We're going to install a database into your local Microsoft SQL Server 2012 installation.
+3. Publish project (right-click project in Solution Explorer). In publish window, click `Load Profile` button, select `SqlServer.publish.xml` from project folder. Then, click `Edit...` button for Target database connection. Change the Server name to the named-pipe of your installation of SQL Server 2012, then save. Finally, click `Publish` button.
 4. Open Rennder project & press play button for `kestrel`, and open your web browser to `http://localhost:5000/`.
 5. Log into your dashboard from `http://localhost:5000/#dashboard`, using email `admin@localhost` and password `development`.
 
