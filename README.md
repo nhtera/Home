@@ -16,18 +16,44 @@ Learn more about ASP.net 5 vNext at www.github.com/aspnet/home
 ### Prerequisites
 1. Visual Studio 2015
 2. SQL Server 2012 or higher
+3. 3. ASP.net Core 5: https://github.com/aspnet/Home
 
 ### Setup Project
 1. Download, clone, or fork project from the github repository.
-2. Load project from `/Sql/SqlServer/` using Visual Studio 2015. We're going to install a database into your local Microsoft SQL Server 2012 installation.
-3. Publish project (right-click project in Solution Explorer). In publish window, click `Load Profile` button, select `SqlServer.publish.xml` from project folder. Then, click `Edit...` button for Target database connection. Change the Server name to the named-pipe of your installation of SQL Server 2012, then save. Finally, click `Publish` button.
-4. Open Rennder project & press play button for `kestrel`, and open your web browser to `http://localhost:5000/`.
-5. Log into your dashboard from `http://localhost:5000/#dashboard`, using email `admin@localhost` and password `development`.
+2. make sure DNVM for ASP.net vNext is using the correct the runtime. execute command 'dnvm list' to see which runtime is active. The active runtime should be coreclr, and architecture should be x64. If not, run command: dnvm install latest -r coreclr -arch x64. You may need to install specifically 1.0.0-beta4 x64 coreclr instead.
+3. Execute `dnu restore` within the project folder.
+4. Load project from `/Sql/SqlServer/` using Visual Studio 2015. We're going to install a database into your local Microsoft SQL Server 2012 installation.
+5. Publish project (right-click project in Solution Explorer). In publish window, click `Load Profile` button, select `SqlServer.publish.xml` from project folder. Then, click `Edit...` button for Target database connection. Change the Server name to the named-pipe of your installation of SQL Server 2012, then save. Finally, click `Publish` button.
+6. Open Rennder project & press play button for `kestrel`, and open your web browser to `http://localhost:5000/`.
+7. Log into your dashboard from `http://localhost:5000/#dashboard`, using email `admin@localhost` and password `development`.
 
 
 
-###Installation for Puphpet + Vagrant + Mono
-Rennder is (almost) running on Linux VM within Windows 7. This is currently my testing environment for Rennder on Linux. At the moment, `dnu restore` works, but there is no database setup. I've decided to use PostgreSQL. I'll keep you updated when I get Rennder working on Linux. So far, the project runs purely on DNX Core 5, which means Rennder should theoretically work on Linux right away.
+## Installation for Vagrant + Mono + ASP.net vNext
+Rennder is (almost) running on Linux Virtualbox within Windows 7. At the moment, `dnu restore` works, and so does `dnx . kestrel`, but a database has not been developed for Linux just yet. I've decided to use PostgreSQL. I'll keep you updated when I get Rennder working on Linux. So far, the project runs purely on DNX Core 5, which means Rennder should theoretically work on Linux right away once the database is setup.
+
+### Prerequisites
+1. Vagrant http://docs.vagrantup.com/v2/getting-started/
+2. Oracle Virtualbox https://www.virtualbox.org/
+3. Git GUI https://git-scm.com/download/win
+
+### Git clone Rennder
+1. Using Git bash, clone the rennder repository, `git clone https://github.com/Rennder/Home.git`
+
+### Setup Vagrant
+1. Using Git bash, execute command `vagrant up`, which will provision a new Virtualbox machine.
+2. Wait for Linux to boot up, then execute command `vagrant ssh` to log into Linux (Ubuntu/Trusty64)
+3. execute command `apt-get install libunwind8`
+4. Fix Nuget's default feed URL, execute commands `cd ~/.dnx/dnvm` and `sudo pico dnvm.sh`, then replace the following line in the config file
+
+    _DNVM_DEFAULT_FEED="https://www.myget.org/F/aspnetvnext/api/v2"
+    
+5. Install ASP.net vNext for Linux https://github.com/aspnet/Home/blob/dev/GettingStartedDeb.md
+6. Setup active DNVM installation, execute commands `dnvm install latest -a rennder -arch x64 -r coreclr` and `dnvm use rennder`.
+7. Restore the ASP.net vNext dependencies for Rennder, execute commands `cd /var/www/rennder` and `dnu restore`.
+8. Start the Kestrel web server, `dnx . kestrel`.
+9. Open your web browser in Windows and navigate to `http://192.168.7.7` to view the home page of Rennder.
+10. Navigate to `http://192.168.7.7/#dashboard` and login with email `admin@localhost` and password `development` to view your dashboard.
 
 ###Current State of the Rennder Platform
 
