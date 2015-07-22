@@ -54,6 +54,8 @@ Rennder is (almost) running on Linux Virtualbox within Windows 7. At the moment,
 8. Start the Kestrel web server, `dnx . kestrel`.
 9. Open your web browser in Windows and navigate to `http://192.168.7.7` to view the home page of Rennder.
 10. Navigate to `http://192.168.7.7/#dashboard` and login with email `admin@localhost` and password `development` to view your dashboard.
+ 
+***
 
 ###Current State of the Rennder Platform
 
