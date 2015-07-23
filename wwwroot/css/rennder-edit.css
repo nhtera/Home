@@ -243,7 +243,7 @@ ul.columns-first{float:left;}
 .interface .help:hover .help-info{display:block;}
 
 /* window help column (right-hand side) */
-.interface .column-help{float:left; margin:7px 0px 0px 40px; min-width:200px; max-width:600px;}
+.interface .column-help{float:left; margin:0px 0px 0px 20px; min-width:200px; max-width:600px;}
 .interface .column-help > div{position:relative; padding:20px;}
 .interface .column-help > div:after {right: 100%;top: 50px;border: solid transparent;content: " ";height: 0;width: 0;position: absolute;pointer-events: none;border-color: transparent;border-width: 10px;margin-top: -10px;}
 .interface .column-help .row .column-row{padding-bottom:7px;}
@@ -307,19 +307,24 @@ ul.columns-first{float:left;}
 .interface .screenshot{width:150px; height:100px; overflow:hidden;}
 .interface .screenshot img{width:150px;}
 
-/*window dashboard elements*/
+/* dashboard */
 .window.dashboard:not(.winDashboardInterface) > .content{position:relative; height:100%; max-height:calc(100% - 60px);}
 .interface .dashboard-only, .interface .dash-only{display:none;}
 .interface.dashboard .dashboard-only, .interface.dashboard .dash-only{display:block;}
 
 /* dashboard interface window //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 .dash-content{width:100%; max-width:100%; height:100%; margin:0px auto;}
-.dash-menu{float:left; width:250px; height:100%; padding:0px 10px 0px 10px;}
-.dash-body{float:left; width:calc(100% - 270px);}
-.dash-menu .menu-title{padding:3px 0px; white-space:normal; width:calc(100% - 20px);}
+.dash-menu{float:left; width:230px; height:100%;}
+.dash-body{float:left; width:calc(100% - 230px);}
+.dash-menu .menu-title{padding:3px 5px; white-space:normal; width:calc(100% - 30px);}
 .dash-menu .row{margin:10px 0px 10px 0px !important;}
-.dash-menu .row .column-icon{padding:10px 30px 3px 50px !important; border-width:0px !important;}
-.dash-menu .row .column-label{padding:10px 50px 3px 5px !important; border-width:0px !important; width:calc(100% - 160px) !important; min-height:28px !important;}
+.dash-menu .row .column-icon{padding:10px 30px 3px 30px !important; border-width:0px !important;}
+.dash-menu .row .column-label{padding:10px 40px 3px 5px !important; border-width:0px !important; width:calc(100% - 130px) !important; min-height:28px !important;}
+.dash-menu .section-icon-menu{padding:0px 10px;}
+
+/* dashboard body */
+.interface.dashboard .header{width:calc(100% - 30px); padding:10px 20px 7px 20px;}
+.interface.dashboard .header .title-label{padding:3px 0px 0px 16px;}
 
 /* component quick menu //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 .quickmenu-item{position:absolute; border-radius:7px !important;}
@@ -374,8 +379,7 @@ body > .target{position:absolute; z-index:4501; cursor:move;}
 .winWebPages .pages-title{max-width:300px;}
 .winWebPages .pages-list .hover-title{ min-width:150px;}
 .winWebPages .pages-list .hover-title:hover{text-decoration:underline;}
-.winWebPages.dashboard .content{padding:10px 0px 0px 20px;}
-.winNewPage.dashboard .content{padding:10px 0px 0px 20px;}
+.winWebPages.dashboard .pages-list{margin-left:20px;}
 
 /* photo library window //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 .winPhotos .top-menu{width:100%; padding:4px 0px; overflow:hidden;}

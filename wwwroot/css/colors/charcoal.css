@@ -87,6 +87,9 @@
 .interface .section-info {
   background-color: #202020;
 }
+.interface .row.header {
+  background-color: #202020;
+}
 .interface .top-menu,
 .interface .side-menu {
   background-color: #2a2a2a;
@@ -821,6 +824,9 @@
 .interface.dashboard .section-info {
   background-color: #d6d6d6;
 }
+.interface.dashboard .row.header {
+  background-color: #d6d6d6;
+}
 .interface.dashboard .top-menu,
 .interface.dashboard .side-menu {
   background-color: #dfdfdf;
@@ -1525,7 +1531,7 @@
   border-bottom: 1px solid #eeafaf;
 }
 .interface .dash-menu {
-  background-color: #314859;
+  background-color: #50606b;
   color: #ffffff;
 }
 .interface .dash-menu a:link use {
@@ -1550,10 +1556,13 @@
   color: #cc0000 !important;
 }
 .interface .dash-menu.arrow-top:after {
-  border-bottom-color: #314859;
+  border-bottom-color: #50606b;
 }
 .interface .dash-menu .section-info {
-  background-color: #2b3f4e;
+  background-color: #46545e;
+}
+.interface .dash-menu .row.header {
+  background-color: #46545e;
 }
 .interface .dash-menu .top-menu,
 .interface .dash-menu .side-menu {
@@ -1561,11 +1570,11 @@
 }
 .interface .dash-menu .tabs .item {
   color: #9bc9dc;
-  background-color: #385366;
+  background-color: #596a77;
 }
 .interface .dash-menu .tabs .item:hover {
   color: #ffffff;
-  background-color: #3f5d73;
+  background-color: #617582;
 }
 .interface .dash-menu .tabs .item.selected {
   color: #ffffff;
@@ -1573,11 +1582,11 @@
 }
 .interface .dash-menu .top-menu .tabs .item {
   color: #9bc9dc;
-  background-color: #3c586d;
+  background-color: #5d707d;
 }
 .interface .dash-menu .top-menu .tabs .item:hover {
   color: #ffffff;
-  background-color: #43637a;
+  background-color: #667a88;
 }
 .interface .dash-menu .top-menu .tabs .item.selected {
   color: #ffffff;
@@ -1585,138 +1594,138 @@
 }
 .interface .dash-menu .help-info {
   color: #ffffff;
-  background-color: #283b49;
+  background-color: #45535c;
 }
 .interface .dash-menu .column-help > div {
   color: #9ee3c3;
-  background-color: #283b49;
+  background-color: #45535c;
 }
 .interface .dash-menu .column-help > div:after {
-  border-right-color: #283b49;
+  border-right-color: #45535c;
 }
 .interface .dash-menu .column-help .row.color:hover {
   color: #89eebf;
-  background-color: #23333f;
+  background-color: #3f4b54;
 }
 .interface .dash-menu div.color1 {
-  background-color: #314859;
+  background-color: #50606b;
 }
 .interface .dash-menu div.color1 > .column-label,
 .interface .dash-menu div.color1 .column-icon {
   color: #ffffff;
-  background-color: #314859;
-  border-bottom: 1px solid #2d4352;
+  background-color: #50606b;
+  border-bottom: 1px solid #4c5b65;
 }
 .interface .dash-menu div.color1 > .column,
 .interface .dash-menu div.color1 > .column-input,
 .interface .dash-menu div.color1 > .empty,
 .interface .dash-menu div.color1 .column-button {
-  background-color: #314859;
-  border-bottom: 1px solid #2d4352;
+  background-color: #50606b;
+  border-bottom: 1px solid #4c5b65;
 }
 .interface .dash-menu tr.color1 td {
-  background-color: #314859;
-  border-bottom: 1px solid #2d4352;
+  background-color: #50606b;
+  border-bottom: 1px solid #4c5b65;
 }
 .interface .dash-menu .row.color1:hover {
-  background-color: #3b576c;
+  background-color: #4b6874;
 }
 .interface .dash-menu .row.color1:hover > .column-label,
 .interface .dash-menu .row.color1:hover .column-icon {
   color: #ffffff;
-  background-color: #336184;
-  border-bottom: 1px solid #2e5979;
+  background-color: #42778d;
+  border-bottom: 1px solid #3d6e82;
 }
 .interface .dash-menu .row.color1:hover > .column,
 .interface .dash-menu .row.color1:hover > .column-input,
 .interface .dash-menu .row.color1:hover > .empty,
 .interface .dash-menu .row.color1:hover .column-button {
-  background-color: #3b576c;
-  border-bottom: 1px solid #364f62;
+  background-color: #4b6874;
+  border-bottom: 1px solid #45606b;
 }
 .interface .dash-menu .row:hover > div.color1 {
-  background-color: #3b576c;
+  background-color: #4b6874;
 }
 .interface .dash-menu .row:hover > div.color1 > .column-label,
 .interface .dash-menu .row:hover > div.color1 .column-icon {
   color: #ffffff;
-  background-color: #336184;
-  border-bottom: 1px solid #2e5979;
+  background-color: #42778d;
+  border-bottom: 1px solid #3d6e82;
 }
 .interface .dash-menu .row:hover > div.color1 > .column,
 .interface .dash-menu .row:hover > div.color1 > .column-input,
 .interface .dash-menu .row:hover > div.color1 > .empty,
 .interface .dash-menu .row:hover > div.color1 .column-button {
-  background-color: #3b576c;
-  border-bottom: 1px solid #364f62;
+  background-color: #4b6874;
+  border-bottom: 1px solid #45606b;
 }
 .interface .dash-menu tr.color1:hover td {
-  background-color: #3b576c;
-  border-bottom: 1px solid #375265;
+  background-color: #4b6874;
+  border-bottom: 1px solid #47626e;
 }
 .interface .dash-menu tr.color1:hover td:hover {
-  background-color: #336184;
-  border-bottom: 1px solid #305c7c;
+  background-color: #42778d;
+  border-bottom: 1px solid #3e7186;
 }
 .interface .dash-menu div.color2 {
-  background-color: #2f4556;
+  background-color: #4e5d68;
 }
 .interface .dash-menu div.color2 > .column-label,
 .interface .dash-menu div.color2 .column-icon {
   color: #ffffff;
-  background-color: #2f4556;
-  border-bottom: 1px solid #2c404f;
+  background-color: #4e5d68;
+  border-bottom: 1px solid #495862;
 }
 .interface .dash-menu div.color2 > .column,
 .interface .dash-menu div.color2 > .column-input,
 .interface .dash-menu div.color2 > .empty,
 .interface .dash-menu div.color2 .column-button {
-  background-color: #2f4556;
-  border-bottom: 1px solid #2c404f;
+  background-color: #4e5d68;
+  border-bottom: 1px solid #495862;
 }
 .interface .dash-menu tr.color2 td {
-  background-color: #2f4556;
-  border-bottom: 1px solid #2c404f;
+  background-color: #4e5d68;
+  border-bottom: 1px solid #495862;
 }
 .interface .dash-menu .row.color2:hover {
-  background-color: #3b576c;
+  background-color: #4b6874;
 }
 .interface .dash-menu .row.color2:hover > .column-label,
 .interface .dash-menu .row.color2:hover .column-icon {
   color: #ffffff;
-  background-color: #336184;
-  border-bottom: 1px solid #2e5979;
+  background-color: #42778d;
+  border-bottom: 1px solid #3d6e82;
 }
 .interface .dash-menu .row.color2:hover > .column,
 .interface .dash-menu .row.color2:hover > .column-input,
 .interface .dash-menu .row.color2:hover > .empty,
 .interface .dash-menu .row.color2:hover .column-button {
-  background-color: #3b576c;
-  border-bottom: 1px solid #364f62;
+  background-color: #4b6874;
+  border-bottom: 1px solid #45606b;
 }
 .interface .dash-menu .row:hover > div.color2 {
-  background-color: #3b576c;
+  background-color: #4b6874;
 }
 .interface .dash-menu .row:hover > div.color2 > .column-label,
 .interface .dash-menu .row:hover > div.color2 .column-icon {
   color: #ffffff;
-  background-color: #336184;
-  border-bottom: 1px solid #2e5979;
+  background-color: #42778d;
+  border-bottom: 1px solid #3d6e82;
 }
 .interface .dash-menu .row:hover > div.color2 > .column,
 .interface .dash-menu .row:hover > div.color2 > .column-input,
 .interface .dash-menu .row:hover > div.color2 > .empty,
 .interface .dash-menu .row:hover > div.color2 .column-button {
-  background-color: #3b576c;
-  border-bottom: 1px solid #364f62;
+  background-color: #4b6874;
+  border-bottom: 1px solid #45606b;
 }
 .interface .dash-menu tr.color2:hover td {
-  background-color: #3b576c;
-  border-bottom: 1px solid #375265;
+  background-color: #4b6874;
+  border-bottom: 1px solid #47626e;
 }
 .interface .dash-menu tr.color2:hover td:hover {
-  background-color: #336184;
-  border-bottom: 1px solid #305c7c;
+  background-color: #42778d;
+  border-bottom: 1px solid #3e7186;
 }
 .interface .dash-menu.component-select div.color1 {
   background-color: #252525;
@@ -2287,6 +2296,9 @@
   border-bottom-color: #e3e3e3;
 }
 .interface .dash-box .section-info {
+  background-color: #d6d6d6;
+}
+.interface .dash-box .row.header {
   background-color: #d6d6d6;
 }
 .interface .dash-box .top-menu,
@@ -3021,6 +3033,9 @@
   border-bottom-color: #e3e3e3;
 }
 .interface .dash-box2 .section-info {
+  background-color: #d6d6d6;
+}
+.interface .dash-box2 .row.header {
   background-color: #d6d6d6;
 }
 .interface .dash-box2 .top-menu,
