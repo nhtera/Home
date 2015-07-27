@@ -1,4 +1,4 @@
-﻿{
+{
   "title": "Rennder CMS Platform",
   "version": "0.1.2-alpha",
   "authors": [ "Mark Entingh" ],
@@ -19,16 +19,20 @@
         "Microsoft.AspNet.StaticFiles": "1.0.0-beta4",
         "Microsoft.AspNet.Diagnostics": "1.0.0-beta4",
         "Microsoft.AspNet.Session": "1.0.0-beta4",
+        "Microsoft.CSharp": "4.0.0-beta-22816",
         "Microsoft.Framework.OptionsModel": "1.0.0-beta4",
         "Microsoft.Framework.ConfigurationModel.Json": "1.0.0-beta4",
         "System.Runtime": "4.0.20-beta-22816",
         "System.Runtime.Extensions": "4.0.10-beta-22816",
         "System.Collections": "4.0.10-beta-22816",
+        "System.ComponentModel": "4.0.0-beta-22816",
         "System.Linq": "4.0.0-beta-22816",
         "System.IO": "4.0.10-beta-22816",
         "System.Data.Common": "4.0.0-beta-22816",
         "System.Data.SqlClient": "4.0.0-beta-22816",
         "System.Diagnostics.Tools": "4.0.0-beta-22816",
+        "System.Reflection.Extensions": "4.0.0-beta-22816",
+        "System.Threading": "4.0.10-beta-22816",
         "System.Text.RegularExpressions": "4.0.10-beta-22816",
         "System.Text.Encoding": "4.0.10-beta-22816",
         "System.Text.Encoding.CodePages": "4.0.0-beta-22816",
@@ -44,7 +48,8 @@
         "System.Security.Cryptography.RandomNumberGenerator": "4.0.0-beta-22816",
         "System.Security.Cryptography.Hashing.Algorithms": "4.0.0-beta-22816",
         "Newtonsoft.Json": "7.0.1",
-        "Npgsql": "3.0.0-rc0001"
+        "Npgsql": "3.0.0-rc0001",
+        "Nine.Imaging": "1.1.0-alpha"
 
       }
     }
@@ -72,9 +77,10 @@
     "**.user",
     "**.vspscc"
   ],
+
   "exclude": [
     "wwwroot",
     "node_modules",
     "bower_components"
   ]
-  }
+}

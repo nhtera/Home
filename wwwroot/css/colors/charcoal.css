@@ -138,7 +138,7 @@
 }
 .interface div.color1 > .column-label,
 .interface div.color1 .column-icon {
-  color: #e0e0e0;
+  color: rgba(224, 224, 224, 0.7);
   background-color: #272727;
   border-bottom: 1px solid #222222;
 }
@@ -198,7 +198,7 @@
 }
 .interface div.color2 > .column-label,
 .interface div.color2 .column-icon {
-  color: #e0e0e0;
+  color: rgba(224, 224, 224, 0.7);
   background-color: #242424;
   border-bottom: 1px solid #1f1f1f;
 }
@@ -258,7 +258,7 @@
 }
 .interface.component-select div.color1 > .column-label,
 .interface.component-select div.color1 .column-icon {
-  color: #e0e0e0;
+  color: rgba(224, 224, 224, 0.7);
   background-color: #252525;
   border-bottom: 1px solid #202020;
 }
@@ -318,7 +318,7 @@
 }
 .interface.component-select.forpanel div.color1 > .column-label,
 .interface.component-select.forpanel div.color1 .column-icon {
-  color: #e0e0e0;
+  color: rgba(224, 224, 224, 0.7);
   background-color: #ffd300;
   border-bottom: 1px solid #f5cb00;
 }
@@ -378,7 +378,7 @@
 }
 .interface div.purple > .column-label,
 .interface div.purple .column-icon {
-  color: #e0e0e0;
+  color: rgba(224, 224, 224, 0.7);
   background-color: #410e4e;
   border-bottom: 1px solid #390c46;
 }
@@ -438,7 +438,7 @@
 }
 .interface div.blue > .column-label,
 .interface div.blue .column-icon {
-  color: #e0e0e0;
+  color: rgba(224, 224, 224, 0.7);
   background-color: #0b1c41;
   border-bottom: 1px solid #0a1838;
 }
@@ -498,7 +498,7 @@
 }
 .interface div.turqoise > .column-label,
 .interface div.turqoise .column-icon {
-  color: #e0e0e0;
+  color: rgba(224, 224, 224, 0.7);
   background-color: #0c4442;
   border-bottom: 1px solid #0a3b3a;
 }
@@ -558,7 +558,7 @@
 }
 .interface div.green > .column-label,
 .interface div.green .column-icon {
-  color: #e0e0e0;
+  color: rgba(224, 224, 224, 0.7);
   background-color: #0b3c1a;
   border-bottom: 1px solid #093416;
 }
@@ -618,7 +618,7 @@
 }
 .interface div.yellow > .column-label,
 .interface div.yellow .column-icon {
-  color: #e0e0e0;
+  color: rgba(224, 224, 224, 0.7);
   background-color: #574e0f;
   border-bottom: 1px solid #4e460e;
 }
@@ -678,7 +678,7 @@
 }
 .interface div.orange > .column-label,
 .interface div.orange .column-icon {
-  color: #e0e0e0;
+  color: rgba(224, 224, 224, 0.7);
   background-color: #57330f;
   border-bottom: 1px solid #4e2e0e;
 }
@@ -738,7 +738,7 @@
 }
 .interface div.red > .column-label,
 .interface div.red .column-icon {
-  color: #e0e0e0;
+  color: rgba(224, 224, 224, 0.7);
   background-color: #570f0f;
   border-bottom: 1px solid #4e0e0e;
 }
@@ -875,7 +875,7 @@
 }
 .interface.dashboard div.color1 > .column-label,
 .interface.dashboard div.color1 .column-icon {
-  color: #444444;
+  color: rgba(68, 68, 68, 0.7);
   background-color: #e3e3e3;
   border-bottom: 1px solid #dedede;
 }
@@ -935,7 +935,7 @@
 }
 .interface.dashboard div.color2 > .column-label,
 .interface.dashboard div.color2 .column-icon {
-  color: #444444;
+  color: rgba(68, 68, 68, 0.7);
   background-color: #e0e0e0;
   border-bottom: 1px solid #dbdbdb;
 }
@@ -995,7 +995,7 @@
 }
 .interface.dashboard.component-select div.color1 > .column-label,
 .interface.dashboard.component-select div.color1 .column-icon {
-  color: #444444;
+  color: rgba(68, 68, 68, 0.7);
   background-color: #252525;
   border-bottom: 1px solid #202020;
 }
@@ -1055,7 +1055,7 @@
 }
 .interface.dashboard.component-select.forpanel div.color1 > .column-label,
 .interface.dashboard.component-select.forpanel div.color1 .column-icon {
-  color: #444444;
+  color: rgba(68, 68, 68, 0.7);
   background-color: #ffd300;
   border-bottom: 1px solid #f5cb00;
 }
@@ -1115,7 +1115,7 @@
 }
 .interface.dashboard div.purple > .column-label,
 .interface.dashboard div.purple .column-icon {
-  color: #444444;
+  color: rgba(68, 68, 68, 0.7);
   background-color: #e9d1f0;
   border-bottom: 1px solid #e6caed;
 }
@@ -1175,7 +1175,7 @@
 }
 .interface.dashboard div.blue > .column-label,
 .interface.dashboard div.blue .column-icon {
-  color: #444444;
+  color: rgba(68, 68, 68, 0.7);
   background-color: #c5d1ec;
   border-bottom: 1px solid #becbe9;
 }
@@ -1235,7 +1235,7 @@
 }
 .interface.dashboard div.turqoise > .column-label,
 .interface.dashboard div.turqoise .column-icon {
-  color: #444444;
+  color: rgba(68, 68, 68, 0.7);
   background-color: #c8edec;
   border-bottom: 1px solid #c1eae9;
 }
@@ -1295,7 +1295,7 @@
 }
 .interface.dashboard div.green > .column-label,
 .interface.dashboard div.green .column-icon {
-  color: #444444;
+  color: rgba(68, 68, 68, 0.7);
   background-color: #c2eace;
   border-bottom: 1px solid #bae8c8;
 }
@@ -1355,7 +1355,7 @@
 }
 .interface.dashboard div.yellow > .column-label,
 .interface.dashboard div.yellow .column-icon {
-  color: #444444;
+  color: rgba(68, 68, 68, 0.7);
   background-color: #f2efd9;
   border-bottom: 1px solid #f0ecd1;
 }
@@ -1415,7 +1415,7 @@
 }
 .interface.dashboard div.orange > .column-label,
 .interface.dashboard div.orange .column-icon {
-  color: #444444;
+  color: rgba(68, 68, 68, 0.7);
   background-color: #f2e5d9;
   border-bottom: 1px solid #f0e0d1;
 }
@@ -1475,7 +1475,7 @@
 }
 .interface.dashboard div.red > .column-label,
 .interface.dashboard div.red .column-icon {
-  color: #444444;
+  color: rgba(68, 68, 68, 0.7);
   background-color: #f2d9d9;
   border-bottom: 1px solid #f0d1d1;
 }
@@ -1612,7 +1612,7 @@
 }
 .interface .dash-menu div.color1 > .column-label,
 .interface .dash-menu div.color1 .column-icon {
-  color: #ffffff;
+  color: rgba(255, 255, 255, 0.7);
   background-color: #50606b;
   border-bottom: 1px solid #4c5b65;
 }
@@ -1672,7 +1672,7 @@
 }
 .interface .dash-menu div.color2 > .column-label,
 .interface .dash-menu div.color2 .column-icon {
-  color: #ffffff;
+  color: rgba(255, 255, 255, 0.7);
   background-color: #4e5d68;
   border-bottom: 1px solid #495862;
 }
@@ -1732,7 +1732,7 @@
 }
 .interface .dash-menu.component-select div.color1 > .column-label,
 .interface .dash-menu.component-select div.color1 .column-icon {
-  color: #ffffff;
+  color: rgba(255, 255, 255, 0.7);
   background-color: #252525;
   border-bottom: 1px solid #202020;
 }
@@ -1792,7 +1792,7 @@
 }
 .interface .dash-menu.component-select.forpanel div.color1 > .column-label,
 .interface .dash-menu.component-select.forpanel div.color1 .column-icon {
-  color: #ffffff;
+  color: rgba(255, 255, 255, 0.7);
   background-color: #ffd300;
   border-bottom: 1px solid #f5cb00;
 }
@@ -1852,7 +1852,7 @@
 }
 .interface .dash-menu div.purple > .column-label,
 .interface .dash-menu div.purple .column-icon {
-  color: #ffffff;
+  color: rgba(255, 255, 255, 0.7);
   background-color: #410e4e;
   border-bottom: 1px solid #390c46;
 }
@@ -1912,7 +1912,7 @@
 }
 .interface .dash-menu div.blue > .column-label,
 .interface .dash-menu div.blue .column-icon {
-  color: #ffffff;
+  color: rgba(255, 255, 255, 0.7);
   background-color: #0b1c41;
   border-bottom: 1px solid #0a1838;
 }
@@ -1972,7 +1972,7 @@
 }
 .interface .dash-menu div.turqoise > .column-label,
 .interface .dash-menu div.turqoise .column-icon {
-  color: #ffffff;
+  color: rgba(255, 255, 255, 0.7);
   background-color: #0c4442;
   border-bottom: 1px solid #0a3b3a;
 }
@@ -2032,7 +2032,7 @@
 }
 .interface .dash-menu div.green > .column-label,
 .interface .dash-menu div.green .column-icon {
-  color: #ffffff;
+  color: rgba(255, 255, 255, 0.7);
   background-color: #0b3c1a;
   border-bottom: 1px solid #093416;
 }
@@ -2092,7 +2092,7 @@
 }
 .interface .dash-menu div.yellow > .column-label,
 .interface .dash-menu div.yellow .column-icon {
-  color: #ffffff;
+  color: rgba(255, 255, 255, 0.7);
   background-color: #574e0f;
   border-bottom: 1px solid #4e460e;
 }
@@ -2152,7 +2152,7 @@
 }
 .interface .dash-menu div.orange > .column-label,
 .interface .dash-menu div.orange .column-icon {
-  color: #ffffff;
+  color: rgba(255, 255, 255, 0.7);
   background-color: #57330f;
   border-bottom: 1px solid #4e2e0e;
 }
@@ -2212,7 +2212,7 @@
 }
 .interface .dash-menu div.red > .column-label,
 .interface .dash-menu div.red .column-icon {
-  color: #ffffff;
+  color: rgba(255, 255, 255, 0.7);
   background-color: #570f0f;
   border-bottom: 1px solid #4e0e0e;
 }
@@ -2349,7 +2349,7 @@
 }
 .interface .dash-box div.color1 > .column-label,
 .interface .dash-box div.color1 .column-icon {
-  color: #444444;
+  color: rgba(68, 68, 68, 0.7);
   background-color: #e3e3e3;
   border-bottom: 1px solid #dedede;
 }
@@ -2409,7 +2409,7 @@
 }
 .interface .dash-box div.color2 > .column-label,
 .interface .dash-box div.color2 .column-icon {
-  color: #444444;
+  color: rgba(68, 68, 68, 0.7);
   background-color: #e0e0e0;
   border-bottom: 1px solid #dbdbdb;
 }
@@ -2469,7 +2469,7 @@
 }
 .interface .dash-box.component-select div.color1 > .column-label,
 .interface .dash-box.component-select div.color1 .column-icon {
-  color: #444444;
+  color: rgba(68, 68, 68, 0.7);
   background-color: #252525;
   border-bottom: 1px solid #202020;
 }
@@ -2529,7 +2529,7 @@
 }
 .interface .dash-box.component-select.forpanel div.color1 > .column-label,
 .interface .dash-box.component-select.forpanel div.color1 .column-icon {
-  color: #444444;
+  color: rgba(68, 68, 68, 0.7);
   background-color: #ffd300;
   border-bottom: 1px solid #f5cb00;
 }
@@ -2589,7 +2589,7 @@
 }
 .interface .dash-box div.purple > .column-label,
 .interface .dash-box div.purple .column-icon {
-  color: #444444;
+  color: rgba(68, 68, 68, 0.7);
   background-color: #e9d1f0;
   border-bottom: 1px solid #e6caed;
 }
@@ -2649,7 +2649,7 @@
 }
 .interface .dash-box div.blue > .column-label,
 .interface .dash-box div.blue .column-icon {
-  color: #444444;
+  color: rgba(68, 68, 68, 0.7);
   background-color: #c5d1ec;
   border-bottom: 1px solid #becbe9;
 }
@@ -2709,7 +2709,7 @@
 }
 .interface .dash-box div.turqoise > .column-label,
 .interface .dash-box div.turqoise .column-icon {
-  color: #444444;
+  color: rgba(68, 68, 68, 0.7);
   background-color: #c8edec;
   border-bottom: 1px solid #c1eae9;
 }
@@ -2769,7 +2769,7 @@
 }
 .interface .dash-box div.green > .column-label,
 .interface .dash-box div.green .column-icon {
-  color: #444444;
+  color: rgba(68, 68, 68, 0.7);
   background-color: #c2eace;
   border-bottom: 1px solid #bae8c8;
 }
@@ -2829,7 +2829,7 @@
 }
 .interface .dash-box div.yellow > .column-label,
 .interface .dash-box div.yellow .column-icon {
-  color: #444444;
+  color: rgba(68, 68, 68, 0.7);
   background-color: #f2efd9;
   border-bottom: 1px solid #f0ecd1;
 }
@@ -2889,7 +2889,7 @@
 }
 .interface .dash-box div.orange > .column-label,
 .interface .dash-box div.orange .column-icon {
-  color: #444444;
+  color: rgba(68, 68, 68, 0.7);
   background-color: #f2e5d9;
   border-bottom: 1px solid #f0e0d1;
 }
@@ -2949,7 +2949,7 @@
 }
 .interface .dash-box div.red > .column-label,
 .interface .dash-box div.red .column-icon {
-  color: #444444;
+  color: rgba(68, 68, 68, 0.7);
   background-color: #f2d9d9;
   border-bottom: 1px solid #f0d1d1;
 }
@@ -3086,7 +3086,7 @@
 }
 .interface .dash-box2 div.color1 > .column-label,
 .interface .dash-box2 div.color1 .column-icon {
-  color: #444444;
+  color: rgba(68, 68, 68, 0.7);
   background-color: #e3e3e3;
   border-bottom: 1px solid #dedede;
 }
@@ -3146,7 +3146,7 @@
 }
 .interface .dash-box2 div.color2 > .column-label,
 .interface .dash-box2 div.color2 .column-icon {
-  color: #444444;
+  color: rgba(68, 68, 68, 0.7);
   background-color: #e0e0e0;
   border-bottom: 1px solid #dbdbdb;
 }
@@ -3206,7 +3206,7 @@
 }
 .interface .dash-box2.component-select div.color1 > .column-label,
 .interface .dash-box2.component-select div.color1 .column-icon {
-  color: #444444;
+  color: rgba(68, 68, 68, 0.7);
   background-color: #252525;
   border-bottom: 1px solid #202020;
 }
@@ -3266,7 +3266,7 @@
 }
 .interface .dash-box2.component-select.forpanel div.color1 > .column-label,
 .interface .dash-box2.component-select.forpanel div.color1 .column-icon {
-  color: #444444;
+  color: rgba(68, 68, 68, 0.7);
   background-color: #ffd300;
   border-bottom: 1px solid #f5cb00;
 }
@@ -3326,7 +3326,7 @@
 }
 .interface .dash-box2 div.purple > .column-label,
 .interface .dash-box2 div.purple .column-icon {
-  color: #444444;
+  color: rgba(68, 68, 68, 0.7);
   background-color: #e9d1f0;
   border-bottom: 1px solid #e6caed;
 }
@@ -3386,7 +3386,7 @@
 }
 .interface .dash-box2 div.blue > .column-label,
 .interface .dash-box2 div.blue .column-icon {
-  color: #444444;
+  color: rgba(68, 68, 68, 0.7);
   background-color: #c5d1ec;
   border-bottom: 1px solid #becbe9;
 }
@@ -3446,7 +3446,7 @@
 }
 .interface .dash-box2 div.turqoise > .column-label,
 .interface .dash-box2 div.turqoise .column-icon {
-  color: #444444;
+  color: rgba(68, 68, 68, 0.7);
   background-color: #c8edec;
   border-bottom: 1px solid #c1eae9;
 }
@@ -3506,7 +3506,7 @@
 }
 .interface .dash-box2 div.green > .column-label,
 .interface .dash-box2 div.green .column-icon {
-  color: #444444;
+  color: rgba(68, 68, 68, 0.7);
   background-color: #c2eace;
   border-bottom: 1px solid #bae8c8;
 }
@@ -3566,7 +3566,7 @@
 }
 .interface .dash-box2 div.yellow > .column-label,
 .interface .dash-box2 div.yellow .column-icon {
-  color: #444444;
+  color: rgba(68, 68, 68, 0.7);
   background-color: #f2efd9;
   border-bottom: 1px solid #f0ecd1;
 }
@@ -3626,7 +3626,7 @@
 }
 .interface .dash-box2 div.orange > .column-label,
 .interface .dash-box2 div.orange .column-icon {
-  color: #444444;
+  color: rgba(68, 68, 68, 0.7);
   background-color: #f2e5d9;
   border-bottom: 1px solid #f0e0d1;
 }
@@ -3686,7 +3686,7 @@
 }
 .interface .dash-box2 div.red > .column-label,
 .interface .dash-box2 div.red .column-icon {
-  color: #444444;
+  color: rgba(68, 68, 68, 0.7);
   background-color: #f2d9d9;
   border-bottom: 1px solid #f0d1d1;
 }

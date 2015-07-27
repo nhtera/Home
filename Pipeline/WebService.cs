@@ -12,20 +12,36 @@ namespace Rennder.Pipeline
     {
         Core R;
 
-        public WebService(Server server, HttpContext context, string[] paths)
+        public WebService(Server server, HttpContext context, string[] paths, IFormCollection form = null)
         {
             //get parameters from request body, including ViewState ID
             string viewstate = "";
-            StreamReader reader = new StreamReader(context.Request.Body, Encoding.UTF8);
-            string data = reader.ReadToEnd();
             object[] parms = new object[0];
+            byte[] bytes = new byte[0];
+            string data = "";
+            int dataType = 0; //0 = ajax, 1 = form post, 2 = multi-part form
+
+            if (form == null)
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    context.Request.Body.CopyTo(ms);
+                    bytes = ms.ToArray();
+                }
+                data = Encoding.UTF8.GetString(bytes, 0, bytes.Length);
+            }else
+            {
+                dataType = 2;
+            }
+            
             if (data.Length > 0)
             {
-                if(data.IndexOf(":") < 0 && data.IndexOf("=") >= 0)
+                if (data.IndexOf("Content-Disposition") > 0)
                 {
-                    //form post data
-
-                }else
+                    //multi-part file upload
+                    dataType = 2;
+                }
+                else if (data.IndexOf("{") >= 0 && data.IndexOf("}") > 0 && data.IndexOf(":") > 0)
                 {
                     //JSON post data
                     Dictionary<string, object> attr = JsonConvert.DeserializeObject<Dictionary<string, object>>(data);
@@ -43,7 +59,7 @@ namespace Rennder.Pipeline
                             //convert value into integer or float
                             if (IsNumeric(val))
                             {
-                                if(val.IndexOf('.') >= 0)
+                                if (val.IndexOf('.') >= 0)
                                 {
                                     parms[x] = float.Parse(val);
                                 }
@@ -51,21 +67,27 @@ namespace Rennder.Pipeline
                                 {
                                     parms[x] = Int32.Parse(val);
                                 }
-                                
+
                             }
                             else
                             {
                                 parms[x] = item.Value;
                             }
-                            
+
                             x = x + 1;
                         }
                     }
                 }
-                
-            }else
+                else if (data.IndexOf("=") >= 0)
+                {
+                    //form post data
+                    dataType = 1;
+                }
+            }
+            else
             {
                 //get viewstate from query string
+                viewstate = context.Request.Query["v"];
             }
 
             R = new Core(server, context, viewstate, "service");
@@ -78,20 +100,20 @@ namespace Rennder.Pipeline
             Type type =Type.GetType(className);
             Service service = (Service)Activator.CreateInstance(type, new object[] { R, paths });
 
-            //parse form data
-            if (data.Length > 0)
+            if (dataType == 1)
             {
-                if (data.IndexOf(":") < 0 && data.IndexOf("=") >= 0)
+                //form post data
+                string[] items = R.Server.UrlDecode(data).Split('&');
+                string[] item;
+                for(int x = 0; x < items.Length; x++)
                 {
-                    //form post data
-                    string[] items = R.Server.UrlDecode(data).Split('&');
-                    string[] item;
-                    for(int x = 0; x < items.Length; x++)
-                    {
-                        item = items[x].Split('=');
-                        service.Form.Add(item[0], item[1]);
-                    }
+                    item = items[x].Split('=');
+                    service.Form.Add(item[0], item[1]);
                 }
+            }else if(dataType == 2)
+            {
+                //multi-part file upload
+                service.Files = form.Files;
             }
 
             //execute method from service class

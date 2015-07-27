@@ -3262,7 +3262,7 @@ R.editor = {
                         });
 
                         //load website folder list of files
-                        R.ajax.post('/rennder/Dashboard/designer/code/LoadFolder', { type: 'website', folder:'' }, 
+                        R.ajax.post('/rennder/Dashboard/Designer/Code/LoadFolder', { type: 'website', folder:'' }, 
                             function (data) {
                                 R.ajax.callback.inject(data);
                                 //then load page CSS code for this web page
@@ -3300,7 +3300,7 @@ R.editor = {
                     if (found == false) {
                         //load file from server
                         R.editor.designer.code.ace.focus();
-                        R.ajax.post('/rennder/Dashboard/designer/code/LoadFile', { type: type, file: file },
+                        R.ajax.post('/rennder/Dashboard/Designer/code/LoadFile', { type: type, file: file },
                             function (data) {
                                 //get file name
                                 var f = file;
@@ -3363,7 +3363,7 @@ R.editor = {
                         s.modified = false;
                         R.editor.designer.code.sessions[R.editor.designer.code.selected] = s;
                         $('.winDesigner .code-ace-files .code-ace-save').addClass('saving');
-                        R.ajax.post('/rennder/Dashboard/designer/code/SaveFile', { type: s.type, file: s.file, value: t },
+                        R.ajax.post('/rennder/Dashboard/Designer/code/SaveFile', { type: s.type, file: s.file, value: t },
                             function (data) {
                                 $('.winDesigner .code-ace-files .code-ace-save').removeClass('saving').addClass('nosave');
                                 R.editor.designer.code.file.modified(false);
@@ -3384,7 +3384,7 @@ R.editor = {
 
             folder: {
                 load: function (type, folder) {
-                    R.ajax.post('/rennder/Dashboard/designer/code/LoadFolder', { type: type, folder: folder }, R.ajax.callback.inject);
+                    R.ajax.post('/rennder/Dashboard/Designer/code/LoadFolder', { type: type, folder: folder }, R.ajax.callback.inject);
                 }
             },
 
@@ -3482,11 +3482,11 @@ R.editor = {
                 $('.winPhotos').addClass('dashboard');
                 R.editor.dashboard.hideAllWindows();
                 R.editor.dashboard.callback.resize();
-                R.hash.ghost('Dashboard/photos');
+                R.hash.ghost('Dashboard/Photos');
             }
             R.editor.window.hidePopUps();
             if ($('.winPhotos .photo-list')[0].children.length == 0) {
-                R.ajax.post("/rennder/Dashboard/photos/LoadPhotoList", { start: '1', folder: '', search: '', orderby: '0' },
+                R.ajax.post("/rennder/Dashboard/Photos/LoadPhotoList", { start: '1', folder: '', search: '', orderby: '0' },
                     function (data) {
                         R.ajax.callback.inject(data);
                         //change onclick 
@@ -3520,6 +3520,7 @@ R.editor = {
             if (R.editor.photos.dialog.type != '') {
                 R.editor.photos.dialog.init();
             }
+            R.editor.photos.folders.hide();
         },
 
         buttons:{
@@ -3539,7 +3540,7 @@ R.editor = {
                 var files = [], lst = $('.winPhotos .photo-list');
                 var chks = $('.winPhotos .photo-list :checked');
                 for (x = 0; x < chks.length; x++) {
-                    files.push(chks[x].id.replace('chkPhoto', ''));
+                    files.push(chks[x].getAttribute("filename"));
                 }
                 R.editor.photos.selected = files;
 
@@ -3563,11 +3564,11 @@ R.editor = {
                     var chks = $('.winPhotos .photo-list :checked');
                     R.editor.photos.info.len -= chks.length;
                     for (x = 0; x < chks.length; x++) {
-                        files.push(chks[x].id.replace('chkPhoto', ''));
+                        files.push(chks[x].getAttribute("filename"));
                         $(chks).parents('.photo').remove();
                     }
                     
-                    R.ajax.post('/rennder/Dashboard/photos/Remove', {files:files.join(','), folder:R.editor.photos.folder}, R.ajax.callback.inject);
+                    R.ajax.post('/rennder/Dashboard/Photos/Remove', {files:files.join(',')}, R.ajax.callback.inject);
                 }
             }
         },
@@ -3576,7 +3577,7 @@ R.editor = {
             show: function (type) {
                 if ($('.winPhotos .folder-list > div').length == 0) {
                     //get a list of folders from server
-                    R.ajax.post('/rennder/Dashboard/photos/LoadFolders', {type:type != null ? type : ''}, R.ajax.callback.inject);
+                    R.ajax.post('/rennder/Dashboard/Photos/LoadFolders', {type:type != null ? type : ''}, R.ajax.callback.inject);
                 }
                 $('.winPhotos .icon-folder use').attr('xlink:href', '#icon-grid');
                 $('.winPhotos .icon-folder a').attr('onclick', 'R.editor.photos.folders.hide()');
@@ -3604,7 +3605,7 @@ R.editor = {
             },
 
             add: function(){
-                R.ajax.post('/rennder/Dashboard/photos/AddFolder', {name:$('.winPhotos #txtNewFolder').val()}, R.ajax.callback.inject);
+                R.ajax.post('/rennder/Dashboard/Photos/AddFolder', {name:$('.winPhotos #txtNewFolder').val()}, R.ajax.callback.inject);
             },
 
             addCallback: function(name){
@@ -3625,8 +3626,11 @@ R.editor = {
                     R.editor.photos.folders.select(name);
 
                 }).on('click', '.icon-close a', function (e) {
-                    R.editor.photos.folders.remove($(this).parents('.column-row.item')[0].firstChild.textContent);
-                }).parent('.icon-close').addClass('hover-only').css({'display':''});
+                    if($(this).parents('.column-row.item')[0]){
+                        R.editor.photos.folders.remove($(this).parents('.column-row.item')[0].firstChild.textContent);
+                    } return false;
+                }).parent('.icon-close').addClass('hover-only').css({ 'display': '' });
+
             },
 
             bindForMove: function () {
@@ -3637,15 +3641,14 @@ R.editor = {
             },
 
             remove: function(name){
-                if (confirm("Do you really want to delete this folder and all the photos that belong within the folder? This cannot be undone.") == true) {
-                    R.editor.photos.folders.remove();
-                    R.ajax.post('/rennder/Dashboard/photos/RemoveFolder', { folder: name }, R.ajax.callback.inject);
+                if (confirm("Do you really want to delete the folder '" + name + "' and all the photos that belong within the folder? This cannot be undone.") == true) {
+                    R.ajax.post('/rennder/Dashboard/Photos/RemoveFolder', { folder: name }, R.ajax.callback.inject);
                 }
             },
 
             select: function(name){
                 if ($(e.target).parents('.icon-close').length > 0) { return; }
-                R.ajax.post('/rennder/Dashboard/photos/LoadPhotoList', { start: "1", folder: name, search: '', orderby: '0' }, R.ajax.callback.inject);
+                R.ajax.post('/rennder/Dashboard/Photos/LoadPhotoList', { start: "1", folder: name, search: '', orderby: '0' }, R.ajax.callback.inject);
             },
 
             change: function (name) {
@@ -3655,11 +3658,11 @@ R.editor = {
                 $('.winPhotos .selected-folder')[0].innerHTML = 'Folder: ' + n;
                 R.editor.photos.folder = name;
                 R.editor.photos.folders.bind();
-                R.editor.photos.dropzone.body.options.url = '/rennder/Dashboard/photos-upload.aspx?v=' + R.ajax.viewstateId + '&folder=' + encodeURIComponent(R.editor.photos.folder);
+                R.editor.photos.dropzone.body.options.url = '/rennder/Dashboard/Photos/Upload?v=' + R.ajax.viewstateId + '&folder=' + encodeURIComponent(R.editor.photos.folder);
             },
 
             moveTo: function (name) {
-                R.ajax.post('/rennder/Dashboard/photos/MoveTo', { folder: name, files: R.editor.photos.selected.join(',') }, R.ajax.callback.inject);
+                R.ajax.post('/rennder/Dashboard/Photos/MoveTo', { folder: name, files: R.editor.photos.selected.join(',') }, R.ajax.callback.inject);
             }
         },
 
@@ -3668,15 +3671,15 @@ R.editor = {
 
             init: function () {
                 R.editor.photos.dropzone.body = new Dropzone(document.body, {
-                    url: '/rennder/Dashboard/photos-upload.aspx?v=' + R.ajax.viewstateId,
+                    url: '/rennder/Dashboard/Photos/Upload?v=' + R.ajax.viewstateId,
                     previewsContainer: ".winPhotos .dropzone",
                     clickable: ".winPhotos .top-menu .upload a",
                     paramName: 'file',
-                    maxFilesize: 3,
+                    maxFilesize: 4,
                     uploadMultiple: true,
                     thumbnailWidth: 50,
                     thumbnailHeight: 40,
-                    parallelUploads: 2
+                    parallelUploads: 1
                     , init: function () {
                         this.on('drop', function () {
                             $('.winPhotos .dropzone').animate({ height: 60 }, 300);
@@ -3713,7 +3716,7 @@ R.editor = {
                             setTimeout(function () {
                                 list.scrollTop(list.prop('scrollHeight') + 50);
                             }, 1000);
-                            R.ajax.post('/rennder/Dashboard/photos/Save', {}, R.ajax.callback.inject);
+                            R.ajax.post('/rennder/Dashboard/Photos/Save', { folder: R.editor.photos.folder }, R.ajax.callback.inject);
                         });
                     }
                 });
@@ -3828,7 +3831,7 @@ R.editor = {
                 options.save = JSON.stringify(R.editor.save.cache);
                 R.editor.save.cache = [];
                 $('.editor .toolbar .savepage').addClass('saving');
-                R.ajax.post("/rennder/app/KeepAlive", options, function () { $('.editor .toolbar .savepage').removeClass('saving').addClass('nosave'); });
+                R.ajax.post("/rennder/App/KeepAlive", options, function () { $('.editor .toolbar .savepage').removeClass('saving').addClass('nosave'); });
             }
         }
     },

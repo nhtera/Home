@@ -5,3 +5,7 @@
     CONSTRAINT [PK_ApplicationsPages] PRIMARY KEY ([websiteId])
 );
 
+
+GO
+
+CREATE INDEX [index_appsPages] ON [dbo].[ApplicationsPages] (websiteId)

@@ -317,14 +317,15 @@ ul.columns-first{float:left;}
 .dash-menu{float:left; width:230px; height:100%;}
 .dash-body{float:left; width:calc(100% - 230px);}
 .dash-menu .menu-title{padding:3px 5px; white-space:normal; width:calc(100% - 30px);}
-.dash-menu .row{margin:10px 0px 10px 0px !important;}
-.dash-menu .row .column-icon{padding:10px 30px 3px 30px !important; border-width:0px !important;}
-.dash-menu .row .column-label{padding:10px 40px 3px 5px !important; border-width:0px !important; width:calc(100% - 130px) !important; min-height:28px !important;}
 .dash-menu .section-icon-menu{padding:0px 10px;}
+.dash-menu .section-icon-menu .row{margin:10px 0px 10px 0px !important;}
+.dash-menu .section-icon-menu .row .column-icon{padding:10px 30px 3px 30px !important; border-width:0px !important;}
+.dash-menu .section-icon-menu .row .column-label{padding:10px 40px 3px 5px !important; border-width:0px !important; width:calc(100% - 130px) !important; min-height:28px !important;}
 
 /* dashboard body */
-.interface.dashboard .header{width:calc(100% - 30px); padding:10px 20px 7px 20px;}
-.interface.dashboard .header .title-label{padding:3px 0px 0px 16px;}
+.interface.dashboard .row.header{width:calc(100% - 40px); height:30px; padding:10px 20px 7px 20px;}
+.interface.dashboard .row.header .title-icon-small{padding-top:5px;}
+.interface.dashboard .row.header .title-label{padding:3px 0px 0px 16px;}
 
 /* component quick menu //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 .quickmenu-item{position:absolute; border-radius:7px !important;}
@@ -373,7 +374,7 @@ body > .target{position:absolute; z-index:4501; cursor:move;}
 .winWebPages .pages-treeview .expander{float:left; width:25px; height:36px;}
 .winWebPages .pages-treeview .row > .column{float:left; width:calc(100% - 37px);}
 .winWebPages .pages-treeview .item > .column > a{display: inline-block;max-width: calc(100% - 70px);overflow:hidden;white-space: nowrap;}
-.winWebPages .pages-list{float:left; height:calc(100% - 40px);}
+.winWebPages .pages-list{float:left; height:calc(100% - 110px);}
 .winWebPages .pages-list ul{height:100%; column-width:250px; -webkit-column-width:250px; -moz-column-width:250px; list-style:none;}
 .winWebPages .pages-list li{display:inline-block; width:300px;}
 .winWebPages .pages-title{max-width:300px;}
@@ -390,7 +391,7 @@ body > .target{position:absolute; z-index:4501; cursor:move;}
 .winPhotos .top-menu .remove-photos{float:left; padding:0px 0px 0px 10px;}
 .winPhotos .top-menu .remove-photos .column{width:50px !important;}
 .winPhotos .top-menu .upload{float:right;}
-.winPhotos .top-menu .dropzone{float:left; height:0px;min-height:0px; max-height:50px; overflow:hidden; width:calc(100% - 100px);}
+.winPhotos .top-menu .dropzone{float:left; height:0px;min-height:0px; max-height:50px; overflow:hidden; width:calc(100% - 140px);}
 .winPhotos .top-menu .msg-movephotos{display:inline-block; padding:20px 0px 0px 20px;}
 .winPhotos .photo-list{padding:0px 10px 0px 10px; max-height:480px; overflow-y:auto;}
 .winPhotos.dashboard .photo-list{max-height:calc(100% - 105px);}

@@ -5,3 +5,7 @@
     CONSTRAINT [PK_PasswordReset] PRIMARY KEY ([email])
 );
 
+
+GO
+
+CREATE INDEX [index_passReset] ON [dbo].[PasswordReset] (resetId)

@@ -34,6 +34,15 @@ namespace Rennder.Utility
             return bytes;
         }
 
+        public byte[] GetBytes(Stream stream)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                stream.CopyTo(ms);
+                return ms.ToArray();
+            }
+        }
+
         public string GetString(byte[] bytes)
         {
             char[] chars = new char[bytes.Length / sizeof(char)];

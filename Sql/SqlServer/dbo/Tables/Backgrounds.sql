@@ -21,3 +21,7 @@
     CONSTRAINT [PK_Backgrounds] PRIMARY KEY ([backgroundId])
 );
 
+
+GO
+
+CREATE INDEX [index_backgrounds] ON [dbo].[Backgrounds] (backgroundId, orderindex)

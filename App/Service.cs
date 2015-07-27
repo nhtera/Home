@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Microsoft.AspNet.Http;
 using System.IO;
 using Newtonsoft.Json;
 
@@ -54,6 +55,7 @@ namespace Rennder
         protected Core R;
         protected string[] Paths;
         public Dictionary<string, string> Form = new Dictionary<string, string>();
+        public IFormFileCollection Files;
 
         public Service(Core RennderCore, string[] paths) {
             R = RennderCore;

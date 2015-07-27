@@ -57,8 +57,21 @@ namespace Rennder
                 {
                     if(paths[0]=="rennder")
                     {
-                        //run a web service via ajax (e.g. /rennder/service/{service-name}/{query})
-                        var ws = new Pipeline.WebService(server, context, paths);
+                        //run a web service via ajax (e.g. /rennder/namespace/class/function)
+                         IFormCollection form = null;
+                        if(context.Request.ContentType != null)
+                        {
+                            if (context.Request.ContentType.IndexOf("application/x-www-form-urlencoded") >= 0)
+                            {
+                            }else if (context.Request.ContentType.IndexOf("multipart/form-data") >= 0)
+                            {
+                                //get files collection from form data
+                                form = await context.Request.ReadFormAsync();
+                            }
+                        }
+                        
+                        //start the Web Service engine
+                        var ws = new Pipeline.WebService(server, context, paths, form);
                         requestType = "service";
                     }
                 }

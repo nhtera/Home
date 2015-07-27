@@ -9,16 +9,20 @@
       "Microsoft.AspNet.StaticFiles >= 1.0.0-beta4",
       "Microsoft.AspNet.Diagnostics >= 1.0.0-beta4",
       "Microsoft.AspNet.Session >= 1.0.0-beta4",
+      "Microsoft.CSharp >= 4.0.0-beta-22816",
       "Microsoft.Framework.OptionsModel >= 1.0.0-beta4",
       "Microsoft.Framework.ConfigurationModel.Json >= 1.0.0-beta4",
       "System.Runtime >= 4.0.20-beta-22816",
       "System.Runtime.Extensions >= 4.0.10-beta-22816",
       "System.Collections >= 4.0.10-beta-22816",
+      "System.ComponentModel >= 4.0.0-beta-22816",
       "System.Linq >= 4.0.0-beta-22816",
       "System.IO >= 4.0.10-beta-22816",
       "System.Data.Common >= 4.0.0-beta-22816",
       "System.Data.SqlClient >= 4.0.0-beta-22816",
       "System.Diagnostics.Tools >= 4.0.0-beta-22816",
+      "System.Reflection.Extensions >= 4.0.0-beta-22816",
+      "System.Threading >= 4.0.10-beta-22816",
       "System.Text.RegularExpressions >= 4.0.10-beta-22816",
       "System.Text.Encoding >= 4.0.10-beta-22816",
       "System.Text.Encoding.CodePages >= 4.0.0-beta-22816",
@@ -34,7 +38,8 @@
       "System.Security.Cryptography.RandomNumberGenerator >= 4.0.0-beta-22816",
       "System.Security.Cryptography.Hashing.Algorithms >= 4.0.0-beta-22816",
       "Newtonsoft.Json >= 7.0.1",
-      "Npgsql >= 3.0.0-rc0001"
+      "Npgsql >= 3.0.0-rc0001",
+      "Nine.Imaging >= 1.1.0-alpha"
     ]
   },
   "libraries": {
@@ -617,6 +622,36 @@
         "lib/dnx451/Microsoft.AspNet.WebUtilities.xml",
         "lib/dnxcore50/Microsoft.AspNet.WebUtilities.dll",
         "lib/dnxcore50/Microsoft.AspNet.WebUtilities.xml"
+      ]
+    },
+    "Microsoft.CSharp/4.0.0-beta-22816": {
+      "serviceable": false,
+      "sha": "FGnaYvmoVLd0QTnOyHfm+C79a9CGqQAoh76Ix9++a4SdeaAB8PgpB2Vi/Uc5jcp491QvPyPQjtXCuhRfqWvNkw==",
+      "frameworks": {
+        "DNXCore,Version=v5.0": {
+          "dependencies": {
+            "System.Dynamic.Runtime": "4.0.10-beta-22816",
+            "System.Linq.Expressions": "4.0.10-beta-22816",
+            "System.Runtime": "4.0.20-beta-22816"
+          },
+          "frameworkAssemblies": [],
+          "runtimeAssemblies": [
+            "lib/aspnetcore50/Microsoft.CSharp.dll"
+          ],
+          "compileAssemblies": [
+            "lib/contract/Microsoft.CSharp.dll"
+          ]
+        }
+      },
+      "files": [
+        "License.rtf",
+        "Microsoft.CSharp.4.0.0-beta-22816.nupkg",
+        "Microsoft.CSharp.4.0.0-beta-22816.nupkg.sha512",
+        "Microsoft.CSharp.nuspec",
+        "lib/aspnetcore50/Microsoft.CSharp.dll",
+        "lib/contract/Microsoft.CSharp.dll",
+        "lib/net45/_._",
+        "lib/portable-wpa81+wp80+win80+net45+aspnetcore50/Microsoft.CSharp.dll"
       ]
     },
     "Microsoft.Framework.Caching.Distributed/1.0.0-beta4": {
@@ -1294,6 +1329,43 @@
         "tools/install.ps1"
       ]
     },
+    "Nine.Imaging/1.1.0-alpha": {
+      "serviceable": false,
+      "sha": "ONF4AUGpco9/CvdEirJaqrqasaNxxXgs/fSYc0mGlGLOs6U03cKMk9rcCqZoZIAqqkiQrcBopVYYw0LVYdHRaw==",
+      "frameworks": {
+        "DNXCore,Version=v5.0": {
+          "dependencies": {
+            "SharpZipLib.Portable": "0.86.0.2",
+            "Microsoft.CSharp": "4.0.0-beta-23110",
+            "System.Collections": "4.0.10.0",
+            "System.ComponentModel": "4.0.0-beta-23110",
+            "System.Linq": "4.0.0.0",
+            "System.Reflection.Extensions": "4.0.0.0",
+            "System.Runtime": "4.0.20.0",
+            "System.Runtime.Extensions": "4.0.10.0",
+            "System.Threading": "4.0.10-beta-23110"
+          },
+          "frameworkAssemblies": [],
+          "runtimeAssemblies": [
+            "lib/dnxcore50/Nine.Imaging.dll"
+          ],
+          "compileAssemblies": [
+            "lib/dnxcore50/Nine.Imaging.dll"
+          ]
+        }
+      },
+      "files": [
+        "Nine.Imaging.1.1.0-alpha.nupkg",
+        "Nine.Imaging.1.1.0-alpha.nupkg.sha512",
+        "Nine.Imaging.nuspec",
+        "lib/dnx451/Nine.Imaging.dll",
+        "lib/dnx451/Nine.Imaging.xml",
+        "lib/dnxcore50/Nine.Imaging.dll",
+        "lib/dnxcore50/Nine.Imaging.xml",
+        "lib/portable-net45+win+wp80/Nine.Imaging.dll",
+        "lib/portable-net45+win+wp80/Nine.Imaging.xml"
+      ]
+    },
     "Npgsql/3.0.0-rc0001": {
       "serviceable": false,
       "sha": "6BIls+WiDbCR8OlrBm7iQiYTj2Asoq5ne+T+147nmRVOwlZFbDvbOvyJPnEwAT1HztE2ifHQp649VVP64Xsz7g==",
@@ -1311,6 +1383,30 @@
         "Npgsql.nuspec",
         "lib/net45/Npgsql.dll",
         "lib/net45/Npgsql.xml"
+      ]
+    },
+    "SharpZipLib.Portable/0.86.0.0002": {
+      "serviceable": false,
+      "sha": "udGFuRKSOMjjZdUKS9y7WRPQeuVuzbZjW2YgLVmQlV53lYNNbToqH9nyYq01md8tHJrL+Iymr2Mr5+oggkrBow==",
+      "frameworks": {
+        "DNXCore,Version=v5.0": {
+          "dependencies": {},
+          "frameworkAssemblies": [],
+          "runtimeAssemblies": [
+            "lib/portable-net45+netcore45+wp8+win8+wpa81+MonoTouch+MonoAndroid/ICSharpCode.SharpZipLib.Portable.dll"
+          ],
+          "compileAssemblies": [
+            "lib/portable-net45+netcore45+wp8+win8+wpa81+MonoTouch+MonoAndroid/ICSharpCode.SharpZipLib.Portable.dll"
+          ]
+        }
+      },
+      "files": [
+        "SharpZipLib.Portable.0.86.0.0002.nupkg",
+        "SharpZipLib.Portable.0.86.0.0002.nupkg.sha512",
+        "SharpZipLib.Portable.nuspec",
+        "lib/portable-net45+netcore45+wp8+win8+wpa81+MonoTouch+MonoAndroid/ICSharpCode.SharpZipLib.Portable.dll",
+        "lib/portable-net45+netcore45+wp8+win8+wpa81+MonoTouch+MonoAndroid/ICSharpCode.SharpZipLib.Portable.pdb",
+        "lib/portable-net45+netcore45+wp8+win8+wpa81+MonoTouch+MonoAndroid/ICSharpCode.SharpZipLib.Portable.xml"
       ]
     },
     "System.Collections/4.0.10-beta-22816": {
@@ -1632,6 +1728,37 @@
         "lib/portable-wpa81+wp80+win80+net45+aspnetcore50/System.Diagnostics.Tracing.dll"
       ]
     },
+    "System.Dynamic.Runtime/4.0.10-beta-22816": {
+      "serviceable": false,
+      "sha": "xPMym5hsntfLf/Gisnvk3t25TaZRvwDF46PaszRlB63WsDbAIUXgrsE4ob8ZKTL7+uyGW1HGwOBVlJCP/J1/hA==",
+      "frameworks": {
+        "DNXCore,Version=v5.0": {
+          "dependencies": {
+            "System.Linq.Expressions": "4.0.10-beta-22816",
+            "System.ObjectModel": "4.0.10-beta-22816",
+            "System.Reflection": "4.0.10-beta-22816",
+            "System.Runtime": "4.0.20-beta-22816"
+          },
+          "frameworkAssemblies": [],
+          "runtimeAssemblies": [
+            "lib/aspnetcore50/System.Dynamic.Runtime.dll"
+          ],
+          "compileAssemblies": [
+            "lib/contract/System.Dynamic.Runtime.dll"
+          ]
+        }
+      },
+      "files": [
+        "License.rtf",
+        "System.Dynamic.Runtime.4.0.10-beta-22816.nupkg",
+        "System.Dynamic.Runtime.4.0.10-beta-22816.nupkg.sha512",
+        "System.Dynamic.Runtime.nuspec",
+        "lib/aspnetcore50/System.Dynamic.Runtime.dll",
+        "lib/contract/System.Dynamic.Runtime.dll",
+        "lib/net45/System.Dynamic.Runtime.dll",
+        "lib/portable-wpa81+wp80+win80+net45+aspnetcore50/System.Dynamic.Runtime.dll"
+      ]
+    },
     "System.Globalization/4.0.10-beta-22816": {
       "serviceable": false,
       "sha": "Eq2937cdQH2G3qij5gZIJ47785OwLK/+AVjyHfJKnWyhAFWoaLnQOVtaXfMVkfvp4AW7eDVkqIv0fSoS6N2q0A==",
@@ -1894,6 +2021,34 @@
         "lib/contract/System.Net.Primitives.dll",
         "lib/net45/System.Net.Primitives.dll",
         "lib/portable-wpa81+wp80+win80+net45+aspnetcore50/System.Net.Primitives.dll"
+      ]
+    },
+    "System.ObjectModel/4.0.10-beta-22816": {
+      "serviceable": false,
+      "sha": "Rtu5FLq7JTtignXiSEKx26Q01NHyoO3pTcYYdwF54kFC64VbHEcvs8b586JyVVpM7Wz0zBmdgHDrH9fv2MgeVw==",
+      "frameworks": {
+        "DNXCore,Version=v5.0": {
+          "dependencies": {
+            "System.Runtime": "4.0.20-beta-22816"
+          },
+          "frameworkAssemblies": [],
+          "runtimeAssemblies": [
+            "lib/aspnetcore50/System.ObjectModel.dll"
+          ],
+          "compileAssemblies": [
+            "lib/contract/System.ObjectModel.dll"
+          ]
+        }
+      },
+      "files": [
+        "License.rtf",
+        "System.ObjectModel.4.0.10-beta-22816.nupkg",
+        "System.ObjectModel.4.0.10-beta-22816.nupkg.sha512",
+        "System.ObjectModel.nuspec",
+        "lib/aspnetcore50/System.ObjectModel.dll",
+        "lib/contract/System.ObjectModel.dll",
+        "lib/net45/System.ObjectModel.dll",
+        "lib/portable-wpa81+wp80+win80+net45+aspnetcore50/System.ObjectModel.dll"
       ]
     },
     "System.Reflection/4.0.10-beta-22816": {

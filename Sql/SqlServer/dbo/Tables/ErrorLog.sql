@@ -7,3 +7,7 @@
     CONSTRAINT [PK_ErrorLog] PRIMARY KEY ([dateCreated])
 );
 
+
+GO
+
+CREATE INDEX [index_errorLog] ON [dbo].[ErrorLog] (dateCreated)

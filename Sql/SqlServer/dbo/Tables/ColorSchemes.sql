@@ -17,6 +17,10 @@
     [colorbodyR]    INT            NULL,
     [colorbodyG]    INT            NULL,
     [colorbodyB]    INT            NULL, 
-    CONSTRAINT [PK_ColorSchemes] PRIMARY KEY ([schemeId])
+    CONSTRAINT [PK_ColorSchemes] PRIMARY KEY ([schemeId]) 
 );
 
+
+GO
+
+CREATE INDEX [index_colorschemes] ON [dbo].[ColorSchemes] (schemeId)

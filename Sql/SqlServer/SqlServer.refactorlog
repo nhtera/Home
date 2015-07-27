@@ -119,4 +119,32 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="themeId" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="0d3cea44-6ec2-4733-ae7e-52dd3c88851a" ChangeDateTime="07/24/2015 20:54:34">
+    <Property Name="ElementName" Value="[dbo].[Photos].[parentId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Photos]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="folder" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="8a4a1e96-5d36-4f67-bdcf-7ea7c4cd3027" ChangeDateTime="07/24/2015 20:54:48">
+    <Property Name="ElementName" Value="[dbo].[Photos].[folder]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Photos]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="folderId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="a67fa7aa-f7e8-4c3c-984a-0abd219c7b1b" ChangeDateTime="07/24/2015 20:55:13">
+    <Property Name="ElementName" Value="[dbo].[PhotoFolders].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[PhotoFolders]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="folderId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="e181afa5-8161-467d-b19b-ed7e03f5405c" ChangeDateTime="07/24/2015 20:55:26">
+    <Property Name="ElementName" Value="[dbo].[PhotoFolders].[name]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[PhotoFolders]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="websiteId" />
+  </Operation>
 </Operations>

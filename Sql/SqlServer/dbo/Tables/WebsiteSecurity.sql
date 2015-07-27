@@ -7,3 +7,7 @@
     CONSTRAINT [PK_WebsiteSecurity] PRIMARY KEY ([userId])
 );
 
+
+GO
+
+CREATE INDEX [index_websiteSecurity] ON [dbo].[WebsiteSecurity] (websiteId)

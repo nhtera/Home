@@ -178,7 +178,7 @@
                 @label-border:darken(@label-bg,@border);
                 @input-border:darken(@input-bg,@border);
                 background-color:@bgcolor;
-                > .column-label, .column-icon{color:@window-color; background-color:@label-bg; border-bottom:1px solid @label-border;}
+                > .column-label, .column-icon{color:fade(@window-color, 70%); background-color:@label-bg; border-bottom:1px solid @label-border;}
                 > .column, > .column-input, > .empty, .column-button{background-color:@input-bg; border-bottom:1px solid @input-border;}
             }
 

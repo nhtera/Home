@@ -8,3 +8,7 @@
     CONSTRAINT [PK_WebsiteDomains] PRIMARY KEY ([domain])
 );
 
+
+GO
+
+CREATE INDEX [index_websiteDomains] ON [dbo].[WebsiteDomains] (websiteId)

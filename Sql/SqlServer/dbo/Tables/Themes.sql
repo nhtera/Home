@@ -21,3 +21,7 @@
     CONSTRAINT [PK_Themes] PRIMARY KEY ([themeId])
 );
 
+
+GO
+
+CREATE INDEX [index_themes] ON [dbo].[Themes] (themeId)

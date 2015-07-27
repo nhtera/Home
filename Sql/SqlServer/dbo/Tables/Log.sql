@@ -26,3 +26,7 @@
     CONSTRAINT [PK_Log] PRIMARY KEY ([websiteid])
 );
 
+
+GO
+
+CREATE INDEX [index_log] ON [dbo].[Log] (websiteid, datecreated DESC)

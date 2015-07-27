@@ -165,6 +165,17 @@
     <Build Include="dbo\Stored Procedures\UpdateThemeLicense.sql" />
     <Build Include="dbo\Sequences\SequenceThemes.sql" />
     <Build Include="dbo\Stored Procedures\GetPageInfoFromDomain.sql" />
+    <Build Include="dbo\Stored Procedures\AddPhoto.sql" />
+    <Build Include="dbo\Stored Procedures\DeletePhoto.sql" />
+    <Build Include="dbo\Stored Procedures\DeletePhotos.sql" />
+    <Build Include="dbo\Stored Procedures\GetPhotos.sql" />
+    <Build Include="dbo\Tables\PhotoFolders.sql" />
+    <Build Include="dbo\Stored Procedures\AddPhotoFolder.sql" />
+    <Build Include="dbo\Sequences\SequencePhotoFolders.sql" />
+    <Build Include="dbo\Stored Procedures\DeletePhotoFolder.sql" />
+    <Build Include="dbo\Stored Procedures\MovePhotos.sql" />
+    <Build Include="dbo\Stored Procedures\GetPhotoFolders.sql" />
+    <Build Include="dbo\Stored Procedures\GetPhoto.sql" />
   </ItemGroup>
   <ItemGroup>
     <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\110\SqlSchemas\master.dacpac">

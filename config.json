@@ -3,6 +3,8 @@
     "active": "SqlServerTrusted",
     "SqlServerDev": "server=.\\SQL2012; database=RennderDev; user=RennderDev; password=development",
     "SqlServerTrusted": "server=.\\SQL2012; database=RennderDev; Trusted_Connection=true",
-    "PostgreSql":  "Host=localhost; Database=RennderDev; Username=RennderDev; Password=development"
-  }
+    "PostgreSql": "Host=localhost; Database=RennderDev; Username=RennderDev; Password=development"
+  },
+
+  "platform": "windows"
 }

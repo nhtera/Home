@@ -9,3 +9,7 @@
     CONSTRAINT [PK_Components] PRIMARY KEY ([componentId])
 );
 
+
+GO
+
+CREATE INDEX [index_components] ON [dbo].[Components] (componentId)

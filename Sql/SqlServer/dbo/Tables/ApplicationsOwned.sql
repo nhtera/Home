@@ -8,3 +8,7 @@
     CONSTRAINT [PK_ApplicationsOwned] PRIMARY KEY ([websiteId]) 
 );
 
+
+GO
+
+CREATE INDEX [index_appsOwned] ON [dbo].[ApplicationsOwned] (websiteId)

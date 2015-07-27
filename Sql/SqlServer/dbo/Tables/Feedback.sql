@@ -7,3 +7,7 @@
     CONSTRAINT [PK_Feedback] PRIMARY KEY ([datecreated])
 );
 
+
+GO
+
+CREATE INDEX [index_feedback] ON [dbo].[Feedback] (feedbackId)

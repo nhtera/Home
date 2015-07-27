@@ -24,3 +24,11 @@
     CONSTRAINT [PK_Users] PRIMARY KEY ([email])
 );
 
+
+GO
+
+CREATE INDEX [index_users] ON [dbo].[Users] (userId)
+
+GO
+
+CREATE INDEX [index_users_email] ON [dbo].[Users] (email)

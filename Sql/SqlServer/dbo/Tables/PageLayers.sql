@@ -6,3 +6,7 @@
     CONSTRAINT [PK_PageInterfaces] PRIMARY KEY ([websiteId])
 );
 
+
+GO
+
+CREATE INDEX [index_pageLayers] ON [dbo].[PageLayers] (websiteId)

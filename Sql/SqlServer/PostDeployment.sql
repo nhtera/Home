@@ -1,11 +1,13 @@
-﻿/* Only Execute Once */
+﻿/* Clear initial data (debug only) 
 DELETE FROM websites
 DELETE FROM pages
 DELETE FROM users
 DELETE FROM themes
 DELETE FROM websitedomains
 DELETE FROM components
+*/
 
+/* Only Add initial data once */
 IF (SELECT COUNT(*) FROM Users WHERE userId=1) = 0 BEGIN
 
 	/* Setup Variable */

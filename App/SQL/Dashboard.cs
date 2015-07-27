@@ -1,4 +1,5 @@
-﻿
+﻿using System.IO;
+
 namespace Rennder.SqlClasses
 {
     public class Dashboard: SqlMethods
@@ -76,5 +77,100 @@ namespace Rennder.SqlClasses
         }
         #endregion
 
+        #region "Photos"
+        public SqlReader GetPhotoList(int websiteId, int start, int length, string folder = "", int orderBy = 1)
+        {
+            SqlReader reader = new SqlReader();
+            if (R.Sql.dataType == enumSqlDataTypes.SqlClient)
+            {
+                string sql = "EXEC GetPhotos @websiteId=" + websiteId + ", @folder='" + folder + "'" + 
+                             ", @start=" + start + ", @length=" + length + ", @orderby=" + orderBy;
+                reader.ReadFromSqlClient(R.Sql.ExecuteReader(sql));
+            }
+            return reader;
+        }
+        
+        public void AddPhoto(int websiteId, string folder, string filename, string uploadname, int width, int height)
+        {
+            if (R.Sql.dataType == enumSqlDataTypes.SqlClient)
+            {
+                R.Sql.ExecuteNonQuery("EXEC AddPhoto @websiteId=" + websiteId + ", @filename='" + filename + "', @folder='" + folder + "'" +
+                ", @uploadname='" + uploadname + "', @width=" + width + ", @height=" + height);
+            }
+                
+        }
+
+        public void DeletePhoto(int websiteId, string filename)
+        {
+            SqlReader reader = new SqlReader();
+            if (R.Sql.dataType == enumSqlDataTypes.SqlClient)
+            {
+                //get photo info first
+                reader.ReadFromSqlClient(R.Sql.ExecuteReader("EXEC GetPhoto @websiteId=" + websiteId + ", @filename='" + filename + "'"));
+                string folder = "";
+                if(reader.Rows.Count > 0)
+                {
+                    reader.Read();
+                    folder = reader.Get("foldername");
+                    if (folder != "") { folder += "/"; }
+                    string path = "/wwwroot/content/websites/" + R.Page.websiteId + "/photos/" + folder;
+                    folder = folder.Replace("/", "");
+
+                    //delete physical file on disk
+                    if (File.Exists(R.Server.MapPath(path + filename)) == true) { File.Delete(R.Server.MapPath(path + filename)); }
+                    if (File.Exists(R.Server.MapPath(path + "xl" + filename)) == true) { File.Delete(R.Server.MapPath(path + "xl" + filename)); }
+                    if (File.Exists(R.Server.MapPath(path + "lg" + filename)) == true) { File.Delete(R.Server.MapPath(path + "lg" + filename)); }
+                    if (File.Exists(R.Server.MapPath(path + "med" + filename)) == true) { File.Delete(R.Server.MapPath(path + "med" + filename)); }
+                    if (File.Exists(R.Server.MapPath(path + "sm" + filename)) == true) { File.Delete(R.Server.MapPath(path + "sm" + filename)); }
+                    if (File.Exists(R.Server.MapPath(path + "tiny" + filename)) == true) { File.Delete(R.Server.MapPath(path + "tiny" + filename)); }
+                    if (File.Exists(R.Server.MapPath(path + "icon" + filename)) == true) { File.Delete(R.Server.MapPath(path + "icon" + filename)); }
+
+                    //remove record from database
+                    R.Sql.ExecuteNonQuery("EXEC DeletePhoto @websiteId=" + websiteId + ", @filename='" + filename + "'");
+                }
+
+
+
+                
+            }
+                
+
+        }
+
+        public void DeletePhotos(int websiteId, string[] filenames)
+        {
+            for(int x = 0;x < filenames.Length; x++)
+            {
+                DeletePhoto(websiteId, filenames[x]);
+            }
+        }
+
+        public void MovePhotos(int websiteId, string[] filenames, string folder)
+        {
+            R.Sql.ExecuteNonQuery("EXEC MovePhotos @websiteId=" + websiteId + ", @filenames='" + string.Join(",",filenames) + "', @folder='" + folder + "'");
+        }
+
+        public SqlReader GetPhotoFolders(int websiteId)
+        {
+            SqlReader reader = new SqlReader();
+            if (R.Sql.dataType == enumSqlDataTypes.SqlClient)
+            {
+                string sql = "EXEC GetPhotoFolders @websiteId=" + websiteId;
+                reader.ReadFromSqlClient(R.Sql.ExecuteReader(sql));
+            }
+            return reader;
+        }
+
+        public void AddPhotoFolder(int websiteId, string name)
+        {
+            R.Sql.ExecuteNonQuery("EXEC AddPhotoFolder @websiteId=" + websiteId + ", @name='" + name + "'");
+        }
+
+        public void DeletePhotoFolder(int websiteId, string folder)
+        {
+            R.Sql.ExecuteNonQuery("EXEC DeletePhotoFolder @websiteId=" + websiteId + ", @folder='" + folder + "'");
+        }
+
+        #endregion
     }
 }

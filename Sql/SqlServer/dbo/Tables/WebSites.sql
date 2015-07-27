@@ -26,3 +26,7 @@
     CONSTRAINT [PK_WebSites] PRIMARY KEY ([websiteId])
 );
 
+
+GO
+
+CREATE INDEX [index_websites] ON [dbo].[WebSites] (websiteId)

@@ -6,3 +6,7 @@
     CONSTRAINT [PK_Login] PRIMARY KEY ([loginid])
 );
 
+
+GO
+
+CREATE INDEX [index_login] ON [dbo].[Login] (datecreated DESC)

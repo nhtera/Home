@@ -43,3 +43,7 @@
     CONSTRAINT [PK_LogAnalytics] PRIMARY KEY ([websiteId])
 );
 
+
+GO
+
+CREATE INDEX [index_logAnalytics] ON [dbo].[LogAnalytics] (websiteId, logYear DESC, logMonth, logDay)

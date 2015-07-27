@@ -5,3 +5,7 @@
     CONSTRAINT [PK_Screenshots] PRIMARY KEY ([websiteid])
 );
 
+
+GO
+
+CREATE INDEX [index_screenshots] ON [dbo].[Screenshots] (websiteid)

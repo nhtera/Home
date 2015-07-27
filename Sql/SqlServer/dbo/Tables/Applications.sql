@@ -15,3 +15,7 @@
     CONSTRAINT [PK_Applications] PRIMARY KEY ([applicationId])
 );
 
+
+GO
+
+CREATE INDEX [index_applications] ON [dbo].[Applications] (applicationId)

@@ -10,3 +10,15 @@
     CONSTRAINT [PK_Timeline] PRIMARY KEY ([datecreated])
 );
 
+
+GO
+
+CREATE INDEX [index_timeline] ON [dbo].[Timeline] (datecreated DESC)
+
+GO
+
+CREATE INDEX [index_timeline_website] ON [dbo].[Timeline] (websiteId, datecreated DESC)
+
+GO
+
+CREATE INDEX [index_timeline_user] ON [dbo].[Timeline] (userId, datecreated DESC)

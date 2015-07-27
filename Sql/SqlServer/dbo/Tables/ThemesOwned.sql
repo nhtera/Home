@@ -6,3 +6,7 @@
     CONSTRAINT [PK_ThemesOwned] PRIMARY KEY ([userId])
 );
 
+
+GO
+
+CREATE INDEX [index_themesOwned] ON [dbo].[ThemesOwned] (userId, themeId)
