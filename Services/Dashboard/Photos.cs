@@ -59,7 +59,7 @@ namespace Rennder.Services.Dashboard
                 lstTypes = fileTypes;
 
             SqlClasses.Dashboard sqlDash = new SqlClasses.Dashboard(R);
-            SqlReader reader = sqlDash.GetPhotoList(R.Page.websiteId, start, length, folder, orderby);
+            SqlReader reader = sqlDash.GetPhotos(R.Page.websiteId, start, length, folder, orderby);
             if (reader.Rows.Count > 0)
             {
                 while (reader.Read() == true)
@@ -109,7 +109,7 @@ namespace Rennder.Services.Dashboard
             response.element = ".winPhotos .folder-list";
 
             //finally, scaffold Rennder platform HTML
-            response.html = GetFolders();
+            response.html = GetFolders(type);
             response.js = CompileJs();
 
             return response;
@@ -138,7 +138,7 @@ namespace Rennder.Services.Dashboard
             return response;
         }
 
-        public Inject MoveTo(string files, string folder)
+        public Inject MoveTo(string folder, string files)
         {
             if (R.isSessionLost() == true) { return lostInject(); }
             Inject response = new Inject();
@@ -147,15 +147,50 @@ namespace Rennder.Services.Dashboard
             if (R.User.Website(R.Page.websiteId).getWebsiteSecurityItem("dashboard/photos", 0) == false) { return response; }
 
             //setup response
-            response.element = "";
+            response.element = ".winPhotos .photo-list";
+
+            //get list of files from database
+            string[] filelist = files.Split(',');
+            SqlClasses.Dashboard sqlDash = new SqlClasses.Dashboard(R);
+            SqlReader reader = sqlDash.GetPhotos(R.Page.websiteId, filelist);
+            
+            //move files on disk into target folder
+            if(reader.Rows.Count > 0)
+            {
+                string oldfolder = ""; string newfolder = folder; string newname = "";
+                string[] sizes = new string[] { "", "xl", "lg", "med", "sm", "tiny", "icon" };
+                string path = "/wwwroot/content/websites/" + R.Page.websiteId + "/photos/";
+                if (newfolder != "") { newfolder += "/"; }
+                if(Directory.Exists(R.Server.MapPath(path + newfolder)) == false)
+                {
+                    //create target folder if it doesn't exist
+                    Directory.CreateDirectory(R.Server.MapPath(path + newfolder));
+                }
+                while (reader.Read() == true)
+                {
+                    //move each file into the target folder
+                    oldfolder = reader.Get("foldername");
+                    newname = reader.Get("filename");
+                    if(oldfolder != "") { oldfolder += "/"; }
+                    for(var x = 0; x < sizes.Length; x++)
+                    {
+                        if(R.Server.MapPath("/wwwroot/content/websites/" + R.Page.websiteId + "/photos/" + oldfolder + sizes[x] + newname) !=
+                              R.Server.MapPath("/wwwroot/content/websites/" + R.Page.websiteId + "/photos/" + newfolder + sizes[x] + newname))
+                        {
+                            if (File.Exists(R.Server.MapPath("/wwwroot/content/websites/" + R.Page.websiteId + "/photos/" + oldfolder + sizes[x] + newname)) == true)
+                            {
+                                File.Move(R.Server.MapPath("/wwwroot/content/websites/" + R.Page.websiteId + "/photos/" + oldfolder + sizes[x] + newname),
+                                  R.Server.MapPath("/wwwroot/content/websites/" + R.Page.websiteId + "/photos/" + newfolder + sizes[x] + newname));
+                            }
+                        }
+                    }
+                }
+            }
 
             //execute SQL
-            SqlClasses.Dashboard sqlDash = new SqlClasses.Dashboard(R);
-            sqlDash.MovePhotos(R.Page.websiteId, files.Split(','), folder);
+            sqlDash.MovePhotos(R.Page.websiteId, filelist, folder);
 
-            //move files on disk into target folder
-
-            //finally, scaffold Rennder platform HTML
+            //finally, get a new list of photos
             response.html = GetPhotos(1, 100, folder);
             response.js = CompileJs();
 

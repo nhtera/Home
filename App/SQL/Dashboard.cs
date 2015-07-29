@@ -78,13 +78,24 @@ namespace Rennder.SqlClasses
         #endregion
 
         #region "Photos"
-        public SqlReader GetPhotoList(int websiteId, int start, int length, string folder = "", int orderBy = 1)
+        public SqlReader GetPhotos(int websiteId, int start, int length, string folder = "", int orderBy = 1)
         {
             SqlReader reader = new SqlReader();
             if (R.Sql.dataType == enumSqlDataTypes.SqlClient)
             {
                 string sql = "EXEC GetPhotos @websiteId=" + websiteId + ", @folder='" + folder + "'" + 
                              ", @start=" + start + ", @length=" + length + ", @orderby=" + orderBy;
+                reader.ReadFromSqlClient(R.Sql.ExecuteReader(sql));
+            }
+            return reader;
+        }
+
+        public SqlReader GetPhotos(int websiteId, string[] filenames)
+        {
+            SqlReader reader = new SqlReader();
+            if (R.Sql.dataType == enumSqlDataTypes.SqlClient)
+            {
+                string sql = "EXEC GetPhotos @websiteId=" + websiteId + ", @filenames='" + string.Join(",", filenames) + "'";
                 reader.ReadFromSqlClient(R.Sql.ExecuteReader(sql));
             }
             return reader;

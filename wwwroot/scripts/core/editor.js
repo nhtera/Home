@@ -3575,10 +3575,7 @@ R.editor = {
 
         folders: {
             show: function (type) {
-                if ($('.winPhotos .folder-list > div').length == 0) {
-                    //get a list of folders from server
-                    R.ajax.post('/rennder/Dashboard/Photos/LoadFolders', {type:type != null ? type : ''}, R.ajax.callback.inject);
-                }
+                R.ajax.post('/rennder/Dashboard/Photos/LoadFolders', {type:type != null ? type : ''}, R.ajax.callback.inject);
                 $('.winPhotos .icon-folder use').attr('xlink:href', '#icon-grid');
                 $('.winPhotos .icon-folder a').attr('onclick', 'R.editor.photos.folders.hide()');
                 $('.winPhotos .photo-list, .winPhotos .info-bar, .winPhotos .dropzone, .winPhotos .upload').hide();
