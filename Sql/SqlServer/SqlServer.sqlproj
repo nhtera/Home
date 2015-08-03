@@ -176,6 +176,8 @@
     <Build Include="dbo\Stored Procedures\MovePhotos.sql" />
     <Build Include="dbo\Stored Procedures\GetPhotoFolders.sql" />
     <Build Include="dbo\Stored Procedures\GetPhoto.sql" />
+    <Build Include="dbo\Stored Procedures\GetComponents.sql" />
+    <Build Include="dbo\Stored Procedures\GetComponentCategories.sql" />
   </ItemGroup>
   <ItemGroup>
     <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\110\SqlSchemas\master.dacpac">

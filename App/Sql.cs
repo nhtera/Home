@@ -30,7 +30,7 @@ namespace Rennder
         private void Start()
         {
             if (_started == true) { return; }
-            var config = new Configuration().AddJsonFile("config.json").AddEnvironmentVariables();
+            var config = new Configuration().AddJsonFile(R.Server.MapPath("config.json")).AddEnvironmentVariables();
             string active = config.Get("Data:Active");
 
             switch (active)
