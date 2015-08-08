@@ -20,7 +20,7 @@ Learn more about ASP.net 5 vNext at www.github.com/aspnet/home
 
 ### Setup Project
 1. Download, clone, or fork project from the github repository.
-2. make sure DNVM for ASP.net vNext is using the correct the runtime. execute command 'dnvm list' to see which runtime is active. The active runtime should be coreclr, and architecture should be x64. If not, run command: dnvm install latest -r coreclr -arch x64. You may need to install specifically 1.0.0-beta4 x64 coreclr instead.
+2. make sure DNVM for ASP.net vNext is using the correct the runtime. execute command 'dnvm list' to see which runtime is active. The active runtime should be coreclr, and architecture should be x64. If not, run command: `dnvm install latest -r coreclr -arch x64`. You may need to install specifically 1.0.0-beta5 x64 coreclr instead.
 3. Execute `dnu restore` within the project folder.
 4. Load project from `/Sql/SqlServer/` using Visual Studio 2015. We're going to install a database into your local Microsoft SQL Server 2012 installation.
 5. Publish project (right-click project in Solution Explorer). In publish window, click `Load Profile` button, select `SqlServer.publish.xml` from project folder. Then, click `Edit...` button for Target database connection. Change the Server name to the named-pipe of your installation of SQL Server 2012, then save. Finally, click `Publish` button.
