@@ -69,6 +69,12 @@ namespace Rennder
         [JsonIgnore]
         public string postJSLast = ""; //added to the end of postJS
 
+        //CSS
+        [JsonIgnore]
+        public string[] postCSS = new string[] { }; //array of CSS to add
+        [JsonIgnore]
+        protected string[] postCSSnames = new string[] { }; //used so duplicate CSS doesn't get added to the page
+
         //Validation
         [JsonIgnore]
         private bool pageCssChanged = false;
@@ -857,7 +863,7 @@ namespace Rennder
 
                     if (R.isWebService == true)
                     {
-                        PageRequest.css = myCSS;
+                        PageRequest.css += myCSS;
                     }
                     else
                     {
@@ -1057,59 +1063,51 @@ namespace Rennder
             XmlNodeList myComponents = panelXml.ChildNodes;
             Component comp = default(Component);
             bool wasDenied = accessDenied;
+            string compName = "";
             string responsive = "";
-            string intelLayers = "";
-            string frameSettings = "";
+            string content = "";
+            string design = "";
+            string js = "";
+            string wf = pageFile.Replace("/page.xml", "/"); //work folder
+            int zIndex = 1;
+            int finalIndex = 1;
             accessDenied = false;
             if (myComponents.Count > 0)
             {
                 foreach (XmlNode c in myComponents)
                 {
                     string itemId = "";
-                    if ((c.Attributes["itemId"] == null) == false)
+                    //component ID
+                    if ((c.Attributes["id"] == null) == false)
                     {
-                        itemId = c.Attributes["itemId"].Value;
+                        itemId = c.Attributes["id"].Value;
                     }
                     else
                     {
-                        //itemId doesn't exist for component in XML, create one
                         itemId = R.Util.Str.CreateID();
                     }
 
-                    string wf = "";
-                    //work folder
-                    wf = pageFile.Replace("/page.xml", "/");
-
-                    string design = "";
-                    int zIndex = -199;
-                    bool noSize = false;
-                    if ((c.Attributes["design"] == null) == false)
-                    {
-                        design = c.Attributes["design"].Value;
-                    }
-                    if ((c.Attributes["responsive"] == null) == false)
-                    {
-                        responsive = c.Attributes["responsive"].Value;
-                    }
-                    if ((c.Attributes["intelc"] == null) == false)
-                    {
-                        intelLayers = c.Attributes["intelc"].Value;
-                    }
-                    if ((c.Attributes["nosize"] == null) == false)
-                    {
-                        noSize = true;
-                    }
+                    //z-index
                     if ((c.Attributes["index"] == null) == false)
                     {
-                        zIndex = int.Parse(c.Attributes["index"].Value);
+                        finalIndex = int.Parse(c.Attributes["index"].Value);
+                    }
+                    else
+                    {
+                        finalIndex = zIndex;
                     }
 
-                    comp = LoadComponent(c.Attributes["cid"].Value, int.Parse(c.Attributes["x"].Value), int.Parse(c.Attributes["y"].Value), false, 
-                                        c.Attributes["w"].Value, c.Attributes["h"].Value, c.FirstChild.Value, design, itemId, allowEditable,
-                                        myPanel, wf, -1, zIndex, pid, ptype, false , responsive, intelLayers, frameSettings,  noSize);
+                    compName = c.Attributes["name"].Value;
+                    responsive = c.SelectSingleNode("responsive").FirstChild.InnerText;
+                    content = c.SelectSingleNode("content").FirstChild.InnerText;
+                    design = c.SelectSingleNode("design").FirstChild.InnerText;
 
+                    comp = LoadComponent(compName, 0, 0, false, 
+                                        "", "", content, design, itemId, allowEditable,
+                                        myPanel, wf, -1, zIndex, pid, ptype, false , responsive);
                     if(comp != null)
                     {
+                        js += "R.components.add('" + itemId + "', '" + compName + "'); ";
                         if (R.isWebService == true & comp != null)
                         {
                             PageComponent newC = new PageComponent();
@@ -1120,17 +1118,21 @@ namespace Rennder
                         }
                         myPanel.Components.Add(comp);
                     }
-                    
+                    zIndex += 1;
                 }
 
             }
             accessDenied = wasDenied;
+            if(js != "")
+            {
+                RegisterJS("components", js);
+            }
         }
 
         public Component LoadComponent
             (string cId, int x, int y, bool useOffsetPositions = true, string w = "0", string h = "0", string content = "", string design = "", 
             string itemId = "", bool isEditEnabled = true, Panel myPanel = null, string workFolder = "", int addAtIndex = -1, 
-            int ComponentIndex = -199, int pid = 0, int pageType = 1, bool isDropped = false, string responsive = "", string intelLayers = "", 
+            int ComponentIndex = 1, int pid = 0, int pageType = 1, bool isDropped = false, string responsive = "", string intelLayers = "", 
             string frameSettings = "", bool noSize = false)
         {
             if (myPanel == null){return null;}
@@ -1190,15 +1192,6 @@ namespace Rennder
                 component.workfolder = "/content/websites/" + websiteId + "/layers/" + pid + "/";
             }
 
-            component.Left = -1000;
-            component.Top = -1000;
-
-            bool[] resizeIndexes = new bool[8];
-            for (int i = 0; i < 8; i++)
-            {
-                resizeIndexes[i] = false;
-            }
-
             component.Draggable = 1;
             if (cId.ToLower() == "panel")
             {
@@ -1222,18 +1215,6 @@ namespace Rennder
                     component.Height = h;
                 }
             }
-            if (component.UseHeight == false)
-            {
-                if (component.Resizable == true)
-                {
-                    resizeIndexes[0] = true;
-                    resizeIndexes[1] = true;
-                    resizeIndexes[2] = true;
-                    resizeIndexes[4] = true;
-                    resizeIndexes[5] = true;
-                    resizeIndexes[6] = true;
-                }
-            }
 
             if (component.UseWidth == true)
             {
@@ -1250,54 +1231,62 @@ namespace Rennder
                     }
                 }
             }
-            else
-            {
-                if (component.Resizable == true)
-                {
-                    resizeIndexes[0] = true;
-                    resizeIndexes[2] = true;
-                    resizeIndexes[3] = true;
-                    resizeIndexes[4] = true;
-                    resizeIndexes[6] = true;
-                    resizeIndexes[7] = true;
-                }
-            }
 
-            string rIndexes = "";
-            for (int i = 0; i < 8; i++)
-            {
-                if (resizeIndexes[i] == false)
-                {
-                    if (string.IsNullOrEmpty(rIndexes))
-                    {
-                        rIndexes = (i + 1).ToString();
-                    }
-                    else
-                    {
-                        rIndexes += "," + i;
-                    }
-                }
-            }
-            component.ResizeIndexes = rIndexes;
-
-            //load responsive design settings
-            string jsLevels = "";
-            string jsStacks = "";
+            //load responsive CSS properties
+            string css = "";
             if (!string.IsNullOrEmpty(responsive))
             {
-                string[] responsiveArr = responsive.Split('|');
-                component.responsiveDesignSetLevels(responsive);
-                jsLevels = string.Join("','", responsiveArr);
+                string[] resp = responsive.Split('|');
+                bool firstlvl = true;
+
+                if(resp.Length == 5)
+                { 
+                    //HD screen first
+                    if(resp[4] != "")
+                    {
+                        if(firstlvl == true) { firstlvl = false; css += "#c" + itemId + ",  "; }
+                        css += ".screen.hd #c" + itemId + ",  .screen.desktop #c" + itemId + ", .screen.tablet #c" + itemId + ", .screen.mobile #c" + itemId + ", .screen.cell #c" + itemId +
+                          "{ " + resp[4] + "}\n";
+                    }
+
+                    //Desktop screen
+                    if (resp[3] != "")
+                    {
+                        if (firstlvl == true) { firstlvl = false; css += "#c" + itemId + ",  "; }
+                        css += ".screen.desktop #c" + itemId + ", .screen.tablet #c" + itemId + ", .screen.mobile #c" + itemId + ", .screen.cell #c" + itemId +
+                          "{ " + resp[3] + "}\n";
+                    }
+
+                    //Tablet screen
+                    if (resp[2] != "")
+                    {
+                        if (firstlvl == true) { firstlvl = false; css += "#c" + itemId + ",  "; }
+                        css += ".screen.tablet #c" + itemId + ", .screen.mobile #c" + itemId + ", .screen.cell #c" + itemId +
+                          "{ " + resp[2] + "}\n";
+                    }
+
+                    //Mobile screen
+                    if (resp[1] != "")
+                    {
+                        if (firstlvl == true) { firstlvl = false; css += "#c" + itemId + ",  "; }
+                        css += ".screen.mobile #c" + itemId + ", .screen.cell #c" + itemId +
+                          "{ " + resp[1] + "}\n";
+                    }
+
+                    //Cell screen
+                    if (resp[0] != "")
+                    {
+                        if (firstlvl == true) { firstlvl = false; css += "#c" + itemId + ",  "; }
+                        css += ".screen.cell #c" + itemId +
+                          "{ " + resp[0] + "}\n";
+                    }
+
+                }
             }
 
-            //load intelligent layers
-            component.Stacks = intelLayers;
-            jsStacks = intelLayers.Replace(",", "','");
-
-            //add component info to javascript
-            string js = "R.components.cache['c" + itemId + "'] = {levels:['" + jsLevels + "'],stacks:['" + jsStacks + "']," + "id:'" + itemId + "', pageId:'" + pid + "', type:'" + cId.Replace("-", "/") + "', name:'" + component.ComponentName + "'};";
-
-            RegisterJS("init-c" + itemId, js);
+            if(css != ""){
+                RegisterCSS("c" + itemId, css);
+            }
 
             //finish loading component
             component.Load();
@@ -1390,6 +1379,9 @@ namespace Rennder
                     R.Page.postJS += string.Join("\n", R.Page.postJScode) + R.Page.postJSLast;
                 }
                 PageRequest.js += R.Page.postJS;
+
+                //render CSS
+                PageRequest.css += "<style type=\"text/css\">" + string.Join("\n", R.Page.postCSS) + "</style>";
             }
 
             R.SaveViewState();
@@ -1605,7 +1597,7 @@ namespace Rennder
         }
         #endregion
 
-        #region "Javascript"
+        #region "Javascript & CSS"
         /// <summary>
         /// <para>Adds your Javascript code to a variable that generates a javascript block at the bottom of the page on Page_Rennder, 
         /// either directly on the page, or at the end of an AJAX postback response</para>
@@ -1706,6 +1698,33 @@ namespace Rennder
             string myJs = "$.when(" + "$.getScript('" + file + "')," + 
                           "$.Deferred(function(deferred){$(deferred.resolve);})" + ").done(function(){" + callback + "});";
             RegisterJSonce(file, myJs);
+        }
+
+        public void RegisterCSS(string name, string css, bool overwrite = false)
+        {
+            //register non-duplicated javascript with 
+            bool addCss = true;
+            //check for duplicate name
+            if (postCSSnames.Length > 0)
+            {
+                for (int x = 0; x <= postCSSnames.Length - 1; x++)
+                {
+                    if (postCSSnames[x] == name)
+                    {
+                        if (overwrite == true)
+                        {
+                            postCSS[x] = css;
+                        }
+                        return;
+                    }
+                }
+            }
+
+            Array.Resize(ref postCSSnames, postCSSnames.Length + 1);
+            Array.Resize(ref postCSS, postCSS.Length + 1);
+
+            postCSSnames[postCSSnames.Length - 1] = name;
+            postCSS[postCSSnames.Length - 1] = css;
         }
 
         public void RegisterCSSfile(string file)

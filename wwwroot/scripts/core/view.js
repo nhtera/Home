@@ -2,6 +2,13 @@
 /// <reference path="global.js" />
 /// <reference path="responsive.js" />
 var R = {
+    init:function(ajax, viewstateid, title){
+        R.page.useAjax = ajax;
+        R.ajax.viewstateId = viewstateid;
+        R.hash.last = title;
+        R.hash.start();
+    },
+
     window: {
         w: 0, h: 0, scrollx: 0, scrolly: 0, z: 0, absolute: { w: 0, h: 0 }, changed: true,
 
@@ -35,8 +42,11 @@ var R = {
                     this.h = window.innerHeight;
                 }
 
-                this.absolute.w = R.elem.width($('.body')[0]);
-                this.absolute.h = this.h;
+                var bod = $('.body')[0];
+                if(bod != null){
+                    this.absolute.w = R.elem.width(bod);
+                    this.absolute.h = this.h;
+                }
                 
 
                 //detect vertical scrollbar
@@ -45,7 +55,9 @@ var R = {
 
                 } else {
                     if ($('body').css('overflowY') != 'auto') { $('body').css({ 'overflowY': 'auto' }); }
-                    this.absolute.w = R.elem.width($('.body')[0]);
+                    if (bod != null) {
+                        this.absolute.w = R.elem.width(bod);
+                    }
                 }
                 return this;
             }
@@ -109,7 +121,17 @@ var R = {
 
     },
 
-    website:{
+    css:{
+        add:function(id, css){
+            $('head').append('<style id="css'+id+'" type="text/css">' + css + "</style>");
+        },
+
+        remove: function (id) {
+            $('head').remove('#css' + id);
+        }
+    },
+
+    website: {
         id:0, title:''
     },
 
@@ -125,6 +147,54 @@ var R = {
         },
     },
 
+    layers: {
+        cache: [{ pageId: '', title: '', pageType: 1 }],
+
+        add: function (pageId, title, pageType) {
+            for (x = 0; x < this.cache.length; x++){
+                if(this.cache[x].pageId == pageId){
+                    this.cache[x] = { pageId: pageId, title: title, pageType: pageType };
+                    return;
+                }
+            }
+            this.cache.push({ pageId: pageId, title: title, pageType: pageType });
+        }
+    },
+
+    panels: {
+        items: [{ p: null, x: 0, y: 0, w: 0, h: 0 }],
+
+        get: function () {
+            if (this.items.length == 0) {
+                var p = R.selectors.cache[7], pos;
+                for (x = 0; x < p.length; x++) {
+                    pos = R.elem.offset(p[x]);
+                    this.items[p[x].id] = { p: p[x], x: pos.x, y: pos.y, w: pos.w, h: pos.h };
+                }
+            }
+            return this.items;
+        }
+    },
+
+    components: {
+        cache: new Array(),
+
+        add: function (id, type) {
+            if (id == null || id == '') { return;}
+            if (typeof this.cache['c' + id] == 'undefined') { this.cache.length++; }
+            this.cache['c' + id] = { id: id, type: type };
+        },
+
+        cleanup: function () {
+            var keep, z;
+            for (x in this.cache) {
+                keep = false; z = -1
+                if ($R('c' + this.cache[x].id) != null) { keep = true; }
+                if (keep == false) { z = this.cache.indexOf(x); if (z > -1) { this.cache.splice(z, 1); } }
+            }
+        }
+    },
+
     events: {
 
         doc: {
@@ -133,8 +203,9 @@ var R = {
             },
 
             ready: function () {
-                setTimeout(function () { R.events.render.trigger(1); }, 300);
-                setTimeout(function () { R.events.render.trigger(1); }, 700);
+                //setTimeout(function () { R.events.render.trigger(1); }, 300);
+                //setTimeout(function () { R.events.render.trigger(1); }, 700);
+                R.events.doc.resize.trigger();
             },
 
             click: {
@@ -276,7 +347,7 @@ var R = {
 
                 trigger: function () {
                     this.timer.date = new Date();
-                    if (this.timer.started == false) { this.start(); }
+                    if (this.timer.started == false) { this.start(); R.window.changed = true; R.window.pos();}
                 },
 
                 start: function () {
@@ -290,7 +361,7 @@ var R = {
                 go: function () {
                     R.window.changed = true; R.window.pos();
                     if (this.timer.started == false) { return; }
-                    R.events.render.trigger();
+                    //R.events.render.trigger();
 
                     if (new Date() - this.timer.date > this.timer.timeout) {
                         this.stop();
@@ -472,7 +543,8 @@ var R = {
             },
 
             complete: function () {
-                R.events.render.init();
+                //R.events.render.init();
+                R.events.doc.resize.trigger();
             }
         }
     },
@@ -492,7 +564,7 @@ var R = {
                 url: url,
                 contentType: "text/plain; charset=utf-8",
                 success: function (d) { R.ajax.runQueue(); R.events.ajax.complete(d); callback(d); },
-                error: function (xhr, status, err) { console.log(err); R.events.ajax.error(status, err); R.ajax.runQueue(); }
+                error: function (xhr, status, err) { R.events.ajax.error(status, err); R.ajax.runQueue(); }
             }
             R.ajax.queue.push(options);
             if (R.ajax.queue.length == 1) {
@@ -509,8 +581,6 @@ var R = {
 
         callback: {
             inject: function (data) {
-                console.log("Callback Inject");
-                console.log(data);
                 if (data.type == 'Rennder.Inject') {
                     //load new content from web service
                     var elem = $(data.d.element);
@@ -538,7 +608,8 @@ var R = {
                     }
                 }
 
-                R.events.render.trigger();
+                //R.events.render.trigger();
+                R.events.doc.resize.trigger();
             }
         },
 
@@ -771,7 +842,7 @@ var R = {
             finalhash = finalhash.replace("#", "");
             R.hash.last = hash;
             R.hash.update();//updates all href links on the page with new hash
-            R.events.render.disabled = true;
+            //R.events.render.disabled = true;
             R.ajax.post('/rennder/App/Hash', { url: finalhash }, R.hash.callback);
         },
 
@@ -788,6 +859,7 @@ var R = {
                         p[0].parentNode.parentNode.removeChild(p[0].parentNode);
                     }
                 }
+                R.components.cleanup();
 
                 //next, add new components
                 for (x = 0; x < data.d.components.length; x++) {
@@ -800,7 +872,7 @@ var R = {
                     }
                 }
                 $('#divPageLoad').hide();
-                $('.container').show();
+                $('.component').show();
 
                 //add editor if exists (only on login)
                 if (data.d.editor != '') {
@@ -817,7 +889,13 @@ var R = {
                 }
 
                 //reset the rendering engine
-                R.events.render.init();
+                //R.events.render.init();
+                R.events.doc.resize.trigger();
+
+                //add CSS to page
+                if (data.d.css != null && data.d.css != '') {
+                    R.css.add('pageRequest' + R.page.id, data.d.css);
+                }
 
                 //run registered callbacks
                 R.events.hash.callback.execute();
@@ -906,7 +984,6 @@ var R = {
             },
 
             blur: function (elem) {
-                console.log(elem);
                 if (elem.value == '') {
                     $(elem.parentNode).removeClass('active');
                 }
@@ -939,7 +1016,7 @@ $('iframe').load(function () { R.events.iframe.loaded(); });
 
 
 // start timers /////////////////////////////////////////////////////////////////////////////////
-if (typeof document.getElementsByClassName('container') != 'undefined') {
+if (typeof document.getElementsByClassName('component') != 'undefined') {
     R.events.doc.load();
     setTimeout(function () { R.ajax.keepAlive(); }, 3000);
 }

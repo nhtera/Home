@@ -340,6 +340,8 @@ ul.columns-first{float:left;}
 .window #component-list{padding:10px 0px 10px 10px;}
 .window #component-list .list-item{float:left; background-color:#2a2a2a; width:56px; height:56px; margin:0px 10px 10px 0px; cursor:move;}
 .window #component-list .list-item:hover{background-color:#1b454d;}
+.window #component-info{ height:95px;}
+.window #component-info .info{padding: 4px 0px 20px 0px;}
 body > .target{position:absolute; z-index:4501; cursor:move;}
 
 /* layers window /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
@@ -481,6 +483,8 @@ body > .tools{position:absolute; height:0px; width:0px; z-index:3000; font-famil
 .component-select .button:hover{cursor:pointer;}
 .component-select a.button{color:#ffffff !important; text-decoration:none !important;}
 .component-select .buttons .title{font-size:16px; padding-top:7px;}
+
+.above-border{position:absolute; border-bottom:2px dashed #0093dd;}
 
 /* panel & area borders */
 .tools .borders .page-panel-border{position:absolute; border:3px dashed #0020e2; box-sizing:border-box; animation:animate-fade-in-out 1s 0s infinite; -webkit-animation:animate-fade-in-out 1s 0s infinite;}

@@ -1,8 +1,6 @@
 ﻿/// Rennder Platform : editor.js ///
 /// <reference path="core/global.js" />
 /// <reference path="core/view.js" />
-/// <reference path="core/responsive.js" />
-
 
 R.editor = {
     enabled:false,
@@ -56,14 +54,14 @@ R.editor = {
                 R.editor.dashboard.hide();
             }
         }
-        R.events.render.trigger(1);
+        //R.events.render.trigger(1);
     },
 
     viewport: {
         speed: 0, sizeIndex:-1, isChanging:false,
 
         resize: function (width) {
-            R.events.render.trigger(this.speed * 500, width);
+            //R.events.render.trigger(this.speed * 500, width);
         },
 
         view: function (level) {
@@ -472,7 +470,7 @@ R.editor = {
             }
 
 
-            R.events.render.trigger(true, true);
+            //R.events.render.trigger(true, true);
 
             setTimeout(function () { R.editor.window.loadclick = null; }, 200);
         },
@@ -883,10 +881,9 @@ R.editor = {
                     var tc = (x - (Math.round((pPos.w - pos.w) / 2)));
                     var responsive = 'px,px,px,,<tc>,'+x+','+y+',<w>,,,,,px';
                     //  responsive = left, width, top, parallax, alignment, x, y, width, top-padding, ?, right-position, height, height-type
-                    var pContain = $(panel).parents('.container');
+                    var pContain = $(panel).parents('.component');
                     var zIndex = parseInt(pContain.length > 0 ? pContain[0].style.zIndex : 99 || 99) + $(pid + ' > .component').length + 1;
-                    var options = { componentId: cid, panelId: pid, selector: selector, x: x, y: y, panelWidth:pPos.w, responsive: responsive, level: R.responsive.level, zIndex: zIndex };
-                    console.log("options:"); console.log(options);
+                    var options = { componentId: cid, panelId: pid, selector: selector, x: x, y: y, panelWidth:pPos.w};
                     R.ajax.post('/rennder/Editor/NewComponent', options, R.ajax.callback.inject);
 
                 } else if (R.editor.components.dragNew.moved == false) {
@@ -906,23 +903,41 @@ R.editor = {
                 cursorStart: { x: 0, y: 0 }, cursor: { x: 0, y: 0 }
             },
             timer:null, started:false, startedTime:null, painting:false, disabled:false, vertical:false, moved:false,
-             start: function (e) {
+            start: function (e) {
                  R.editor.components.drag.startedTime = new Date();
                  if (R.editor.enabled == false) { return; }
                  if (R.editor.components.hovered) { if (R.editor.components.hovered.id == 'inner') { return; } }
                 if ($(e.target).hasClass('component-select') == false && $(e.target).parents('.arrow-down').length == 0) { return;}
                 if (R.editor.components.drag.disabled == true) { return; }
+                R.editor.components.drag.panel = R.elem.panel(R.editor.components.hovered);
+                R.editor.components.drag.panelPos = R.elem.pos(R.editor.components.drag.panel);
                 R.editor.components.drag.moved = false;
                 R.editor.components.drag.started = true;
+                R.editor.components.drag.above = -1;
+                R.editor.components.drag.item.offsety = 0;
                 R.editor.components.drag.item.elem = R.editor.components.hovered;
                 R.editor.components.posStart = R.elem.offset(R.editor.components.hovered);
-                R.editor.components.drag.item.pos = R.elem.offset(R.editor.components.hovered);
+                R.editor.components.drag.item.pos = R.elem.pos(R.editor.components.hovered);
+                R.editor.components.drag.item.left = R.editor.components.hovered.style.left.replace('px', '');
+                R.editor.components.drag.item.top = R.editor.components.hovered.style.top.replace('px', '');
+                if (R.editor.components.drag.item.left != '') { R.editor.components.drag.item.left = parseInt(R.editor.components.drag.item.left); }
+                else {R.editor.components.drag.item.left = 0;}
+                if (R.editor.components.drag.item.top != '') { R.editor.components.drag.item.top = parseInt(R.editor.components.drag.item.top); }
+                else { R.editor.components.drag.item.top = 0;}
+                R.editor.components.drag.item.absolute = {
+                    x: R.editor.components.drag.item.pos.x - R.editor.components.drag.item.left,
+                    y: R.editor.components.drag.item.pos.y - R.editor.components.drag.item.top,
+                }
 
                 var mPos = { x: e.pageX, y: e.pageY };
                 var win = R.window;
                 R.editor.components.drag.item.cursorStart = {
                     x: mPos.x + win.scrollx,
-                    y: mPos.y + win.scrolly
+                    y: mPos.y + win.scrolly,
+                    comp: {
+                        x: mPos.x + win.scrollx - R.editor.components.drag.item.pos.x,
+                        y: mPos.y + win.scrolly - R.editor.components.drag.item.pos.y
+                    }
                 };
                 R.editor.components.drag.item.cursor = {
                     x: mPos.x + win.scrollx,
@@ -964,15 +979,71 @@ R.editor = {
             },
 
             paint: function () {
+                if (this.painting == false) { return;}
                 if (this.disabled == true) { return; }
                 var mDiff = {
                     x: this.item.cursor.x - this.item.cursorStart.x,
                     y: this.item.cursor.y - this.item.cursorStart.y
                 }
 
+                var pos = {
+                    x: this.item.cursor.x - this.item.absolute.x - this.item.cursorStart.comp.x,
+                    y: this.item.cursor.y - this.item.absolute.y - this.item.cursorStart.comp.y - this.item.offsety,
+                }
+
+                var targety = this.item.absolute.y + pos.y + 10;
+
                 if (this.vertical == true) { mDiff.x = 0; }
                 if (mDiff.x != 0 || mDiff.y != 0) { this.moved = true; }
-                $(this.item.elem).css({ left: this.item.pos.x + mDiff.x, top: this.item.pos.y + mDiff.y });
+                $(this.item.elem).css({ left: pos.x, top: pos.y });
+
+                //get component above
+                var comp = R.editor.components.getComponentAbove(this.item.elem, targety);
+
+                //check if new placeholder should be made if cursor is in range
+                var isinRange = false;
+                var compPos = R.elem.pos(comp);
+                var nobox = false;
+                if (comp == null) {
+                    if (targety - this.panelPos.y < 50) {
+                        isinRange = true;
+                    }
+                } else {
+                    if (targety - (compPos.y + compPos.h) < 50) {
+                        isinRange = true;
+                    }
+                }
+                   
+                if (isinRange == true) {
+                    if (this.above != comp) {
+                        //destroy border
+                        $('.tools .borders .above-border').remove();
+                        //create new box placeholder
+                        var div = document.createElement('div');
+                        div.className = 'above-border';
+                        div.innerHTML = '&nbsp;';
+                        var border = { x: 0, y: 0, w: 0 };
+                        if (comp == null) {
+                            border.x = this.panelPos.x;
+                            border.y = this.panelPos.y + 3;
+                            border.w = this.panelPos.w;
+                        } else {
+                            border.x = compPos.x;
+                            border.y = compPos.y + compPos.h;
+                            border.w = compPos.w;
+                        }
+                        $(div).css({ left: border.x, top: border.y, width: border.w, height:1 });
+                        $('.tools .borders').append(div);
+                        this.above = comp;
+                        this.moved = true;
+                    }
+                } else {
+                    this.above = 2;
+                    //destroy border
+                    $('.tools .borders .above-border').remove();
+                }
+                    
+                R.editor.components.resizeSelectBox();
 
                 if (this.started == true) {
                     setTimeout(function () { R.editor.components.drag.paint(); }, 33);
@@ -980,16 +1051,32 @@ R.editor = {
             },
 
             end: function () {
-                R.editor.components.drag.started = false;
+               var drag = R.editor.components.drag;
+               R.editor.components.drag.started = false;
 
                 //unbind document mouse up event
-                $(document).unbind('mousemove', R.editor.components.drag.go);
-                $(document).unbind('mouseup', R.editor.components.drag.end);
+                $(document).unbind('mousemove', drag.go);
+                $(document).unbind('mouseup', drag.end);
 
-
-                if (R.editor.components.drag.painting == true && R.editor.components.drag.disabled == false && R.editor.components.drag.moved == true) {
+                if (drag.painting == true && drag.disabled == false && drag.moved == true) {
+                    R.editor.components.drag.painting = false;
                     //save responsive changes 
-                    R.editor.components.savePosition(R.editor.components.drag.item.elem);
+                    //R.editor.components.savePosition(R.editor.components.drag.item.elem);
+                    if (drag.above != -1 && drag.above != null) {
+                        if (drag.above != 2) {
+                            if (drag.above.nextSibling != drag.item.elem) {
+                                $(drag.item.elem).insertAfter(drag.above);
+                            }
+                        }
+                    } else {
+                        if (drag.panel.firstChild != drag.item.elem) {
+                            $(drag.item.elem).insertBefore($(drag.panel).find('.inner' + drag.panel.id)[0].firstChild);
+                        }
+                    }
+                    $(drag.item.elem).css({ left: '', top: '' });
+                    $('.tools .borders .above-border').remove();
+                    R.editor.components.drag.item.offsety = 0;
+                    
 
                     //show component select
                     setTimeout(function () {
@@ -999,7 +1086,7 @@ R.editor = {
                         $('.component-select').animate({ opacity: 1 }, 300);
                     }, 10);
 
-                } else if (R.editor.components.drag.moved == false) {
+                } else if (drag.moved == false) {
                     //cancel drag & click instead
                     $('.component-select').css({ opacity: 1 });
                     //R.editor.components.selected = R.editor.components.hovered;
@@ -1176,9 +1263,9 @@ R.editor = {
                     $(this.options.elem).css({ height: pos.h });
                     if (mDiff.y != 0) {
                         //update height in responsive settings
-                        R.responsive.cache[this.options.rIndex].h = pos.h;
-                        R.responsive.cache[this.options.rIndex].levels[R.responsive.level][11] = pos.h;
-                        R.events.render.components[this.options.elem.id].h = pos.h;
+                        //R.responsive.cache[this.options.rIndex].h = pos.h;
+                        //R.responsive.cache[this.options.rIndex].levels[R.responsive.level][11] = pos.h;
+                        //R.events.render.components[this.options.elem.id].h = pos.h;
 
                     }
                 }
@@ -1186,10 +1273,7 @@ R.editor = {
                     $(this.options.elem).css({ width: pos.w });
                 }
                 R.editor.components.resizeSelectBox();
-
-                
-
-                R.events.render.trigger();
+                //R.events.render.trigger();
                 if (this.options.started == true) {
                     setTimeout(function () { R.editor.components.resize.paint(); }, 33);
                 }
@@ -1304,9 +1388,8 @@ R.editor = {
                 } else {
                     R.editor.components.menu.items.load('cell');
                 }
-                R.editor.components.resizeSelectBox();
 
-                
+                R.editor.components.resizeSelectBox();
 
                 //update component select class for color change
                 if ($(c).hasClass('type-panel') == true) {
@@ -1377,10 +1460,10 @@ R.editor = {
                     //deselect component
                     var t = target, hide = false;
                     if (type == 'component') {
-                        if ($(t).hasClass('container') == false) {
-                            if ($($(t).parents('.container')[0]).find('.ispanel').length > 0) {
+                        if ($(t).hasClass('component') == true) {
+                            if ($(t).hasClass('.type-panel') == true) {
                                 //mouseEnter only if the component is a panel
-                                t = $(t).parents('.container')[0];
+                                t = $(t).parents('.component')[0];
                             }
                         }
                     }
@@ -1519,7 +1602,7 @@ R.editor = {
                 setTimeout(function () {
                     var c = R.editor.components.hovered;
                     if (c != null) {
-                        var s = R.responsive.getComponentFromStack(c);
+                        //var s = R.responsive.getComponentFromStack(c);
                         R.editor.components.savePosition(c, null, null, null, null, null, cPos, 'nostack');
                     }
                 }, 100);
@@ -1528,9 +1611,9 @@ R.editor = {
 
         resizeSelectBox: function () {
             if (this.hovered == null) { return;}
-                var cPos = R.elem.pos(this.hovered), pad = { left: 12, right: 12, top: 12, bottom: 12 }, 
-                corner = this.resize.options.corner, border = this.resize.options.border, inner={left:false, right:false, top:false},
-                menu = this.selbox.find('.menu'); var menuPos = R.elem.offset(menu[0]);
+            var cPos = R.elem.pos(this.hovered), pad = { left: 12, right: 12, top: 12, bottom: 12 }, 
+            corner = this.resize.options.corner, border = this.resize.options.border, inner={left:false, right:false, top:false},
+            menu = this.selbox.find('.menu'); var menuPos = R.elem.offset(menu[0]);
 
             //check padding for window edges
             if (cPos.x + cPos.w + border + menuPos.w >= R.window.absolute.w) {
@@ -1599,6 +1682,43 @@ R.editor = {
 
             //execute callback
             R.editor.components.callback.execute('onResize', R.editor.components.hovered, cPos);
+        },
+
+        getComponentAbove: function(c, y){
+            var ePos, cPos = R.elem.pos(c);
+            //if (arguments[1] != null) { cPos = arguments[1];}
+            var panel = R.elem.panel(c);
+            var comps = $(panel).find('.component:above(' + (y + 300) + ')').sort(function (a, b) {
+                var aPos = R.elem.pos(a), bPos = R.elem.pos(b);
+                if (aPos.y + aPos.h > bPos.y + bPos.h) { return -1; } return 1;
+            });
+            if (comps.length == 0) { return null; }
+            for (x = 0; x < comps.length; x++) {
+                if ($(comps[x]).parents('.component').parents(panel).length == 0 && comps[x] != c) {
+                    ePos = R.elem.pos(comps[x]);
+                    if (ePos.y + (ePos.h / 2) <= y) {
+                        if (this.inRange(cPos, ePos) == true || this.inRange(ePos, cPos) == true) { return comps[x]; }
+                    }
+                }
+            }
+            return null;
+        },
+
+        inRange: function (cPos, ePos) {
+            //cPos = target
+            //ePos = element that may be in range
+            var pad = 10;
+            if (arguments[2] != undefined) { pad = arguments[2]; } // padding
+            if (ePos.x >= cPos.x - pad && ePos.x < cPos.x + cPos.w + pad) {
+                //in range #1 & #3
+                return true;
+            }
+            if (ePos.x < cPos.x - pad && ePos.x + ePos.w >= cPos.x) {
+                //in range #2 & #4
+                return true;
+            }
+            return false;
+
         },
 
         savePosition:function(c){
@@ -2018,7 +2138,7 @@ R.editor = {
             
 
             //reset responsive system
-            R.events.render.init();
+            //R.events.render.init();
             //R.events.render.trigger(true, true);
         },
 
@@ -2039,8 +2159,6 @@ R.editor = {
                     //display window inside component select next to menu
                     pos.x = mPos.x - 3;
                     p.css({ opacity: 1, left: pos.x - pPos.w, top: options.border + 3 });
-                    $('.component-select .menu .item').css({ marginLeft: 3, paddingRight: 0 });
-                    $('.component-select .menu .item:has(.icon-' + tab + ')').css({ marginLeft:-3, paddingLeft:6  });
                 } else {
                     if (mPos.x + pPos.w >= R.window.w) {
                         //display window inside component select next to resize bar
@@ -2048,8 +2166,7 @@ R.editor = {
                         p.css({ opacity: 1, left: pos.x - pPos.w, top: options.border + 3 });
                     } else {
                         //display window outside component next to menu
-                        p.css({ opacity: 1, left: pos.x, top:0 });
-                        $('.component-select .menu .item:has(.icon-' + tab + ')').css({ paddingRight: 3 });
+                        p.css({ opacity: 1, left: pos.x - options.border, top: 0 });
                     }
 
                 }
@@ -2200,7 +2317,7 @@ R.editor = {
                 var components = [];
                 switch(type){
                     case 'cell': case 'panel':
-                        components = $(innerPanel).find('.container');
+                        components = $(innerPanel).find('.component');
                         break;
                     case 'component':
                         components = $(innerPanel);
@@ -2337,6 +2454,20 @@ R.editor = {
                     R.editor.components.properties.menu.total = 0;
                     $('.winProperties .top-menu .tabs .item').remove();
                 }
+            }
+        },
+
+        toolbar:{
+            mouseEnter: function (elem) {
+                //show tooltip for component
+                $('.winComponents #component-info')[0].innerHTML =
+                    "<h4>" + elem.getAttribute("cname") + "</h4>" +
+                    "<div class=\"info\">" + elem.getAttribute("ctitle") + "</div>";
+            },
+
+            mouseLeave: function () {
+                //hide tooltip
+                $('.winComponents #component-info')[0].innerHTML = "&nbsp;";
             }
         },
 
@@ -2482,7 +2613,7 @@ R.editor = {
         },
 
         keyUp: function () {
-            R.events.render.trigger(1);
+            //R.events.render.trigger(1);
             R.editor.textEditor.reposition(R.editor.components.selected);
             R.editor.textEditor.save.start();
         },
@@ -2892,7 +3023,7 @@ R.editor = {
                 for (s = 0; s < laypanels.length; s++) {
                     //load each web page panel //////////////////////////////////////////////////////////////////////////////////
                     p = $(laypanels[s]);
-                    comps = p.find('.container').filter(function (index, elem) { if ($(elem).parents('.ispanel:not(.islayout)').length > 0) { return false; } return true;});
+                    comps = p.find('.component').filter(function (index, elem) { if ($(elem).parents('.ispanel:not(.islayout)').length > 0) { return false; } return true;});
                     hasSubs = false;
                     //make sure there are components within this panel that belong to the current layer
                     for (c = 0; c < comps.length; c++) {
@@ -2966,7 +3097,7 @@ R.editor = {
                                             '<div class="column left icon"><svg viewBox="0 0 36 36" style="width:20px; height:20px;"><use xlink:href="#icon-panel" x="0" y="0" width="36" height="36" /></svg></div>' +
                                             '<div class="column left title">' + rowTitle + '</div><div class="clear"></div>';
                                             
-                                        comps2 = p2.find('.container');
+                                        comps2 = p2.find('.component');
                                         i[4] = 2;
                                         for (c2 = 0; c2 < comps2.length; c2++) {
                                             //load each component that belongs to the panel cell ///////////////////////////////////////////////
@@ -3839,7 +3970,7 @@ R.editor = {
         //unbind events
         delete document.onkeydown;
         R.events.doc.click.callback.remove($('.editor')[0]);
-        $('.webpage').delegate('.container', 'mouseenter');
+        $('.webpage').delegate('.component', 'mouseenter');
         $('.component-select').delegate('.resize-bar', 'mousedown');
         $('.component-select').unbind('mouseleave');
 
@@ -4152,7 +4283,7 @@ R.events.doc.resize.callback.add($('.editor')[0], null, null, null, R.editor.win
 R.events.doc.click.callback.add($('.editor')[0], null, R.editor.window.callback.click);
 R.events.doc.click.callback.add($('.editor')[0], null, R.editor.components.click);
 R.events.hash.callback.add($('.editor')[0], null, R.editor.events.hashChange);
-$('.webpage').delegate('.container', 'mouseenter', R.editor.components.mouseEnter);
+$('.webpage').delegate('.component', 'mouseenter', R.editor.components.mouseEnter);
 $('.webpage').delegate('.inner-panel', 'mouseenter', R.editor.components.mouseEnter);
 $('.component-select').delegate('.resize-bar', 'mousedown', R.editor.components.resize.start);
 $('.component-select').bind('mouseleave', R.editor.components.mouseLeave);

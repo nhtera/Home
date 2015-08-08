@@ -105,14 +105,6 @@ function windowPos() {
             h = window.innerHeight;
         }
 
-        //detect vertical scrollbar
-        if ($(document.body).height() <= h || window.location.href.indexOf('&a=') > -1) {
-            if ($('body').css('overflowY') != 'hidden') { $('body').css({ 'overflowY': 'hidden' }); }
-
-        } else {
-            if ($('body').css('overflowY') != 'auto') { $('body').css({ 'overflowY': 'auto' }); }
-            w = w - getScrollBarWidth(); //scrollbar fix
-        }
         winPosVal = { scrollx: scrollx, scrolly: scrolly, w: w, h: h };
         return winPosVal;
     }

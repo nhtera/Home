@@ -210,25 +210,25 @@ namespace Rennder.Services
             {
                 while (reader.Read() != false)
                 {
-                    htm += "<div class=\"list-item\" cname=\"" + reader.Get("title") + "\" ctitle=\"" + reader.Get("description") + "\" onmousedown=\"R.editor.components.dragNew.start(event)\" >";
-                    htm += "<img src=\"/app/components/" + reader.Get("componentid").Replace("-", "/") + "/icon.png\" alt=\"" + reader.Get("title") + "\" cid=\"" + reader.Get("componentid") + "\" /></div>";
+                    htm += "<div class=\"list-item\" cname=\"" + reader.Get("title") + "\" ctitle=\"" + reader.Get("description") + "\" onmousedown=\"R.editor.components.dragNew.start(event)\" onmouseover=\"R.editor.components.toolbar.mouseEnter(this)\" onmouseout=\"R.editor.components.toolbar.mouseLeave()\" >";
+                    htm += "<img src=\"/components/" + reader.Get("componentid").Replace("-", "/") + "/icon.png\" alt=\"" + reader.Get("title") + "\" cid=\"" + reader.Get("componentid") + "\" /></div>";
                 }
             }
             return htm;
         }
 
-        private string AddCategory(int id, string title, string description, string icon)
+        private string AddCategory(int id, string title, string description, string iconFolder)
         {
             return "<div class=\"row column\"><div class=\"button-outline\" onclick=\"R.editor.components.category.load(" + id + ")\" title=\"" + description + "\">" + 
-                "<div class=\"left\" style=\"padding-right:10px;\"><img src=\"/app/components/" + icon + "/iconsm.png\"/></div><div style=\"padding-top:7px;\">" + title + "</div></div></div>";
+                "<div class=\"left\" style=\"padding-right:10px;\"><img src=\"/" + iconFolder + "/iconsm.png\"/></div><div style=\"padding-top:7px;\">" + title + "</div></div></div>";
         }
 
         private string GetComponentCategories()
         {
             string htm = "";
             htm = "";
-            htm += AddCategory(1, "General", "All the tools you need to create content, including text, photos, videos, panels, menus, lists, and buttons.", "textbox");
-            htm += AddCategory(3, "Page", "Add the title of your page, a list of relavent pages, user comments & ratings, and other page-specific content.", "page/title");
+            htm += AddCategory(1, "General", "All the tools you need to create content, including text, photos, videos, panels, menus, lists, and buttons.", "components/textbox");
+            htm += AddCategory(2, "Page", "Add the title of your page, a list of relavent pages, user comments & ratings, and other page-specific content.", "components/page/title");
             if (R.Page.isDemo == false)
             {
                 SqlClasses.Editor SqlEditor = new SqlClasses.Editor(R);
@@ -237,14 +237,14 @@ namespace Rennder.Services
                 {
                     while (reader.Read() != false)
                     {
-                        htm += AddCategory(reader.GetInt("componentcategory"), reader.Get("title"), reader.Get("description"), reader.Get("icon"));
+                        htm += AddCategory(reader.GetInt("componentcategory"), reader.Get("title"), reader.Get("description"), "/apps/" + reader.Get("name"));
                     }
                 }
             }
             return htm;
         }
 
-        public Inject NewComponent(string componentId, string panelId, string selector, int x, int y, int panelWidth, string responsive, int level, int zIndex)
+        public Inject NewComponent(string componentId, string panelId, string selector, int x, int y, int panelWidth)
         {
             if (R.isSessionLost() == true) { return lostInject(); }
             Inject response = new Inject();
@@ -262,19 +262,17 @@ namespace Rennder.Services
             if (type == null) { return response; }
             Component comp = (Component)Activator.CreateInstance(type, new object[] { R });
             if (comp == null) { return response; }
-            string[] rlevel = new string[5];
-            rlevel[level] = responsive.Replace("<w>", comp.defaultWidth.ToString()).Replace("<tc>", "tc;" + (x - ((panelWidth - comp.defaultWidth) / 2)));
             Panel panel = R.Page.GetPanelByName(panelId);
 
             //render new component
-            comp = R.Page.LoadComponent(componentId, x, y, true, "0", "0", "", "", "", true, panel, "/content/websites/" + R.Page.ownerId + "/pages/" + R.Page.pageId, -1, zIndex, R.Page.pageId, 1, true, String.Join("|", rlevel), ",,,,");
+            comp = R.Page.LoadComponent(componentId, x, y, true, "0", "0", "", "", "", true, panel, "/content/websites/" + R.Page.ownerId + "/pages/" + R.Page.pageId, -1,1, R.Page.pageId, 1, true);
             if(comp == null) { return response; }
             response.html = comp.Render();
 
             //add JS to align component on page correctly
-            string js = "(function(){var c = $('#c" + comp.itemId + "'); console.log('new component'); console.log(c);" + 
+            string js = "(function(){var c = $('#c" + comp.itemId + "');" + 
                         "var options = {left:" + x + ",top:" + y + ", width:" + comp.defaultWidth + "};" + 
-                        "R.events.render.init();" + "c.css(options);" + "R.editor.components.savePosition(c[0],true);" + 
+                        "c.css(options); .editor.components.savePosition(c[0],true);" + 
                         "})();";
 
             R.Page.RegisterJS("newcomp", js);

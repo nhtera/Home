@@ -11,7 +11,8 @@ AS
 BEGIN
 	SET NOCOUNT ON;
 	SELECT * FROM (
-		SELECT DISTINCT a.title, a.description, a.componentcategory, a.orderindex, a.applicationid 
+		SELECT DISTINCT a.title, a.name, a.description, a.componentcategory, 
+		a.orderindex, a.applicationid
 		FROM applicationsowned o 
 		LEFT JOIN applications a 
 		ON a.applicationid=o.applicationid 

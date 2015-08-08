@@ -52,8 +52,8 @@ namespace Rennder
 
         private string _stacks = "";
         private string _responsive = "";
-        private int _left = -1000;
-        private int _top = -1000;
+        private int _left = 0;
+        private int _top = 0;
         private string _width = "";
         private string _height = "";
         private bool _autoHeight = true;
@@ -87,26 +87,23 @@ namespace Rennder
 
         public virtual string Render()
         {
-            if(rendered == true) { return _header + DivBase.Render() + _footer; }
-            string classes = "component id-" + itemId;
-            string itemClass = "container type-" + ComponentId.ToLower().Replace(" ", "").Replace("/", "-");
+            if(rendered == true) { return _header + DivItem.Render() + _footer; }
+            string classes = "component id-" + itemId + " type-" + ComponentId.ToLower().Replace(" ", "").Replace("/", "-");
             if (DivItem.Attributes.ContainsKey("class") == true)
             {
-                DivItem.Attributes["class"] += " " + itemClass;
+                DivItem.Attributes["class"] += " " + classes;
             }
             else
             {
-                DivItem.Attributes["class"] = itemClass;
+                DivItem.Attributes["class"] = classes;
             }
 
             DivBase.Attributes["class"] = classes;
             DivItem.ID = "c" + itemId;
-            DivItem.Style["left"] = Left + "px";
-            DivItem.Style["top"] = Top + "px";
             DivItem.Style["z-index"] = (index + 100).ToString();
-            DivBase.innerHTML = DivItem.Render();
+            //DivBase.innerHTML = DivItem.Render();
             rendered = true;
-            return _header + DivBase.Render() + _footer;
+            return _header + DivItem.Render() + _footer;
 
         }
 

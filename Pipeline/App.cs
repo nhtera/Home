@@ -80,7 +80,7 @@ namespace Rennder.Pipeline
                     }
 
                     //register app javascript
-                    js += "R.page.useAjax = " + R.Page.useAJAX.ToString().ToLower() + "; R.ajax.viewstateId = '" + R.ViewStateId + "'; R.hash.last=R.page.title; R.hash.start(); R.events.render.init();";
+                    js += "R.init(" + R.Page.useAJAX.ToString().ToLower() + ",'" + R.ViewStateId + "',R.page.title);";
                     R.Page.RegisterJS("app", js);
 
                     //display Page Editor
@@ -101,7 +101,7 @@ namespace Rennder.Pipeline
                             "<script type=\"text/javascript\" src=\"/scripts/core/fixes.js\"></script>\n" +
                             "<script type=\"text/javascript\" src=\"/scripts/core/rml.js\"></script>\n" +
                             "<script type=\"text/javascript\" src=\"/scripts/core/view.js\"></script>\n" +
-                            "<script type=\"text/javascript\" src=\"/scripts/core/responsive.js\"></script>\n" +
+                            //"<script type=\"text/javascript\" src=\"/scripts/core/responsive.js\"></script>\n" +
                             "<script type=\"text/javascript\" src=\"/scripts/utility.js?v=" + R.Version + "\"></script>";
                         if(R.Page.isEditable == true)
                         {

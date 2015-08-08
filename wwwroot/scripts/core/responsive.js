@@ -423,35 +423,6 @@ R.selectors = {
     }
 }
 
-R.panels = {
-    items: [{ p: null, x: 0, y: 0, w: 0, h: 0 }],
-
-    get: function () {
-        if (this.items.length == 0) {
-            var p = R.selectors.cache[7], pos;
-            for (x = 0; x < p.length; x++) {
-                pos = R.elem.offset(p[x]);
-                this.items[p[x].id] = { p: p[x], x: pos.x, y: pos.y, w: pos.w, h: pos.h };
-            }
-        }
-        return this.items;
-    }
-}
-
-R.layers = {
-    cache: [{ pageId: '', title: '', pageType: 1 }],
-
-    add: function (pageId, title, pageType) {
-        for (x = 0; x < this.cache.length; x++){
-            if(this.cache[x].pageId == pageId){
-                this.cache[x] = { pageId: pageId, title: title, pageType: pageType };
-                return;
-            }
-        }
-        this.cache.push({ pageId: pageId, title: title, pageType: pageType });
-    }
-}
-
 R.responsive = {
     //arrays & functions used for the responsive engine
     levels:[350, 700, 1024, 1440, 9999],

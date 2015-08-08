@@ -1,6 +1,10 @@
 <layout>
-  <panel name="body" index="1" height="497">
-    <component cid="login" x="520" y="39" w="272" h="200px" responsive="|px,%,px,0,tc;8,11,48,86.59090,20,,741||px,px,px,0,tc;7,13,39,272,20,,741,200,px|" intelc=",,,!," index="1" itemId="ah2" design="textbox|button|||" frames=""><![CDATA[1|2|1|2|10|100%|100px|Log In|23|206|104|0|450|300|10]]></component>
+  <panel name="body">
+    <component name="login" id="ah2">
+      <responsive><![CDATA[|||margin:0px auto; max-width:450px; width:100%; height:250px; padding-top:50px;|]]></responsive>
+      <content><![CDATA[1|2|1|2|10|100%|100px|Log In|23|206|104|0|450|300|10]]></content>
+      <design><![CDATA[textbox|button|||]]></design>
+    </component>
   </panel>
   <layers>
   </layers>
