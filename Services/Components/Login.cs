@@ -44,7 +44,7 @@ namespace Rennder.Services
             R.Elements = new Elements(R, themeFolder);
 
             //setup scaffold parameters
-            scaffold.Data["script"] = "var isNotResponsive = true; var isNotKeepAlive = true; setTimeout(function(){R.selectors.get();R.responsive.resize.onLevelChange();},100);";
+            scaffold.Data["script"] = "";
 
             if (R.isLocal == true)
             {
@@ -263,7 +263,7 @@ namespace Rennder.Services
             }
             //IHttpConnectionFeature ip = R.Context.GetFeature<IHttpConnectionFeature>();
             R.Page.SqlPage.SaveLoginForAuth(salt, email, loginid);
-            scaffold.Data["script"] += "setTimeout(function(){parent.postMessage(\"login|" + loginid + "\",\"" + host + "\");},10);console.log('" + salt +  "');";
+            scaffold.Data["script"] += "setTimeout(function(){parent.postMessage(\"login|" + loginid + "\",\"" + host + "\");},10);";
 
             //finally, scaffold login HTML
             scaffold.Data["body"] = "<div style=\"text-align:center; width:100%; padding-top:10px;\">Processing login...</div>";

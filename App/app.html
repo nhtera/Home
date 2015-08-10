@@ -50,8 +50,6 @@
         //////////////////////////////////////////////////////////////
         // Post Message listener for iFrames on separate domains
         function receiveMsg(e) {
-            console.log("recieveMsg {{https-url}}");
-            console.log(e);
             if (e.origin == "{{https-url}}") {
                 var a = e.data.split("|");
                 switch(a[0]){

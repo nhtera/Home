@@ -6,6 +6,9 @@ R.editor = {
     enabled:false,
 
     load: function () {
+        //get current viewport level
+        R.editor.viewport.getLevel();
+
         //initialize text editor
         R.editor.textEditor.init();
 
@@ -16,9 +19,6 @@ R.editor = {
         //init component select custom menus
         R.editor.components.menu.items.addRule('cell', '.for-all');
         R.editor.components.menu.items.addRule('textbox', '.menu-options');
-
-        //set callbacks
-        R.events.doc.resize.callback.add($('.editor')[0], null, null, null, R.editor.viewport.animation.callback.end, R.editor.viewport.levelChanged);
 
         //show editor
         if (arguments[0] === true) {
@@ -58,10 +58,44 @@ R.editor = {
     },
 
     viewport: {
-        speed: 0, sizeIndex:-1, isChanging:false,
+        speed: 0, isChanging: false,
+        levels: [350, 700, 1024, 1440, 9999], level: -1, sizeIndex: -1,
+
+        getLevel: function () {
+            var w = $('.webpage').width();
+            for (x = 0; x < R.editor.viewport.levels.length; x++) {
+                if (w <= R.editor.viewport.levels[x]) {
+                    var changed = false;
+                    if (R.editor.viewport.level != x) { changed = true; }
+                    R.editor.viewport.level = x;
+                    return changed;
+                }
+            }
+        },
 
         resize: function (width) {
-            //R.events.render.trigger(this.speed * 500, width);
+            var webpage = $('.webpage');
+            if (webpage.css('maxWidth') == '' || webpage.css('maxWidth') == 'none') {
+                webpage.css({'maxWidth':webpage.width()});
+            }
+            webpage.stop().animate({ maxWidth: width }, {
+                duration: this.speed * 1000,
+                progress: function () {
+                    if (R.editor.viewport.getLevel() == true) {
+                        R.editor.viewport.levelChanged(R.editor.viewport.level);
+                    }
+                },
+                complete: function () {
+                    R.editor.viewport.getLevel();
+                    if (R.editor.viewport.isChanging == true) {
+                        R.editor.viewport.isChanging = false;
+                        R.editor.components.disabled = false;
+                        R.editor.viewport.levelChanged(R.editor.viewport.level);
+                    } else {
+                        R.editor.components.resizeSelectBox();
+                    }
+                }
+            });
         },
 
         view: function (level) {
@@ -73,7 +107,7 @@ R.editor = {
                     R.editor.viewport.resize(1920); break;
 
                 default: //all other screen sizes
-                    R.editor.viewport.resize(R.responsive.levels[level]); break;
+                    R.editor.viewport.resize(R.editor.viewport.levels[level]); break;
             }
             R.editor.viewport.isChanging = false;
             R.editor.viewport.levelChanged(level)
@@ -104,39 +138,27 @@ R.editor = {
             $('.toolbar .menu .screens use').attr('xlink:href', '#icon-screen' + ext)
         },
 
-        animation:{
-            callback: {
-                end: function () {
-                    if (R.editor.viewport.isChanging == true) {
-                        R.editor.viewport.isChanging = false;
-                        R.editor.components.disabled = false;
-                        R.editor.viewport.levelChanged(R.responsive.level);
-                    } else {
-                        R.editor.components.resizeSelectBox();
-                    }
-                }
-            },
-
-            nextLevel: function () {
-                R.editor.viewport.speed = 2;
-                var sizeIndex = R.editor.viewport.sizeIndex;
-                if (sizeIndex == -1) {
-                    sizeIndex = R.responsive.level;
-                }
-                sizeIndex = sizeIndex > 0 ? sizeIndex - 1 : 4;
-                R.editor.viewport.view(sizeIndex);
-            },
-
-            previousLevel: function () {
-                R.editor.viewport.speed = 2;
-                var sizeIndex = R.editor.viewport.sizeIndex;
-                if (sizeIndex == 0) {
-                    sizeIndex = R.responsive.level + 1;
-                }
-                sizeIndex = sizeIndex < 4 ? sizeIndex + 1 : 0;
-                R.editor.viewport.view(sizeIndex);
+        nextLevel: function () {
+            R.editor.viewport.speed = 2;
+            var sizeIndex = R.editor.viewport.sizeIndex;
+            if (sizeIndex == -1) {
+                sizeIndex = R.editor.viewport.level;
             }
-        }      
+            console.log(sizeIndex + ', ' + R.editor.viewport.level);
+            var next = sizeIndex > 0 ? sizeIndex - 1 : 4;
+            console.log(next);
+            R.editor.viewport.view(next);
+        },
+
+        previousLevel: function () {
+            R.editor.viewport.speed = 2;
+            var sizeIndex = R.editor.viewport.sizeIndex;
+            if (sizeIndex == -1) {
+                sizeIndex = R.editor.viewport.level;
+            }
+            var prev = sizeIndex < 4 ? sizeIndex + 1 : 0;
+            R.editor.viewport.view(prev);
+        }
     },
 
     events: {   
@@ -916,8 +938,8 @@ R.editor = {
                 R.editor.components.drag.above = -1;
                 R.editor.components.drag.item.offsety = 0;
                 R.editor.components.drag.item.elem = R.editor.components.hovered;
-                R.editor.components.posStart = R.elem.offset(R.editor.components.hovered);
-                R.editor.components.drag.item.pos = R.elem.pos(R.editor.components.hovered);
+                R.editor.components.posStart = R.elem.pos(R.editor.components.hovered);
+                R.editor.components.drag.item.pos = R.elem.innerPos(R.editor.components.hovered);
                 R.editor.components.drag.item.left = R.editor.components.hovered.style.left.replace('px', '');
                 R.editor.components.drag.item.top = R.editor.components.hovered.style.top.replace('px', '');
                 if (R.editor.components.drag.item.left != '') { R.editor.components.drag.item.left = parseInt(R.editor.components.drag.item.left); }
@@ -962,6 +984,13 @@ R.editor = {
 
                     //modify component select
                     $('.component-select').css({ opacity: 0 });
+
+                    //create barrier on page
+                    var div = document.createElement('div');
+                    div.className = 'barrier';
+                    div.style.width = R.window.absolute.w + 'px';
+                    div.style.height = R.window.absolute.h + 'px';
+                    $('.editor').append(div);
 
                     //start paint timer
                     R.editor.components.drag.paint();
@@ -1060,16 +1089,18 @@ R.editor = {
 
                 if (drag.painting == true && drag.disabled == false && drag.moved == true) {
                     R.editor.components.drag.painting = false;
-                    //save responsive changes 
-                    //R.editor.components.savePosition(R.editor.components.drag.item.elem);
+
+                    //rearrange components in DOM
                     if (drag.above != -1 && drag.above != null) {
                         if (drag.above != 2) {
                             if (drag.above.nextSibling != drag.item.elem) {
+                                //move component below the target
                                 $(drag.item.elem).insertAfter(drag.above);
                             }
                         }
                     } else {
                         if (drag.panel.firstChild != drag.item.elem) {
+                            //move component to top
                             $(drag.item.elem).insertBefore($(drag.panel).find('.inner' + drag.panel.id)[0].firstChild);
                         }
                     }
@@ -1077,7 +1108,6 @@ R.editor = {
                     $('.tools .borders .above-border').remove();
                     R.editor.components.drag.item.offsety = 0;
                     
-
                     //show component select
                     setTimeout(function () {
                         //R.editor.components.selected = null;
@@ -1089,11 +1119,12 @@ R.editor = {
                 } else if (drag.moved == false) {
                     //cancel drag & click instead
                     $('.component-select').css({ opacity: 1 });
-                    //R.editor.components.selected = R.editor.components.hovered;
                     R.editor.components.hideSelect('drag');
                     R.editor.components.disabled = false;
                 }
                 R.editor.components.drag.painting = false;
+
+                $('.editor > .barrier').remove();
             }
         },
 
@@ -1115,17 +1146,16 @@ R.editor = {
                 R.editor.components.drag.disabled = true;
                 R.editor.components.posStart = R.elem.offset(R.editor.components.hovered);
 
-                var bar = $(this), mPos = { x: e.pageX, y: e.pageY };
-                var p = R.elem.panel(R.editor.components.hovered),
-                    c = R.editor.components.hovered, r = R.responsive.cache;
-                mPos.x += R.window.scrollx;
-                mPos.y += R.window.scrolly;
+                var bar = $(this),
+                    mPos = { x: e.pageX + R.window.scrollx, y: e.pageY + R.window.scrolly},
+                    p = R.elem.panel(R.editor.components.hovered),
+                    c = R.editor.components.hovered;//, r = R.responsive.cache;
                 R.editor.components.resize.options.elem = c;
                 R.editor.components.resize.options.cursor.x = mPos.x;
                 R.editor.components.resize.options.cursor.y = mPos.y;
                 R.editor.components.resize.options.cursorStart.x = mPos.x;
                 R.editor.components.resize.options.cursorStart.y = mPos.y;
-                R.editor.components.resize.options.elemPos = R.elem.offset(c);
+                R.editor.components.resize.options.elemPos = R.elem.innerPos(c);
                 R.editor.components.resize.options.panelPos = R.elem.pos(p);
                 R.editor.components.resize.options.elemStart = {
                     x: R.editor.components.resize.options.elemPos.x - R.editor.components.resize.options.offset.x,
@@ -1143,10 +1173,16 @@ R.editor = {
                 } else {
                     R.editor.components.resize.options.autoResize = false;
                 }
-
-                //find component within responsive cache
-                R.editor.components.resize.options.rIndex = R.responsive.getComponentFromCache(c);
-
+                R.editor.components.resize.options.left = R.editor.components.hovered.style.left.replace('px', '');
+                R.editor.components.resize.options.top = R.editor.components.hovered.style.top.replace('px', '');
+                if (R.editor.components.resize.options.left != '') { R.editor.components.resize.options.left = parseInt(R.editor.components.resize.options.left); }
+                else { R.editor.components.resize.options.left = 0; }
+                if (R.editor.components.resize.options.top != '') { R.editor.components.resize.options.top = parseInt(R.editor.components.resize.options.top); }
+                else { R.editor.components.resize.options.top = 0; }
+                R.editor.components.resize.options.absolute = {
+                    x: R.editor.components.resize.options.elemPos.x - R.editor.components.resize.options.left,
+                    y: R.editor.components.resize.options.elemPos.y - R.editor.components.resize.options.top,
+                }
 
                 //get selected resize side or corner
                 if (bar.hasClass('resize-top') == true) {
@@ -1177,7 +1213,7 @@ R.editor = {
 
                 //modify component select
                 $('.component-select .menu, .component-select .arrow-down, .editor .windows').hide();
-                $('.component-select').stop().animate({ opacity: 0 }, 2000);
+                $('.component-select').stop().css({ opacity: 0.3 });
 
                 //bind document mouse events
                 $(document).bind('mousemove', R.editor.components.resize.go);
@@ -1193,84 +1229,54 @@ R.editor = {
             },
 
             paint: function () {
-                var pos = $.extend({}, this.options.elemStart);
+                var pos = { w: this.options.elemStart.w, h: this.options.elemStart.h };
                 var mDiff = {
                     x: this.options.cursor.x - this.options.cursorStart.x,
                     y: this.options.cursor.y - this.options.cursorStart.y
                 }
-                switch (this.options.side) {
-                    case 't'://top
-                        pos.y += mDiff.y;
-                        pos.h -= mDiff.y;
-                        break;
-                    case 'tr'://top-right
-                        pos.y += mDiff.y;
-                        pos.h -= mDiff.y;
-                        pos.w += mDiff.x;
-                        break;
-                    case 'r'://right
-                        pos.w += mDiff.x;
-                        break;
-                    case 'br'://bottom-right
-                        pos.h += mDiff.y;
-                        pos.w += mDiff.x;
-                        break;
-                    case 'b'://bottom
-                        pos.h += mDiff.y;
-                        break;
-                    case 'bl'://bottom-left
-                        pos.h += mDiff.y;
-                        pos.x += mDiff.x;
-                        pos.w -= mDiff.x;
-                        break;
-                    case 'l'://left
-                        pos.x += mDiff.x;
-                        pos.w -= mDiff.x;
-                        break;
-                    case 'tl'://top-left
-                        pos.y += mDiff.y;
-                        pos.h -= mDiff.y;
-                        pos.w -= mDiff.x;
-                        break;
-                }
-                if (R.hotkeys.keyhold == 'shift') {
-                    //resize from center instead of top-left
-                    var newPos = $.extend({}, pos);
-                    var origPos = $.extend({}, this.options.elemStart);
-                    if (origPos.w > pos.w) {
-                        //smaller width
-                        newPos.x = origPos.x + (origPos.w - pos.w);
-                        newPos.w -= ((origPos.w - pos.w));
-                    } else {
-                        //larger width
-                        newPos.x = origPos.x - (pos.w - origPos.w);
-                        newPos.w += ((pos.w - origPos.w));
+                var perc = false;
+                var center = 1;
+                if ($(this.options.elem).css('margin').indexOf('px ') >= 0) { center = 2; }
+                if (this.options.elem.style.width.indexOf('%') >= 0) { perc = true; }
+                if (perc == true) {
+                    //find new percentage value
+                } else {
+                    switch (this.options.side) {
+                        case 't'://top
+                            pos.h -= mDiff.y;
+                            break;
+                        case 'tr'://top-right
+                            pos.h -= mDiff.y;
+                            pos.w += (mDiff.x * center);
+                            break;
+                        case 'r'://right
+                            pos.w += (mDiff.x * center);
+                            break;
+                        case 'br'://bottom-right
+                            pos.h += mDiff.y;
+                            pos.w += (mDiff.x * center);
+                            break;
+                        case 'b'://bottom
+                            pos.h += mDiff.y;
+                            break;
+                        case 'bl'://bottom-left
+                            pos.w -= (mDiff.x * center);
+                            break;
+                        case 'l'://left
+                            pos.w -= (mDiff.x * center);
+                            break;
+                        case 'tl'://top-left
+                            pos.h -= mDiff.y;
+                            pos.w -= (mDiff.x * center);
+                            break;
                     }
-                    if (origPos.h > pos.h) {
-                        //smaller height
-                        newPos.y = origPos.y + (origPos.h - pos.h);
-                        newPos.h -= ((origPos.h - pos.h));
-                    } else {
-                        //larger height
-                        newPos.y = origPos.y - (pos.h - origPos.h);
-                        newPos.h += ((pos.h - origPos.h));
-                    }
-                    pos = $.extend({}, newPos);
                 }
 
-                $(this.options.elem).css({ left: pos.x, top: pos.y });
                 if (this.options.autoHeight == false && this.options.autoResize == false) {
-                    $(this.options.elem).css({ height: pos.h });
-                    if (mDiff.y != 0) {
-                        //update height in responsive settings
-                        //R.responsive.cache[this.options.rIndex].h = pos.h;
-                        //R.responsive.cache[this.options.rIndex].levels[R.responsive.level][11] = pos.h;
-                        //R.events.render.components[this.options.elem.id].h = pos.h;
-
-                    }
+                    $(this.options.elem).css({ minHeight: pos.h });
                 }
                 if (this.options.autoResize == false) {
-                    $(this.options.elem).css({ width: pos.w });
+                    $(this.options.elem).css({ maxWidth: pos.w });
                 }
                 R.editor.components.resizeSelectBox();
                 //R.events.render.trigger();
@@ -1721,425 +1727,9 @@ R.editor = {
 
         },
 
-        savePosition:function(c){
-            //update responsive design properties
-            //arguments = component, dropped, ?, ?, ?, ?, old-position, (null, 'none' or 'nostack'), 
-            var lvl = R.responsive.level, r = R.responsive.cache, panel = R.elem.panel(c), oldRel, oldPos,
-                cPos = R.elem.offset(c), pPos = R.elem.pos(panel), dropped = arguments[1] || false,
-                levels = ['px', 'px', 'px', '', 'tc', cPos.x, cPos.y, cPos.w, "", "", cPos.x + cPos.w, cPos.h, "px"];
-            //  levels = left, width, top, parallax, alignment, x, y, width, top-padding, ?, right-position, height, height-type
+        saveStyle: function () {
+            //update component style based on menu settings
 
-            //get current level settings
-            if (R.components.cache[c.id]) {
-                if (R.components.cache[c.id].levels.length > 4) {
-                    var lv = R.components.getCacheLevel(c);
-                    levels = R.components.cache[c.id].levels[lv].split(',');
-                }
-            }
-
-            //get the old position of the component before it was dragged
-            if (arguments[6] != null && arguments[6] != undefined) {
-                //get original positions for the component before it was dragged or resized
-                oldPos = arguments[6];
-                levels[11] = oldPos.h;
-            } else {
-                oldPos = cPos;
-            }
-            oldRel = { y: (oldPos.y - pPos.y), x: (oldPos.x - pPos.x), w: oldPos.w, h: oldPos.h };
-            
-            //set up new level settings
-            var newlvls = levels.slice(0);
-            if (newlvls[4] == '') { newlvls[4] = 'tc';}
-            if (newlvls[7] == '') { newlvls[7] = cPos.w; }
-            newlvls[6] = cPos.y;
-
-            //setup left position
-            if (levels[4] == 'tl') {
-                //align left
-                newlvls[5] = cPos.x;
-                newlvls[10] = cPos.x + cPos.w;
-            } else if (levels[4] == 'tr') {
-                //align right
-                newlvls[5] = cPos.x - pPos.w;
-                newlvls[10] = pPos.w - (cPos.x + cPos.w);
-            }
-
-            //setup width
-            if (levels[1] == 'fs') {
-                newlvls[7] = ((100 / pPos.w) * cPos.w).toString().substring(0, 7) + ";" + pPos.w + ";";
-                if (levels[4] == 'tl') {
-                    newlvls[7] += cPos.x + ";" + (pPos.w - cPos.x - cPos.w);
-                } else if (levels[4] == 'tr') {
-                    newlvls[7] += (pPos.w + cPos.x) + ";" + (0 - cPos.x - cPos.w);
-                }
-            } else if (levels[1] == 'px') {
-                if (c.style.width == '') {
-                    newlvls[7] = '';
-                } else if (c.style.width == '100%') {
-                    newlvls[7] = '100%';
-                } else {
-                    newlvls[7] = cPos.w;
-                }
-            } else if (levels[1] == '%') {
-                newlvls[7] = ((100 / pPos.w) * cPos.w).toString().substring(0, 7);
-            }
-            if (levels[4].indexOf('tc') == 0 && dropped == false) {
-                var pnPos = R.elem.offset(c.parentNode);
-                newlvls[4] = 'tc;' + (cPos.x - (Math.round((pnPos.w - cPos.w) / 2)))
-            }
-
-            //setup height
-            if (c.getAttribute("autoresize") != "1" && c.getAttribute("autoheight") != "1") {
-                if (levels[12] == 'px') {
-                    newlvls[11] = cPos.h;
-                } else if (levels[12] == 'aspect') {
-                    newlvls[11] = (1 / cPos.w) * cPos.h;
-                    if (newlvls[11].toString().length > 6) { newlvls[11] = newlvls[11].toString().substr(0, 6); }
-                }
-            }
-
-            //update stacking of components within this component's panel /////////////////////////////////////////////////////////////////////////////////////
-            var rIndex = R.responsive.getComponentFromCache(c);
-            var sIndex = R.responsive.getComponentFromStack(c);
-            var stack = R.responsive.stack[lvl][sIndex.panel].data[sIndex.c];
-            var stackP = R.responsive.stack[lvl][sIndex.panel];
-
-            var intelC, wastopmost = false, istopmost = false, killIntel = false,
-                isOff = false, ison = false, wason = false, isrighton = false,
-                intel = null, comPos, comRel, oldcomRel, extraH = 0, ltop = 0, ctop = 0,
-                Cpad = 20, newIntelC = new Array(), newIntel = "", oldIntel = "", rlayer,
-                comp = null, intelComp = null, comPad = 0, ispushed = false, wasabove = false,
-                wasinwidth = false, isinGroup = false, underc = false, itemid = c.id.substr(1),
-                isMoved = 0, wasMoved = 0, noblocked = false, wasunder = false, isunder = false,
-                wastouching = false, istouching = false, isoverlapping = false, isNudged = false,
-                newcRel = { x: cPos.x, y: cPos.y, w: cPos.w, h: cPos.h };
-
-            //find stack element
-            intelC = R.components.findStackElement(c, cPos);
-
-            if (stack.stack == null && (intelC != null || intelC != undefined)) {
-                //this component had no layer to begin with
-                isOff = true;
-
-            } else if (intelC != null && stack.stack != null) {
-                //the new layer exists
-                var e = R.elem.get(intelC[0].id);
-                var ePos = R.elem.pos(e);
-                if (cPos.y < ePos.y) {
-                    //check previous intelligent layer to see if component is above that
-                    isOff = true;
-                } else {
-                    //check to see if if this component is below previous intelligent layer
-                    if (stack.stack[0].id != intelC[0].id) {
-                        isOff = true;
-                    }
-                }
-            } else if ((intelC == null || intelC == undefined)) {
-                //if component doesn't have an intel layer now but did before
-                isOff = true;
-            }
-            if (isOff == true) { killIntel = true; }
-
-            //rebuild stack array for this component's responsive stack level
-            newlvls[9][lvl] = "";
-            if (arguments[7] != 'none') {
-                rlayer = R.responsive.cache[rIndex].levels[lvl];
-                if (intelC != null) {
-                    rlayer[9][lvl] = intelC[0].id.substr(1);
-                    if (dropped == true) {
-                        //this component was just dropped onto the page
-                        //replace all other component's intel layers that
-                        //uses this component's intel layer, and replace 
-                        //it with this component's itemid
-                    }
-
-                    //figure out new top-padding for this component
-                    Cpad = 0;
-                    comPos = R.elem.offset(intelC[0]);
-                    Cpad = cPos.y - (comPos.y + comPos.h);
-                    newlvls[8] = Cpad;
-                    R.components.saveLevel(c, lvl, null, null, null, null, null, null, null, null, Cpad);
-                } else {
-                    //set 0 top-padding
-                    if (isOff == true) { rlayer[9][lvl] = '!'; } else { rlayer[9][lvl] = ''; }
-                    newlvls[8] = 0;
-                    R.components.saveLevel(c, lvl, null, null, null, null, null, null, null, null, 0);
-                }
-
-                if ((arguments[7] != 'nostack' || arguments[7] == null) && (dropped == false || dropped == null)) {
-                    //before restacking components, check for empty stack layers ///////////////////////////////////////////////////////////////////////////////////////////////
-                    for (i = 0; i < stackP.length; i++) {
-                        comp = stackP[i].c;
-                        if (comp.id != c.id) {
-                            var aintel = ["", "", "", "", ""];
-                            var nintel = R.components.cache[comp.id].stacks;
-                            for (ni = 0; ni < 5; ni++) {
-                                aintel[ni] = nintel[ni];
-                            }
-
-                            if (aintel[lvl] == '') {
-                                //find intel layer for this component
-                                var iLC = R.components.findStackElement(comp);
-                                //next, save the padding between the two components
-                                if (typeof iLC != 'undefined' && iLC != null) {
-                                    if (iLC.length > 0) {
-                                        stackP[i][4] = iLC;
-                                        aintel[lvl] = iLC[0].id.substr(1);
-                                        var iLCPos = R.elem.pos(iLC[0]);
-                                        var iCPos = R.elem.pos(comp);
-                                        var pad = iCPos.y - (iLCPos.y + iLCPos.h);
-                                        stackP[i][5] = pad;
-                                        R.components.saveLevel(comp, lvl, null, null, null, null, null, null, null, null, pad);
-                                    }
-                                }
-
-                            }
-                            R.components.cache[comp.id].stacks = aintel;
-                        }
-                    }
-
-                    //restack components based on new position of dragged component ///////////////////////////////////////////////////////////////////////////////////////////////
-                    oldcomRel = { x: newcRel.x, y: newcRel.y, w: newcRel.w, h: newcRel.h };
-                    for (i = 0; i < stackP.data.length; i++) {
-                        comp = stackP.data[i].c;
-                        intel = null; newIntel = null; wastopmost = false; istopmost = false; wasinwidth = false; isinGroup = false; noblocked = false;
-                        wasunder = false; isunder = false; isNudged = false; wastouching = false; istouching = false; Ctop = -1000;
-
-                        if (ispushed == true || underc == true) { R.components.altered(comp); }
-
-                        if (comp.id == c.id) { underc = true; }
-                        if (comp.id != c.id && isinGroup == false) {
-                            comRel = R.elem.offset(comp);
-                            if (comRel.y > newcRel.y) {
-                                isunder = true;
-                            }
-
-                            isoverlapping = R.components.isOverlapping(newcRel, comRel);
-                            wasoverlapping = R.components.isOverlapping(oldRel, comRel);
-                            if (isoverlapping == false) {
-                                wastouching = R.components.isTouching(oldRel, comRel);
-                                istouching = R.components.isTouching(newcRel, comRel);
-                            }
-
-                            //get intel layers
-                            intel = R.components.cache[comp.id].stacks;
-
-                            if (isunder == true && (istouching == false || (wastouching == false && istouching == true)) && (isoverlapping == false || (isoverlapping == true && wasoverlapping == false))) {
-                                ison = R.components.inRange(comRel, oldcomRel, 1);
-                                if (ison == true) {
-                                    //get the bottom-most component that is above this component
-                                    var bc = null, bRel, bIntel, biPos;
-                                    if (intel[lvl] != '' && intel[lvl] != '!') {
-                                        bc = $("#c" + intel[lvl])[0];
-                                    }
-                                    
-                                    comPad = Number(stackP.data[i].pad);
-                                    if (bc != null) { bRel = R.elem.offset(bc); }
-                                    bIntel = R.components.findStackElement(comp);
-                                    biPos = bRel;
-                                    if (bIntel != null) {
-                                        bIntel = bIntel[0];
-                                        biPos = R.elem.offset(bIntel);
-                                    }
-                                    if (ispushed == false) {
-                                        //components haven't been pushed down yet
-                                        //check to see if component's intel layer is above dragged component
-
-                                        if (comRel.y - (newcRel.y + newcRel.h) < 30) {
-                                            if (bc != null) {
-                                                //check to see if dragged component is below this component's intel layer
-                                                if (newcRel.y + newcRel.h + comPad >= biPos.y + biPos.h + comPad) {
-                                                    //push component up/down based on its intel layer
-                                                    if (intel[lvl] == itemid) {
-                                                        isMoved = (newcRel.y + newcRel.h + comPad) - (comRel.y);
-                                                    } else {
-                                                        if (newcRel.y + newcRel.h + comPad > comRel.y) {
-                                                            isMoved = (newcRel.y + newcRel.h + comPad) - (comRel.y);
-                                                        }
-                                                    }
-                                                    if (isMoved > 0) {
-                                                        if (comPad >= isMoved + 20) {
-                                                            comPad = comPad - isMoved;
-                                                            R.components.saveLevel(comp, lvl, null, null, null, null, null, null, null, null, comPad);
-                                                            isMoved = 0;
-                                                        }
-                                                    }
-                                                    Ctop = comRel.y + isMoved;
-                                                    newIntel = itemid;
-                                                    ispushed = true;
-                                                } else {
-                                                    //push component up/down based on its new intel layer
-                                                    isMoved = (biPos.y + biPos.h + comPad) - comRel.y;
-                                                    Ctop = biPos.y + biPos.h + comPad;
-                                                    newIntel = bIntel.id.substr(1);
-                                                    ispushed = true;
-                                                }
-                                            }
-
-                                            if (isoverlapping == true) {
-                                                isMoved = (newcRel.y + newcRel.h + comPad) - comRel.y;
-                                                Ctop = comRel.y + isMoved;
-                                                newIntel = itemid;
-                                                ispushed = true;
-                                            }
-                                        } else {
-                                            //this component is too far below the dragged component
-                                            if (newcRel.y > oldRel.y) {
-                                                //dragged component was pushed down
-                                                if (itemid == newIntel) {
-                                                    comPad -= (newcRel.y - oldRel.y);
-                                                }
-                                                R.components.saveLevel(comp, lvl, null, null, null, null, null, null, null, null, comPad);
-                                            } else if (itemid == newIntel) {
-                                                //dragged component was pushed up
-                                                comPad = comPad + (oldRel.y - newcRel.y);
-                                                R.components.saveLevel(comp, lvl, null, null, null, null, null, null, null, null, comPad);
-                                            }
-                                            ispushed = true;
-                                            isMoved = 0;
-                                        }
-                                    } else if (isMoved != 0) {
-                                        Ctop = comRel.y + isMoved;
-                                        comp.style.top = Ctop + "px";
-                                        var bIntel2 = R.components.findStackElement(comp);
-                                        if (bIntel2 != null) {
-                                            bIntel2 = bIntel2[0];
-                                            if (bIntel2.id.substr(1) != intel[lvl]) { bIntel = bIntel2; }
-                                        }
-                                        if (intel[lvl] == itemid && isoverlapping == false) {
-                                            newIntel = bIntel.id.substr(1);
-                                        } else if (isoverlapping == true) {
-                                            newIntel = itemid;
-                                        } else {
-                                            newIntel = intel[lvl];
-                                        }
-                                    }
-                                    if (Ctop == -1000) { Ctop = comRel.y; }
-
-                                    if (Ctop != comRel.y) {
-                                        //make sure this component isn't overlapping dragged component
-                                        var overRel = { x: comRel.x, y: Ctop, w: comRel.w, h: comRel.h };
-                                        isoverlapping = R.components.isOverlapping(newcRel, overRel);
-                                        if (isoverlapping == true) {
-                                            isMoved += ((newcRel.y + newcRel.h + comPad) - Ctop);
-                                            Ctop = newcRel.y + newcRel.h + comPad;
-                                        }
-
-                                        if (cPos.y < oldRel.y) {
-                                            //check for components above this component that block the
-                                            //path for pushing this component up along with the dragged component
-                                            var chkComp, chkRel, chkon, newMoved = 0;
-                                            for (k = 0; k < stackP.data.length; k++) {
-                                                chkComp = stackP.data[i][0];
-                                                chkRel = R.elem.offset(chkComp);
-                                                chkon = R.components.inRange(chkRel, comRel, 1);
-                                                if (chkon == true) {
-                                                    if (chkRel.y > (cPos.y + cPos.h) && chkRel.y < comRel.y) {
-                                                        //this component is blocking the stacked component, so change
-                                                        //the stacked component's new Ctop
-                                                        Ctop = chkRel.y + chkRel.h + comPad;
-                                                        isMoved = comRel.y - Ctop;
-                                                        break;
-                                                    }
-                                                }
-                                            }
-                                        }
-
-                                        //finally move component where it belongs
-                                        comp.style.top = Ctop + "px";
-                                        ispushed = true;
-                                        R.components.saveLevel(comp, lvl, null, null, null, null, null, null, Ctop, null, null);
-                                        //update intel layer id
-                                        intel[lvl] = newIntel;
-                                        newIntelC[newIntelC.length] = { c: comp, intel: intel }
-                                        oldIntel = comp.id.substr(1);
-                                    }
-                                    //update oldcomrel to check if component is under last component
-                                    if (comRel.x < oldcomRel.x) { oldcomRel.x = comRel.x; }
-                                    if (comRel.x + comRel.w > oldcomRel.x + oldcomRel.w) { oldcomRel.w = (comRel.x + comRel.w) - oldcomRel.x; }
-                                } else if (ison == false && ispushed == false) {
-                                    intel[lvl] = itemid;
-                                }
-                                oldcomRel.y = comRel.y;
-                                oldcomRel.h = comRel.h;
-                            }
-                            //remove intel layer if the intel layer is the same as the dragged component itemid
-                            if (intel[lvl] == itemid) {
-                                var iC = R.components.findStackElement(comp);
-                                if (iC != null) {
-                                    iC = iC[0];
-                                    intel[lvl] = iC.id.substr(1);
-                                } else {
-                                    intel[lvl] = "";
-                                }
-                            }
-                            if (intel.length > 0) {
-                                newIntelC[newIntelC.length] = { c: comp, intel: intel }
-                            }
-                        }
-                    }
-                }
-                R.components.cache[c.id].stacks[lvl] = rlayer[9][lvl];
-                newIntelC[newIntelC.length] = { c: c, intel: rlayer[9] }
-
-                //finally, save the new intel layers for this component into the div attribute
-                if (newIntelC.length > 0) {
-                    for (i = 0; i < newIntelC.length; i++) {
-                        R.components.cache[newIntelC[i].c.id].stacks = newIntelC[i].intel;
-                    }
-                }
-            }
-
-            if (isOff == false) {
-                //find true top-padding for this component, based on the stack layer it is associated with
-                if (stack.stack != null) {
-                    ePos = R.elem.offset(stack.stack[0]);
-                    newlvls[8] = cPos.y - (ePos.y + ePos.h);
-                    R.components.saveLevel(c, lvl, null, null, null, null, null, null, null, null, newlvls[8]);
-                }
-            }
-
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            //fix any accidental infinite loops within intel layer system
-            var isdone = false, loopd = 0;
-            var foundloop = false;
-            do {
-                for (y = 0; y < stackP.data.length; y++) {//list of components to target
-                    for (z = stackP.data.length - 1; z > y; z--) {//list of components to search for infinite loop
-                        if (stackP.data[y].stack != null) {
-                            try {
-                                if (stackP.data[z].c.id == stackP.data[y].stack[0].id) {
-                                    for (o = 0; o < stackP.data.length - 1; o++) {
-                                        if (stackP.data[o].c.id == stackP.data[y].stack[0].id) {
-                                            R.components.saveStackLayer(stackP.data[y].stack[0], stackP, o, lvl)
-                                            break;
-                                        }
-                                    }
-                                    R.components.saveStackLayer(stackP.data[y].c, stackP, y, lvl)
-                                    foundloop = true;
-                                    break;
-                                }
-                            } catch (ex) { }
-                        }
-                    }
-                    if (foundloop == true) { break; }
-                }
-                if (foundloop == false) { isdone = true; }
-                foundloop = false;
-                loopd += 1;
-            } while (isdone == false && loopd < 10);
-
-
-            //save responsive settings ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            R.components.cache[c.id].levels[lvl] = newlvls.join(',');
-            R.responsive.cache[rIndex].levels[lvl] = newlvls;
-            R.responsive.cache[rIndex].levels[lvl][9] = R.components.cache[c.id].stacks;
-            R.components.saveLevel(c, lvl, newlvls[0], newlvls[1], newlvls[2], newlvls[3], newlvls[4], newlvls[5], newlvls[6], newlvls[7], newlvls[8]);
-            
-
-            //reset responsive system
-            //R.events.render.init();
-            //R.events.render.trigger(true, true);
         },
 
         menu: {
@@ -2228,7 +1818,7 @@ R.editor = {
                     //first, hide all menu items
                     $('.tools .component-select .menu .item').hide().removeClass('first last');
 
-                    //next, show all matching menu items88
+                    //next, show all matching menu items
                     $('.tools .component-select .menu .item.for-all, .tools .component-select .menu .item.for-' + componentName).show();
 
                     //find matching rule & hide menu items within the matching rule
@@ -4287,4 +3877,3 @@ $('.webpage').delegate('.component', 'mouseenter', R.editor.components.mouseEnte
 $('.webpage').delegate('.inner-panel', 'mouseenter', R.editor.components.mouseEnter);
 $('.component-select').delegate('.resize-bar', 'mousedown', R.editor.components.resize.start);
 $('.component-select').bind('mouseleave', R.editor.components.mouseLeave);
-//$('.component-select .menu .item:has(.icon-position), .component-select .menu .item:has(.icon-layer), .component-select .menu .item:has(.icon-style)').bind('click', R.editor.components.menu.clickFromEvent);

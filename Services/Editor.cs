@@ -271,9 +271,9 @@ namespace Rennder.Services
 
             //add JS to align component on page correctly
             string js = "(function(){var c = $('#c" + comp.itemId + "');" + 
-                        "var options = {left:" + x + ",top:" + y + ", width:" + comp.defaultWidth + "};" + 
-                        "c.css(options); .editor.components.savePosition(c[0],true);" + 
-                        "})();";
+                        "var options = {maxWidth:" + comp.defaultWidth + "};" + 
+                        "c.css(options);" +
+                        "})();R.components.add('" + comp.itemId + "','" + componentId + "');";
 
             R.Page.RegisterJS("newcomp", js);
             response.js = CompileJs();

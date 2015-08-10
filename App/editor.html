@@ -30,7 +30,7 @@
                 </a>
             </div>
             <div class="screens">
-                <a href="javascript:" onclick="R.editor.viewport.animation.nextLevel();" oncontextmenu="R.editor.viewport.animation.previousLevel();return false;">
+                <a href="javascript:" onclick="R.editor.viewport.nextLevel();" oncontextmenu="R.editor.viewport.previousLevel();return false;">
                     <svg viewBox="0 0 33 25">
                         <use xlink:href="#icon-screenhd" x="0" y="0" width="33" height="25" />
                     </svg>
@@ -143,14 +143,14 @@
             </div>
         </div>
         <div class="properties" style="display:none">
-            <div class="section-position" style="width:185px; height:117px;">
+            <div class="section-position" style="width:200px; height:117px;">
                 <div class="row color1">
                     <div class="column-label">X Align</div>
                     <div class="column-input">
-                        <select id="lstPropsAlign" onchange="R.editor.components.menu.savePosition()">
-                            <option value="tl">Left</option>
-                            <option value="tc">Center</option>
-                            <option value="tr">Right</option>
+                        <select id="lstPropsAlign" onchange="R.editor.components.menu.saveStyle()">
+                            <option value="left">Left</option>
+                            <option value="center">Center</option>
+                            <option value="right">Right</option>
                         </select>
                     </div>
                 </div>
@@ -158,7 +158,7 @@
                 <div class="row color2">
                     <div class="column-label">Y Align</div>
                     <div class="column-input">
-                        <select id="lstPropsAlignY" onchange="R.editor.components.menu.savePosition()">
+                        <select id="lstPropsAlignY" onchange="R.editor.components.menu.saveStyle()">
                             <option value="t">Top</option>
                             <option value="m">Middle</option>
                             <option value="b">Bottom</option>
@@ -172,10 +172,9 @@
                 <div class="row color2">
                     <div class="column-label">Width</div>
                     <div class="column-input">
-                        <select id="lstPropsPosWidth" onchange="R.editor.components.menu.savePosition()">
-                            <option value="px">Use Pixels</option>
-                            <option value="%">Use Percent</option>
-                            <option value="fs">Fill Space</option>
+                        <select id="lstPropsPosWidth" onchange="R.editor.components.menu.saveStyle()">
+                            <option value="px">Pixels</option>
+                            <option value="%">Percent</option>
                         </select>
                     </div>
                 </div>
@@ -183,10 +182,8 @@
                 <div class="row color1">
                     <div class="column-label">Height</div>
                     <div class="column-input">
-                        <select id="lstPropsPosHeight" onchange="R.editor.components.menu.savePosition()">
+                        <select id="lstPropsPosHeight" onchange="R.editor.components.menu.saveStyle()">
                             <option value="px">Use Pixels</option>
-                            <option value="aspect">Aspect Ratio</option>
-                            <option value="panel">Panel</option>
                             <option value="win">Window</option>
                         </select>
                     </div>

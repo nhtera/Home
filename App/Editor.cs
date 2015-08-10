@@ -6,7 +6,6 @@ namespace Rennder
     public class Editor
     {
         private Core R;
-        public Dictionary<string, string> Elements = new Dictionary<string, string>();
 
         public Editor(Core RennderCore)
         {
@@ -22,11 +21,11 @@ namespace Rennder
             //setup scaffolding variables
             if(R.User.photo == "")
             {
-                Elements["photo"] = "<img src=\"/images/editor/userphoto.jpg\"/>";
+                Scaffold.Data["photo"] = "<img src=\"/images/editor/userphoto.jpg\"/>";
             }
             else
             {
-                Elements["photo"] = "<img src=\"/content/users/" + R.Util.Str.DateFolders(R.User.signupDate) + "/" + R.User.userId + "/portrait/s_" + R.User.photo + "\"/>";
+                Scaffold.Data["photo"] = "<img src=\"/content/users/" + R.Util.Str.DateFolders(R.User.signupDate) + "/" + R.User.userId + "/portrait/s_" + R.User.photo + "\"/>";
             }
 
             //load grid sides

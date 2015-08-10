@@ -23,6 +23,7 @@ select, input, textarea{margin:0px;}
 .iphone, .ipad{font-size:16px;}
 
 /* webpage specific */
+.body{position:relative; width:100%;}
 .webpage{position:relative; margin:0px auto;}
 .webpage .component{position:relative;}
 .webpage .ispanel {position:relative; width:100%; height:100%;}
@@ -44,9 +45,6 @@ select, input, textarea{margin:0px;}
 /*special elements*/
 .svgicons{position:absolute; height:0px; width:0px;}
 .mb_YTVPBar{display:none !important;}
-.edit-tab{position:relative; width:35px !important; height:30px; background-image:url(/content/images/evolver/footbar/bg.png); background-position:0px -10px;
-          z-index:4900; margin-left:auto; -moz-box-shadow: 1px 1px 3px #000000;-webkit-box-shadow: 1px 1px 3px #000000; box-shadow: 1px 1px 3px #000000;
-          border-bottom-left-radius:12px; -moz-border-radius-bottomleft:12px;}
 
 /* fonts */
 .font-dollar-sign{left:10px; top:4px; font-size:14px;}

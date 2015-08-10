@@ -47,18 +47,6 @@ var R = {
                     this.absolute.w = R.elem.width(bod);
                     this.absolute.h = this.h;
                 }
-                
-
-                //detect vertical scrollbar
-                if ($(document.body).height() <= this.h || window.location.href.indexOf('&a=') > -1) {
-                    if ($('body').css('overflowY') != 'hidden') { $('body').css({ 'overflowY': 'hidden' }); }
-
-                } else {
-                    if ($('body').css('overflowY') != 'auto') { $('body').css({ 'overflowY': 'auto' }); }
-                    if (bod != null) {
-                        this.absolute.w = R.elem.width(bod);
-                    }
-                }
                 return this;
             }
         }
@@ -84,6 +72,14 @@ var R = {
                 if (h == 0) {h = $(elem).height(); }
             }
             return { x: x, y: y, w: w, h: h };
+        },
+
+        innerPos: function (elem) {
+            var p = this.pos(elem);
+            var e = $(elem);
+            p.w = e.width();
+            p.h = e.height();
+            return p;
         },
 
         offset: function (elem) {
@@ -854,12 +850,17 @@ var R = {
                     
                 //first, remove unwanted components
                 for (x = 0; x < data.d.remove.length; x++) {
-                    p = $('#c' + data.d.remove[x]);
-                    if (p.length > 0) {
-                        p[0].parentNode.parentNode.removeChild(p[0].parentNode);
-                    }
+                    $('#c' + data.d.remove[x]).remove();
                 }
                 R.components.cleanup();
+
+                //remove any duplicate components
+                for (x = 0; x < data.d.components.length; x++) {
+                    comp = data.d.components[x];
+                    if ($('#c' + comp.itemId).length > 0) {
+                        $('#c' + comp.itemId).remove();
+                    }
+                }
 
                 //next, add new components
                 for (x = 0; x < data.d.components.length; x++) {

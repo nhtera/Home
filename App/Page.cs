@@ -472,7 +472,7 @@ namespace Rennder
                     {
                         R.User.viewerId = ownerId;
                         R.User.userId = ownerId;
-                        RegisterJS("authjs2", "var evscreenshot = 1;$('body').css({ 'overflowY': 'hidden' });");
+                        RegisterJS("authjs2", "var evscreenshot = 1;");
                     }
                 }
 

@@ -54,16 +54,13 @@
 
             if (arrHash[0].IndexOf("+") < 0)
             {
-                //found page with no url
-                if (R.Page.pageTitle.Split(new char[] { '-', ' ', '\"' })[1].ToLower() != arrHash[0])
-                {
-                    R.Page.Url.path = arrHash[0].Replace("-", " ");
-                    R.Page.pageTitle = R.Page.pageTitle.Split(new char[] { '-', ' ', '\"' })[0] + " - " + arrHash[0].Replace("-", " ");
-                    R.Page.GetPageId();
-                    R.Page.LoadPageFromId(R.Page.pageId);
-                    R.Page.Render();
-                    return R.Page.PageRequest;
-                }
+                //found page with no query in url
+                R.Page.Url.path = arrHash[0].Replace("-", " ");
+                R.Page.pageTitle = R.Page.pageTitle.Split(new char[] { '-', ' ', '\"' })[0] + " - " + arrHash[0].Replace("-", " ");
+                R.Page.GetPageId();
+                R.Page.LoadPageFromId(R.Page.pageId);
+                R.Page.Render();
+                return R.Page.PageRequest;
 
 
                 string newHash = "";

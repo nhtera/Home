@@ -1,4 +1,4 @@
-﻿/* Clear initial data (debug only) 
+﻿/* Clear initial data (if you so desire) 
 DELETE FROM websites
 DELETE FROM pages
 DELETE FROM users
@@ -20,7 +20,7 @@ IF (SELECT COUNT(*) FROM Users WHERE userId=1) = 0 BEGIN
 	(userId, firstname, lastname, email, [password], displayname, photo, gender, bday, zipcode, city, 
 	[state], country, twitter, lastlogin, datecreated, [status], signupip, referrer, [activation], deleted, tutorial) 
 	VALUES 
-	(1,'','','admin@localhost','EE44732CF1DEA4F780AF96C7F81BC11E','admin','1.jpg',0,GETDATE(),'89103','Las Vegas',
+	(1,'','','admin@localhost','EE44732CF1DEA4F780AF96C7F81BC11E','admin','',0,GETDATE(),'89103','Las Vegas',
 	'NV','US','', GETDATE(), GETDATE(), 1, '', '', '', 0, 0)
 
 
