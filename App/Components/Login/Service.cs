@@ -40,11 +40,11 @@ namespace Rennder.Services
             //set missing Page properties
             R.Page.themeFolder = themeFolder;
             R.Page.websiteId = websiteId;
-
             R.Elements = new Elements(R, themeFolder);
 
+
             //setup scaffold parameters
-            scaffold.Data["script"] = "";
+            scaffold.Data["script"] = "R.ajax.viewstateId = '" + R.ViewStateId + "';";
 
             if (R.isLocal == true)
             {
@@ -53,7 +53,6 @@ namespace Rennder.Services
                                    "<script type=\"text/javascript\" src=\"/scripts/core/fixes.js\"></script>\n" +
                                    "<script type=\"text/javascript\" src=\"/scripts/core/rml.js\"></script>\n" +
                                    "<script type=\"text/javascript\" src=\"/scripts/core/view.js\"></script>\n";
-                                   //"<script type=\"text/javascript\" src=\"/scripts/core/responsive.js\"></script>\n";
             }
             else
             {

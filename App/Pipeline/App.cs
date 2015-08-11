@@ -18,7 +18,7 @@ namespace Rennder.Pipeline
             R.isFirstLoad = true;
 
             //setup scaffolding variables
-            scaffold = new Scaffold(R, "/app/app.html", "", new string[]
+            scaffold = new Scaffold(R, "/app/pipeline/app.html", "", new string[]
             { "title", "description", "facebook", "theme-css", "website-css", "editor-css", "head-css", "favicon", "font-faces", "body-class", "custom-css",
               "background", "editor","webpage-class", "body-sides","body", "scripts", "https-url", "http-url"});
 

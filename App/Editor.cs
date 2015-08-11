@@ -16,7 +16,7 @@ namespace Rennder
         {
             string htm = "";
             string js = "$('.svgicons').load('/images/editor/icons.svg');";
-            Scaffold Scaffold = new Scaffold(R, "/app/editor.html", "", new string[] { "photo" });
+            Scaffold Scaffold = new Scaffold(R, "/app/editor/editor.html", "", new string[] { "photo" });
 
             //setup scaffolding variables
             if(R.User.photo == "")

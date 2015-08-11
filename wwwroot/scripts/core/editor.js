@@ -1289,7 +1289,7 @@ R.editor = {
                 R.editor.components.resize.options.started = false;
 
                 //save responsive changes 
-                R.editor.components.savePosition(R.editor.components.resize.options.elem);
+                R.editor.components.save.resize(R.editor.components.resize.options.elem);
 
                 //unbind document mouse move event
                 $(document).unbind('mousemove', R.editor.components.resize.go);
@@ -1588,7 +1588,9 @@ R.editor = {
         nudge: function (dir, speed) {
             if (this.hovered != null) {
                 var c = this.hovered;
-                var cPos = R.elem.offset(c);
+                console.log(dir);
+                if (c.style.top == '') { c.style.top = "0px"; }
+                if (c.style.left == '') { c.style.left = "0px"; }
                 switch (dir) {
                     case 'up':
                         $(c).css({ top: "-=" + speed });
@@ -1608,8 +1610,7 @@ R.editor = {
                 setTimeout(function () {
                     var c = R.editor.components.hovered;
                     if (c != null) {
-                        //var s = R.responsive.getComponentFromStack(c);
-                        R.editor.components.savePosition(c, null, null, null, null, null, cPos, 'nostack');
+                        R.editor.components.save.position();
                     }
                 }, 100);
             }
@@ -1727,9 +1728,16 @@ R.editor = {
 
         },
 
-        saveStyle: function () {
-            //update component style based on menu settings
+        save: {
+            resize: function () {
+                var c = R.editor.components.hovered;
+                R.editor.save.add(c.id, 'resize', { 'maxWidth': c.style.maxWidth, 'minHeight': c.style.minHeight });
+            },
 
+            position: function () {
+                var c = R.editor.components.hovered;
+                R.editor.save.add(c.id, 'move', { 'top': c.style.top, 'left': c.style.left })
+            }
         },
 
         menu: {
@@ -3525,7 +3533,6 @@ R.editor = {
         cache: [],
 
         add: function (id, type, obj) {
-            //return;//debug
             var i = -1;
             for (x = 0; x < this.cache.length; x++) {
                 if (this.cache[x].id == id) {

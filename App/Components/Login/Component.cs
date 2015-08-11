@@ -16,7 +16,7 @@
             {
                 loginQuery += "&resetpass=" + R.Request.Query["resetpass"];
             }
-            string htm = "<iframe id=\"loginframe" + itemId + "\" style=\"width:100%; height:100%; background-color:transparent;\"  frameborder=\"0\" scrolling=\"no\" src=\"" + loginHost + "/rennder/Login/LoadForm?w=" + R.Page.websiteId + "&u=" + R.Page.ownerId + "&l=" + R.Page.themeName + "&s=" + DataField.Replace("|", ",") + "&d=" + DesignField.Replace("|", ",") + loginQuery;
+            string htm = "<iframe id=\"loginframe" + itemId + "\" style=\"width:100%; height:100%; background-color:transparent;\"  frameborder=\"0\" scrolling=\"no\" src=\"" + loginHost + "/rennder/Login/LoadForm?v=" + R.ViewStateId + "&w=" + R.Page.websiteId + "&u=" + R.Page.ownerId + "&l=" + R.Page.themeName + "&s=" + DataField.Replace("|", ",") + "&d=" + DesignField.Replace("|", ",") + loginQuery;
             if (R.Page.isEditable == true) { htm += "&edit=1"; }
             htm += "\"></iframe>";
             InnerHTML = htm;
