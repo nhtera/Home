@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace Rennder.Services
 {
 	public class Login: Service
@@ -32,7 +30,8 @@ namespace Rennder.Services
             themeFolder = "/content/themes/" + R.Request.Query["l"] + "/";
             websiteFolder = "/content/websites/" + websiteId + "/";
             scaffold.Data["head"] = "<link rel=\"Stylesheet\" type=\"text/css\" href=\"/css/rennder.css\"/>" +
-                               "<link rel=\"Stylesheet\" type=\"text/css\" href=\"" + themeFolder + "style.css\"/>";
+                               "<link rel=\"Stylesheet\" type=\"text/css\" href=\"" + themeFolder + "style.css\"/>" +
+                               "<link rel=\"Stylesheet\" type=\"text/css\" href=\"" + websiteFolder + "website.css\"/>";
 
             //set form action
             scaffold.Data["action"] = "/rennder/Login/PostForm" + R.Request.QueryString;

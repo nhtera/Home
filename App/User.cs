@@ -271,80 +271,74 @@ namespace Rennder
 
         public bool getWebsiteSecurityItem(string feature, int index, bool tryAgain = true, bool nofull = false)
         {
-            try
+            if (websiteId == 0)
+                return false;
+            if (ownerId == 0)
             {
-                if (websiteId == 0)
-                    return false;
-                if (ownerId == 0)
+                //get ownerId
+                ownerId = myUser.R.Page.SqlPage.GetUserSecurtyOwnerForWebsite(websiteId);
+            }
+            if (ownerId == myUser.userId & nofull == false)
+                return true;
+            if (myUser.CheckSecurity(websiteId) == true & nofull == false)
+                return true;
+            int offset = 0;
+            string f = feature;
+            if (f.IndexOf("/") >= 0)
+            {
+                string[] arrf = feature.Split('/');
+                if (arrf[0] == "dashboard")
+                    f = arrf[0];
+                switch (arrf[0])
                 {
-                    //get ownerId
-                    ownerId = myUser.R.Page.SqlPage.GetUserSecurtyOwnerForWebsite(websiteId);
-                }
-                if (ownerId == myUser.userId & nofull == false)
-                    return true;
-                if (myUser.CheckSecurity(websiteId) == true & nofull == false)
-                    return true;
-                int offset = 0;
-                string f = feature;
-                if (f.IndexOf("/") >= 0)
-                {
-                    string[] arrf = feature.Split('/');
-                    if (arrf[0] == "dashboard")
-                        f = arrf[0];
-                    switch (arrf[0])
-                    {
-                        case "dashboard":
-                            switch (arrf[1])
-                            {
-                                case "pages":
-                                    offset = 2;
-                                    break;
-                                case "media":
-                                    offset = 8;
-                                    break;
-                                case "analytics":
-                                    offset = 12;
-                                    break;
-                                case "security":
-                                    offset = 13;
-                                    break;
-                                case "settings":
-                                    offset = 17;
-                                    break;
-                                case "installapps":
-                                    offset = 22;
-                                    break;
-                                case "designs":
-                                    offset = 24;
-                                    break;
-                            }
-                            break;
-                    }
-                }
-
-                //check for user access
-                for (int x = 0; x <= securityItems.Count - 1; x++)
-                {
-                    if (securityItems[x].feature == f)
-                    {
-                        return securityItems[x].security[index + offset];
-                    }
-                }
-
-                if (tryAgain == true & myUser.userId > 0)
-                {
-                    //get user access from database and try to authenticate again if it fails the first time
-                    myUser.GetSecurityForWebsite(websiteId, myUser.userId);
-                    if (ownerId == myUser.userId)
-                    {
-                        //user is owner of web site and has full access
-                        myUser.AddSecurity(websiteId, "full", Rennder.User.enumSecurity.readwrite);
-                    }
-                    return getWebsiteSecurityItem(feature, index, false);
+                    case "dashboard":
+                        switch (arrf[1])
+                        {
+                            case "pages":
+                                offset = 2;
+                                break;
+                            case "media":
+                                offset = 8;
+                                break;
+                            case "analytics":
+                                offset = 12;
+                                break;
+                            case "security":
+                                offset = 13;
+                                break;
+                            case "settings":
+                                offset = 17;
+                                break;
+                            case "installapps":
+                                offset = 22;
+                                break;
+                            case "designs":
+                                offset = 24;
+                                break;
+                        }
+                        break;
                 }
             }
-            catch (Exception ex)
+
+            //check for user access
+            for (int x = 0; x <= securityItems.Count - 1; x++)
             {
+                if (securityItems[x].feature == f)
+                {
+                    return securityItems[x].security[index + offset];
+                }
+            }
+
+            if (tryAgain == true & myUser.userId > 0)
+            {
+                //get user access from database and try to authenticate again if it fails the first time
+                myUser.GetSecurityForWebsite(websiteId, myUser.userId);
+                if (ownerId == myUser.userId)
+                {
+                    //user is owner of web site and has full access
+                    myUser.AddSecurity(websiteId, "full", Rennder.User.enumSecurity.readwrite);
+                }
+                return getWebsiteSecurityItem(feature, index, false);
             }
             return (nofull == false ? myUser.CheckSecurity(websiteId) : false);
             //last resort, check for admin access

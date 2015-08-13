@@ -202,7 +202,6 @@ namespace Rennder.Utility
         public string GetDomainName(string url)
         {
             string[] tmpDomain = GetSubDomainAndDomain(url).Split(new char[] { '.' },3);
-            string strDomain = "";
             if(tmpDomain.Length == 2)
             {
                 return url;
@@ -572,7 +571,6 @@ namespace Rennder.Utility
 
         public bool OnlyLettersAndNumbers(string myStr, params string[] exceptionList)
         {
-            bool functionReturnValue = false;
             bool result = false;
             for (int x = 0; x <= myStr.Length - 1; x++)
             {
@@ -606,12 +604,10 @@ namespace Rennder.Utility
                 if (result == false)
                 {
                     return false;
-                    return functionReturnValue;
                 }
             }
 
             return true;
-            return functionReturnValue;
         }
 
         public bool CheckChar(string character, bool allowAlpha = true, bool allowNumbers = true, string[] allowList = null)
@@ -651,7 +647,6 @@ namespace Rennder.Utility
 
         public bool ContainsCurseWords(string txt)
         {
-            bool functionReturnValue = false;
             string[] myCurse = new string[13];
             myCurse[0] = "fuck";
             myCurse[1] = "fukc";
@@ -673,12 +668,10 @@ namespace Rennder.Utility
                 if (newtxt.IndexOf(myCurse[x]) >= 0)
                 {
                     return true;
-                    return functionReturnValue;
                 }
             }
 
             return false;
-            return functionReturnValue;
         }
         #endregion
     }

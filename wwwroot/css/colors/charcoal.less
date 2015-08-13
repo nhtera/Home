@@ -131,6 +131,11 @@
     .interface(){
         background-color:@window-bg; color:@window-color;
 
+        a:link{color:@a-link;}
+        a:hover{color:@a-hover;}
+        a:active{color:@a-active;}
+        a:visited{color:@a-visited;}
+
         a:link use{color:@svg2-link;}
         a:hover use{color:@svg2-hover;}
         a:active use{color:@svg2-active;}
@@ -229,9 +234,25 @@
             .color();
         }
 
+        // Color Component-Select //////////////////////////////////////////////////////////////////////////////////////////////////
+        &.component-select{
+            @name:~'color2';
+            @bgcolor:#252525;
+            @hovercolor:#000000;
+            .color();
+        }
+
         // Color Component-Select Cell //////////////////////////////////////////////////////////////////////////////////////////////////
         &.component-select.forpanel{
             @name:~'color1';
+            @bgcolor:#ffd300;
+            @hovercolor:#ffc300;
+            .color();
+        }
+
+        // Color Component-Select Cell //////////////////////////////////////////////////////////////////////////////////////////////////
+        &.component-select.forpanel{
+            @name:~'color2';
             @bgcolor:#ffd300;
             @hovercolor:#ffc300;
             .color();
@@ -310,6 +331,10 @@
         @window-tab:lighten(@window-bg,4%);
         @window-tab-hover:lighten(@window-bg,8%);
         @window-tab-selected:saturate(lighten(#263039,4%),15%);
+        @a-link:#00eeb6;
+        @a-hover:#00ffc3;
+        @a-active:#00ffc3;
+        @a-visited:#00eeb6;
         @svg2-link:#ffffff;
         @svg2-hover:#33ffcc;
         @svg2-active:#00ffcc;
@@ -333,6 +358,10 @@
         @window-tab:lighten(@window-bg,4%);
         @window-tab-hover:lighten(@window-bg,8%);
         @window-tab-selected:saturate(lighten(#0099CC,4%),15%);
+        @a-link:#0093ca;
+        @a-hover:#00bbc2;
+        @a-active:#00bbc2;
+        @a-visited:#0093ca;
         @svg2-link:#444444;
         @svg2-hover:#FF8B35;
         @svg2-active:#FF8B35;
@@ -356,6 +385,10 @@
         @window-tab:lighten(@window-bg,4%);
         @window-tab-hover:lighten(@window-bg,8%);
         @window-tab-selected:saturate(lighten(#263039,4%),15%);
+        @a-link:#ffffff;
+        @a-hover:#ffffff;
+        @a-active:#ffffff;
+        @a-visited:#ffffff;
         @svg2-link:#ffffff;
         @svg2-hover:#33ffcc;
         @svg2-active:#00ffcc;
@@ -379,6 +412,10 @@
         @window-tab:lighten(@window-bg,4%);
         @window-tab-hover:lighten(@window-bg,8%);
         @window-tab-selected:saturate(lighten(#0099CC,4%),15%);
+        @a-link:#00eeb6;
+        @a-hover:#00ffc3;
+        @a-active:#00ffc3;
+        @a-visited:#00eeb6;
         @svg2-link:#444444;
         @svg2-hover:#FF8B35;
         @svg2-active:#FF8B35;
@@ -402,6 +439,10 @@
         @window-tab:lighten(@window-bg,4%);
         @window-tab-hover:lighten(@window-bg,8%);
         @window-tab-selected:saturate(lighten(#0099CC,4%),15%);
+        @a-link:#00eeb6;
+        @a-hover:#00ffc3;
+        @a-active:#00ffc3;
+        @a-visited:#00eeb6;
         @svg2-link:#444444;
         @svg2-hover:#FF8B35;
         @svg2-active:#FF8B35;
@@ -434,7 +475,7 @@
         .item:hover{background-color:@bg-color-hover;}
         .item:hover svg{color:@color-hover !important;}
     }
-    .properties{background-color:@bg-color; color:@color;}
+    .properties > .box{background-color:@bg-color; color:@color;}
     .quickmenu-item{background-color:@bg-color;}
 }
 

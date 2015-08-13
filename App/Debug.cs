@@ -5,8 +5,6 @@ namespace Rennder.Services
 {
     public class Debug:Service
     {
-        private Dictionary<string, string> Elements;
-
         public Debug(Core RennderCore, string[] path):base(RennderCore, path)
         {
         }
@@ -37,7 +35,7 @@ namespace Rennder.Services
 
             body.Add("<h1>Total Memory Used: " + totalLen.ToString("N0") + " bytes");
             
-            Elements["body"] = ("<pre>" + string.Join("</pre></div><div><pre>", body.ToArray()).Replace("\\\"", "\"").Replace("\\n", "").Replace("},", "},\n").Replace("],", "],\n") + "</pre>");
+            scaffold.Data["body"] = ("<pre>" + string.Join("</pre></div><div><pre>", body.ToArray()).Replace("\\\"", "\"").Replace("\\n", "").Replace("},", "},\n").Replace("],", "],\n") + "</pre>");
 
             //finally, scaffold debug HTML
             wr.html = scaffold.Render();

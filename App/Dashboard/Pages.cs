@@ -54,10 +54,7 @@ namespace Rennder.Services.Dashboard
             bool secureSettings = R.User.Website(R.Page.websiteId).getWebsiteSecurityItem("dashboard/pages", 3);
             bool secureDelete = R.User.Website(R.Page.websiteId).getWebsiteSecurityItem("dashboard/pages", 2);
             bool secureCreate = R.User.Website(R.Page.websiteId).getWebsiteSecurityItem("dashboard/pages", 1);
-            if (R.User.Website(R.Page.websiteId).getWebsiteSecurityItem("dashboard/pages", 0) == false)
-                return "";
-
-            string sql = null;
+            if (R.User.Website(R.Page.websiteId).getWebsiteSecurityItem("dashboard/pages", 0) == false) { return ""; }
             int start = 1;
             int length = 100;
             string parentTitle = "";
@@ -104,7 +101,6 @@ namespace Rennder.Services.Dashboard
                 string pageLink = "";
                 int pageId = 0;
                 string options = "";
-                string expander = "";
                 bool hasCreate = false;
                 int hasChildren = 0;
                 string color = "";
@@ -224,7 +220,7 @@ namespace Rennder.Services.Dashboard
                     }
                     folderIcon += "</div>";
 
-                    htm.Add("<li><div class=\"row color" + i + " item page-" + pageId + "\"><div class=\"column-row\">" + "<div class=\"" + (!string.IsNullOrEmpty(folderDiv) ? "hover-title " : "") + "left\"" + folderDiv + ">" + folderIcon + pageTitle + "</div>" + "<div class=\"hover-only right\">" + options + "</div>" + "</div><div class=\"clear\"></div></div></li>");
+                    htm.Add("<li><div class=\"row color" + i + " " + color + " item page-" + pageId + "\"><div class=\"column-row\">" + "<div class=\"" + (!string.IsNullOrEmpty(folderDiv) ? "hover-title " : "") + "left\"" + folderDiv + ">" + folderIcon + pageTitle + "</div>" + "<div class=\"hover-only right\">" + options + "</div>" + "</div><div class=\"clear\"></div></div></li>");
                 }
 
                 htm.Add("</ul>");

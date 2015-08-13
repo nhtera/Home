@@ -60,6 +60,18 @@
   background-color: #272727;
   color: #e0e0e0;
 }
+.interface a:link {
+  color: #00eeb6;
+}
+.interface a:hover {
+  color: #00ffc3;
+}
+.interface a:active {
+  color: #00ffc3;
+}
+.interface a:visited {
+  color: #00eeb6;
+}
 .interface a:link use {
   color: #ffffff;
 }
@@ -313,6 +325,66 @@
   background-color: #090707;
   border-bottom: 1px solid #030202;
 }
+.interface.component-select div.color2 {
+  background-color: #252525;
+}
+.interface.component-select div.color2 > .column-label,
+.interface.component-select div.color2 .column-icon {
+  color: rgba(224, 224, 224, 0.7);
+  background-color: #252525;
+  border-bottom: 1px solid #202020;
+}
+.interface.component-select div.color2 > .column,
+.interface.component-select div.color2 > .column-input,
+.interface.component-select div.color2 > .empty,
+.interface.component-select div.color2 .column-button {
+  background-color: #252525;
+  border-bottom: 1px solid #202020;
+}
+.interface.component-select tr.color2 td {
+  background-color: #252525;
+  border-bottom: 1px solid #202020;
+}
+.interface.component-select .row.color2:hover {
+  background-color: #000000;
+}
+.interface.component-select .row.color2:hover > .column-label,
+.interface.component-select .row.color2:hover .column-icon {
+  color: #e0e0e0;
+  background-color: #090707;
+  border-bottom: 1px solid #000000;
+}
+.interface.component-select .row.color2:hover > .column,
+.interface.component-select .row.color2:hover > .column-input,
+.interface.component-select .row.color2:hover > .empty,
+.interface.component-select .row.color2:hover .column-button {
+  background-color: #000000;
+  border-bottom: 1px solid #000000;
+}
+.interface.component-select .row:hover > div.color2 {
+  background-color: #000000;
+}
+.interface.component-select .row:hover > div.color2 > .column-label,
+.interface.component-select .row:hover > div.color2 .column-icon {
+  color: #e0e0e0;
+  background-color: #090707;
+  border-bottom: 1px solid #000000;
+}
+.interface.component-select .row:hover > div.color2 > .column,
+.interface.component-select .row:hover > div.color2 > .column-input,
+.interface.component-select .row:hover > div.color2 > .empty,
+.interface.component-select .row:hover > div.color2 .column-button {
+  background-color: #000000;
+  border-bottom: 1px solid #000000;
+}
+.interface.component-select tr.color2:hover td {
+  background-color: #000000;
+  border-bottom: 1px solid #000000;
+}
+.interface.component-select tr.color2:hover td:hover {
+  background-color: #090707;
+  border-bottom: 1px solid #030202;
+}
 .interface.component-select.forpanel div.color1 {
   background-color: #ffd300;
 }
@@ -370,6 +442,66 @@
   border-bottom: 1px solid #f5bb00;
 }
 .interface.component-select.forpanel tr.color1:hover td:hover {
+  background-color: #ffc70f;
+  border-bottom: 1px solid #ffc405;
+}
+.interface.component-select.forpanel div.color2 {
+  background-color: #ffd300;
+}
+.interface.component-select.forpanel div.color2 > .column-label,
+.interface.component-select.forpanel div.color2 .column-icon {
+  color: rgba(224, 224, 224, 0.7);
+  background-color: #ffd300;
+  border-bottom: 1px solid #f5cb00;
+}
+.interface.component-select.forpanel div.color2 > .column,
+.interface.component-select.forpanel div.color2 > .column-input,
+.interface.component-select.forpanel div.color2 > .empty,
+.interface.component-select.forpanel div.color2 .column-button {
+  background-color: #ffd300;
+  border-bottom: 1px solid #f5cb00;
+}
+.interface.component-select.forpanel tr.color2 td {
+  background-color: #ffd300;
+  border-bottom: 1px solid #f5cb00;
+}
+.interface.component-select.forpanel .row.color2:hover {
+  background-color: #ffc300;
+}
+.interface.component-select.forpanel .row.color2:hover > .column-label,
+.interface.component-select.forpanel .row.color2:hover .column-icon {
+  color: #e0e0e0;
+  background-color: #ffc70f;
+  border-bottom: 1px solid #ffc300;
+}
+.interface.component-select.forpanel .row.color2:hover > .column,
+.interface.component-select.forpanel .row.color2:hover > .column-input,
+.interface.component-select.forpanel .row.color2:hover > .empty,
+.interface.component-select.forpanel .row.color2:hover .column-button {
+  background-color: #ffc300;
+  border-bottom: 1px solid #f0b700;
+}
+.interface.component-select.forpanel .row:hover > div.color2 {
+  background-color: #ffc300;
+}
+.interface.component-select.forpanel .row:hover > div.color2 > .column-label,
+.interface.component-select.forpanel .row:hover > div.color2 .column-icon {
+  color: #e0e0e0;
+  background-color: #ffc70f;
+  border-bottom: 1px solid #ffc300;
+}
+.interface.component-select.forpanel .row:hover > div.color2 > .column,
+.interface.component-select.forpanel .row:hover > div.color2 > .column-input,
+.interface.component-select.forpanel .row:hover > div.color2 > .empty,
+.interface.component-select.forpanel .row:hover > div.color2 .column-button {
+  background-color: #ffc300;
+  border-bottom: 1px solid #f0b700;
+}
+.interface.component-select.forpanel tr.color2:hover td {
+  background-color: #ffc300;
+  border-bottom: 1px solid #f5bb00;
+}
+.interface.component-select.forpanel tr.color2:hover td:hover {
   background-color: #ffc70f;
   border-bottom: 1px solid #ffc405;
 }
@@ -797,6 +929,18 @@
   background-color: #e3e3e3;
   color: #444444;
 }
+.interface.dashboard a:link {
+  color: #0093ca;
+}
+.interface.dashboard a:hover {
+  color: #00bbc2;
+}
+.interface.dashboard a:active {
+  color: #00bbc2;
+}
+.interface.dashboard a:visited {
+  color: #0093ca;
+}
 .interface.dashboard a:link use {
   color: #444444;
 }
@@ -1050,6 +1194,66 @@
   background-color: #090707;
   border-bottom: 1px solid #030202;
 }
+.interface.dashboard.component-select div.color2 {
+  background-color: #252525;
+}
+.interface.dashboard.component-select div.color2 > .column-label,
+.interface.dashboard.component-select div.color2 .column-icon {
+  color: rgba(68, 68, 68, 0.7);
+  background-color: #252525;
+  border-bottom: 1px solid #202020;
+}
+.interface.dashboard.component-select div.color2 > .column,
+.interface.dashboard.component-select div.color2 > .column-input,
+.interface.dashboard.component-select div.color2 > .empty,
+.interface.dashboard.component-select div.color2 .column-button {
+  background-color: #252525;
+  border-bottom: 1px solid #202020;
+}
+.interface.dashboard.component-select tr.color2 td {
+  background-color: #252525;
+  border-bottom: 1px solid #202020;
+}
+.interface.dashboard.component-select .row.color2:hover {
+  background-color: #000000;
+}
+.interface.dashboard.component-select .row.color2:hover > .column-label,
+.interface.dashboard.component-select .row.color2:hover .column-icon {
+  color: #444444;
+  background-color: #090707;
+  border-bottom: 1px solid #000000;
+}
+.interface.dashboard.component-select .row.color2:hover > .column,
+.interface.dashboard.component-select .row.color2:hover > .column-input,
+.interface.dashboard.component-select .row.color2:hover > .empty,
+.interface.dashboard.component-select .row.color2:hover .column-button {
+  background-color: #000000;
+  border-bottom: 1px solid #000000;
+}
+.interface.dashboard.component-select .row:hover > div.color2 {
+  background-color: #000000;
+}
+.interface.dashboard.component-select .row:hover > div.color2 > .column-label,
+.interface.dashboard.component-select .row:hover > div.color2 .column-icon {
+  color: #444444;
+  background-color: #090707;
+  border-bottom: 1px solid #000000;
+}
+.interface.dashboard.component-select .row:hover > div.color2 > .column,
+.interface.dashboard.component-select .row:hover > div.color2 > .column-input,
+.interface.dashboard.component-select .row:hover > div.color2 > .empty,
+.interface.dashboard.component-select .row:hover > div.color2 .column-button {
+  background-color: #000000;
+  border-bottom: 1px solid #000000;
+}
+.interface.dashboard.component-select tr.color2:hover td {
+  background-color: #000000;
+  border-bottom: 1px solid #000000;
+}
+.interface.dashboard.component-select tr.color2:hover td:hover {
+  background-color: #090707;
+  border-bottom: 1px solid #030202;
+}
 .interface.dashboard.component-select.forpanel div.color1 {
   background-color: #ffd300;
 }
@@ -1107,6 +1311,66 @@
   border-bottom: 1px solid #f5bb00;
 }
 .interface.dashboard.component-select.forpanel tr.color1:hover td:hover {
+  background-color: #ffc70f;
+  border-bottom: 1px solid #ffc405;
+}
+.interface.dashboard.component-select.forpanel div.color2 {
+  background-color: #ffd300;
+}
+.interface.dashboard.component-select.forpanel div.color2 > .column-label,
+.interface.dashboard.component-select.forpanel div.color2 .column-icon {
+  color: rgba(68, 68, 68, 0.7);
+  background-color: #ffd300;
+  border-bottom: 1px solid #f5cb00;
+}
+.interface.dashboard.component-select.forpanel div.color2 > .column,
+.interface.dashboard.component-select.forpanel div.color2 > .column-input,
+.interface.dashboard.component-select.forpanel div.color2 > .empty,
+.interface.dashboard.component-select.forpanel div.color2 .column-button {
+  background-color: #ffd300;
+  border-bottom: 1px solid #f5cb00;
+}
+.interface.dashboard.component-select.forpanel tr.color2 td {
+  background-color: #ffd300;
+  border-bottom: 1px solid #f5cb00;
+}
+.interface.dashboard.component-select.forpanel .row.color2:hover {
+  background-color: #ffc300;
+}
+.interface.dashboard.component-select.forpanel .row.color2:hover > .column-label,
+.interface.dashboard.component-select.forpanel .row.color2:hover .column-icon {
+  color: #444444;
+  background-color: #ffc70f;
+  border-bottom: 1px solid #ffc300;
+}
+.interface.dashboard.component-select.forpanel .row.color2:hover > .column,
+.interface.dashboard.component-select.forpanel .row.color2:hover > .column-input,
+.interface.dashboard.component-select.forpanel .row.color2:hover > .empty,
+.interface.dashboard.component-select.forpanel .row.color2:hover .column-button {
+  background-color: #ffc300;
+  border-bottom: 1px solid #f0b700;
+}
+.interface.dashboard.component-select.forpanel .row:hover > div.color2 {
+  background-color: #ffc300;
+}
+.interface.dashboard.component-select.forpanel .row:hover > div.color2 > .column-label,
+.interface.dashboard.component-select.forpanel .row:hover > div.color2 .column-icon {
+  color: #444444;
+  background-color: #ffc70f;
+  border-bottom: 1px solid #ffc300;
+}
+.interface.dashboard.component-select.forpanel .row:hover > div.color2 > .column,
+.interface.dashboard.component-select.forpanel .row:hover > div.color2 > .column-input,
+.interface.dashboard.component-select.forpanel .row:hover > div.color2 > .empty,
+.interface.dashboard.component-select.forpanel .row:hover > div.color2 .column-button {
+  background-color: #ffc300;
+  border-bottom: 1px solid #f0b700;
+}
+.interface.dashboard.component-select.forpanel tr.color2:hover td {
+  background-color: #ffc300;
+  border-bottom: 1px solid #f5bb00;
+}
+.interface.dashboard.component-select.forpanel tr.color2:hover td:hover {
   background-color: #ffc70f;
   border-bottom: 1px solid #ffc405;
 }
@@ -1534,6 +1798,18 @@
   background-color: #50606b;
   color: #ffffff;
 }
+.interface .dash-menu a:link {
+  color: #ffffff;
+}
+.interface .dash-menu a:hover {
+  color: #ffffff;
+}
+.interface .dash-menu a:active {
+  color: #ffffff;
+}
+.interface .dash-menu a:visited {
+  color: #ffffff;
+}
 .interface .dash-menu a:link use {
   color: #ffffff;
 }
@@ -1787,6 +2063,66 @@
   background-color: #090707;
   border-bottom: 1px solid #030202;
 }
+.interface .dash-menu.component-select div.color2 {
+  background-color: #252525;
+}
+.interface .dash-menu.component-select div.color2 > .column-label,
+.interface .dash-menu.component-select div.color2 .column-icon {
+  color: rgba(255, 255, 255, 0.7);
+  background-color: #252525;
+  border-bottom: 1px solid #202020;
+}
+.interface .dash-menu.component-select div.color2 > .column,
+.interface .dash-menu.component-select div.color2 > .column-input,
+.interface .dash-menu.component-select div.color2 > .empty,
+.interface .dash-menu.component-select div.color2 .column-button {
+  background-color: #252525;
+  border-bottom: 1px solid #202020;
+}
+.interface .dash-menu.component-select tr.color2 td {
+  background-color: #252525;
+  border-bottom: 1px solid #202020;
+}
+.interface .dash-menu.component-select .row.color2:hover {
+  background-color: #000000;
+}
+.interface .dash-menu.component-select .row.color2:hover > .column-label,
+.interface .dash-menu.component-select .row.color2:hover .column-icon {
+  color: #ffffff;
+  background-color: #090707;
+  border-bottom: 1px solid #000000;
+}
+.interface .dash-menu.component-select .row.color2:hover > .column,
+.interface .dash-menu.component-select .row.color2:hover > .column-input,
+.interface .dash-menu.component-select .row.color2:hover > .empty,
+.interface .dash-menu.component-select .row.color2:hover .column-button {
+  background-color: #000000;
+  border-bottom: 1px solid #000000;
+}
+.interface .dash-menu.component-select .row:hover > div.color2 {
+  background-color: #000000;
+}
+.interface .dash-menu.component-select .row:hover > div.color2 > .column-label,
+.interface .dash-menu.component-select .row:hover > div.color2 .column-icon {
+  color: #ffffff;
+  background-color: #090707;
+  border-bottom: 1px solid #000000;
+}
+.interface .dash-menu.component-select .row:hover > div.color2 > .column,
+.interface .dash-menu.component-select .row:hover > div.color2 > .column-input,
+.interface .dash-menu.component-select .row:hover > div.color2 > .empty,
+.interface .dash-menu.component-select .row:hover > div.color2 .column-button {
+  background-color: #000000;
+  border-bottom: 1px solid #000000;
+}
+.interface .dash-menu.component-select tr.color2:hover td {
+  background-color: #000000;
+  border-bottom: 1px solid #000000;
+}
+.interface .dash-menu.component-select tr.color2:hover td:hover {
+  background-color: #090707;
+  border-bottom: 1px solid #030202;
+}
 .interface .dash-menu.component-select.forpanel div.color1 {
   background-color: #ffd300;
 }
@@ -1844,6 +2180,66 @@
   border-bottom: 1px solid #f5bb00;
 }
 .interface .dash-menu.component-select.forpanel tr.color1:hover td:hover {
+  background-color: #ffc70f;
+  border-bottom: 1px solid #ffc405;
+}
+.interface .dash-menu.component-select.forpanel div.color2 {
+  background-color: #ffd300;
+}
+.interface .dash-menu.component-select.forpanel div.color2 > .column-label,
+.interface .dash-menu.component-select.forpanel div.color2 .column-icon {
+  color: rgba(255, 255, 255, 0.7);
+  background-color: #ffd300;
+  border-bottom: 1px solid #f5cb00;
+}
+.interface .dash-menu.component-select.forpanel div.color2 > .column,
+.interface .dash-menu.component-select.forpanel div.color2 > .column-input,
+.interface .dash-menu.component-select.forpanel div.color2 > .empty,
+.interface .dash-menu.component-select.forpanel div.color2 .column-button {
+  background-color: #ffd300;
+  border-bottom: 1px solid #f5cb00;
+}
+.interface .dash-menu.component-select.forpanel tr.color2 td {
+  background-color: #ffd300;
+  border-bottom: 1px solid #f5cb00;
+}
+.interface .dash-menu.component-select.forpanel .row.color2:hover {
+  background-color: #ffc300;
+}
+.interface .dash-menu.component-select.forpanel .row.color2:hover > .column-label,
+.interface .dash-menu.component-select.forpanel .row.color2:hover .column-icon {
+  color: #ffffff;
+  background-color: #ffc70f;
+  border-bottom: 1px solid #ffc300;
+}
+.interface .dash-menu.component-select.forpanel .row.color2:hover > .column,
+.interface .dash-menu.component-select.forpanel .row.color2:hover > .column-input,
+.interface .dash-menu.component-select.forpanel .row.color2:hover > .empty,
+.interface .dash-menu.component-select.forpanel .row.color2:hover .column-button {
+  background-color: #ffc300;
+  border-bottom: 1px solid #f0b700;
+}
+.interface .dash-menu.component-select.forpanel .row:hover > div.color2 {
+  background-color: #ffc300;
+}
+.interface .dash-menu.component-select.forpanel .row:hover > div.color2 > .column-label,
+.interface .dash-menu.component-select.forpanel .row:hover > div.color2 .column-icon {
+  color: #ffffff;
+  background-color: #ffc70f;
+  border-bottom: 1px solid #ffc300;
+}
+.interface .dash-menu.component-select.forpanel .row:hover > div.color2 > .column,
+.interface .dash-menu.component-select.forpanel .row:hover > div.color2 > .column-input,
+.interface .dash-menu.component-select.forpanel .row:hover > div.color2 > .empty,
+.interface .dash-menu.component-select.forpanel .row:hover > div.color2 .column-button {
+  background-color: #ffc300;
+  border-bottom: 1px solid #f0b700;
+}
+.interface .dash-menu.component-select.forpanel tr.color2:hover td {
+  background-color: #ffc300;
+  border-bottom: 1px solid #f5bb00;
+}
+.interface .dash-menu.component-select.forpanel tr.color2:hover td:hover {
   background-color: #ffc70f;
   border-bottom: 1px solid #ffc405;
 }
@@ -2271,6 +2667,18 @@
   background-color: #e3e3e3;
   color: #444444;
 }
+.interface .dash-box a:link {
+  color: #00eeb6;
+}
+.interface .dash-box a:hover {
+  color: #00ffc3;
+}
+.interface .dash-box a:active {
+  color: #00ffc3;
+}
+.interface .dash-box a:visited {
+  color: #00eeb6;
+}
 .interface .dash-box a:link use {
   color: #444444;
 }
@@ -2524,6 +2932,66 @@
   background-color: #090707;
   border-bottom: 1px solid #030202;
 }
+.interface .dash-box.component-select div.color2 {
+  background-color: #252525;
+}
+.interface .dash-box.component-select div.color2 > .column-label,
+.interface .dash-box.component-select div.color2 .column-icon {
+  color: rgba(68, 68, 68, 0.7);
+  background-color: #252525;
+  border-bottom: 1px solid #202020;
+}
+.interface .dash-box.component-select div.color2 > .column,
+.interface .dash-box.component-select div.color2 > .column-input,
+.interface .dash-box.component-select div.color2 > .empty,
+.interface .dash-box.component-select div.color2 .column-button {
+  background-color: #252525;
+  border-bottom: 1px solid #202020;
+}
+.interface .dash-box.component-select tr.color2 td {
+  background-color: #252525;
+  border-bottom: 1px solid #202020;
+}
+.interface .dash-box.component-select .row.color2:hover {
+  background-color: #000000;
+}
+.interface .dash-box.component-select .row.color2:hover > .column-label,
+.interface .dash-box.component-select .row.color2:hover .column-icon {
+  color: #444444;
+  background-color: #090707;
+  border-bottom: 1px solid #000000;
+}
+.interface .dash-box.component-select .row.color2:hover > .column,
+.interface .dash-box.component-select .row.color2:hover > .column-input,
+.interface .dash-box.component-select .row.color2:hover > .empty,
+.interface .dash-box.component-select .row.color2:hover .column-button {
+  background-color: #000000;
+  border-bottom: 1px solid #000000;
+}
+.interface .dash-box.component-select .row:hover > div.color2 {
+  background-color: #000000;
+}
+.interface .dash-box.component-select .row:hover > div.color2 > .column-label,
+.interface .dash-box.component-select .row:hover > div.color2 .column-icon {
+  color: #444444;
+  background-color: #090707;
+  border-bottom: 1px solid #000000;
+}
+.interface .dash-box.component-select .row:hover > div.color2 > .column,
+.interface .dash-box.component-select .row:hover > div.color2 > .column-input,
+.interface .dash-box.component-select .row:hover > div.color2 > .empty,
+.interface .dash-box.component-select .row:hover > div.color2 .column-button {
+  background-color: #000000;
+  border-bottom: 1px solid #000000;
+}
+.interface .dash-box.component-select tr.color2:hover td {
+  background-color: #000000;
+  border-bottom: 1px solid #000000;
+}
+.interface .dash-box.component-select tr.color2:hover td:hover {
+  background-color: #090707;
+  border-bottom: 1px solid #030202;
+}
 .interface .dash-box.component-select.forpanel div.color1 {
   background-color: #ffd300;
 }
@@ -2581,6 +3049,66 @@
   border-bottom: 1px solid #f5bb00;
 }
 .interface .dash-box.component-select.forpanel tr.color1:hover td:hover {
+  background-color: #ffc70f;
+  border-bottom: 1px solid #ffc405;
+}
+.interface .dash-box.component-select.forpanel div.color2 {
+  background-color: #ffd300;
+}
+.interface .dash-box.component-select.forpanel div.color2 > .column-label,
+.interface .dash-box.component-select.forpanel div.color2 .column-icon {
+  color: rgba(68, 68, 68, 0.7);
+  background-color: #ffd300;
+  border-bottom: 1px solid #f5cb00;
+}
+.interface .dash-box.component-select.forpanel div.color2 > .column,
+.interface .dash-box.component-select.forpanel div.color2 > .column-input,
+.interface .dash-box.component-select.forpanel div.color2 > .empty,
+.interface .dash-box.component-select.forpanel div.color2 .column-button {
+  background-color: #ffd300;
+  border-bottom: 1px solid #f5cb00;
+}
+.interface .dash-box.component-select.forpanel tr.color2 td {
+  background-color: #ffd300;
+  border-bottom: 1px solid #f5cb00;
+}
+.interface .dash-box.component-select.forpanel .row.color2:hover {
+  background-color: #ffc300;
+}
+.interface .dash-box.component-select.forpanel .row.color2:hover > .column-label,
+.interface .dash-box.component-select.forpanel .row.color2:hover .column-icon {
+  color: #444444;
+  background-color: #ffc70f;
+  border-bottom: 1px solid #ffc300;
+}
+.interface .dash-box.component-select.forpanel .row.color2:hover > .column,
+.interface .dash-box.component-select.forpanel .row.color2:hover > .column-input,
+.interface .dash-box.component-select.forpanel .row.color2:hover > .empty,
+.interface .dash-box.component-select.forpanel .row.color2:hover .column-button {
+  background-color: #ffc300;
+  border-bottom: 1px solid #f0b700;
+}
+.interface .dash-box.component-select.forpanel .row:hover > div.color2 {
+  background-color: #ffc300;
+}
+.interface .dash-box.component-select.forpanel .row:hover > div.color2 > .column-label,
+.interface .dash-box.component-select.forpanel .row:hover > div.color2 .column-icon {
+  color: #444444;
+  background-color: #ffc70f;
+  border-bottom: 1px solid #ffc300;
+}
+.interface .dash-box.component-select.forpanel .row:hover > div.color2 > .column,
+.interface .dash-box.component-select.forpanel .row:hover > div.color2 > .column-input,
+.interface .dash-box.component-select.forpanel .row:hover > div.color2 > .empty,
+.interface .dash-box.component-select.forpanel .row:hover > div.color2 .column-button {
+  background-color: #ffc300;
+  border-bottom: 1px solid #f0b700;
+}
+.interface .dash-box.component-select.forpanel tr.color2:hover td {
+  background-color: #ffc300;
+  border-bottom: 1px solid #f5bb00;
+}
+.interface .dash-box.component-select.forpanel tr.color2:hover td:hover {
   background-color: #ffc70f;
   border-bottom: 1px solid #ffc405;
 }
@@ -3008,6 +3536,18 @@
   background-color: #e3e3e3;
   color: #444444;
 }
+.interface .dash-box2 a:link {
+  color: #00eeb6;
+}
+.interface .dash-box2 a:hover {
+  color: #00ffc3;
+}
+.interface .dash-box2 a:active {
+  color: #00ffc3;
+}
+.interface .dash-box2 a:visited {
+  color: #00eeb6;
+}
 .interface .dash-box2 a:link use {
   color: #444444;
 }
@@ -3261,6 +3801,66 @@
   background-color: #090707;
   border-bottom: 1px solid #030202;
 }
+.interface .dash-box2.component-select div.color2 {
+  background-color: #252525;
+}
+.interface .dash-box2.component-select div.color2 > .column-label,
+.interface .dash-box2.component-select div.color2 .column-icon {
+  color: rgba(68, 68, 68, 0.7);
+  background-color: #252525;
+  border-bottom: 1px solid #202020;
+}
+.interface .dash-box2.component-select div.color2 > .column,
+.interface .dash-box2.component-select div.color2 > .column-input,
+.interface .dash-box2.component-select div.color2 > .empty,
+.interface .dash-box2.component-select div.color2 .column-button {
+  background-color: #252525;
+  border-bottom: 1px solid #202020;
+}
+.interface .dash-box2.component-select tr.color2 td {
+  background-color: #252525;
+  border-bottom: 1px solid #202020;
+}
+.interface .dash-box2.component-select .row.color2:hover {
+  background-color: #000000;
+}
+.interface .dash-box2.component-select .row.color2:hover > .column-label,
+.interface .dash-box2.component-select .row.color2:hover .column-icon {
+  color: #444444;
+  background-color: #090707;
+  border-bottom: 1px solid #000000;
+}
+.interface .dash-box2.component-select .row.color2:hover > .column,
+.interface .dash-box2.component-select .row.color2:hover > .column-input,
+.interface .dash-box2.component-select .row.color2:hover > .empty,
+.interface .dash-box2.component-select .row.color2:hover .column-button {
+  background-color: #000000;
+  border-bottom: 1px solid #000000;
+}
+.interface .dash-box2.component-select .row:hover > div.color2 {
+  background-color: #000000;
+}
+.interface .dash-box2.component-select .row:hover > div.color2 > .column-label,
+.interface .dash-box2.component-select .row:hover > div.color2 .column-icon {
+  color: #444444;
+  background-color: #090707;
+  border-bottom: 1px solid #000000;
+}
+.interface .dash-box2.component-select .row:hover > div.color2 > .column,
+.interface .dash-box2.component-select .row:hover > div.color2 > .column-input,
+.interface .dash-box2.component-select .row:hover > div.color2 > .empty,
+.interface .dash-box2.component-select .row:hover > div.color2 .column-button {
+  background-color: #000000;
+  border-bottom: 1px solid #000000;
+}
+.interface .dash-box2.component-select tr.color2:hover td {
+  background-color: #000000;
+  border-bottom: 1px solid #000000;
+}
+.interface .dash-box2.component-select tr.color2:hover td:hover {
+  background-color: #090707;
+  border-bottom: 1px solid #030202;
+}
 .interface .dash-box2.component-select.forpanel div.color1 {
   background-color: #ffd300;
 }
@@ -3318,6 +3918,66 @@
   border-bottom: 1px solid #f5bb00;
 }
 .interface .dash-box2.component-select.forpanel tr.color1:hover td:hover {
+  background-color: #ffc70f;
+  border-bottom: 1px solid #ffc405;
+}
+.interface .dash-box2.component-select.forpanel div.color2 {
+  background-color: #ffd300;
+}
+.interface .dash-box2.component-select.forpanel div.color2 > .column-label,
+.interface .dash-box2.component-select.forpanel div.color2 .column-icon {
+  color: rgba(68, 68, 68, 0.7);
+  background-color: #ffd300;
+  border-bottom: 1px solid #f5cb00;
+}
+.interface .dash-box2.component-select.forpanel div.color2 > .column,
+.interface .dash-box2.component-select.forpanel div.color2 > .column-input,
+.interface .dash-box2.component-select.forpanel div.color2 > .empty,
+.interface .dash-box2.component-select.forpanel div.color2 .column-button {
+  background-color: #ffd300;
+  border-bottom: 1px solid #f5cb00;
+}
+.interface .dash-box2.component-select.forpanel tr.color2 td {
+  background-color: #ffd300;
+  border-bottom: 1px solid #f5cb00;
+}
+.interface .dash-box2.component-select.forpanel .row.color2:hover {
+  background-color: #ffc300;
+}
+.interface .dash-box2.component-select.forpanel .row.color2:hover > .column-label,
+.interface .dash-box2.component-select.forpanel .row.color2:hover .column-icon {
+  color: #444444;
+  background-color: #ffc70f;
+  border-bottom: 1px solid #ffc300;
+}
+.interface .dash-box2.component-select.forpanel .row.color2:hover > .column,
+.interface .dash-box2.component-select.forpanel .row.color2:hover > .column-input,
+.interface .dash-box2.component-select.forpanel .row.color2:hover > .empty,
+.interface .dash-box2.component-select.forpanel .row.color2:hover .column-button {
+  background-color: #ffc300;
+  border-bottom: 1px solid #f0b700;
+}
+.interface .dash-box2.component-select.forpanel .row:hover > div.color2 {
+  background-color: #ffc300;
+}
+.interface .dash-box2.component-select.forpanel .row:hover > div.color2 > .column-label,
+.interface .dash-box2.component-select.forpanel .row:hover > div.color2 .column-icon {
+  color: #444444;
+  background-color: #ffc70f;
+  border-bottom: 1px solid #ffc300;
+}
+.interface .dash-box2.component-select.forpanel .row:hover > div.color2 > .column,
+.interface .dash-box2.component-select.forpanel .row:hover > div.color2 > .column-input,
+.interface .dash-box2.component-select.forpanel .row:hover > div.color2 > .empty,
+.interface .dash-box2.component-select.forpanel .row:hover > div.color2 .column-button {
+  background-color: #ffc300;
+  border-bottom: 1px solid #f0b700;
+}
+.interface .dash-box2.component-select.forpanel tr.color2:hover td {
+  background-color: #ffc300;
+  border-bottom: 1px solid #f5bb00;
+}
+.interface .dash-box2.component-select.forpanel tr.color2:hover td:hover {
   background-color: #ffc70f;
   border-bottom: 1px solid #ffc405;
 }
@@ -3775,7 +4435,7 @@
 .component-select .menu .item:hover svg {
   color: #33ffcc !important;
 }
-.component-select .properties {
+.component-select .properties > .box {
   background-color: #252525;
   color: #dddddd;
 }

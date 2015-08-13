@@ -1,6 +1,5 @@
 /// Rennder Platform : view.js ///
 /// <reference path="global.js" />
-/// <reference path="responsive.js" />
 var R = {
     init:function(ajax, viewstateid, title){
         R.page.useAjax = ajax;
@@ -144,7 +143,7 @@ var R = {
     },
 
     layers: {
-        cache: [{ pageId: '', title: '', pageType: 1 }],
+        cache: new Array(),
 
         add: function (pageId, title, pageType) {
             for (x = 0; x < this.cache.length; x++){

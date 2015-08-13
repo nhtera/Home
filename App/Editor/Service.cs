@@ -263,7 +263,7 @@ namespace Rennder.Services
             Panel panel = R.Page.GetPanelByName(panelId);
 
             //render new component
-            comp = R.Page.LoadComponent(componentId, x, y, true, "0", "0", "", "", "", true, panel, "/content/websites/" + R.Page.ownerId + "/pages/" + R.Page.pageId, -1,1, R.Page.pageId, 1, true);
+            comp = R.Page.LoadComponent(componentId, "", "", "", panel, "/content/websites/" + R.Page.ownerId + "/pages/" + R.Page.pageId, 1, R.Page.pageId, 1, true, "", "");
             if(comp == null) { return response; }
             response.html = comp.Render();
 

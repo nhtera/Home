@@ -143,64 +143,117 @@
             </div>
         </div>
         <div class="properties" style="display:none">
-            <div class="section-position" style="width:200px; height:117px;">
-                <div class="row color1">
-                    <div class="column-label">X Align</div>
-                    <div class="column-input">
-                        <select id="lstPropsAlign" onchange="R.editor.components.menu.save.position()">
-                            <option value="left">Left</option>
-                            <option value="center">Center</option>
-                            <option value="right">Right</option>
-                        </select>
+            <div class="box">
+                <div class="row" id="divPropsPosScreen" style="display:none;">
+                    <div class="column-row">
+                    </div>
+                </div>
+                <div class="section-position" style="width:200px;">
+                    <div class="row column-title">Position</div>
+
+                    <div class="row color1">
+                        <div class="column-label">Align X</div>
+                        <div class="column-input">
+                            <select id="lstPropsAlignX" onchange="R.editor.components.menu.save.position()">
+                                <option value="l">Left</option>
+                                <option value="c">Center</option>
+                                <option value="r">Right</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row color2">
+                        <div class="column-label">Align Y</div>
+                        <div class="column-input">
+                            <select id="lstPropsAlignY" onchange="R.editor.components.menu.save.position()">
+                                <option value="t">Top</option>
+                                <option value="f">Fixed</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row color2" id="alignYfixed" style="display:none;">
+                        <div class="column-label">Fixed</div>
+                        <div class="column-input">
+                            <select id="lstPropsFixed" onchange="R.editor.components.menu.save.position()">
+                                <option value="t">Top</option>
+                                <option value="m">Middle</option>
+                                <option value="b">Bottom</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row color1">
+                        <div class="column-label">Width</div>
+                        <div class="column-input">
+                            <select id="lstPropsPosWidth" onchange="R.editor.components.menu.save.position()">
+                                <option value="px">Pixels</option>
+                                <option value="%">Percent</option>
+                                <option value="win">Window</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row color2">
+                        <div class="column-label">Height</div>
+                        <div class="column-input">
+                            <select id="lstPropsPosHeight" onchange="R.editor.components.menu.save.position()">
+                                <option value="px">Auto</option>
+                                <option value="px">Pixels</option>
+                                <option value="win">Window</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row color1">
+                        <div class="column-label">Padding</div>
+                        <div class="column-input label" id="divPropsPadding"><a href="javascript:" onclick="R.editor.components.menu.show('padding')">0px 0px 0px 0px</a></div>
+                    </div>
+
+
+                </div>
+
+                <div class="section-padding" style="width:185px;">
+                    <div class="row column-title">Padding</div>
+                    <div class="row color1">
+                        <div class="column-label">Top</div>
+                        <div class="column-input">
+                            <input type="text" id="txtPosPadTop" value="0" />px
+                        </div>
+                    </div>
+                    <div class="row color2">
+                        <div class="column-label">Right</div>
+                        <div class="column-input">
+                            <input type="text" id="txtPosPadRight" value="0" />px
+                        </div>
+                    </div>
+                    <div class="row color1">
+                        <div class="column-label">Bottom</div>
+                        <div class="column-input">
+                            <input type="text" id="txtPosPadBottom" value="0" />px
+                        </div>
+                    </div>
+                    <div class="row color2">
+                        <div class="column-label">Left</div>
+                        <div class="column-input">
+                            <input type="text" id="txtPosPadLeft" value="0" />px
+                        </div>
                     </div>
                 </div>
 
-                <div class="row color2">
-                    <div class="column-label">Y Align</div>
-                    <div class="column-input">
-                        <select id="lstPropsAlignY" onchange="R.editor.components.menu.save.position()">
-                            <option value="t">Top</option>
-                            <option value="m">Middle</option>
-                            <option value="b">Bottom</option>
-                            <option value="f">Fixed Top</option>
-                            <option value="fm">Fixed Middle</option>
-                            <option value="fb">Fixed Bottom</option>
-                        </select>
-                    </div>
+                <div class="section-layer">
+                    <div class="row column-title">Layer</div>
                 </div>
 
-                <div class="row color2">
-                    <div class="column-label">Width</div>
-                    <div class="column-input">
-                        <select id="lstPropsPosWidth" onchange="R.editor.components.menu.save.position()">
-                            <option value="px">Pixels</option>
-                            <option value="%">Percent</option>
-                        </select>
-                    </div>
+                <div class="section-css">
+                    <div class="row column-title">Custom CSS</div>
                 </div>
 
-                <div class="row color1">
-                    <div class="column-label">Height</div>
-                    <div class="column-input">
-                        <select id="lstPropsPosHeight" onchange="R.editor.components.menu.save.position()">
-                            <option value="px">Use Pixels</option>
-                            <option value="win">Window</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="column-row font-faded" id="divPropsPosScreen" style="text-align:right;"></div>
+                <div class="section-style">
+                    <div class="row column-title">Styling</div>
                 </div>
             </div>
-
-            <div class="section-layer" style="width:185px; height:117px;">
-                test
-            </div>
-
-            <div class="section-style" style="width:185px; height:117px;">
-                test 2
-            </div>
+            <div class="barrier">&nbsp;</div>
         </div>
         <div class="quickmenu"></div>
         <div class="addons"></div>

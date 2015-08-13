@@ -144,9 +144,7 @@ R.editor = {
             if (sizeIndex == -1) {
                 sizeIndex = R.editor.viewport.level;
             }
-            console.log(sizeIndex + ', ' + R.editor.viewport.level);
             var next = sizeIndex > 0 ? sizeIndex - 1 : 4;
-            console.log(next);
             R.editor.viewport.view(next);
         },
 
@@ -1212,8 +1210,15 @@ R.editor = {
                 }
 
                 //modify component select
-                $('.component-select .menu, .component-select .arrow-down, .editor .windows').hide();
+                $('.component-select .menu, .component-select .properties, .component-select .arrow-down, .editor .windows').hide();
                 $('.component-select').stop().css({ opacity: 0.3 });
+
+                //create barrier on page
+                var div = document.createElement('div');
+                div.className = 'barrier';
+                div.style.width = R.window.absolute.w + 'px';
+                div.style.height = R.window.absolute.h + 'px';
+                $('.editor').append(div);
 
                 //bind document mouse events
                 $(document).bind('mousemove', R.editor.components.resize.go);
@@ -1287,6 +1292,7 @@ R.editor = {
 
             end: function () {
                 R.editor.components.resize.options.started = false;
+                $('.editor > .barrier').remove();
 
                 //save responsive changes 
                 R.editor.components.save.resize(R.editor.components.resize.options.elem);
@@ -1444,6 +1450,7 @@ R.editor = {
         },
 
         mouseLeave: function (e) {
+            return;
             if (R.editor.enabled == false) { return; }
             if (R.editor.components.disabled == true) { return; }
                 R.editor.components.hideSelect('leave');
@@ -1588,7 +1595,6 @@ R.editor = {
         nudge: function (dir, speed) {
             if (this.hovered != null) {
                 var c = this.hovered;
-                console.log(dir);
                 if (c.style.top == '') { c.style.top = "0px"; }
                 if (c.style.left == '') { c.style.left = "0px"; }
                 switch (dir) {
@@ -1747,11 +1753,12 @@ R.editor = {
                 var p = $('.component-select .properties');
                 if ($('.component-select .section-' + tab)[0].style.display != 'none' && p[0].style.display != 'none') { this.hide(tab); return; }
                 this.hideAll();
-                $('.component-select .section-position, .component-select .section-layer, .component-select .section-style').hide();
+                $('.component-select .section-position, .component-select .section-layer, .component-select .section-style, .component-select .section-padding, .component-select .section-css').hide();
                 $('.component-select .section-' + tab).show();
                 p.css({ opacity: 0, width:'' }).show();
                 var cPos = R.elem.pos(R.editor.components.hovered), pPos = R.elem.offset(p[0]), 
-                    mPos = R.elem.offset($('.component-select .menu')[0]), options = R.editor.components.resize.options;
+                    mPos = R.elem.offset($('.component-select .menu')[0]),
+                    options = R.editor.components.resize.options;
                 var pos = { x: mPos.x + mPos.w, y: 0 }
                 if (options.inner.right == true) {
                     //display window inside component select next to menu
@@ -1764,7 +1771,7 @@ R.editor = {
                         p.css({ opacity: 1, left: pos.x - pPos.w, top: options.border + 3 });
                     } else {
                         //display window outside component next to menu
-                        p.css({ opacity: 1, left: pos.x - options.border, top: 0 });
+                        p.css({ opacity: 1, left: pos.x - options.border + 2, top: 0 });
                     }
 
                 }
@@ -1860,7 +1867,13 @@ R.editor = {
 
             save: {
                 position: function () {
-
+                    //get values from component menu
+                    var c = R.editor.components.hovered;
+                    var alignx = $('#lstPropsAlignX').val();
+                    var aligny = $('#lstPropsAlignY').val();
+                    var width = $('#lstPropsWidth').val();
+                    var height = $('#lstPropsHeight').val();
+                    var pos = R.elem.innerPos(c);
                 },
 
                 layer: function () {

@@ -1,1 +1,0 @@
-/// Rennder Platform : fixes.js ///

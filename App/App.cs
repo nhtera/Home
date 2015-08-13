@@ -61,21 +61,6 @@
                 R.Page.LoadPageFromId(R.Page.pageId);
                 R.Page.Render();
                 return R.Page.PageRequest;
-
-
-                string newHash = "";
-                if (arrHash.Length > 1)
-                {
-                    for (int x = 0; x <= arrHash.Length - 1; x++)
-                    {
-                        if (x > 0)
-                            newHash += "/";
-                        newHash += arrHash[x];
-                    }
-                }
-
-                if (!string.IsNullOrEmpty(newHash))
-                    return ParseHash(newHash, true);
             }
 
             return new PageRequest();
