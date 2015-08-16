@@ -271,7 +271,7 @@ namespace Rennder.Services
             string js = "(function(){var c = $('#c" + comp.itemId + "');" + 
                         "var options = {maxWidth:" + comp.defaultWidth + "};" + 
                         "c.css(options);" +
-                        "})();R.components.add('" + comp.itemId + "','" + componentId + "');";
+                        "})();R.components.add('" + comp.itemId + "','" + componentId + "', '', '');";
 
             R.Page.RegisterJS("newcomp", js);
             response.js = CompileJs();

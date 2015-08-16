@@ -30,7 +30,7 @@
                 </a>
             </div>
             <div class="screens">
-                <a href="javascript:" onclick="R.editor.viewport.nextLevel();" oncontextmenu="R.editor.viewport.previousLevel();return false;">
+                <a href="javascript:" onclick="R.viewport.nextLevel();" oncontextmenu="R.viewport.previousLevel();return false;">
                     <svg viewBox="0 0 33 25">
                         <use xlink:href="#icon-screenhd" x="0" y="0" width="33" height="25" />
                     </svg>
@@ -198,7 +198,7 @@
                         <div class="column-label">Height</div>
                         <div class="column-input">
                             <select id="lstPropsPosHeight" onchange="R.editor.components.menu.save.position()">
-                                <option value="px">Auto</option>
+                                <option value="auto">Auto</option>
                                 <option value="px">Pixels</option>
                                 <option value="win">Window</option>
                             </select>
@@ -218,25 +218,25 @@
                     <div class="row color1">
                         <div class="column-label">Top</div>
                         <div class="column-input">
-                            <input type="text" id="txtPosPadTop" value="0" />px
+                            <input type="text" id="txtPosPadTop" onkeyup="R.editor.components.menu.save.position()" />px
                         </div>
                     </div>
                     <div class="row color2">
                         <div class="column-label">Right</div>
                         <div class="column-input">
-                            <input type="text" id="txtPosPadRight" value="0" />px
+                            <input type="text" id="txtPosPadRight" onkeyup="R.editor.components.menu.save.position()" />px
                         </div>
                     </div>
                     <div class="row color1">
                         <div class="column-label">Bottom</div>
                         <div class="column-input">
-                            <input type="text" id="txtPosPadBottom" value="0" />px
+                            <input type="text" id="txtPosPadBottom" onkeyup="R.editor.components.menu.save.position()" />px
                         </div>
                     </div>
                     <div class="row color2">
                         <div class="column-label">Left</div>
                         <div class="column-input">
-                            <input type="text" id="txtPosPadLeft" value="0" />px
+                            <input type="text" id="txtPosPadLeft" onkeyup="R.editor.components.menu.save.position()" />px
                         </div>
                     </div>
                 </div>

@@ -1103,7 +1103,7 @@ namespace Rennder
                     comp = LoadComponent(compName, content, design, itemId, myPanel, wf, zIndex, pid, ptype, false , position, css);
                     if(comp != null)
                     {
-                        js += "R.components.add('" + itemId + "', '" + compName + "'); ";
+                        js += "R.components.add('" + itemId + "', '" + compName + "', '" + position + "', '" + css + "'); ";
                         if (R.isWebService == true & comp != null)
                         {
                             PageComponent newC = new PageComponent();
@@ -1285,29 +1285,45 @@ namespace Rennder
                 switch (pos[0]) //x-type
                 {
                     case "l":
-                        css += "float:left; ";
+                        css += "float:left; display:block;";
                         break;
 
                     case "c":
-                        css += "margin:0px auto; ";
+                        css += "float:none; display:inline-block;";
                         break;
 
                     case "r":
-                        css += "float:right; ";
+                        css += "float:right; display:block;";
                         break;
                 }
                 //x-offset
-                if(!string.IsNullOrEmpty(pos[1])) { css += "left:" + pos[1] + "px; "; }
+                if(!string.IsNullOrEmpty(pos[1])) {
+                    css += "left:" + pos[1] + "px; ";
+                }
+                else
+                {
+                    css += "left:0px; ";
+                }
 
                 switch (pos[2]) //y-type
                 {
                     case "f":
-                        css += "position:fixed;";
+                        css += "position:fixed; ";
+                        break;
+                    default:
+                        css += "position:relative; ";
                         break;
                 }
 
                 //y-offset
-                if (!string.IsNullOrEmpty(pos[3])) { css += "top:" + pos[3] + "px; "; }
+                if (!string.IsNullOrEmpty(pos[3]))
+                {
+                    css += "top:" + pos[3] + "px; ";
+                }
+                else
+                {
+                    css += "top:0px; ";
+                }
 
                 switch (pos[4]) //fixed-type
                 {
@@ -1316,7 +1332,10 @@ namespace Rennder
                         break;
 
                     case "b":
-                        css += "bottom:0px;";
+                        css += "top: auto; bottom:0px;";
+                        break;
+                    default:
+                        css += "top: auto; bottom:auto;";
                         break;
                 }
 
@@ -1331,18 +1350,34 @@ namespace Rennder
                         break;
 
                     case "win":
+                        css += "max-width:100%; ";
                         break;
                 }
 
                 switch (pos[8]) //height-type
                 {
                     case "px":
-                        css += "min-height:" + pos[7] + "px; ";
+                        css += "height:" + pos[7] + "px; ";
+                        break;
+
+                    case "auto":
+                        css += "height:auto; ";
+                        break;
+                    case "window":
+                        css += "height:auto; ";
                         break;
                 }
 
                 //padding
-                if (!string.IsNullOrEmpty(pos[9])) { css += "padding:" + pos[9] + "; "; }
+                if (!string.IsNullOrEmpty(pos[9]))
+                {
+                    string[] pad = pos[9].Replace("px", "").Split(' ');
+                    css += "padding:" + pos[9] + "; width:calc(100% - " + (int.Parse(pad[1]) + int.Parse(pad[3])) + "px); ";
+                }
+                else
+                {
+                    css += "padding: 0px 0px 0px 0px; width:100%;";
+                }
 
 
             }

@@ -6,9 +6,6 @@ R.editor = {
     enabled:false,
 
     load: function () {
-        //get current viewport level
-        R.editor.viewport.getLevel();
-
         //initialize text editor
         R.editor.textEditor.init();
 
@@ -55,108 +52,6 @@ R.editor = {
             }
         }
         //R.events.render.trigger(1);
-    },
-
-    viewport: {
-        speed: 0, isChanging: false,
-        levels: [350, 700, 1024, 1440, 9999], level: -1, sizeIndex: -1,
-
-        getLevel: function () {
-            var w = $('.webpage').width();
-            for (x = 0; x < R.editor.viewport.levels.length; x++) {
-                if (w <= R.editor.viewport.levels[x]) {
-                    var changed = false;
-                    if (R.editor.viewport.level != x) { changed = true; }
-                    R.editor.viewport.level = x;
-                    return changed;
-                }
-            }
-        },
-
-        resize: function (width) {
-            var webpage = $('.webpage');
-            if (webpage.css('maxWidth') == '' || webpage.css('maxWidth') == 'none') {
-                webpage.css({'maxWidth':webpage.width()});
-            }
-            webpage.stop().animate({ maxWidth: width }, {
-                duration: this.speed * 1000,
-                progress: function () {
-                    if (R.editor.viewport.getLevel() == true) {
-                        R.editor.viewport.levelChanged(R.editor.viewport.level);
-                    }
-                },
-                complete: function () {
-                    R.editor.viewport.getLevel();
-                    if (R.editor.viewport.isChanging == true) {
-                        R.editor.viewport.isChanging = false;
-                        R.editor.components.disabled = false;
-                        R.editor.viewport.levelChanged(R.editor.viewport.level);
-                    } else {
-                        R.editor.components.resizeSelectBox();
-                    }
-                }
-            });
-        },
-
-        view: function (level) {
-            //hide selected components
-            R.editor.components.hideSelect();
-            R.editor.components.disabled = true;
-            switch (level) {
-                case 4: //HD
-                    R.editor.viewport.resize(1920); break;
-
-                default: //all other screen sizes
-                    R.editor.viewport.resize(R.editor.viewport.levels[level]); break;
-            }
-            R.editor.viewport.isChanging = false;
-            R.editor.viewport.levelChanged(level)
-            R.editor.viewport.isChanging = true;
-        },
-
-        levelChanged: function (level) {
-            if (R.editor.viewport.isChanging == true) { return; }
-            R.editor.viewport.sizeIndex = level;
-            var screen = 'HD', ext = 'hd';
-            switch (level) {
-                case 4: //HD
-                    screen = 'HD'; ext = 'hd'; break;
-
-                case 3: //Desktop
-                    screen = 'Desktop'; ext = 'desktop'; break;
-
-                case 2: //Tablet
-                    screen = 'Tablet'; ext = 'tablet'; break;
-
-                case 1: //Mobile Device
-                    screen = 'Mobile Device'; ext = 'mobile'; break;
-
-                case 0: //Cell Phone
-                    screen = 'Cell Phone'; ext = 'cell'; break;
-
-            }
-            $('.toolbar .menu .screens use').attr('xlink:href', '#icon-screen' + ext)
-        },
-
-        nextLevel: function () {
-            R.editor.viewport.speed = 2;
-            var sizeIndex = R.editor.viewport.sizeIndex;
-            if (sizeIndex == -1) {
-                sizeIndex = R.editor.viewport.level;
-            }
-            var next = sizeIndex > 0 ? sizeIndex - 1 : 4;
-            R.editor.viewport.view(next);
-        },
-
-        previousLevel: function () {
-            R.editor.viewport.speed = 2;
-            var sizeIndex = R.editor.viewport.sizeIndex;
-            if (sizeIndex == -1) {
-                sizeIndex = R.editor.viewport.level;
-            }
-            var prev = sizeIndex < 4 ? sizeIndex + 1 : 0;
-            R.editor.viewport.view(prev);
-        }
     },
 
     events: {   
@@ -1111,6 +1006,10 @@ R.editor = {
                         //R.editor.components.selected = null;
                         R.editor.components.disabled = false;
                         R.editor.components.mouseEnter(R.editor.components.drag.item.elem);
+
+                        //save position
+                        R.editor.components.menu.save.position();
+
                         $('.component-select').animate({ opacity: 1 }, 300);
                     }, 10);
 
@@ -1123,6 +1022,7 @@ R.editor = {
                 R.editor.components.drag.painting = false;
 
                 $('.editor > .barrier').remove();
+
             }
         },
 
@@ -1234,6 +1134,7 @@ R.editor = {
             },
 
             paint: function () {
+                if (R.editor.components.resize.options.started == false) { return;}
                 var pos = { w: this.options.elemStart.w, h: this.options.elemStart.h };
                 var mDiff = {
                     x: this.options.cursor.x - this.options.cursorStart.x,
@@ -1241,7 +1142,7 @@ R.editor = {
                 }
                 var perc = false;
                 var center = 1;
-                if ($(this.options.elem).css('margin').indexOf('px ') >= 0) { center = 2; }
+                if ($(this.options.elem).css('display').indexOf('inline-block') == 0) { center = 2; }
                 if (this.options.elem.style.width.indexOf('%') >= 0) { perc = true; }
                 if (perc == true) {
                     //find new percentage value
@@ -1278,7 +1179,7 @@ R.editor = {
                 }
 
                 if (this.options.autoHeight == false && this.options.autoResize == false) {
-                    $(this.options.elem).css({ minHeight: pos.h });
+                    $(this.options.elem).css({ height: pos.h });
                 }
                 if (this.options.autoResize == false) {
                     $(this.options.elem).css({ maxWidth: pos.w });
@@ -1294,9 +1195,6 @@ R.editor = {
                 R.editor.components.resize.options.started = false;
                 $('.editor > .barrier').remove();
 
-                //save responsive changes 
-                R.editor.components.save.resize(R.editor.components.resize.options.elem);
-
                 //unbind document mouse move event
                 $(document).unbind('mousemove', R.editor.components.resize.go);
                 $(document).unbind('mouseup', R.editor.components.resize.end);
@@ -1309,6 +1207,9 @@ R.editor = {
                     R.editor.components.disabled = false;
                     R.editor.components.selected = null;
                     R.editor.components.mouseEnter(R.editor.components.resize.options.elem);
+
+                    //save component position
+                    R.editor.components.menu.save.position();
                 }, 0);
 
                 
@@ -1450,7 +1351,6 @@ R.editor = {
         },
 
         mouseLeave: function (e) {
-            return;
             if (R.editor.enabled == false) { return; }
             if (R.editor.components.disabled == true) { return; }
                 R.editor.components.hideSelect('leave');
@@ -1616,7 +1516,7 @@ R.editor = {
                 setTimeout(function () {
                     var c = R.editor.components.hovered;
                     if (c != null) {
-                        R.editor.components.save.position();
+                        R.editor.components.menu.save.position();
                     }
                 }, 100);
             }
@@ -1734,16 +1634,118 @@ R.editor = {
 
         },
 
-        save: {
-            resize: function () {
-                var c = R.editor.components.hovered;
-                R.editor.save.add(c.id, 'resize', { 'maxWidth': c.style.maxWidth, 'minHeight': c.style.minHeight });
-            },
+        getPositionCss: function(c, level, position){
+            var css = '';
+            var id = c.id;
+            if (position != '' && position != null)
+            {
+                var pos = position.split(',');
+                //x-type, x-offset, y-type, y-offset, fixed-type, width, width-type, height, height-type, padding
+                switch (pos[0]) //x-type
+                {
+                    case 'l':
+                        css += 'float:left; display:block;';
+                        break;
 
-            position: function () {
-                var c = R.editor.components.hovered;
-                R.editor.save.add(c.id, 'move', { 'top': c.style.top, 'left': c.style.left })
+                    case 'c':
+                        css += 'float:none; display:inline-block; ';
+                        break;
+
+                    case 'r':
+                        css += 'float:right; display:block;';
+                        break;
+                }
+                //x-offset
+                if (pos[1].length > 0 && pos[1] != 'auto') {
+                    css += 'left:' + pos[1] + 'px; ';
+                } else {
+                    css += 'left:0px; ';
+                }
+
+                switch (pos[2]) //y-type
+                {
+                    case 'f':
+                        css += 'position:fixed; ';
+                        break;
+                    default:
+                        css += 'position:relative; ';
+                        break;
+                }
+
+                //y-offset
+                if (pos[3].length > 0 && pos[3] != 'auto') {
+                    css += 'top:' + pos[3] + 'px; ';
+                } else {
+                    css += 'top:0px; ';
+                }
+
+                switch (pos[4]) //fixed-type
+                {
+                    case 'm':
+                        css += 'top:50%; bottom:50%; ';
+                        break;
+
+                    case 'b':
+                        css += 'top:auto; bottom:0px; ';
+                        break;
+
+                    default:
+                        css += 'bottom:auto; ';
+                }
+
+                switch (pos[6]) //width-type
+                {
+                    case 'px':
+                        css += 'max-width:' + pos[5] + 'px; ';
+                        break;
+
+                    case '%':
+                        css += 'max-width:' + pos[5] + '%; ';
+                        break;
+
+                    case 'win':
+                        css += 'max-width:100%; ';
+                        break;
+                }
+
+                switch (pos[8]) //height-type
+                {
+                    case 'px':
+                        css += 'height:' + pos[7] + 'px; ';
+                        break;
+                    case 'auto':
+                        css += 'height:auto; ';
+                        break;
+                }
+
+                //padding
+                if (pos[9].length > 0) {
+                    var pad = pos[9].replace(/px/g, '').split(' ');
+                    css += 'padding:' + pos[9] + '; width:calc(100% - ' + (parseInt(pad[1]) + parseInt(pad[3])) + 'px); ';
+                } else {
+                    css += 'padding:0px; width:100%;';
+                }
+
+
             }
+            switch (level) {
+                case 0: //cell
+                    return '.screen.cell #' + id +
+                          '{' + css + '}';
+                case 1: //mobile
+                    return '.screen.mobile #' + id + ', .screen.cell #' + id +
+                          '{' + css + '}';
+                case 2: //tablet
+                    return '.screen.tablet #' + id + ', .screen.mobile #' + id + ', .screen.cell #' + id +
+                          '{' + css + '}';
+                case 3: //desktop
+                    return '.screen.desktop #' + id + ', .screen.tablet #' + id + ', .screen.mobile #' + id + ', .screen.cell #' + id +
+                          '{' + css + '}';
+                case 4: //HD
+                    return '.screen.hd #' + id + ',  .screen.desktop #' + id + ', .screen.tablet #' + id + ', .screen.mobile #' + id + ', .screen.cell #' + id +
+                          '{' + css + '}';
+            }
+            return css;
         },
 
         menu: {
@@ -1771,6 +1773,7 @@ R.editor = {
                         p.css({ opacity: 1, left: pos.x - pPos.w, top: options.border + 3 });
                     } else {
                         //display window outside component next to menu
+                        console.log(pos.x + ', ' + options.border);
                         p.css({ opacity: 1, left: pos.x - options.border + 2, top: 0 });
                     }
 
@@ -1861,6 +1864,35 @@ R.editor = {
                             $(items[items.length - 1]).addClass('last');
                         }
                     }
+
+                    //load component settings into menu tabs
+                    var comp = R.components.cache[R.editor.components.hovered.id];
+                    if (comp != null) {
+                        var lvl = R.viewport.level;
+                        //load position settings
+                        var pos = '';
+                        var levels = R.viewport.getLevelOrder();
+                        for (i = 0; i < levels.length; i++) {
+                            pos = comp.position[levels[i]];
+                            if (pos != '' && pos != null) { break;}
+                        }
+                        if (pos != '' && pos != null) {
+                            var vals = pos.split(',');
+                            $('#lstPropsAlignX').val(vals[0]);
+                            $('#lstPropsAlignY').val(vals[2]);
+                            $('#lstPropsFixed').val(vals[4]);
+                            $('#lstPropsPosWidth').val(vals[6]);
+                            $('#lstPropsPosHeight').val(vals[8]);
+                            var pad = '0px 0px 0px 0px';
+                            if (vals[9] != '') { pad = vals[9]; }
+                            $('#divPropsPadding a')[0].innerHTML = pad;
+                            var pads = pad.split(' ');
+                            $('#txtPosPadTop').val(pads[0].replace('px', ''));
+                            $('#txtPosPadRight').val(pads[1].replace('px', ''));
+                            $('#txtPosPadBottom').val(pads[2].replace('px', ''));
+                            $('#txtPosPadLeft').val(pads[3].replace('px', ''));
+                        }
+                    }
                     
                 }
             },
@@ -1869,11 +1901,70 @@ R.editor = {
                 position: function () {
                     //get values from component menu
                     var c = R.editor.components.hovered;
+                    console.log(c);
                     var alignx = $('#lstPropsAlignX').val();
+                    var left = $(c).css('left');
                     var aligny = $('#lstPropsAlignY').val();
-                    var width = $('#lstPropsWidth').val();
-                    var height = $('#lstPropsHeight').val();
-                    var pos = R.elem.innerPos(c);
+                    var top = $(c).css('top');
+                    var fixed = $('#lstPropsFixed').val() || '';
+                    var width = $(c).css('maxWidth');
+                    var widthtype = $('#lstPropsPosWidth').val();
+                    var height = $(c).css('height'); if (height == '0') { height = '';}
+                    var heighttype = $('#lstPropsPosHeight').val();
+                    var lvl = R.viewport.level;
+
+                    //check position for valid numbers
+                    if (left != null && left != '') { left = left.replace('px', '').replace('%', ''); }
+                    if (top != null && top != '') { top = top.replace('px', '').replace('%', ''); }
+                    if (width != null && width != '') { width = width.replace('px', '').replace('%', ''); }
+                    if (height != null && height != '') { height = height.replace('px', '').replace('%', ''); }
+                    var pad = [$('#txtPosPadTop').val(), $('#txtPosPadRight').val(), $('#txtPosPadBottom').val(), $('#txtPosPadLeft').val()];
+                    for (x = 0; x < 4; x++) {
+                        //check padding for valid numbers
+                        if (pad[x] == null || pad[x] == '') { pad[x] = '0'; }
+                        if (isNumeric(pad[x]) == false) { pad[x] = '0';}
+                    }
+
+                    //compile values into a string array
+                    var val = alignx + ',' + left + ',' + aligny + ',' + top + ',' + fixed + ',' +
+                              width + ',' + widthtype + ',' + height + ',' + heighttype + ',' +
+                              pad.join('px ') + 'px';
+                    console.log(val);
+                    R.components.cache[c.id].position[lvl] = val;
+                    R.editor.save.add(c.id, 'position', val);
+
+                    //generate style element in DOM to update component on page
+                    var exists = false;
+                    var lvlpos = R.components.cache[c.id].position
+                    var style = $('#stylefor_' + c.id);
+                    if ($('#stylefor_' + c.id).length > 0) { exists = true; }
+                    var styling =
+                        R.editor.components.getPositionCss(c, 4, lvlpos[4]) + '\n' +
+                        R.editor.components.getPositionCss(c, 3, lvlpos[3]) + '\n' +
+                        R.editor.components.getPositionCss(c, 2, lvlpos[2]) + '\n' +
+                        R.editor.components.getPositionCss(c, 1, lvlpos[1]) + '\n' +
+                        R.editor.components.getPositionCss(c, 0, lvlpos[0]);
+
+                    console.log(styling);
+                    if (exists == false) {
+                        style = document.createElement('style');
+                        style.id = 'stylefor_' + c.id;
+                        style.innerHTML = styling;
+                        $('#customCSS').append(style);
+                    } else {
+                        style = style[0];
+                        style.innerHTML = styling;
+                    }
+                    $(c).css({ maxWidth: '', height: '', top: '', left: '' });//reset inline-style from resize or nudge
+                    console.log('reset css ' + c.getAttribute('style'));
+                    setTimeout('console.log(\'reset 50 ms \' + $R("' + c.id + '").getAttribute("style"));', 50);
+                    R.editor.components.resizeSelectBox();
+                    if ($('.component-select .section-position')[0].style.display != 'none') {
+                        R.editor.components.menu.show('position');
+                    } else if ($('.component-select .section-padding')[0].style.display != 'none') {
+                        R.editor.components.menu.show('padding');
+                    }
+                    
                 },
 
                 layer: function () {
@@ -3386,7 +3477,7 @@ R.editor = {
             },
 
             select: function(name){
-                if ($(e.target).parents('.icon-close').length > 0) { return; }
+                //if ($(e.target).parents('.icon-close').length > 0) { return; }
                 R.ajax.post('/rennder/Dashboard/Photos/LoadPhotoList', { start: "1", folder: name, search: '', orderby: '0' }, R.ajax.callback.inject);
             },
 
@@ -3630,52 +3721,52 @@ R.hotkeys = {
                     case 49: //1
                         //a.innerHTML = 'fast';
                         //lbl.innerHTML = "On instant";
-                       R.editor.viewport.speed = 0;
+                       R.viewport.speed = 0;
                         break;
                     case 50: //2
                         //a.innerHTML = 'slow';
                         //lbl.innerHTML = "On fast";
-                        R.editor.viewport.speed = 1;
+                        R.viewport.speed = 1;
                         break;
                     case 51: //3
                         //a.innerHTML = 'slower';
                         //lbl.innerHTML = "On slow";
-                        R.editor.viewport.speed = 3;
+                        R.viewport.speed = 3;
                         break;
                     case 52: //4
                         //a.innerHTML = 'instant';
                         //lbl.innerHTML = "On slower";
-                        R.editor.viewport.speed = 9;
+                        R.viewport.speed = 9;
                         break;
                     case 53: //5
                         //a.innerHTML = 'instant';
                         //lbl.innerHTML = "On slow x2";
-                        R.editor.viewport.speed = 12;
+                        R.viewport.speed = 12;
                         break;
                     case 54: //6
                         //a.innerHTML = 'instant';
                         //lbl.innerHTML = "On slow x3";
-                        R.editor.viewport.speed = 18;
+                        R.viewport.speed = 18;
                         break;
                     case 55: //7
                         //a.innerHTML = 'instant';
                         //lbl.innerHTML = "On slow x4";
-                        R.editor.viewport.speed = 25;
+                        R.viewport.speed = 25;
                         break;
                     case 56: //8
                         //a.innerHTML = 'instant';
                         //lbl.innerHTML = "On slow x5";
-                        R.editor.viewport.speed = 35;
+                        R.viewport.speed = 35;
                         break;
                     case 57: //9
                         //a.innerHTML = 'instant';
                         //lbl.innerHTML = "On slow x6";
-                        R.editor.viewport.speed = 50;
+                        R.viewport.speed = 50;
                         break;
                     case 48: //0
                         //a.innerHTML = 'instant';
                         //lbl.innerHTML = "On slow x7";
-                        R.editor.viewport.speed = 100;
+                        R.viewport.speed = 100;
                         break;
                 }
 
@@ -3735,19 +3826,19 @@ R.hotkeys = {
                         R.editor.components.remove();
                         break;
                     case 49: //1
-                        R.editor.viewport.view(0);
+                        R.viewport.view(0);
                         break;
                     case 50: //2
-                        R.editor.viewport.view(1);
+                        R.viewport.view(1);
                         break;
                     case 51: //3
-                        R.editor.viewport.view(2);
+                        R.viewport.view(2);
                         break;
                     case 52: //4
-                        R.editor.viewport.view(3);
+                        R.viewport.view(3);
                         break;
                     case 53: //5
-                        R.editor.viewport.view(4);
+                        R.viewport.view(4);
                         break;
                 }
             }

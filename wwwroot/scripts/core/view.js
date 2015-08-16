@@ -5,6 +5,7 @@ var R = {
         R.page.useAjax = ajax;
         R.ajax.viewstateId = viewstateid;
         R.hash.last = title;
+        R.viewport.getLevel();
         R.hash.start();
     },
 
@@ -50,6 +51,137 @@ var R = {
             }
         }
 
+    },
+
+    viewport: {
+        speed: 0, isChanging: false,
+        levels: [350, 700, 1024, 1440, 9999], level: -1, sizeIndex: -1,
+        levelNames: ['cell', 'mobile', 'tablet', 'desktop', 'hd'],
+
+        getLevel: function () {
+            var w = $('.webpage').width();
+            for (x = 0; x < R.viewport.levels.length; x++) {
+                if (w <= R.viewport.levels[x]) {
+                    var changed = false;
+                    if (R.viewport.level != x) { changed = true; }
+                    R.viewport.level = x;
+                    if (changed == true) {
+                        var wp = $(document.body);
+                        var size = R.viewport.levelNames[x];
+                        if (wp.hasClass(size) == false) { wp.removeClass('cell mobile tablet desktop hd screen').addClass(size + ' screen'); }
+                    }
+                    return changed;
+                }
+            }
+        },
+
+        resize: function (width) {
+            if (R.editor.enabled == false) { return; }
+            var webpage = $('.webpage');
+            if (webpage.css('maxWidth') == '' || webpage.css('maxWidth') == 'none') {
+                webpage.css({ 'maxWidth': webpage.width() });
+            }
+            webpage.stop().animate({ maxWidth: width }, {
+                duration: this.speed * 1000,
+                progress: function () {
+                    if (R.viewport.getLevel() == true) {
+                        R.viewport.levelChanged(R.viewport.level);
+                    }
+                    R.events.doc.resize.trigger();
+                },
+                complete: function () {
+                    R.events.doc.resize.trigger();
+                    R.viewport.getLevel();
+                    if (R.viewport.isChanging == true) {
+                        R.viewport.isChanging = false;
+                        if (R.editor.enabled == true) { R.editor.components.disabled = false; }
+                        R.viewport.levelChanged(R.viewport.level);
+                    } else {
+                        if (R.editor.enabled == true) { R.editor.components.resizeSelectBox(); }
+                    }
+                }
+            });
+        },
+
+        view: function (level) {
+            if (R.editor.enabled == false) { return; }
+            //hide selected components
+            R.editor.components.hideSelect();
+            R.editor.components.disabled = true;
+            switch (level) {
+                case 4: //HD
+                    R.viewport.resize(1920); break;
+
+                default: //all other screen sizes
+                    R.viewport.resize(R.viewport.levels[level]); break;
+            }
+            R.viewport.isChanging = false;
+            R.viewport.levelChanged(level)
+            R.viewport.isChanging = true;
+        },
+
+        levelChanged: function (level) {
+            if (R.viewport.isChanging == true) { return; }
+            R.viewport.sizeIndex = level;
+            var screen = 'HD', ext = 'hd';
+            switch (level) {
+                case 4: //HD
+                    screen = 'HD'; ext = 'hd'; break;
+
+                case 3: //Desktop
+                    screen = 'Desktop'; ext = 'desktop'; break;
+
+                case 2: //Tablet
+                    screen = 'Tablet'; ext = 'tablet'; break;
+
+                case 1: //Mobile Device
+                    screen = 'Mobile Device'; ext = 'mobile'; break;
+
+                case 0: //Cell Phone
+                    screen = 'Cell Phone'; ext = 'cell'; break;
+
+            }
+            $('.toolbar .menu .screens use').attr('xlink:href', '#icon-screen' + ext)
+        },
+
+        nextLevel: function () {
+            if (R.editor.enabled == false) { return; }
+            R.viewport.speed = 2;
+            var sizeIndex = R.viewport.sizeIndex;
+            if (sizeIndex == -1) {
+                sizeIndex = R.viewport.level;
+            }
+            var next = sizeIndex > 0 ? sizeIndex - 1 : 4;
+            R.viewport.view(next);
+        },
+
+        previousLevel: function () {
+            if (R.editor.enabled == false) { return; }
+            R.viewport.speed = 2;
+            var sizeIndex = R.viewport.sizeIndex;
+            if (sizeIndex == -1) {
+                sizeIndex = R.viewport.level;
+            }
+            var prev = sizeIndex < 4 ? sizeIndex + 1 : 0;
+            R.viewport.view(prev);
+        },
+
+        getLevelOrder: function () {
+            this.getLevel();
+            var lvl = this.level;
+            switch (lvl) {
+                case 0:
+                    return [0, 1, 2, 3, 4];
+                case 1:
+                    return [1, 2, 0, 3, 4];
+                case 2:
+                    return [2, 3, 4, 1, 0];
+                case 3:
+                    return [3, 4, 2, 1, 0];
+                case 4:
+                    return [4, 3, 2, 1, 0];
+            }
+        }
     },
 
     elem: {
@@ -174,10 +306,11 @@ var R = {
     components: {
         cache: new Array(),
 
-        add: function (id, type) {
+        add: function (id, type, position, css) {
             if (id == null || id == '') { return;}
             if (typeof this.cache['c' + id] == 'undefined') { this.cache.length++; }
-            this.cache['c' + id] = { id: id, type: type };
+            var pos = position || '', cs = css || '';
+            this.cache['c' + id] = { id: id, type: type, position: pos.split('|'), css: cs.split('|') };
         },
 
         cleanup: function () {
@@ -356,7 +489,6 @@ var R = {
                 go: function () {
                     R.window.changed = true; R.window.pos();
                     if (this.timer.started == false) { return; }
-                    //R.events.render.trigger();
 
                     if (new Date() - this.timer.date > this.timer.timeout) {
                         this.stop();
@@ -643,7 +775,7 @@ var R = {
     },
     
     editor:{
-        selectedLayerId: '', editMode: false
+        selectedLayerId: '', editMode: false, enabled:false
     },
     
     hash: {
